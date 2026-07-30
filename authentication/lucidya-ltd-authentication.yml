@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.lucidya.com/
+name: Lucidya API Authentication
+type: Authentication
+summary: >-
+  Each Lucidya public API product carries its own authorization flow, documented
+  on a dedicated "Authorization" page under docs.lucidya.com. Access is
+  OAuth-based (Lucidya provisions OAuth client applications for programmatic
+  access); calls are issued against the api.lucidya.com host.
+schemes:
+- type: oauth2
+  name: Lucidya OAuth client
+  description: >-
+    Programmatic access is granted through Lucidya OAuth client applications.
+    Token/authorization endpoints and exact flow are documented per product on
+    the product's Authorization page (linked below) and are not fully public
+    without an account.
+  in: header
+  header: Authorization
+docs:
+- product: Social Listening
+  url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+- product: AI
+  url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+- product: CDP
+  url: https://docs.lucidya.com/docs/cdp-api/kae3rp3opgd5m-authorization
+- product: OmniChannel
+  url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+- product: OmniServe Analytics
+  url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+hosts:
+- https://api.lucidya.com
+notes: >-
+  The api.lucidya.com host is live and fronted by Cloudflare Access. Exact token
+  URLs and scope names were not fully public on this pass, so they are left
+  unstated rather than guessed.

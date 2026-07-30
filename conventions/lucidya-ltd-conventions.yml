@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.lucidya.com/
+name: Lucidya API Conventions
+type: Conventions
+summary: >-
+  Cross-cutting semantics for Lucidya's suite of RESTful APIs, captured from the
+  public developer docs. Six API products share a common REST + OAuth style and
+  a real-time webhook event surface.
+style: REST/JSON
+auth:
+  style: oauth2
+  detail: Per-product OAuth authorization flow; Authorization header bearer token.
+  ref: ../authentication/lucidya-ltd-authentication.yml
+events:
+  style: webhooks
+  detail: >-
+    Real-time push notifications when specific events or conditions are met
+    across monitors (e.g. Activity Log Webhook). Documented under the Webhooks
+    product.
+  url: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
+versioning:
+  detail: Per-product public API references under docs.lucidya.com.
+  ref: ../lifecycle/lucidya-ltd-lifecycle.yml
+idempotency:
+  supported: unknown
+  detail: No idempotency-key convention documented on the public developer pages.
+pagination:
+  detail: List endpoints (e.g. Public API monitors list, CDP profiles list) are exposed; exact pagination params were not public on this pass.
+notes: >-
+  Idempotency, rate-limit signaling, and error-envelope shape were not published
+  on the public surface reached during this pass and are therefore left unstated
+  rather than invented.

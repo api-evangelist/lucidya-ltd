@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
+name: Lucidya Webhooks
+type: Webhooks
+summary: >-
+  Lucidya ships a Webhooks API product delivering real-time push notifications
+  when specific events or conditions are met across a customer's monitors. It is
+  documented as one of the six public API products under docs.lucidya.com.
+docs: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
+delivery: HTTP push (outbound POST)
+events:
+- name: Activity Log Webhook
+  description: >-
+    Activity Log Webhook for Enhanced Security (announced 2026-05-03 in product
+    updates); pushes activity-log events.
+  source: https://news.lucidya.com/
+notes: >-
+  No AsyncAPI document is published; this captures the documented webhook surface
+  only. Additional event types exist but were not enumerated on the public pages
+  reached this pass, so they are left unlisted rather than invented.

@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: https://status.lucidya.com/
+name: Lucidya API Lifecycle
+type: Lifecycle
+status_page:
+  url: https://status.lucidya.com/
+  platform: Atlassian Statuspage
+  present: true
+change_log:
+  url: https://news.lucidya.com/
+  present: true
+versioning:
+  scheme: per-product public APIs
+  notes: >-
+    Lucidya exposes six independently documented public API products (Social
+    Listening, AI, CDP, OmniChannel, OmniServe Analytics, Webhooks), each with
+    its own authorization flow and reference under docs.lucidya.com.
+deprecation:
+  policy_url: null
+  present: false
+  notes: No public deprecation / sunset policy located during this pass.
+sla:
+  url: null
+  present: false
+  notes: >-
+    SLA / uptime commitments are referenced through the Trust Center
+    (trust.lucidya.com), which gates full documents behind NDA.

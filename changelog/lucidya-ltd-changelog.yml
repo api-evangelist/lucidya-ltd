@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: https://news.lucidya.com/
+name: Lucidya Product Updates
+type: ChangeLog
+scheme: dated-entries
+url: https://news.lucidya.com/
+notes: >-
+  Lucidya publishes a public, dated product-updates / release-notes feed at
+  news.lucidya.com (bilingual English/Arabic, paginated). Entries below are the
+  most recent captured verbatim on the fetch date. Individual updates use the
+  pattern https://news.lucidya.com/<id>-<slug>.
+entries:
+- date: '2026-06-30'
+  title: Mandatory custom fields enforcement in OmniServe
+  area: OmniServe
+- date: '2026-06-22'
+  title: Simplified inbound routing for OmniServe AI Agent escalations
+  area: OmniServe
+- date: '2026-06-11'
+  title: Custom Variables for Surveys
+  area: Lucidya Survey
+- date: '2026-06-03'
+  title: TV & Radio Keyword Monitors in Social Listening
+  area: Social Listening
+- date: '2026-05-03'
+  title: Activity Log Webhook for Enhanced Security
+  area: Webhooks
