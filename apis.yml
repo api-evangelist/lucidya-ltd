@@ -12,27 +12,38 @@ description: >-
   Arabia and is certified for SOC 2 Type 2 and ISO 27001.
 url: https://raw.githubusercontent.com/api-evangelist/lucidya-ltd/refs/heads/main/apis.yml
 accessModel:
-  pricing: unknown
-  onboarding: self-serve
+  pricing: published
+  onboarding: approval-required
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Docs public, key requires CSM approval
+  confidence: high
   source:
   - authentication
-  generated: '2026-07-22'
-  method: derived
+  - plans
+  generated: '2026-08-13'
+  method: searched
+  note: >-
+    Corrected 2026-08-13. Documentation and all five OpenAPI documents are fully
+    public and unauthenticated, but an API key is not self-serve: a customer must
+    file a "Request Access" ticket that a Customer Success Manager approves before
+    the Generate API Key control appears. OmniServe list pricing is published
+    ($125 and $250 per seat per month); Social Listening pricing is
+    talk-to-sales.
 image: https://lh3.googleusercontent.com/d/1rlLPfBLpzoGQ2qAS_b9JeAxSnoyaa6RQ
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: >-
+  Five first-party OpenAPI documents (73 operations) harvested from the
+  provider's own public Stoplight workspace on 2026-08-13, plus the full docs
+  set for auth, pagination, errors, rate limits and versioning.
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-13'
 tags:
 - Company
 - Customer Experience
@@ -59,6 +70,12 @@ apis:
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
     url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-social-listening-api-openapi.yml
+  - type: Overlay
+    url: overlays/lucidya-ltd-social-listening-overlay.yaml
+  - type: AgentSkill
+    url: skills/lucidya-ltd-pull-social-listening-widget-data.md
 - name: Lucidya AI API
   description: >-
     Analyze text and audio with Lucidya's AI models — sentiment analysis, Arabic
@@ -75,6 +92,14 @@ apis:
     url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
   - type: Authentication
     url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-ai-api-openapi.yml
+  - type: Overlay
+    url: overlays/lucidya-ltd-ai-overlay.yaml
+  - type: AgentSkill
+    url: skills/lucidya-ltd-analyze-arabic-text.md
+  - type: AgentSkill
+    url: skills/lucidya-ltd-transcribe-audio.md
 - name: Lucidya CDP API
   description: >-
     Access unified customer profiles, interaction histories, and survey data from
@@ -89,7 +114,13 @@ apis:
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
   - type: Authentication
-    url: https://docs.lucidya.com/docs/cdp-api/kae3rp3opgd5m-authorization
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-cdp-api-openapi.yml
+  - type: Overlay
+    url: overlays/lucidya-ltd-cdp-overlay.yaml
+  - type: AgentSkill
+    url: skills/lucidya-ltd-manage-cdp-profiles-and-segments.md
 - name: Lucidya OmniChannel API
   description: >-
     Retrieve widget data across all connected channels — social, chat, rating,
@@ -98,19 +129,23 @@ apis:
   baseURL: https://api.lucidya.com
   properties:
   - type: Documentation
-    url: https://docs.lucidya.com/docs/omnichannel-api/2rgdmftcqwev6-get-started
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
   - type: APIReference
     url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
   - type: GettingStarted
-    url: https://docs.lucidya.com/docs/omnichannel-api/2rgdmftcqwev6-get-started
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
   - type: Authentication
     url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-omnichannel-api-openapi.yml
+  - type: Overlay
+    url: overlays/lucidya-ltd-omnichannel-overlay.yaml
 - name: Lucidya OmniServe Analytics API
   description: >-
     Fetch analytics results for Inbox, SLAs, Agents, and In-Chat Survey,
     including KPIs, time-series, and distributions.
   humanURL: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
-  baseURL: https://api.lucidya.com
+  baseURL: https://api.lucidya.com/public_api/omniserve
   properties:
   - type: Documentation
     url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
@@ -120,6 +155,12 @@ apis:
     url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
   - type: Authentication
     url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-omniserve-analytics-api-openapi.yml
+  - type: Overlay
+    url: overlays/lucidya-ltd-omniserve-analytics-overlay.yaml
+  - type: AgentSkill
+    url: skills/lucidya-ltd-run-omniserve-analytics-job.md
 - name: Lucidya Webhooks
   description: >-
     Receive real-time push notifications when specific events or conditions are
@@ -128,7 +169,7 @@ apis:
   baseURL: https://api.lucidya.com
   properties:
   - type: Webhooks
-    url: ../asyncapi/lucidya-ltd-webhooks.yml
+    url: asyncapi/lucidya-ltd-webhooks.yml
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
   - type: Documentation
@@ -193,8 +234,28 @@ common:
   url: https://github.com/lucidya
 - type: LLMsTxt
   url: llms/lucidya-ltd-llms.txt
+- type: OpenAPI
+  url: openapi/lucidya-ltd-social-listening-api-openapi.yml
+- type: Overlay
+  url: overlays/lucidya-ltd-social-listening-overlay.yaml
+- type: ErrorCatalog
+  url: errors/lucidya-ltd-problem-types.yml
+- type: RateLimits
+  url: rate-limits/lucidya-ltd-rate-limits.yml
+- type: Plans
+  url: plans/lucidya-ltd-plans-pricing.yml
+- type: DataModel
+  url: data-model/lucidya-ltd-data-model.yml
+- type: Sandbox
+  url: sandbox/lucidya-ltd-sandbox.yml
+- type: Packages
+  url: packages/lucidya-ltd-packages.yml
+- type: MCPServer
+  url: mcp/lucidya-ltd-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 10
+  artifacts_added: 24
   pass: local-v1
