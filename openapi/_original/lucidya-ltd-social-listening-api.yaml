@@ -1,0 +1,995 @@
+openapi: 3.0.1
+info:
+  version: v1
+  title: Lucidya Social Listening Public API
+  description: 'This is the Public API Reference for the Social Listening Product. Use our Social Listening Endpoints to integrate with your product. '
+  termsOfService: 'https://lucidya.com/service-agreement/'
+  contact:
+    name: Lucidya Support
+    url: 'https://lucidya.com/'
+    email: customer.support@lucidya.com
+servers:
+  - url: 'https://api.lucidya.com'
+    description: Production
+paths:
+  /monitors_list:
+    get:
+      tags:
+        - Public API - Monitors List
+      summary: Public API - Monitors List
+      description: "This endpoint enables you tp get the list of all monitors in your account.\n<!-- theme: success -->\n> #### \U0001F4A1 Note\n>\n> This endpoint supports pagination."
+      operationId: monitors_list
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: The API authorization token for the request.
+          required: true
+          schema:
+            type: string
+        - name: page_id
+          in: query
+          description: this parameter indicates the number of page to retrive
+          required: true
+          schema:
+            type: integer
+            example: 1
+          examples:
+            default:
+              value: 1
+      responses:
+        '200':
+          description: Return all monitors list
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    data:
+                      - id: '12345'
+                        type: monitor_model
+                        attributes:
+                          id: 12345
+                          status: active
+                          name: Dummy Monitor
+                          monitor_type_name: keyword
+                          paused: 0
+                          description: This is a dummy monitor
+                          is_deleted: 0
+                          created_at: '2022-01-01'
+                          data_sources:
+                            - twitter
+                          added_by: John Doe
+                          data_category: social media
+                          channel:
+                            - twitter
+                          account_name: Dummy Account
+                          total_count: 100
+                          third_party_unique_id: null
+                          percentage: 0
+                          stream_status: collecting
+                          limit_error: []
+                          monitor_owner: false
+                          keywords_stats:
+                            twitter_keywords_count: 1
+                          monitor_creator:
+                            id: 1234
+                            email: johndoe@example.com
+                            name: John Doe
+                          created_at_in_unix: 1640995200
+                          dm_channel: 0
+                          dm_configuration_id: 0
+                          topics: []
+                          account_error: []
+                          account_valid_error: []
+                          monitor_account_name: ''
+                          monitor_warning: ''
+                    page_number: '1'
+                    count: 1
+        '400':
+          description: missing_params
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 400
+                      detail: Page_id is required
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 400
+                      detail: Page_id must be a number
+        '401':
+          description: missing_API_key
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: No API key found in request
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    message: Invalid authentication credentials
+        '403':
+          description: not_authorized
+        '429':
+          description: too_many_requests
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: API rate limit exceeded
+        '500':
+          description: internal_server_error
+        '503':
+          description: service_unavailable
+        '504':
+          description: request_timeout
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production
+  /widgets:
+    get:
+      tags:
+        - Public APIs - Social Listening - Base APIs
+      summary: Social Listening - Base APIs
+      description: This endpoint enanles you to get all widgets from your account.
+      operationId: Widgets
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: The API authorization token for the request.
+          required: true
+          schema:
+            type: string
+        - name: monitor_id
+          in: query
+          description: The ID of the monitor being used.
+          required: true
+          schema:
+            type: integer
+            example: 7709
+          examples:
+            default:
+              value: 7709
+        - name: product_id
+          in: query
+          description: The ID of the product being monitored.
+          required: true
+          schema:
+            type: integer
+            example: 1
+          examples:
+            default:
+              value: 1
+        - name: page_name
+          in: query
+          description: The name of the page being monitored.
+          required: true
+          schema:
+            type: string
+            example: account_page
+          examples:
+            default:
+              value: account_page
+        - name: data_source
+          in: query
+          description: The data source being used for monitoring.
+          required: true
+          schema:
+            type: string
+            example: twitter
+          examples:
+            default:
+              value: twitter
+      responses:
+        '200':
+          description: successful operation
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    data:
+                      data_source: twitter
+                      widgets_names:
+                        - volume_overtime
+                        - interactions
+                        - sentiment_analysis
+                        - reach_funnel
+                        - content_style
+                        - associated_topics
+                        - top_keywords
+                        - top_hashtags
+                        - top_images
+                        - top_videos
+                        - top_languages
+                        - dialects_subdialects
+                        - top_countries
+                        - top_cities
+                        - gender_distribution
+                        - account_types
+                        - top_engagers
+                        - top_sources
+                        - top_verified_engagers
+                        - top_influencers
+                      company_time_zone: 3
+                      page_name: engagements
+                      monitor_id: 1234
+                      monitor_name: dummy monitor
+        '400':
+          description: failure of getting data due to missing params
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 400
+                      detail: WRONG_REQUEST_PARAMETERS
+        '401':
+          description: missing_API_key
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: No API key found in request
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    message: Invalid authentication credentials
+        '403':
+          description: not_authorized
+        '404':
+          description: Page Not Found or Monitor Not Found
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      source: {}
+                      status: 404
+                      detail: PAGE_NOT_FOUND
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 404
+                      detail: Couldn't find MonitorModel with 'id'=1235
+        '429':
+          description: too_many_requests
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: API rate limit exceeded
+        '500':
+          description: internal_server_error
+        '503':
+          description: service_unavailable
+        '504':
+          description: request_timeout
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production
+  /filters:
+    get:
+      tags:
+        - Public APIs - Social Listening - Base APIs
+      summary: Social Listening - Base APIs
+      description: This endpoint enables you to apply filters for specific monitor data.
+      operationId: filters
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: The API authorization token for the request.
+          required: true
+          schema:
+            type: string
+        - name: monitor_id
+          in: query
+          description: The ID of the monitor being used.
+          required: true
+          schema:
+            type: integer
+            example: 7709
+          examples:
+            default:
+              value: 7709
+        - name: data_source
+          in: query
+          description: The data source being used for monitoring.
+          required: true
+          schema:
+            type: string
+            example: twitter
+          examples:
+            default:
+              value: twitter
+        - name: product_id
+          in: query
+          description: The ID of the product being monitored.
+          required: true
+          schema:
+            type: integer
+            example: 1
+          examples:
+            default:
+              value: 1
+        - name: page_name
+          in: query
+          description: The name of the page being monitored.
+          required: true
+          schema:
+            type: string
+            example: account_page
+          examples:
+            default:
+              value: account_page
+      responses:
+        '200':
+          description: Return all filters for a specific data_source Page
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    data:
+                      - name: sentiment
+                        selection_attribute: checkbox-labels
+                        content_source: static_content
+                        placeholder: 'null'
+                        locale_source: 'null'
+                        default_value: 'null'
+                        priority: '1'
+                        options:
+                          - value: '1'
+                            color: green
+                            label: Positive
+                          - value: '0'
+                            color: red
+                            label: Negative
+                          - value: '2,3'
+                            color: yellow
+                            label: Neutral
+        '401':
+          description: missing_API_key
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: No API key found in request
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    message: Invalid authentication credentials
+        '403':
+          description: not_authorized
+        '404':
+          description: Page Not Found or Monitor Not Found
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      source: {}
+                      status: 404
+                      detail: PAGE_NOT_FOUND
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 404
+                      detail: Couldn't find MonitorModel with 'id'=1235
+        '429':
+          description: too_many_requests
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: API rate limit exceeded
+        '500':
+          description: internal_server_error
+        '503':
+          description: service_unavailable
+        '504':
+          description: request_timeout
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production
+  /pages:
+    get:
+      tags:
+        - Public APIs - Social Listening - Base APIs
+      summary: Social Listening - Base APIs
+      description: This endpoint enables you to get specific page data from your account.
+      operationId: pages
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: The API authorization token for the request.
+          required: true
+          schema:
+            type: string
+        - name: monitor_id
+          in: query
+          description: The ID of the monitor being used.
+          required: true
+          schema:
+            type: integer
+            example: 7709
+          examples:
+            default:
+              value: 7709
+        - name: data_source
+          in: query
+          description: The data source being used for monitoring.
+          required: true
+          schema:
+            type: string
+            example: twitter
+          examples:
+            default:
+              value: twitter
+      responses:
+        '200':
+          description: Return all filters for a specific data_source Page
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    data:
+                      pages_name:
+                        - engagements
+        '401':
+          description: missing_API_key
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: No API key found in request
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    message: Invalid authentication credentials
+        '403':
+          description: not_authorized
+        '404':
+          description: Page Not Found or Monitor Not Found
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 404
+                      detail: Couldn't find MonitorModel with 'id'=12354443
+        '429':
+          description: too_many_requests
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: API rate limit exceeded
+        '500':
+          description: internal_server_error
+        '503':
+          description: service_unavailable
+        '504':
+          description: request_timeout
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production
+  /facebook/widget_data:
+    post:
+      tags:
+        - Public APIs - Social Listening - Facebook widget_data APIs
+      summary: Social Listening - Facebook widget_data APIs
+      description: "This endpoint enables you to apply filters for the Facebook widgets and get the `job_id`.\n<!-- theme: success -->\n> #### \U0001F4A1 Note\n>\n> The `start_date` and `end_date` should be within 30 days only."
+      operationId: post-facebook-widget-data
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: The API authorization token for the request.
+          required: true
+          schema:
+            type: string
+        - name: monitor_id
+          in: query
+          description: The ID of the monitor being used.
+          required: true
+          schema:
+            type: integer
+            example: 7709
+          examples:
+            default:
+              value: 7709
+        - name: page_name
+          in: query
+          description: The name of the page being monitored.
+          required: true
+          schema:
+            type: string
+            example: account_page
+          examples:
+            default:
+              value: account_page
+        - name: data_source
+          in: query
+          description: The data source being used for monitoring.
+          required: true
+          schema:
+            type: string
+            example: twitter
+          examples:
+            default:
+              value: twitter
+        - name: start_date
+          in: query
+          description: The start date of the monitoring period in Unix timestamp format.
+          required: true
+          schema:
+            type: integer
+            example: 1622505600
+          examples:
+            default:
+              value: 1622505600
+        - name: end_date
+          in: query
+          description: The end date of the monitoring period in Unix timestamp format.
+          required: true
+          schema:
+            type: integer
+            example: 1622592000
+          examples:
+            default:
+              value: 1622592000
+        - name: widgets_names
+          in: query
+          description: The names of the widgets being monitored.
+          required: true
+          schema:
+            type: string
+            example: '["engagements","customer_care"]'
+          examples:
+            default:
+              value: '["engagements","customer_care"]'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    data:
+                      job_id: 604e6ca2-d166-4bfa-a51f-f3189f538b94
+                      monitor_id: 1234
+                      widgets_names: '[''top_videos'',''top_images'']'
+        '401':
+          description: missing_API_key
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: No API key found in request
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    message: Invalid authentication credentials
+        '403':
+          description: not_authorized
+        '429':
+          description: too_many_requests
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: API rate limit exceeded
+        '500':
+          description: internal_server_error
+        '503':
+          description: service_unavailable
+        '504':
+          description: request_timeout
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production
+  /instagram/widget_data:
+    post:
+      tags:
+        - Public APIs - Social Listening - instagram widget_data APIs
+      summary: Social Listening - instagram widget_data APIs
+      description: "This endpoint enables you to apply filters for the Instagram widgets and get the `job_id`.\n<!-- theme: success -->\n> #### \U0001F4A1 Note\n>\n> The `start_date` and `end_date` should be within 30 days only."
+      operationId: post-instagram-widget-data
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: The API authorization token for the request.
+          required: true
+          schema:
+            type: string
+        - name: monitor_id
+          in: query
+          description: The ID of the monitor being used.
+          required: true
+          schema:
+            type: integer
+            example: 7709
+          examples:
+            default:
+              value: 7709
+        - name: page_name
+          in: query
+          description: The name of the page being monitored.
+          required: true
+          schema:
+            type: string
+            example: account_page
+          examples:
+            default:
+              value: account_page
+        - name: data_source
+          in: query
+          description: The data source being used for monitoring.
+          required: true
+          schema:
+            type: string
+            example: Instagram
+          examples:
+            default:
+              value: Instagram
+        - name: start_date
+          in: query
+          description: The start date of the monitoring period in Unix timestamp format.
+          required: true
+          schema:
+            type: integer
+            example: 1622505600
+          examples:
+            default:
+              value: 1622505600
+        - name: end_date
+          in: query
+          description: The end date of the monitoring period in Unix timestamp format.
+          required: true
+          schema:
+            type: integer
+            example: 1622592000
+          examples:
+            default:
+              value: 1622592000
+        - name: widgets_names
+          in: query
+          description: The names of the widgets being monitored.
+          required: true
+          schema:
+            type: string
+            example: '["engagements","customer_care"]'
+          examples:
+            default:
+              value: '["engagements","customer_care"]'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    data:
+                      job_id: 604e6ca1-d166-4bfa-a51f-f3189f538b94
+                      monitor_id: 1234
+                      widgets_names: '[''customer_care'',''engagements'']'
+        '401':
+          description: missing_API_key
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: No API key found in request
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    message: Invalid authentication credentials
+        '403':
+          description: not_authorized
+        '429':
+          description: too_many_requests
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: API rate limit exceeded
+        '500':
+          description: internal_server_error
+        '503':
+          description: service_unavailable
+        '504':
+          description: request_timeout
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production
+  /nb/widget_data:
+    post:
+      tags:
+        - Public APIs - Social Listening - nb widget_data APIs
+      summary: Social Listening - nb widget_data APIs
+      description: "This endpoint enables you to apply filters for the News & Blogs widgets and get the `job_id`.\n<!-- theme: success -->\n> #### \U0001F4A1 Note\n>\n> The `start_date` and `end_date` should be within 30 days only."
+      operationId: post-new-blogs-widget-data
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: The API authorization token for the request.
+          required: true
+          schema:
+            type: string
+        - name: monitor_id
+          in: query
+          description: The ID of the monitor being used.
+          required: true
+          schema:
+            type: integer
+            example: 7709
+          examples:
+            default:
+              value: 7709
+        - name: page_name
+          in: query
+          description: The name of the page being monitored.
+          required: true
+          schema:
+            type: string
+            example: account_page
+          examples:
+            default:
+              value: account_page
+        - name: data_source
+          in: query
+          description: The data source being used for monitoring.
+          required: true
+          schema:
+            type: string
+            example: TALKWALKER
+          examples:
+            default:
+              value: TALKWALKER
+        - name: start_date
+          in: query
+          description: The start date of the monitoring period in Unix timestamp format.
+          required: true
+          schema:
+            type: integer
+            example: 1622505600
+          examples:
+            default:
+              value: 1622505600
+        - name: end_date
+          in: query
+          description: The end date of the monitoring period in Unix timestamp format.
+          required: true
+          schema:
+            type: integer
+            example: 1622592000
+          examples:
+            default:
+              value: 1622592000
+        - name: widgets_names
+          in: query
+          description: The names of the widgets being monitored.
+          required: true
+          schema:
+            type: string
+            example: '["engagements","customer_care"]'
+          examples:
+            default:
+              value: '["engagements","customer_care"]'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    data:
+                      job_id: 604e6ca1-d166-4bfa-a51f-f3189f538b94
+                      monitor_id: 1234
+                      widgets_names: '[''customer_care'',''engagements'']'
+        '401':
+          description: missing_API_key
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: No API key found in request
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    message: Invalid authentication credentials
+        '403':
+          description: not_authorized
+        '404':
+          description: Page Not Found or Monitor Not Found
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 404
+                      detail: Couldn't find MonitorModel with 'id'=12354443
+        '429':
+          description: too_many_requests
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: API rate limit exceeded
+        '500':
+          description: internal_server_error
+        '503':
+          description: service_unavailable
+        '504':
+          description: request_timeout
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production
+  /twitter/widget_data:
+    post:
+      tags:
+        - Public APIs - Social Listening - twitter widget_data APIs
+      summary: Social Listening - twitter widget_data APIs
+      description: "This endpoint enables you to apply filters for the Twitter widgets and get the `job_id`.\n<!-- theme: success -->\n> #### \U0001F4A1 Note\n>\n> The `start_date` and `end_date` should be within 30 days only."
+      operationId: post-twitter-widget-data
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: The API authorization token for the request.
+          required: true
+          schema:
+            type: string
+        - name: monitor_id
+          in: query
+          description: The ID of the monitor being used.
+          required: true
+          schema:
+            type: integer
+            example: 7709
+          examples:
+            default:
+              value: 7709
+        - name: page_name
+          in: query
+          description: The name of the page being monitored.
+          required: true
+          schema:
+            type: string
+            example: account_page
+          examples:
+            default:
+              value: account_page
+        - name: data_source
+          in: query
+          description: The data source being used for monitoring.
+          required: true
+          schema:
+            type: string
+            example: twitter
+          examples:
+            default:
+              value: twitter
+        - name: start_date
+          in: query
+          description: The start date of the monitoring period in Unix timestamp format.
+          required: true
+          schema:
+            type: integer
+            example: 1622505600
+          examples:
+            default:
+              value: 1622505600
+        - name: end_date
+          in: query
+          description: The end date of the monitoring period in Unix timestamp format.
+          required: true
+          schema:
+            type: integer
+            example: 1622592000
+          examples:
+            default:
+              value: 1622592000
+        - name: widgets_names
+          in: query
+          description: The names of the widgets being monitored.
+          required: true
+          schema:
+            type: string
+            example: '["engagements","customer_care"]'
+          examples:
+            default:
+              value: '["engagements","customer_care"]'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    data:
+                      job_id: 604e6ca1-d166-4bfa-a51f-f3189f538b94
+                      monitor_id: 1234
+                      widgets_names: '[''customer_care'',''engagements'']'
+        '401':
+          description: missing_API_key
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: No API key found in request
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    message: Invalid authentication credentials
+        '403':
+          description: not_authorized
+        '404':
+          description: Page Not Found or Monitor Not Found
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 404
+                      detail: Couldn't find MonitorModel with 'id'=12354443
+        '429':
+          description: too_many_requests
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: API rate limit exceeded
+        '500':
+          description: internal_server_error
+        '503':
+          description: service_unavailable
+        '504':
+          description: request_timeout
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production
+x-internal: false

@@ -1,0 +1,168 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.lucidya.com/docs/Social-Listening-api/jpep93q1xum4z-responses
+name: Lucidya Error Catalog
+type: ErrorCatalog
+summary: >-
+  Lucidya publishes a single cross-product error registry in its "Responses"
+  introduction article, giving every HTTP status a stable machine slug. This
+  catalog pairs that published registry with the 4xx/5xx responses actually
+  declared across the 73 operations in the five OpenAPI documents in openapi/.
+format: custom-json
+rfc9457: false
+content_type: application/json
+envelope:
+  shape: |
+    {
+      "error": {
+        "status": <int>,
+        "detail": "<human readable message>"
+      }
+    }
+  fields:
+    - name: error.status
+      meaning: The HTTP status code, repeated inside the body.
+    - name: error.detail
+      meaning: Human-readable explanation of the failure.
+  note: >-
+    A second, thinner shape appears in OmniServe mock responses —
+    {"status": 401, "message": "Authentication required"} — using `message`
+    rather than a nested `error.detail`. Both are in production; the envelope is
+    not uniform across the five products.
+  multi_error: >-
+    The Responses article states that a 4xx caused by several validation
+    problems returns a list of "fields" and an array of message "values" per
+    field. No example of that shape is published, so its exact structure is
+    unverified and is not reproduced here.
+problem_types:
+  - status: 400
+    slug: bad_request
+    title: Bad Request
+    detail: Invalid parameters, fields or filters.
+    remediation: >-
+      Check required query parameters. The live Prism mock returns
+      {"error":{"status":400,"detail":"Page_id is required"}} for a paginated
+      call missing page_id.
+    declared_on_operations: 37
+  - status: 401
+    slug: unauthorized
+    title: Unauthorized
+    detail: Authorization error (invalid API key).
+    remediation: >-
+      Verify the `luc-authorization` header carries a live token for the correct
+      API product type, and that the calling IP falls inside a subnet registered
+      on that key. A key idle 30 days is deactivated; a key used continuously for
+      60 days expires — both produce 401 and require generating a new key.
+    declared_on_operations: 67
+  - status: 403
+    slug: forbidden
+    title: Forbidden
+    detail: >-
+      The server understood the request but is refusing it — either the access is
+      not allowed, or the caller was blocked due to many errors in a particular
+      time window.
+    remediation: >-
+      Distinct from 429. Repeated erroring requests can get a caller blocked, so
+      a client must stop on sustained 4xx rather than retrying tightly.
+    declared_on_operations: 30
+  - status: 404
+    slug: not_found
+    title: Not Found
+    detail: The specified resource / url-path could not be found.
+    declared_on_operations: 30
+  - status: 405
+    slug: method_not_allowed
+    title: Method Not Allowed
+    detail: The method used is not allowed.
+    declared_on_operations: 18
+  - status: 406
+    slug: not_acceptable
+    title: Not Acceptable
+    detail: The format used is not acceptable.
+    declared_on_operations: 24
+  - status: 410
+    slug: gone
+    title: Gone
+    detail: The resource requested is no longer available.
+    declared_on_operations: 18
+  - status: 422
+    slug: validation_failed
+    title: Unprocessable Entity
+    detail: >-
+      The server cannot process the entity — e.g. mandatory fields are missing
+      from the payload.
+    remediation: >-
+      The AI API returns FastAPI-style validation detail here:
+      {"detail":[{"loc":[...],"msg":"...","type":"..."}]} — a third envelope
+      shape, confirmed live against the published mock.
+    declared_on_operations: 24
+  - status: 429
+    slug: too_many_requests
+    title: Too Many Requests
+    detail: Rate limit exceeded.
+    remediation: >-
+      No Retry-After or RateLimit-* header is returned. Limits reset at the start
+      of the next minute, so a client must implement its own backoff to the next
+      minute boundary.
+    declared_on_operations: 27
+    ref: ../rate-limits/lucidya-ltd-rate-limits.yml
+  - status: 500
+    slug: server_error
+    title: Internal Server Error
+    detail: >-
+      "We might be updating our services, please wait a while before trying
+      again."
+    declared_on_operations: 37
+  - status: 503
+    slug: service_unavailable
+    title: Service Unavailable
+    detail: >-
+      Unable to handle the HTTP request due to temporary overloading or
+      maintenance of the server.
+    declared_on_operations: 63
+  - status: 504
+    slug: time_out
+    title: Gateway Timeout
+    detail: >-
+      The server tried to load the data or fulfill the request but it took too
+      long and timed out.
+    declared_on_operations: 65
+    remediation: >-
+      504 is the single most-declared failure across the surface (65 of 73
+      operations). The widget/analytics endpoints are aggregation queries; a
+      client should treat timeout as expected and use the async create-then-poll
+      pattern where one is offered.
+non_error_statuses_worth_noting:
+  - status: 202
+    meaning: >-
+      Not an error. Returned by the async poll endpoints (OmniServe
+      /analytics/{page_name}/index, /analytics/in-chat-survey/index,
+      /analytics/custom_fields, and the AI audio-transcription status/result
+      endpoints) while a job is still running. A client must branch on 202 vs 200
+      rather than treating any 2xx as final.
+    declared_on_operations: 5
+  - status: 306
+    meaning: >-
+      Declared on CDP getFilters. 306 is an unused/reserved HTTP status; this is
+      almost certainly a spec authoring error rather than real behaviour, and is
+      recorded as an observation on the contract, not as a documented condition.
+    declared_on_operations: 1
+coverage:
+  operations_examined: 73
+  specs_examined:
+    - openapi/lucidya-ltd-social-listening-api-openapi.yml
+    - openapi/lucidya-ltd-ai-api-openapi.yml
+    - openapi/lucidya-ltd-cdp-api-openapi.yml
+    - openapi/lucidya-ltd-omnichannel-api-openapi.yml
+    - openapi/lucidya-ltd-omniserve-analytics-api-openapi.yml
+  registry_docs:
+    - https://docs.lucidya.com/docs/Social-Listening-api/jpep93q1xum4z-responses
+    - https://docs.lucidya.com/docs/ai-api/8luk24ggr8vzk-responses
+    - https://docs.lucidya.com/docs/cdp-api/37dc7537eu0yw-responses
+    - https://docs.lucidya.com/docs/omnichannel-api/htaih7cfk7rgd-responses
+notes: >-
+  Lucidya's error posture is stronger than most providers of its size — a stable
+  slug per status, published cross-product, and 4xx/5xx declared on nearly every
+  operation. The gap is envelope consistency: three different error body shapes
+  are in production (error.detail, status+message, and FastAPI detail[]), and
+  none is application/problem+json.

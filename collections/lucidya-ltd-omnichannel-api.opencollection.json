@@ -1,0 +1,1441 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OmniChannel API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Channel List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/monitors_list",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "product_name",
+                "value": "",
+                "type": "query",
+                "description": "This specifies the product name, which in this case is `omnichannel`."
+              },
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "query",
+                "description": "This adds a `page_id` for the subsequent payload. The current page can be identified by the `\"page_number\": \"1\"` attribute in the initial payload."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to retrieve a comprehensive list of all connected channels within the **OmniChannel** product.\n\n<!-- theme: success -->\n> #### 🔢 Pagination\n>\n> This endpoint enables pagination by using a `page_id` parameter, which is included in the request query parameters. Each payload retrieves **10** channels.\n"
+        },
+        {
+          "info": {
+            "name": "Get Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/base/categories",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retieve all categories with all available data sources for each one and the main categories on the OmniChannel product eg.. social media, reviews, calls,..etc"
+        },
+        {
+          "info": {
+            "name": "Get Widget Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/base/widgets",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this parameter to add the specific `page_name`, which means data source, like `TWITTER_PUBLIC`."
+              },
+              {
+                "name": "section_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this parameter to add the related `section_name`, which means category, like `Social Media`."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all widget names for a specific channel by using `page_name` and `section_name`.\n\n<!-- theme: success -->\n> #### Tip\n>\n> You can find all page names and their related section names on the [categories endpoint](https://docs.lucidya.com/docs/omnichannel-api/branches/main/oaihft14jx8iv-get-categories)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Social Media > X (Twitter)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Job to Retrieve Twitter Widgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/twitter/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `TWITTER_PUBLIC` or `TWITTER_PRIVATE`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for X widget names and get the `job_id` to [get widgets analysis for the channel\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.\n\n<!-- theme: success -->\n> #### Tip\n>\n> Use `page_name` as `TWITTER_PUBLIC` for Twitter public channel or `TWITTER_PRIVATE` for Twitter private (direct message) channel to can get the required widgets."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Social Media > Facebook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Facebook (Public & Private) Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/facebook/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, for example in this endpoint, `FACEBOOK_PUBLIC` or `FACEBOOK_PRIVATE`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name , for example in this endpoint, `facebook`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created facebook widgets data](https://docs.lucidya.com/docs/omnichannel-api/branches/main/aq08ddkfsugxr-create-facebook-public-and-private-widget-data)."
+              },
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to apply filters by monitors list ID(s) for the channel(s)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/branches/main/aq08ddkfsugxr-create-facebook-public-and-private-widget-data).\n\n<!-- theme: success -->\n> #### Tip\n>\n> Use `page_name` as `FACEBOOK_PUBLIC` for Facebook public channel or `FACEBOOK_PRIVATE` for Facebook private (direct message) channel."
+        },
+        {
+          "info": {
+            "name": "Create Facebook (Public & Private) Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/facebook/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `FACEBOOK_PUBLIC` or `FACEBOOK_PRIVATE`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `facebook`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for public or private Facebook widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/branches/main/t4pmsi5o4uf3l-get-facebook-public-and-private-widget-data).\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.\n\n<!-- theme: success -->\n> #### Tip\n>\n> Use `page_name` as `FACEBOOK_PUBLIC` for Facebook public "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Social Media > Instagram",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Instagram (Public & Private) Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/instagram/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, for example in this endpoint, `INSTAGRAM_PUBLIC` or `INSTAGRAM_PRIVATE`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name , for example in this endpoint, `instagram`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created instagram widgets data](https://docs.lucidya.com/docs/omnichannel-api/branches/main/j8b3b5lnzx0lu-create-instagram-public-and-private-widget-data)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/branches/main/j8b3b5lnzx0lu-create-instagram-public-and-private-widget-data).\n\n<!-- theme: success -->\n> #### Tip\n>\n> Use `page_name` as `INSTAGRAM_PUBLIC` for Instagram public channel or `INSTAGRAM_PRIVATE` for Instagram private (direct message) channel."
+        },
+        {
+          "info": {
+            "name": "Create Instagram (Public & Private) Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/instagram/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `INSTAGRAM_PUBLIC` or `INSTAGRAM_PRIVATE`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `instagram`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for public or private Instagram widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/branches/main/ktkbxhqnuucg0-get-instagram-public-and-private-widget-data).\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.\n\n<!-- theme: success -->\n> #### Tip\n>\n> Use `page_name` as `INSTAGRAM_PUBLIC` for Instagram pub"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Social Media > TikTok",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get TikTok Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/tiktok/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, for example in this endpoint, `TIKTOK_PUBLIC`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name , for example in this endpoint, `tiktok`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created tiktok widgets data](https://docs.lucidya.com/docs/omnichannel-api/branches/main/9q00vwvhu2iuo-create-tik-tok-public-widget-data)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/branches/main/9q00vwvhu2iuo-create-tik-tok-public-widget-data)."
+        },
+        {
+          "info": {
+            "name": "Create TikTok Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/tiktok/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `TIKTOK_PUBLIC`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `tiktok`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for public TikTok widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/branches/main/2kf21o6i3ihht-get-tik-tok-public-widget-data).\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Social Media > Linkedin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get LinkedIn Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/linkedin/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, for example in this endpoint, `LINKEDIN`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name , for example in this endpoint, `linkedin`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created linkedin widgets data]()."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/branches/main/hm7wj6jygggqv-create-linked-in-public-widget-data)."
+        },
+        {
+          "info": {
+            "name": "Create LinkedIn Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/linkedin/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `LINKEDIN_PUBLIC`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `linkedin`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for public LinkedIn widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/branches/main/fqvppt2jhdnz3-get-linked-in-public-widget-data).\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Social Media > Social",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Social Widget Data Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/social_media/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `SOCIAL`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name , for example in this endpoint, `social`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created social widgets data](https://docs.lucidya.com/docs/omnichannel-api/branches/main/tqo81ld59cdf5-create-social-public-widget-data)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all social channels widget data and get an overview for all using this endpoint.\n\n<!-- theme: success -->\n> #### Tip\n>\n> This endpoint provides an overview of data for all social channels."
+        },
+        {
+          "info": {
+            "name": "Create Social Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/social_media/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `SOCIAL`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `social`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for all social connected channels and obtain the `job_id` necessary to [retrieve widget analysis for all social channels](https://docs.lucidya.com/docs/omnichannel-api/3z0h5zr07jmqb-get-social-widget-data-analysis).\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Chats > Whatsapp",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get WhatsApp Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/whatsapp/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, for example in this endpoint, `WHATSAPP`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name , for example in this endpoint, `whatsapp`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created whatsapp widgets data](https://docs.lucidya.com/docs/omnichannel-api/k6gagokt8632w-create-whats-app-public-widget-data)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/k6gagokt8632w-create-whats-app-public-widget-data)."
+        },
+        {
+          "info": {
+            "name": "Create WhatsApp Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/whatsapp/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `WHATSAPP`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `whatsapp`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for WhatsApp public widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/iz3fp38j5s3dw-get-whats-app-public-widget-data).\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Chats > Intercom",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Intercom Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/intercom/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, for example in this endpoint, `INTERCOM`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name , for example in this endpoint, `intercom`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created intercom widgets data](https://docs.lucidya.com/docs/omnichannel-api/a3q98pj4ic3qy-create-intercom-public-widget-data)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/a3q98pj4ic3qy-create-intercom-public-widget-data)."
+        },
+        {
+          "info": {
+            "name": "Create Intercom Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/intercom/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `INTERCOM`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `intercom`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for Intercom public widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/4fpvb0sh2f2zc-get-intercom-public-widget-data).\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Chats > chats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Chats Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/chats/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, for example in this endpoint, `chats`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name , for example in this endpoint, `chats`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created chats widgets data](https://docs.lucidya.com/docs/omnichannel-api/9bfbcpl4ca3q4-create-chats-public-widget-data)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all chats channels widget data and get an overview for all using this endpoint.\n\n<!-- theme: success -->\n> #### Tip\n>\n> This endpoint provides an overview of data for all chats channels."
+        },
+        {
+          "info": {
+            "name": "Create Chats Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/chats/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `chats`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `chats`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              },
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for all chats connected channels and obtain the `job_id` necessary to [retrieve widget analysis for all social channels](https://docs.lucidya.com/docs/omnichannel-api/zs7yoh19cj3o2-get-chats-public-widget-data).\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rating > Google My Business",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get GoogleMyBusiness Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/gmb/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `GOOGLEMYBUSINESS`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `googlemybusiness`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created google my business widgets data](https://docs.lucidya.com/docs/omnichannel-api/d4icd03jr8ny8-create-google-my-business-public-widget-data)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/d4icd03jr8ny8-create-google-my-business-public-widget-data)."
+        },
+        {
+          "info": {
+            "name": "Create GoogleMyBusiness Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/gmb/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `GOOGLEMYBUSINESS`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `googlemybusiness`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for Google My Business public widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/v8sgax97e9yno-get-google-my-business-public-widget-data).\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Calls > Genesys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Genesys Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/genesys/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `GENESYS`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `genesys`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created genesys widgets data](https://docs.lucidya.com/docs/omnichannel-api/q671cpzq8n8bt-create-genesys-public-widget-data)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/q671cpzq8n8bt-create-genesys-public-widget-data)."
+        },
+        {
+          "info": {
+            "name": "Create Genesys Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/genesys/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `GENESYS`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `genesys`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for Genesys public widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/ouyfdya0rpjcj-get-genesys-public-widget-data).\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Email > Gmail",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Gmail Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/gmail/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `GMAIL`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `gmail`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created gmail widgets data](https://docs.lucidya.com/docs/omnichannel-api/a8f12q0go8xiy-create-gmail-public-widget-data)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/a8f12q0go8xiy-create-gmail-public-widget-data)."
+        },
+        {
+          "info": {
+            "name": "Create Gmail Public Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/gmail/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `GMAIL`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `gmail`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create a request for Gmail public widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/u28t34xzui5i2-get-gmail-public-widget-data).\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "aggregated pages > Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Analytics/ Interactions Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/omnichannel/analytics/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `ANALYTICS` or `INTERACTIONS`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `analytics` or `interactions`."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created analytics widgets data](https://docs.lucidya.com/docs/omnichannel-api/dwddmfm7ty4sp-create-analytics-widget-data) or [newly created interactions widgets data](https://docs.lucidya.com/docs/omnichannel-api/n6304vtdmfoiu-create-interactions-widget-data)."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to retrieve both **Analytics** and **Interactions** widget data using the `job_id`.\n"
+        },
+        {
+          "info": {
+            "name": "Create Analytics Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/analytics/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `ANALYTICS`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `analytics`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Use this to apply custom filters like `gender_filter` or `main_dialect_filter`."
+              },
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create **Analytics** widget data.\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "aggregated pages > Interactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Interactions Widget Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/omnichannel/interactions/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the page name or source name, example in this endpoint, `INTERACTIONS`."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add the data source name, example in this endpoint, `interactions`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add widget names for the provided page name."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Use this to apply custom filters like `gender_filter` or `main_dialect_filter`."
+              },
+              {
+                "name": "monitors_list",
+                "value": "",
+                "type": "query",
+                "description": "Use this to add monitors list ID(s) for the channel(s)."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to create **Interactions** widget data.\n\n<!-- theme: info -->\n> #### Note\n>\n> You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

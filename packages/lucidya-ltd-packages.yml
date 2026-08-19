@@ -1,0 +1,91 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, rubygems.org, packagist.org, crates.io,
+  api.nuget.org, github.com/lucidya, docs.lucidya.com
+name: Lucidya Client Packages
+type: Packages
+summary: >-
+  Lucidya publishes no first-party client libraries in any public package
+  registry, and its GitHub organisation has no public repositories. Every one of
+  the five REST APIs must be called over raw HTTP.
+official_package_count: 0
+packages: []
+registries_searched:
+  - registry: npm
+    query: lucidya
+    endpoint: https://registry.npmjs.org/-/v1/search?text=lucidya
+    status: 200
+    first_party_hits: 0
+    third_party_hits:
+      - name: '@activepieces/piece-lucidya'
+        version: 0.0.8
+        published: '2026-08-04'
+        official: false
+        maintainers: [abuaboud, activepieces-bot, abdul_activepiecer]
+        note: >-
+          An Activepieces workflow connector, published and maintained by the
+          Activepieces team — not by Lucidya. Recorded so a future pass does not
+          mistake it for a first-party SDK.
+      - name: '@scopieflows/app-lucidya'
+        version: 0.0.5
+        published: '2026-05-14'
+        official: false
+        note: A third-party Nx-generated flow connector; not Lucidya-published.
+  - registry: pypi
+    queried: [lucidya, lucidya-api, lucidya-sdk, pylucidya]
+    status: 404
+    version: null
+    first_party_hits: 0
+  - registry: rubygems
+    query: lucidya
+    status: 200
+    first_party_hits: 0
+    note: Empty result set.
+  - registry: packagist
+    query: lucidya
+    status: 200
+    first_party_hits: 0
+    note: Only unrelated "lucid*" packages returned.
+  - registry: crates.io
+    query: lucidya
+    status: 200
+    first_party_hits: 0
+  - registry: nuget
+    query: lucidya
+    status: 200
+    first_party_hits: 0
+    note: totalHits 0.
+  - registry: maven-central
+    query: lucidya
+    first_party_hits: 0
+  - registry: pkg.go.dev
+    query: lucidya
+    first_party_hits: 0
+source_repositories:
+  - url: https://github.com/lucidya
+    status: 200
+    public_repositories: 0
+    note: >-
+      The GitHub organisation "Lucidya" exists and is claimed, but publishes zero
+      public repositories. There is no SDK source, no .proto, no sample client
+      and no examples repo to harvest.
+docs_sdk_pages:
+  present: false
+  note: >-
+    None of the five Stoplight API projects offers a client library, a Postman
+    collection or a code-generation link. The Social Listening "Get Started"
+    article contains a commented-out Postman collection block
+    ("<!-- To Add the Postman Collection URL -->") that was drafted and never
+    published — the provider intended to ship one and did not.
+distribution_note: >-
+  No CDN-distributed browser build exists either, so there is no unpinned-URL
+  case to record. version and published are null everywhere here because no
+  first-party artifact exists to date, not because a registry failed to answer —
+  every registry above returned a live response.
+implication: >-
+  No SDKs pointer is emitted in apis.yml. The absence also removes the strongest
+  available decay signal: with no dated first-party release anywhere, API
+  currency can only be judged from the Stoplight project commit dates (the
+  OmniServe spec updated 2026-08-02, OmniChannel 2026-07-26, AI 2026-07-12,
+  Social Listening 2026-06-07, CDP 2024-08-18) and from news.lucidya.com.

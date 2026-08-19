@@ -1,0 +1,201 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lucidya Public AI API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Predict Sentiment - Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/sentiment/predict_batch",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint enables you to add your posts (Texts) to get a sentiment prediction from your batch."
+        },
+        {
+          "info": {
+            "name": "Predict Dialects - Bactch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/dialects/predict_batch",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint enables you to add your posts (Texts) and predict the Arabic dialects and sub-dialects. "
+        },
+        {
+          "info": {
+            "name": "Predict Domains - Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/domains/predict_batch",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint enables you to send your data (Texts) and get the predict domains like shopping_and_fashion, technology ..."
+        },
+        {
+          "info": {
+            "name": "Predict Themes - Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/themes/predict_batch",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint enables you to send your data (Texts) and get the predict Themes and Sub-Themes like question, complaint ..."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audio Transcription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit Audio for Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/audio_transcription/transcribe_offline",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "num_speakers",
+                "value": "",
+                "type": "query",
+                "description": "The number of speakers in the audio file. Used for speaker diarization."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The language of the audio (e.g. \"English\", \"Arabic\"). If omitted, the language is detected automatically."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload an audio file for transcription and analysis. The service processes the audio asynchronously — use the returned `job_id` to poll for status and retrieve results.\n\n**Supported audio formats:** MP3, MP4, MP4A, WAV, AIFF, FLAC, M4A, ALAC, WavPack, AAC, Ogg Vorbis, Opus, PCM.\n\n**Rate limit:** The total duration of submitted audio files must not exceed **100 minutes per minute**. If you exceed this limit, subsequent requests will be denied until the start of the next minute. This applies wheth"
+        },
+        {
+          "info": {
+            "name": "Check Audio Analysis Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/audio_transcription/check_status",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The job ID returned from the POST /audio_transcription/transcribe_offline submission."
+              }
+            ]
+          },
+          "docs": "Check the processing status of a submitted audio transcription job. Returns only the job ID and current status — no transcript or analysis data.\n\nUse this endpoint for lightweight polling. Once the status is `completed`, call [Get Audio Analysis Result](../audio_transcription/get_transcription_result) to retrieve the full transcript, dialects, sentiments, and themes."
+        },
+        {
+          "info": {
+            "name": "Get Audio Analysis Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/audio_transcription/get_transcription_result",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The job ID returned from the POST /audio_transcription/transcribe_offline submission."
+              }
+            ]
+          },
+          "docs": "Retrieve the full transcription and analysis result for a completed audio job.\n\nReturns the transcript with speaker diarization, dialect detection, sentiment analysis, and theme classification. If the job is still processing, the response will be `202` with an empty result.\n\nUse [Check Audio Analysis Status](../audio_transcription/check_status) for lightweight polling before calling this endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

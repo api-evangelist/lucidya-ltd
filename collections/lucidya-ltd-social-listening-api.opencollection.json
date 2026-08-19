@@ -1,0 +1,420 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lucidya Social Listening Public API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Public API - Monitors List",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Public API - Monitors List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/monitors_list",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page_id",
+                "value": "",
+                "type": "query",
+                "description": "this parameter indicates the number of page to retrive"
+              }
+            ]
+          },
+          "docs": "This endpoint enables you tp get the list of all monitors in your account.\n<!-- theme: success -->\n> #### 💡 Note\n>\n> This endpoint supports pagination."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Public APIs - Social Listening - Base APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Social Listening - Base APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/widgets",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitor_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the monitor being used."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the product being monitored."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the page being monitored."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "The data source being used for monitoring."
+              }
+            ]
+          },
+          "docs": "This endpoint enanles you to get all widgets from your account."
+        },
+        {
+          "info": {
+            "name": "Social Listening - Base APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/filters",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitor_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the monitor being used."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "The data source being used for monitoring."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the product being monitored."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the page being monitored."
+              }
+            ]
+          },
+          "docs": "This endpoint enables you to apply filters for specific monitor data."
+        },
+        {
+          "info": {
+            "name": "Social Listening - Base APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/pages",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitor_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the monitor being used."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "The data source being used for monitoring."
+              }
+            ]
+          },
+          "docs": "This endpoint enables you to get specific page data from your account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Public APIs - Social Listening - Facebook widget_data APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Social Listening - Facebook widget_data APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/facebook/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitor_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the monitor being used."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the page being monitored."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "The data source being used for monitoring."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "The start date of the monitoring period in Unix timestamp format."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "The end date of the monitoring period in Unix timestamp format."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "The names of the widgets being monitored."
+              }
+            ]
+          },
+          "docs": "This endpoint enables you to apply filters for the Facebook widgets and get the `job_id`.\n<!-- theme: success -->\n> #### 💡 Note\n>\n> The `start_date` and `end_date` should be within 30 days only."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Public APIs - Social Listening - instagram widget_data APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Social Listening - instagram widget_data APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/instagram/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitor_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the monitor being used."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the page being monitored."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "The data source being used for monitoring."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "The start date of the monitoring period in Unix timestamp format."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "The end date of the monitoring period in Unix timestamp format."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "The names of the widgets being monitored."
+              }
+            ]
+          },
+          "docs": "This endpoint enables you to apply filters for the Instagram widgets and get the `job_id`.\n<!-- theme: success -->\n> #### 💡 Note\n>\n> The `start_date` and `end_date` should be within 30 days only."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Public APIs - Social Listening - nb widget_data APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Social Listening - nb widget_data APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/nb/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitor_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the monitor being used."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the page being monitored."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "The data source being used for monitoring."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "The start date of the monitoring period in Unix timestamp format."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "The end date of the monitoring period in Unix timestamp format."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "The names of the widgets being monitored."
+              }
+            ]
+          },
+          "docs": "This endpoint enables you to apply filters for the News & Blogs widgets and get the `job_id`.\n<!-- theme: success -->\n> #### 💡 Note\n>\n> The `start_date` and `end_date` should be within 30 days only."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Public APIs - Social Listening - twitter widget_data APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Social Listening - twitter widget_data APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/twitter/widget_data",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "monitor_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the monitor being used."
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the page being monitored."
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "query",
+                "description": "The data source being used for monitoring."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "The start date of the monitoring period in Unix timestamp format."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "The end date of the monitoring period in Unix timestamp format."
+              },
+              {
+                "name": "widgets_names",
+                "value": "",
+                "type": "query",
+                "description": "The names of the widgets being monitored."
+              }
+            ]
+          },
+          "docs": "This endpoint enables you to apply filters for the Twitter widgets and get the `job_id`.\n<!-- theme: success -->\n> #### 💡 Note\n>\n> The `start_date` and `end_date` should be within 30 days only."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

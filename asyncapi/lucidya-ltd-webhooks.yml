@@ -1,21 +1,93 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
 source: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
 name: Lucidya Webhooks
 type: Webhooks
 summary: >-
-  Lucidya ships a Webhooks API product delivering real-time push notifications
-  when specific events or conditions are met across a customer's monitors. It is
-  documented as one of the six public API products under docs.lucidya.com.
+  Lucidya's event surface is an alert-driven outbound webhook: an alert configured
+  in the CXM console can carry a destination URL, and Lucidya POSTs the alert
+  payload there whenever the alert's conditions are met. There is no event
+  catalogue, no subscription API, no signature scheme and no AsyncAPI document —
+  the entire surface is configured in the UI, not over the API.
+asyncapi_published: false
+asyncapi_note: >-
+  No AsyncAPI document exists at any Lucidya host, in the Stoplight workspace, or
+  in the (empty) GitHub organisation. The Webhooks documentation project in
+  Stoplight contains one article and zero specification nodes. Nothing is
+  fabricated here.
 docs: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
-delivery: HTTP push (outbound POST)
+delivery:
+  protocol: HTTP
+  method: POST
+  direction: outbound (provider to subscriber)
+  content_type: application/json
+  destination: subscriber-supplied URL
+configuration:
+  surface: CXM console only
+  api_managed: false
+  steps:
+    - Navigate to the Alerts section and click "Create an Alert".
+    - Fill in the alert details.
+    - Enable the Webhook feature.
+    - Enter the destination webhook URL.
+  gate: >-
+    "For users who have the Alerts feature enabled" — webhooks ride on the Alerts
+    entitlement, so availability is plan-dependent.
+  pre_flight: >-
+    Lucidya requires the destination URL to be tested before the alert is created,
+    to confirm it can receive the POST and handle the data.
+reliability:
+  retry_policy: not published
+  signature_verification: not published
+  secret: not published
+  replay_protection: not published
+  pause_rule:
+    condition: no response from the destination for 15 days
+    action: the webhook URL is paused
+    source: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
+  assessment: >-
+    A 15-day silence-to-pause rule is the only published reliability guarantee.
+    Without a signing secret or signature header, a receiver cannot verify that a
+    delivery originated from Lucidya — this is the most significant gap in the
+    event surface.
 events:
-- name: Activity Log Webhook
-  description: >-
-    Activity Log Webhook for Enhanced Security (announced 2026-05-03 in product
-    updates); pushes activity-log events.
-  source: https://news.lucidya.com/
-notes: >-
-  No AsyncAPI document is published; this captures the documented webhook surface
-  only. Additional event types exist but were not enumerated on the public pages
-  reached this pass, so they are left unlisted rather than invented.
+  catalogue_published: false
+  known:
+    - name: Alert triggered
+      description: >-
+        Fires when the conditions of a configured alert are met across a monitor.
+        The payload is a flat JSON object whose keys are namespaced by data
+        source, alert type and widget — the documented sample uses keys of the
+        form Twitter__TrendingAlert__<widget_name>, each carrying a
+        JSON-encoded STRING rather than a nested object.
+      payload_shape: >-
+        Flat map of "<Source>__<AlertType>__<widget>" -> stringified JSON.
+        Observed widget keys in the published sample: header_alert_widget,
+        sentiment_analysis, dialects_and_sub_dialects, account_types,
+        top_engagers, top_hashtags, top_influencers.
+      consumer_note: >-
+        Every value must be JSON-parsed a second time after parsing the envelope.
+        A receiver written against a normal nested-JSON assumption will break.
+      source: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
+    - name: Activity Log Webhook
+      description: >-
+        Activity Log Webhook for Enhanced Security, announced 2026-05-03 in the
+        product-updates feed; pushes activity-log events.
+      source: https://news.lucidya.com/
+  note: >-
+    Lucidya publishes no enumerated list of event types. The two above are the
+    only ones evidenced on public pages; others may exist and are deliberately
+    not guessed.
+testing:
+  guidance: >-
+    Lucidya recommends testing the destination with Postman or curl by sending a
+    POST to it directly.
+  provider_test_trigger: not published
+gaps_for_agents:
+  - No event catalogue means an agent cannot discover what it can subscribe to.
+  - No API to create, list or delete webhook subscriptions — console only.
+  - No signature or shared secret, so deliveries are unauthenticated to the receiver.
+  - Double-encoded payload values make the schema unmodellable without hand-written parsing.
+cross_links:
+  conventions: ../conventions/lucidya-ltd-conventions.yml
+  lifecycle: ../lifecycle/lucidya-ltd-lifecycle.yml

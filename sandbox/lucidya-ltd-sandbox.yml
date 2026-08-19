@@ -1,0 +1,88 @@
+generated: '2026-08-13'
+method: probed
+source: https://stoplight.io/mocks/lucdya/Social-Listening-api/255000511
+name: Lucidya Sandbox & Mock Surface
+type: Sandbox
+summary: >-
+  Lucidya operates no test-mode environment, no test keys and no sandbox tenant.
+  What does exist — and is genuinely callable without credentials — is the Prism
+  mock server Stoplight stands up for each of Lucidya's five public API projects.
+  Those mocks are reachable today and return the example payloads and example
+  error bodies carried in Lucidya's own specs, which makes a gated API partially
+  testable before a key is issued.
+vendor_sandbox:
+  present: false
+  test_mode: false
+  test_keys: false
+  test_key_prefix: null
+  test_data_fixtures: false
+  time_simulation: false
+  note: >-
+    Nothing in the developer documentation describes a sandbox, staging host,
+    test-vs-live key distinction, or seeded test data. The only credential path
+    published is a live production token issued after CSM approval. No test
+    values are invented here.
+mock_servers:
+  provider: Stoplight (Prism), auto-generated from Lucidya's own public Stoplight projects
+  first_party: false
+  first_party_note: >-
+    These URLs are on stoplight.io, not on a Lucidya domain, and Lucidya does not
+    link to them from its documentation. They are derived from the workspace
+    Lucidya publishes (workspace slug "lucdya", domain docs.lucidya.com), so the
+    example payloads they return are Lucidya's, but the hosting and the mock
+    behaviour are Stoplight's. Recorded as a usable surface, not as a
+    vendor-operated sandbox.
+  authentication: none
+  servers:
+    - api: Social Listening
+      url: https://stoplight.io/mocks/lucdya/Social-Listening-api/255000511
+      probed: '2026-08-13'
+      example_request: GET /monitors_list?page_id=1
+      http_status: 400
+      response: '{"error":{"status":400,"detail":"Page_id is required"}}'
+      note: >-
+        Live and answering with the spec's own example error body. Prism returns
+        the first declared response by default; a specific status can be selected
+        with the `Prefer: code=200` header where the spec declares an example.
+    - api: AI
+      url: https://stoplight.io/mocks/lucdya/ai-api/254922095
+      probed: '2026-08-13'
+      example_request: POST /sentiment/predict_batch
+      http_status: 422
+      response: '{"detail":[{"loc":["string"],"msg":"string","type":"string"}]}'
+    - api: CDP
+      url: https://stoplight.io/mocks/lucdya/cdp-api/385761530
+      probed: '2026-08-13'
+      example_request: GET /profiles
+      http_status: 400
+    - api: OmniChannel
+      url: https://stoplight.io/mocks/lucdya/omnichannel-api/400049121
+      probed: '2026-08-13'
+      http_status: null
+      note: Mock URL published by the project node; not exercised on this pass.
+    - api: OmniServe Analytics
+      url: https://stoplight.io/mocks/lucdya/omniserve/290278
+      probed: '2026-08-13'
+      example_request: GET /analytics/pages
+      http_status: 401
+      response: '{"status":401,"message":"Authentication required"}'
+      note: >-
+        The only mock that enforces the securityScheme, because OmniServe is the
+        one spec that actually declares `OmniserveToken` on its operations. The
+        other four leave securitySchemes empty, so their mocks answer anonymously.
+what_this_is_good_for:
+  - Verifying error-envelope handling against Lucidya's real declared shapes before holding a key.
+  - Confirming request/response schemas while a CSM access request is pending.
+  - Contract-testing an integration without consuming production rate limit.
+what_this_is_not:
+  - Not real data — Prism replays spec examples, it does not query Lucidya.
+  - Not vendor-supported; Stoplight may retire a mock when a project is republished.
+  - Not a substitute for a test tenant; there is no way to exercise writes, webhooks or job polling end to end.
+recommendation: >-
+  The lowest-cost sandbox improvement available to Lucidya is to declare the
+  `luc-authorization` securityScheme on all five specs (only OmniServe does today)
+  and to link the mock URLs from the Get Started pages. Both are free — the
+  infrastructure already exists and already runs.
+cross_links:
+  authentication: ../authentication/lucidya-ltd-authentication.yml
+  errors: ../errors/lucidya-ltd-problem-types.yml

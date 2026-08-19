@@ -1,0 +1,458 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OmniServe Analytics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "luc-authorization",
+      "value": "{{luc-authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Analytics Pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/pages",
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get the list of all analytics pages available to your company.\n\n**Note:** Returns pages like inbox, slas, agents, and in-chat-survey.\n"
+        },
+        {
+          "info": {
+            "name": "Get Page Widgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/:page_name/widgets",
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "path",
+                "description": "Analytics page identifier (e.g., inbox, slas, agents)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to list available widgets for a specific analytics page.\n"
+        },
+        {
+          "info": {
+            "name": "Get Page Filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/:page_name/filters",
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "path",
+                "description": "Analytics page identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get filter definitions for a specific analytics page.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Analytics Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Analytics Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/:page_name/create",
+            "params": [
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "path",
+                "description": "Analytics page identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to create an analytics job for a page and returns a job_id for retrieving results.\n"
+        },
+        {
+          "info": {
+            "name": "Get Analytics Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/:page_name/index",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "Job identifier returned from the create job endpoint"
+              },
+              {
+                "name": "page_name",
+                "value": "",
+                "type": "path",
+                "description": "Analytics page identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get the results of a previously created analytics job.\n\n## Response Structure\n\nThe response contains:\n- **dataAvailable**: Boolean indicating if all widget results are ready (true when complete)\n- **widget_data**: Object keyed by widget name, where each value is the widget's payload\n\n## Inbox Page Widgets\n\n### Inbox Overview\nAggregates counts per data source (twitter, twitter_dm, instagram, etc.):\n- **total_engagements**: Total found items in the period\n- **total_com"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CSAT Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get CSAT Questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/in-chat-survey/csat_questions",
+            "params": [
+              {
+                "name": "data_source_name",
+                "value": "",
+                "type": "query",
+                "description": "Data source identifier (e.g., twitter, facebook)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Optional search term to filter questions"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to retrieve CSAT questions for a data source with pagination and optional search.\n\n**Note:** This endpoint supports pagination.\n"
+        },
+        {
+          "info": {
+            "name": "Get In-Chat-Survey Page Filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/in-chat-survey/filters",
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get available filters for the `in-chat-survey` analytics page.\n"
+        },
+        {
+          "info": {
+            "name": "Get CSAT Job Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/in-chat-survey/index",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "Job identifier returned from a CSAT create endpoint"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get the results of a previously created CSAT analytics job for the `in-chat-survey` page.\n"
+        },
+        {
+          "info": {
+            "name": "CSAT Response Counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/in-chat-survey/csat_response_counts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to create a CSAT response counts analytics job and returns a job_id with question metadata.\n"
+        },
+        {
+          "info": {
+            "name": "CSAT Question Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/in-chat-survey/csat_question_responses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to create a CSAT question responses job for a specific question and returns a job_id.\n"
+        },
+        {
+          "info": {
+            "name": "CSAT User Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/in-chat-survey/csat_user_responses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to create a CSAT user responses analytics job and returns a job_id.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Custom Fields Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/custom_fields",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "Job identifier returned from the create custom fields endpoint"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get the results of a previously created custom-fields job.\n\n## Response Structure\n- **dataAvailable**: Boolean indicating if the page results are ready (true when complete).\n- **engagements**: Array of engagements, each with its applied custom-field values.\n- **pagination**: Pagination metadata for the current page.\n- **next_page_job_id**: Present only when more pages exist; use it as the `job_id` for the next `GET` call.\n"
+        },
+        {
+          "info": {
+            "name": "Create Custom Fields Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/custom_fields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to create a job that returns, per engagement, the applied\ncustom-field values for the given period and filters. It returns a `job_id` you then\npoll via `GET /analytics/custom_fields` to retrieve paginated results.\n\n**Note:** Results are paginated (10 engagements per page). When more pages exist, the\nindex response includes `next_page_job_id` to fetch the next page.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reference Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/agents",
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get all agents (active users) for the current company.\n"
+        },
+        {
+          "info": {
+            "name": "Get Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/teams",
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get all teams for the current company.\n"
+        },
+        {
+          "info": {
+            "name": "Get Data Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/data_sources",
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get all available data sources for the current company.\n"
+        },
+        {
+          "info": {
+            "name": "Get Routings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/routings",
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get all inbound routings for the current company.\n"
+        },
+        {
+          "info": {
+            "name": "Get SLAs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/public_api/omniserve/analytics/slas",
+            "auth": {
+              "type": "apikey",
+              "key": "luc-authorization",
+              "value": "{{luc-authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint enables you to get all SLAs for the current company with their time thresholds.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

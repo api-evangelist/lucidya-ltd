@@ -1,0 +1,201 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/ (five OpenAPI documents, 73 operations, 23 component schemas)
+name: Lucidya Data Model
+type: DataModel
+summary: >-
+  The entity graph behind Lucidya's five public APIs, derived from path
+  structure, path parameters and component schemas. The model is thinner than
+  the operation count suggests: only the AI and OmniChannel specs define reusable
+  components at all, and the CDP and Social Listening specs define none, so most
+  entities are inferred from paths and inline response shapes rather than from
+  named schemas.
+schema_coverage:
+  ai: 16 named schemas
+  omnichannel: 6 named schemas
+  omniserve: 1 named schema (Error only)
+  cdp: 0 named schemas — every request and response body is inline
+  social_listening: 0 named schemas — every request and response body is inline
+  note: >-
+    Two of the five specs are fully inline. That is the main structural weakness
+    of this contract set: no component is reusable, no entity is referenceable by
+    $ref, and a code generator produces anonymous types for CDP and Social
+    Listening.
+entities:
+  - name: Monitor
+    domain: Social Listening
+    id_field: null
+    source: GET /monitors_list
+    description: >-
+      A configured listening stream over one data source (X, Facebook, Instagram,
+      Intercom, news/blogs, TV & radio keywords). The root object of the Social
+      Listening product — widgets, filters and pages all hang off a monitor.
+  - name: Widget
+    domain: Social Listening, OmniChannel, OmniServe
+    source: GET /widgets, GET /omnichannel/base/widgets, GET /analytics/{page_name}/widgets
+    description: >-
+      A named analytic unit (sentiment over time, top engagers, CSAT
+      distribution). Widgets are the request currency of the whole platform: a
+      caller names widgets, submits a job, and polls for the rendered result.
+    schema: WidgetConfig (page_name, widgets_names, company_time_zone, section_name)
+  - name: Page
+    domain: Social Listening, OmniServe
+    source: GET /pages, GET /analytics/pages
+    description: A named grouping of widgets; the unit addressed by {page_name}.
+  - name: Filter
+    domain: Social Listening, CDP, OmniChannel, OmniServe
+    source: GET /filters, GET /profiles/filters, GET /analytics/{page_name}/filters
+    description: >-
+      A discovery resource rather than a stored entity — the API returns the
+      filter set that may be posted back with a widget or analytics job.
+  - name: Channel
+    domain: OmniChannel
+    schema: ChannelList (id, type, attributes)
+    source: GET /monitors_list?product_name=omnichannel
+    description: >-
+      A connected communication endpoint. Fifteen channel families are exposed as
+      sibling paths under /omnichannel/: X (Twitter), Facebook, Instagram, TikTok,
+      LinkedIn, generic Social, WhatsApp, Intercom, Chats, Google My Business,
+      Genesys, Gmail, plus aggregated Analytics and Interactions.
+  - name: Category
+    domain: OmniChannel
+    schema: Categories (name, data_sources, main_categories)
+    source: GET /omnichannel/base/categories
+  - name: DataSource
+    domain: OmniChannel, OmniServe
+    schema: DataSourceItem (id, source)
+    source: GET /omnichannel/base/categories, GET /analytics/data_sources
+  - name: Job
+    domain: OmniChannel, OmniServe, AI
+    id_field: job_id
+    schema: JobResult (job_id, widgets_names) / AudioSubmissionResponse (job_id, message)
+    source: POST .../widget_data, POST /analytics/{page_name}/create, POST /audio_transcription/transcribe_offline
+    description: >-
+      The central asynchronous entity. A POST creates a job and returns a job_id;
+      a GET on the sibling path returns 202 while pending and 200 with the result
+      when complete. Present in three of the five products.
+  - name: Profile
+    domain: CDP
+    id_field: id
+    source: GET /profiles, GET /profiles/{id}, POST /profiles, PUT /profiles
+    description: >-
+      The unified customer record. The only entity in the surface with a full
+      create/read/update lifecycle. No DELETE is exposed.
+  - name: Interaction
+    domain: CDP
+    source: GET /profiles/{id}/interactions, POST /profiles/interactions
+    description: A recorded touchpoint belonging to a profile.
+  - name: Survey
+    domain: CDP
+    source: GET /profiles/{id}/surveys
+    description: Survey responses attached to a profile.
+  - name: Segment
+    domain: CDP
+    source: GET /segments, PUT /segments/append_profiles, DELETE /segments/delete_profiles
+    description: >-
+      A named collection of profiles. Membership is mutated by dedicated
+      append/delete endpoints rather than by editing the segment resource.
+  - name: CsatQuestion
+    domain: OmniServe
+    source: GET /analytics/in-chat-survey/csat_questions
+  - name: CsatResponse
+    domain: OmniServe
+    source: POST /analytics/in-chat-survey/csat_user_responses, .../csat_question_responses
+  - name: Agent
+    domain: OmniServe
+    source: GET /analytics/agents
+    description: A human support agent; a dimension for analytics slicing.
+  - name: Team
+    domain: OmniServe
+    source: GET /analytics/teams
+  - name: Routing
+    domain: OmniServe
+    source: GET /analytics/routings
+  - name: SLA
+    domain: OmniServe
+    source: GET /analytics/slas
+  - name: CustomField
+    domain: OmniServe
+    source: POST /analytics/custom_fields, GET /analytics/custom_fields
+  - name: TextPrediction
+    domain: AI
+    schema: SentimentPredictions, DialectsPredictions, DomainsPredictions, ThemesPredictions
+    source: POST /sentiment|dialects|domains|themes/predict_batch
+    description: >-
+      Stateless batch inference over a `texts` array. Not a stored entity — no id
+      is returned and nothing is retrievable afterwards.
+  - name: AudioAnalysis
+    domain: AI
+    id_field: job_id
+    schema: AudioSubmissionResponse, AudioStatusResponse, AudioAnalysisResult
+    source: POST /audio_transcription/transcribe_offline
+    description: >-
+      The one stateful AI entity, carrying a transcript decomposed into
+      TranscriptSegment (text, speaker, begins, ends) with per-speaker
+      SpeakerDialect and SpeakerThemes.
+relationships:
+  - from: Profile
+    to: Interaction
+    type: has_many
+    via: '/profiles/{id}/interactions'
+  - from: Profile
+    to: Survey
+    type: has_many
+    via: '/profiles/{id}/surveys'
+  - from: Segment
+    to: Profile
+    type: has_many
+    via: 'PUT /segments/append_profiles (profile ids in body)'
+  - from: Profile
+    to: Segment
+    type: belongs_to_many
+    via: segment membership
+  - from: Monitor
+    to: Widget
+    type: has_many
+    via: 'monitor id supplied when requesting widget_data'
+  - from: Page
+    to: Widget
+    type: has_many
+    via: 'GET /analytics/{page_name}/widgets'
+  - from: Page
+    to: Filter
+    type: has_many
+    via: 'GET /analytics/{page_name}/filters'
+  - from: Job
+    to: Widget
+    type: has_many
+    via: 'JobResult.widgets_names'
+  - from: Channel
+    to: DataSource
+    type: belongs_to
+    via: DataSourceItem.source
+  - from: Category
+    to: DataSource
+    type: has_many
+    via: Categories.data_sources
+  - from: AudioAnalysis
+    to: TranscriptSegment
+    type: has_many
+    via: AudioAnalysisResult.result
+  - from: TranscriptSegment
+    to: SpeakerDialect
+    type: has_one
+    via: speaker
+  - from: TranscriptSegment
+    to: SpeakerThemes
+    type: has_one
+    via: speaker
+id_conventions:
+  prefixes: none
+  note: >-
+    Lucidya uses bare opaque ids with no type prefix (unlike Stripe's cus_/ch_).
+    Only `job_id` and the CDP `{id}` path parameter are named id fields anywhere
+    in the surface, so an id carries no self-describing type information.
+gaps:
+  - No DELETE on Profile — profiles can be created and updated but not removed via the API, which is worth noting for a CDP subject to GDPR and Saudi PDPL, both of which Lucidya claims compliance with.
+  - CDP and Social Listening define zero reusable components.
+  - Monitor and Channel are the same underlying resource served on the same path (/monitors_list) but modelled separately in two specs, distinguished only by a `product_name` query parameter.
+cross_links:
+  errors: ../errors/lucidya-ltd-problem-types.yml
+  conventions: ../conventions/lucidya-ltd-conventions.yml

@@ -1,0 +1,138 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.lucidya.com/pricing/omniserve
+name: Lucidya Plans & Pricing
+type: Plans
+summary: >-
+  Lucidya publishes two product-line pricing pages. OmniServe carries real
+  per-seat list prices and, unusually, tiers API access itself as a plan feature
+  ("OmniServe limited APIs" vs "OmniServe full APIs"). Social Listening publishes
+  a three-tier feature ladder with no prices — talk-to-sales only. No pricing is
+  published for the AI, CDP or OmniChannel APIs as standalone products.
+plan_count: 5
+currency: USD
+pricing_pages:
+  - product: OmniServe
+    url: https://www.lucidya.com/pricing/omniserve
+    prices_published: true
+  - product: Social Listening
+    url: https://www.lucidya.com/pricing/social-listening
+    prices_published: false
+plans:
+  - name: OmniServe Growth
+    product: OmniServe
+    price: 125
+    currency: USD
+    unit: per seat
+    period: month
+    billing: Bi-annual or annual invoicing
+    minimum_seats: 6
+    seat_ceiling: 20
+    api_access: OmniServe limited APIs
+    api_note: >-
+      API access is itself a tiered feature. "Limited APIs" on Growth is not
+      further defined on the pricing page, so which of the 18 OmniServe Analytics
+      operations are reachable on this tier is not public.
+    included:
+      - Unified Inbox, Ticketing, Workflows, Survey, Social Publishing, Profiles (CDP)
+      - Unlimited social channels and data
+      - 150 replies (15-minute limit for X)
+      - 800 replies (24-hour limit for X)
+      - 12 months data retention
+      - 50,000 survey responses
+      - 100 AI Co-pilot suggestions / pooled credits per seat
+      - 100 AI Agent conversations / pooled credits per seat
+  - name: OmniServe Enterprise
+    product: OmniServe
+    price: 250
+    currency: USD
+    unit: per seat
+    period: month
+    billing: Annual or multi-year invoicing
+    minimum_seats: 12
+    seat_ceiling: null
+    api_access: OmniServe full APIs
+    included:
+      - Unified Inbox, Ticketing, Workflows, Survey, Social Publishing, Profiles (CDP)
+      - Unlimited social channels and data
+      - 400 replies (15-minute limit for X)
+      - 2,000 replies (24-hour limit for X)
+      - 12 months data retention
+      - 100,000 survey responses
+      - 100 AI Co-pilot suggestions / pooled credits per seat
+      - 100 AI Agent conversations / pooled credits per seat
+  - name: Social Listening Basic
+    product: Social Listening
+    price: null
+    currency: USD
+    period: null
+    billing: Talk to sales
+    api_access: not stated
+    positioning: For teams that need reliable brand monitoring.
+    included:
+      - Core monitoring across X, Facebook, Instagram, LinkedIn, YouTube
+      - Flexible date picker, monitor filters, quick inspect
+      - Alerts and dashboards, data export, conversation search
+      - Limited keywords and public account monitoring
+      - Select public reviews access
+  - name: Social Listening Professional
+    product: Social Listening
+    price: null
+    currency: USD
+    period: null
+    billing: Talk to sales
+    most_popular: true
+    api_access: not stated
+    positioning: For marketing and PR teams that need a strategic edge.
+    included:
+      - Everything in Basic
+      - Top trends on X, competitive benchmarking, deep-dive post analysis
+      - Branded reports, bulk post actions, account lists
+      - Full keyword and public account monitoring
+      - Full public reviews access across select platforms
+  - name: Social Listening Enterprise
+    product: Social Listening
+    price: null
+    currency: USD
+    period: null
+    billing: Talk to sales
+    api_access: not stated
+    positioning: For organizations that need intelligence & data control.
+    included:
+      - Everything in Professional
+      - Live dashboards, historical data access, deep insights for advanced analytics
+      - Full access to 21+ review platforms (Google Maps, App Store, Play Store, and regional MENA platforms including HungerStation and Zomato)
+      - Managed account OAuth integrations (TikTok, X, Meta)
+add_ons:
+  - name: Monthly data quota
+    price: 8
+    currency: USD
+    unit: per 1,000 additional posts per seat
+  - name: AI Agent conversations
+    price: 100
+    currency: USD
+    unit: per 500 additional conversations
+  - name: AI Co-pilot actions
+    price: 10
+    currency: USD
+    unit: per 200 extra suggestions per seat
+free_tier:
+  present: false
+trial:
+  present: false
+  note: >-
+    No self-serve free trial is published; the site's calls to action are
+    "Request a demo" and "Talk to sales".
+api_pricing:
+  metered: false
+  note: >-
+    API calls are not separately metered or priced. API reach is a plan feature
+    on OmniServe (limited vs full) and unstated on Social Listening. There is no
+    published price for the AI API, CDP API or OmniChannel API on their own, and
+    the AI API additionally requires the CXM Core product before a key can be
+    issued. Rate limits are described as plan-dependent but no plan-to-limit
+    mapping is published, so a buyer cannot determine their actual API ceiling
+    before signing.
+cross_links:
+  rate_limits: ../rate-limits/lucidya-ltd-rate-limits.yml
+  authentication: ../authentication/lucidya-ltd-authentication.yml

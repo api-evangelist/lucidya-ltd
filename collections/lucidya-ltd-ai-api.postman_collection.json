@@ -1,0 +1,2283 @@
+{
+  "item": [
+    {
+      "id": "bcddcdd0-7dda-40ae-ae92-fa21c23b8cea",
+      "name": "Audio Transcription",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "306510ad-bbc0-4b36-b04d-bac56abba7e4",
+          "name": "Submit Audio for Analysis",
+          "request": {
+            "name": "Submit Audio for Analysis",
+            "description": {
+              "content": "Upload an audio file for transcription and analysis. The service processes the audio asynchronously — use the returned `job_id` to poll for status and retrieve results.\n\n**Supported audio formats:** MP3, MP4, MP4A, WAV, AIFF, FLAC, M4A, ALAC, WavPack, AAC, Ogg Vorbis, Opus, PCM.\n\n**Rate limit:** The total duration of submitted audio files must not exceed **100 minutes per minute**. If you exceed this limit, subsequent requests will be denied until the start of the next minute. This applies whether you submit one long file or multiple shorter files.\n\n**Next steps after submission:**\n1. [Check Audio Analysis Status](../audio_transcription/check_status) — lightweight status poll (`completed` or `in_progress`).\n2. [Get Audio Analysis Result](../audio_transcription/get_transcription_result) — full transcription with dialects, sentiments, and themes once status is `completed`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "audio_transcription",
+                "transcribe_offline"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "num_speakers",
+                  "value": "<integer>",
+                  "description": "(Required) The number of speakers in the audio file. Used for speaker diarization."
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "The language of the audio (e.g. \"English\", \"Arabic\"). If omitted, the language is detected automatically."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authorization token.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The audio file to transcribe."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fff789fb-ba4a-49ab-af01-600c1ed49a9e",
+              "name": "Audio file accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "transcribe_offline"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "num_speakers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"abc123\",\n  \"message\": \"File submitted successfully. Transcription in progress.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd9e4518-e382-402a-abb8-38e0f192be22",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "transcribe_offline"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "num_speakers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid audio format.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "042b8d71-ded0-4faa-b489-6d4d5b27f747",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "transcribe_offline"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "num_speakers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid or missing authorization token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "284f2adb-be70-4595-a288-b0e19b76920e",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "transcribe_offline"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "num_speakers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"You have exceeded the allowed limit of 100 minutes of audio transcription per minute. Please try again after a minute.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4b43150-289d-4f55-b12e-1c300616a707",
+          "name": "Check Audio Analysis Status",
+          "request": {
+            "name": "Check Audio Analysis Status",
+            "description": {
+              "content": "Check the processing status of a submitted audio transcription job. Returns only the job ID and current status — no transcript or analysis data.\n\nUse this endpoint for lightweight polling. Once the status is `completed`, call [Get Audio Analysis Result](../audio_transcription/get_transcription_result) to retrieve the full transcript, dialects, sentiments, and themes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "audio_transcription",
+                "check_status"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) The job ID returned from the POST /audio_transcription/transcribe_offline submission."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authorization token.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db2f7f6d-b012-467a-a63f-32346867660f",
+              "name": "Job completed.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "check_status"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"d38ee71d-b72b-4e28-9962-430a1612bb93\",\n  \"status\": \"completed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91ab3c8f-0543-4c9e-a8c3-18ad7f1c7bb4",
+              "name": "Job still in progress.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "check_status"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"d38ee71d-b72b-4e28-9962-430a1612bb93\",\n  \"status\": \"in_progress\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa870539-1961-4893-b76d-69880a8b75e3",
+              "name": "Job not found.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "check_status"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Job ID not found. It may have been removed if it is too old.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f802031b-7eb8-41b4-852e-bbb2bc800032",
+          "name": "Get Audio Analysis Result",
+          "request": {
+            "name": "Get Audio Analysis Result",
+            "description": {
+              "content": "Retrieve the full transcription and analysis result for a completed audio job.\n\nReturns the transcript with speaker diarization, dialect detection, sentiment analysis, and theme classification. If the job is still processing, the response will be `202` with an empty result.\n\nUse [Check Audio Analysis Status](../audio_transcription/check_status) for lightweight polling before calling this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "audio_transcription",
+                "get_transcription_result"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) The job ID returned from the POST /audio_transcription/transcribe_offline submission."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authorization token.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5961b5f-0681-48fb-87d9-f2b6b57d59ac",
+              "name": "Transcription completed. Full analysis result returned.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "get_transcription_result"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"d38ee71d-b72b-4e28-9962-430a1612bb93\",\n  \"status\": \"completed\",\n  \"result\": {\n    \"transcripts_json\": [\n      {\n        \"text\": \"طيب مرحبا\",\n        \"speaker\": 0,\n        \"begins\": 1280,\n        \"ends\": 1972\n      },\n      {\n        \"text\": \"أهلا وسهلا\",\n        \"speaker\": 1,\n        \"begins\": 3288,\n        \"ends\": 3946\n      }\n    ],\n    \"dialects\": {\n      \"speaker0\": {\n        \"dialect\": \"egyptian\",\n        \"sub_dialect\": \"egyptian\"\n      },\n      \"speaker1\": {\n        \"dialect\": \"iraqi\",\n        \"sub_dialect\": \"iraqi\"\n      }\n    },\n    \"sentiments\": {\n      \"speaker0\": \"positive\",\n      \"speaker1\": \"neutral\"\n    },\n    \"themes\": {\n      \"speaker0\": {\n        \"themes\": \"complaint\",\n        \"sub_themes\": \"awad\"\n      },\n      \"speaker1\": {\n        \"themes\": \"question\",\n        \"sub_themes\": \"Gamingggm\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74bb62db-de32-4935-b0d9-22da3c609a2c",
+              "name": "Transcription still in progress.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "get_transcription_result"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"d38ee71d-b72b-4e28-9962-430a1612bb93\",\n  \"status\": \"in_progress\",\n  \"result\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a01d4e1c-d24d-4c91-af17-7c57b2ad3d01",
+              "name": "Missing job ID parameter.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "get_transcription_result"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Missing job ID parameter.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "928ba241-340a-41f5-bba4-b5941acdd90a",
+              "name": "Job not found.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "audio_transcription",
+                    "get_transcription_result"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authorization token.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Job ID not found. It may have been removed if it is too old.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "aec4edb0-7184-4a41-8bfa-8ddcfa9b6797",
+      "name": "Predict Sentiment - Batch",
+      "request": {
+        "name": "Predict Sentiment - Batch",
+        "description": {
+          "content": "This endpoint enables you to add your posts (Texts) to get a sentiment prediction from your batch.",
+          "type": "text/plain"
+        },
+        "url": {
+          "protocol": "https",
+          "path": [
+            "sentiment",
+            "predict_batch"
+          ],
+          "host": [
+            "api",
+            "lucidya",
+            "com"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) ",
+            "key": "luc-authorization",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"texts\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "2d534e2b-0535-4451-bf88-371db341a0e8",
+          "name": "Successful prediction",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "sentiment",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"sentiments\": [\n    \"positive\",\n    \"neutral\",\n    \"negative\",\n    \"negative\"\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "aaea2835-5160-432f-8192-c17c4fdceb75",
+          "name": "Missing params, invalid input, strings too long or items not in range 1-100",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "sentiment",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "20f81986-fe90-4261-b153-6a5df03fac7c",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "sentiment",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "78a249d8-5495-4c49-a0df-d965d1038ab7",
+          "name": "The server encountered an unexpected condition which prevented it from fulfilling the request",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "sentiment",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "1ecef11f-4781-4f3f-82c7-ce38c9cc799c",
+          "name": "Service Unavailable - The server is currently unavailable (because it is overloaded or down for maintenance)",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "sentiment",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6d326000-2186-42b5-88e7-aeaade3f9a1a",
+          "name": "The request timed out",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "sentiment",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Gateway Timeout",
+          "code": 504,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0b13bd5f-370c-4c17-9485-16e8e75f495b",
+      "name": "Predict Dialects - Bactch",
+      "request": {
+        "name": "Predict Dialects - Bactch",
+        "description": {
+          "content": "This endpoint enables you to add your posts (Texts) and predict the Arabic dialects and sub-dialects. ",
+          "type": "text/plain"
+        },
+        "url": {
+          "protocol": "https",
+          "path": [
+            "dialects",
+            "predict_batch"
+          ],
+          "host": [
+            "api",
+            "lucidya",
+            "com"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) ",
+            "key": "luc-authorization",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"texts\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c60ea9b1-7f01-48cd-8abe-44e0d23dfa57",
+          "name": "Successful prediction",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "dialects",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"dialects\": [\n    \"modern_ar\",\n    \"modern_ar\",\n    \"saudi\",\n    \"egyptian\"\n  ],\n  \"sub_dialects\": [\n    \"modern_ar\",\n    \"modern_ar\",\n    \"najdi\",\n    \"egyptian\"\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "33727bba-83e5-4bb1-a203-e121de82795a",
+          "name": "Missing params, invalid input, strings too long or items not in range 1-100",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "dialects",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "44b1c1d2-b5ba-4655-8e73-dfbcd7236c12",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "dialects",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "95ae0660-eb93-4918-91a1-645b317f263d",
+          "name": "The server encountered an unexpected condition which prevented it from fulfilling the request",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "dialects",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "50f43c02-de74-4011-b45f-e713c44ee6d4",
+          "name": "Service Unavailable - The server is currently unavailable (because it is overloaded or down for maintenance)",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "dialects",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2999c013-7448-4ae3-a0f4-040fe62ced5d",
+          "name": "The request timed out",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "dialects",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Gateway Timeout",
+          "code": 504,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "8e6b3f05-b360-4980-8eed-81179718d733",
+      "name": "Predict Domains - Batch",
+      "request": {
+        "name": "Predict Domains - Batch",
+        "description": {
+          "content": "This endpoint enables you to send your data (Texts) and get the predict domains like shopping_and_fashion, technology ...",
+          "type": "text/plain"
+        },
+        "url": {
+          "protocol": "https",
+          "path": [
+            "domains",
+            "predict_batch"
+          ],
+          "host": [
+            "api",
+            "lucidya",
+            "com"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) ",
+            "key": "luc-authorization",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"texts\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "3712b2f0-0bea-474e-8107-79136d73cca5",
+          "name": "Successful prediction",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "domains",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"domains\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "be66171a-fb6d-4e38-8514-385831955bc2",
+          "name": "Missing params, invalid input, strings too long or items not in range 1-100",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "domains",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "b250f004-4529-4787-850f-59e347d50318",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "domains",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1aa13dcc-e4e0-4bfa-b9fc-d7e814ec8ea3",
+          "name": "The server encountered an unexpected condition which prevented it from fulfilling the request",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "domains",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6d70dce0-9e15-4fdf-82a1-b59a0030a15a",
+          "name": "Service Unavailable - The server is currently unavailable (because it is overloaded or down for maintenance)",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "domains",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c1a765b5-1f77-4cf2-a3f2-bb3f8a1c5c5a",
+          "name": "The request timed out",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "domains",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Gateway Timeout",
+          "code": 504,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ab331225-b0bd-4066-94e8-9fe67b550f38",
+      "name": "Predict Themes - Batch",
+      "request": {
+        "name": "Predict Themes - Batch",
+        "description": {
+          "content": "This endpoint enables you to send your data (Texts) and get the predict Themes and Sub-Themes like question, complaint ...",
+          "type": "text/plain"
+        },
+        "url": {
+          "protocol": "https",
+          "path": [
+            "themes",
+            "predict_batch"
+          ],
+          "host": [
+            "api",
+            "lucidya",
+            "com"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) ",
+            "key": "luc-authorization",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"texts\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "5d85a787-b085-4dbf-8a40-4ac823fa2fba",
+          "name": "Successful prediction",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "themes",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"themes\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"sub_themes\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "dfec0b45-62bd-4cba-afdc-06770b5ae71a",
+          "name": "Missing params, invalid input, strings too long or items not in range 1-100",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "themes",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"message\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "634bd1b3-c96e-4b09-bc1a-f626801892c8",
+          "name": "Validation Error",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "themes",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "61d99af2-4b87-482b-8128-d86689bb56a3",
+          "name": "The server encountered an unexpected condition which prevented it from fulfilling the request",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "themes",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6a17eaf6-0a0b-4f7c-81f4-cf2d232f64d0",
+          "name": "Service Unavailable - The server is currently unavailable (because it is overloaded or down for maintenance)",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "themes",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "24ed4419-9e95-46dd-b57e-4a85add556b5",
+          "name": "The request timed out",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "themes",
+                "predict_batch"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "luc-authorization",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"texts\": [\n    \"منتج عظيم\",\n    \"السلام عليكم ورحمة الله وبركاته\",\n    \"ما صارت!! الى متى التأخير\",\n    \"شتريت جوال امبارح ومش راضي يفتح معايا\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Gateway Timeout",
+          "code": 504,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lucidya.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2f449a3c-771f-4562-9e4c-8de2392debee",
+    "name": "Lucidya Public AI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Our AI API enables you to get insightful analytics and predictions from your text batches.\n\nContact Support:\n Name: Lucidya Support\n Email: customer.support@lucidya.com",
+      "type": "text/plain"
+    }
+  }
+}

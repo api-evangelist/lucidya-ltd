@@ -1,37 +1,108 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
-source: https://docs.lucidya.com/
+source: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
 name: Lucidya API Authentication
 type: Authentication
 summary: >-
-  Each Lucidya public API product carries its own authorization flow, documented
-  on a dedicated "Authorization" page under docs.lucidya.com. Access is
-  OAuth-based (Lucidya provisions OAuth client applications for programmatic
-  access); calls are issued against the api.lucidya.com host.
+  Every Lucidya public API product uses one API-token scheme: a bearer-style
+  opaque token sent in the custom HTTP header `luc-authorization`. Tokens are
+  self-service generated from the Lucidya CXM console (Settings -> Lucidya API)
+  once a Customer Success Manager has approved an access request, and each token
+  is bound to an API product type and to one or more subnet IP allow-list
+  entries.
+corrections:
+  - date: '2026-08-13'
+    was: 'oauth2 (per-product OAuth client applications)'
+    now: 'apiKey in header `luc-authorization`'
+    why: >-
+      The 2026-07-20 pass could not reach the Stoplight-hosted Authorization
+      articles and inferred OAuth. The provider's own Authorization pages and the
+      OmniServe OpenAPI securityScheme both state an API-token header scheme.
+      Lucidya publishes no OAuth authorization or token endpoint.
 schemes:
-- type: oauth2
-  name: Lucidya OAuth client
-  description: >-
-    Programmatic access is granted through Lucidya OAuth client applications.
-    Token/authorization endpoints and exact flow are documented per product on
-    the product's Authorization page (linked below) and are not fully public
-    without an account.
-  in: header
-  header: Authorization
-docs:
-- product: Social Listening
-  url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
-- product: AI
-  url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
-- product: CDP
-  url: https://docs.lucidya.com/docs/cdp-api/kae3rp3opgd5m-authorization
-- product: OmniChannel
-  url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
-- product: OmniServe Analytics
-  url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+  - type: apiKey
+    name: luc-authorization
+    in: header
+    scheme_name: OmniserveToken
+    description: >-
+      "The API authorization token for the request" — declared verbatim as an
+      apiKey/header securityScheme in the OmniServe Analytics OpenAPI, and used
+      identically (undeclared in the spec but documented in prose and in every
+      cURL sample) by the Social Listening, AI, CDP and OmniChannel APIs.
+    example_header: 'luc-authorization: <YOUR_API_TOKEN>'
+    declared_in_spec:
+      - openapi/lucidya-ltd-omniserve-analytics-api-openapi.yml
+    documented_only:
+      - openapi/lucidya-ltd-social-listening-api-openapi.yml
+      - openapi/lucidya-ltd-ai-api-openapi.yml
+      - openapi/lucidya-ltd-cdp-api-openapi.yml
+      - openapi/lucidya-ltd-omnichannel-api-openapi.yml
+oauth2: false
+oauth2_note: >-
+  No OAuth 2.0 authorization server, token endpoint, scopes or grant types are
+  published on any Lucidya host. /.well-known/oauth-authorization-server and
+  /.well-known/openid-configuration return 404 on lucidya.com, api.lucidya.com
+  and docs.lucidya.com. Consequently no scopes/ artifact is emitted.
+token_issuance:
+  self_serve: partial
+  steps:
+    - Hold an active Lucidya account (AI API additionally requires the CXM Core product).
+    - Log in at https://cxm.lucidya.com/login and open Settings -> Lucidya API.
+    - Click "Request Access"; a Customer Success Manager approves the request by email.
+    - After approval, click "Generate API Key", pick the API type, name the key and add subnet IP(s).
+    - The token is displayed exactly once and cannot be viewed again.
+  gate: >-
+    Key issuance is CSM-approved, so the credential is not fully self-serve even
+    though the documentation and specs are fully public.
+constraints:
+  keys_per_api_type: 3
+  api_type_bound: true
+  ip_allowlist:
+    supported: true
+    field: Subnet IP(s)
+    multiple: true
+    note: A single key may carry multiple subnet IPs.
+  token_deactivation_days: 30
+  token_deactivation_rule: >-
+    A key not used within a 30-day period is deactivated; an email notice is sent.
+  token_expiration_days: 60
+  token_expiration_rule: >-
+    A key used continuously for a 60-day period reaches expiration; an email
+    alert is sent. A new token must then be generated.
+transport:
+  https_required: true
+  http_allowed: false
+  note: >-
+    "API requests must use HTTPS, HTTP requests will not be allowed." TLS is
+    documented as the transport standard for all Lucidya REST APIs.
+failure_modes:
+  - status: 401
+    slug: unauthorized
+    meaning: Authorization error (invalid API key).
+  - status: 403
+    slug: forbidden
+    meaning: >-
+      Request understood but refused — either access is not allowed, or the
+      caller was blocked after too many errors in a short window.
 hosts:
-- https://api.lucidya.com
+  - https://api.lucidya.com
+  - https://api.lucidya.com/public_api/omniserve
+docs:
+  - product: Social Listening
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - product: AI
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - product: CDP
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - product: OmniChannel
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - product: OmniServe Analytics
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+  - product: Security Considerations (token expiry, TLS)
+    url: https://docs.lucidya.com/docs/Social-Listening-api/sztlqqzqzmdb0-security-considerations
 notes: >-
-  The api.lucidya.com host is live and fronted by Cloudflare Access. Exact token
-  URLs and scope names were not fully public on this pass, so they are left
-  unstated rather than guessed.
+  Lucidya's own Authorization pages misspell the header as `luc-autharization`
+  in the prose sentence while every code sample, the OmniServe securityScheme and
+  the "Try Out" console all use `luc-authorization`. The correct header is
+  `luc-authorization`; the prose spelling is a documentation typo and is recorded
+  here so an agent does not copy it.

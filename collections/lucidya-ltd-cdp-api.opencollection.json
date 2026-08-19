@@ -1,0 +1,401 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CDP (Customer Data Platform) API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Filters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/profiles/filters",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Utilize the `Get Filters` endpoint to **retrieve a list of filters** available in your CDP account.\n\nYou can get a list of all supported filters:\n\n- **🔖 Segment**: You will get an array containing all available options for segment filter.\n- **🔍 Data Source**: You will get an array containing all available options for data source filter.\n- **📍 Location**: You will get an array containing all available options for location filter.\n- **👦 Gender**: You will get an array containing all available "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of all profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/profiles",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to add a `page number` for the subsequent payload. You can find the `\"total_pages\": 3` attribute on the first payload."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              }
+            ]
+          },
+          "docs": "This **Critical Endpoint** grants access to a detailed list, encompassing every profile along with the data specific to each one.\n\nThis endpoint will retrieve a list of **profile IDs**. To fetch detailed information for a specific user (customer) using their ID, please refer to [get profile data by Id endpoint](https://docs.lucidya.com/docs/cdp-api/branches/main/b0aykazg3489q-get-custom-profile-data-by-id).\n\n<!-- theme: success -->\n> #### 🔢 Pagination\n>\n> This endpoint enables pagination by usi"
+        },
+        {
+          "info": {
+            "name": "Create Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/profiles",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create a new CDP profile."
+        },
+        {
+          "info": {
+            "name": "Update Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lucidya.com/profiles",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the profile."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to update CDP profile data."
+        },
+        {
+          "info": {
+            "name": "Get custom profile data by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/profiles/:id",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the customer profile."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieve a comprehensive profile information by specifying the customer profile's unique identifier (Id).\n\nThis endpoint enables you to access all gathered & analysed information from Lucidya engines for specific customer profile, encompassing but not limited to the following details:\n\n- **Full Name/ User Name**: This is the full name or user name of the customer.\n- **Profile_Image_URL**: Direct link to the customer's profile picture, providing a visual identifier.\n- **Main Details"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Surveys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve survey data for a specific profile using Its Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/profiles/:id/surveys",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to add a `page number` for the subsequent payload. You can find the `\"total_pages\": 3` parameter on the first payload."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the customer profile."
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve survey(s) data for a particular profile by specifying its ID.\n\n<!-- theme: success -->\n> #### 🔢 Pagination\n>\n> This endpoint enables pagination through the use of a `page` parameter, which can be included in the request query parameters.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Profile Interactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create interaction profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lucidya.com/profiles/interactions",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify a `start_date` filter using the Unix format, for example, `1713033600`."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "This is utilized to specify an `end_date` filter using the Unix format, for example, `1715625600`."
+              },
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "query",
+                "description": "This is the unique identifier of the customer profile."
+              }
+            ]
+          },
+          "docs": "This endpoint enables you to execute a `POST` request by including the following parameters:\n\n- `start_date`: Defines the `Unix` timestamp marking the beginning of the interaction period on the customer's profile.\n- `end_date`: Sets the `Unix` timestamp that signifies the end of the interaction period on the customer's profile.\n- `profile_id`: Acts as the unique identifier for the customer.\n\nUpon successful submission, the endpoint will return a `job_id`.\n\nThis `job_id` serves as a key to **acce"
+        },
+        {
+          "info": {
+            "name": "Get interaction profile by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/profiles/:id/interactions",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "This `job_id` represents the identifier for the [newly created interaction profile](https://docs.lucidya.com/docs/cdp-api/branches/main/2kqwzyyvxixnr-create-interaction-profile)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the customer profile."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves **all interactions**, both public and private, from the customer's all social media accounts.\n\n<!-- theme: info -->\n\n> #### Info\n>\n> To retrieve all interactions for a specific customer based on their `profile_id`, you must provide the `job_id` generated by the [create interaction profile endpoint](https://docs.lucidya.com/docs/cdp-api/2kqwzyyvxixnr-create-interaction-profile)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Segments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Paginated Segments List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lucidya.com/segments",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "The field by which to sort the results. Can be one of 'id', 'name', 'created_at',or 'profiles_count'."
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "The order of results. Can be one of 'desc' or 'asc'."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of segments associated with your account.\n\n<!-- theme: success -->\n> #### 🔢 Pagination\n>\n> This endpoint enables pagination by using a `page` parameter, which is included in the request query parameters."
+        },
+        {
+          "info": {
+            "name": "Append Profile(s) into Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lucidya.com/segments/append_profiles",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "segment_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier (id) of the segment to append profile(s)."
+              },
+              {
+                "name": "profiles_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of profile IDs to append."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to append profile(s) into the selected segment."
+        },
+        {
+          "info": {
+            "name": "Delete Profile(s) from Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lucidya.com/segments/delete_profiles",
+            "headers": [
+              {
+                "name": "luc-authorization",
+                "value": ""
+              },
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "segment_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier (id) of the segment to delete profile(s) from it."
+              },
+              {
+                "name": "profiles_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of profile ID(s) to delete."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to delete profile(s) from the segment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

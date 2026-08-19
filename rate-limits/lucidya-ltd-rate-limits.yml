@@ -1,0 +1,114 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.lucidya.com/docs/Social-Listening-api/wi0q2azbypqk5-rate-limiting
+name: Lucidya API Rate Limits
+type: RateLimits
+summary: >-
+  Lucidya publishes a per-product Rate Limiting article on every API. Limits are
+  plan-dependent floors ("start from"), enforced per minute with a hard reset at
+  the top of the next minute. No rate-limit response headers are published or
+  declared in any of the five OpenAPI documents, so the runtime signal an agent
+  needs does not exist — only the number in the docs.
+limit_count: 4
+limits:
+  - id: rest-default
+    scope: per-key
+    applies_to:
+      - Social Listening API
+      - CDP API
+      - OmniChannel API
+      - OmniServe Analytics API
+    window: 1 minute
+    limit: 100
+    unit: requests
+    floor: true
+    note: >-
+      "Our rate limits start from 100 requests per minute." The value is the
+      entry-level floor; the effective limit depends on the subscribed plan.
+    docs:
+      - https://docs.lucidya.com/docs/Social-Listening-api/wi0q2azbypqk5-rate-limiting
+      - https://docs.lucidya.com/docs/cdp-api/u5a4p6o6egebt-rate-limiting
+      - https://docs.lucidya.com/docs/omnichannel-api/zrzb7o6iwt1ho-rate-limiting
+  - id: ai-requests
+    scope: per-key
+    applies_to:
+      - AI API
+    window: 1 minute
+    limit: 6
+    unit: requests
+    floor: true
+    note: >-
+      "Our rate limits for AI API start from 6 requests per minute." Materially
+      tighter than the 100/min applied to the other four products — an agent
+      built against the general figure will be throttled on the AI surface.
+    docs: https://docs.lucidya.com/docs/ai-api/12m2bpnec7ycv-rate-limiting
+  - id: ai-batch-size
+    scope: per-request
+    applies_to:
+      - AI API
+    window: null
+    limit: 100
+    unit: texts per request
+    floor: true
+    note: >-
+      "100 texts (Batch Size) per request (It can be changed when creating
+      package)." Applies to the four batch prediction operations
+      (predict_sentiment_batch, predict_dialects_batch, predict_domains_batch,
+      predict_themes_batch).
+    docs: https://docs.lucidya.com/docs/ai-api/12m2bpnec7ycv-rate-limiting
+  - id: ai-audio-duration
+    scope: per-key
+    applies_to:
+      - AI API (Audio Transcription)
+    window: 1 minute
+    limit: 100
+    unit: minutes of audio per minute
+    note: >-
+      "For Audio Analysis, the total duration of one audio file or multiple audio
+      files should not exceed 100 minute per minute." A duration quota rather
+      than a request-count quota.
+    docs: https://docs.lucidya.com/docs/ai-api/12m2bpnec7ycv-rate-limiting
+exhaustion:
+  status: 429
+  slug: too_many_requests
+  body: '{"error":{"status":429,"detail":"..."}}'
+  reset: >-
+    "Subsequent requests will be denied until the start of the next minute" —
+    a fixed-window reset on the minute boundary, not a rolling window.
+response_headers:
+  published: false
+  observed: false
+  checked:
+    - RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset
+    - X-RateLimit-Limit / X-RateLimit-Remaining / X-RateLimit-Reset
+    - Retry-After
+  detail: >-
+    None of the above appear in the Rate Limiting articles, in the Responses
+    error registry, or as declared response headers on any of the 73 operations
+    in the five OpenAPI documents. Live header observation is not possible: every
+    api.lucidya.com route requires a CSM-issued token, and unauthenticated calls
+    are answered by Cloudflare Access or a Kong "no Route matched" 404 before any
+    rate-limit middleware runs.
+  impact: >-
+    A client cannot read remaining budget, cannot learn its actual plan ceiling
+    at runtime, and gets no Retry-After on 429. The only correct strategy is to
+    self-pace below the documented floor and back off to the next minute boundary
+    on 429. This is the single highest-value runtime fix available to Lucidya:
+    emitting RateLimit-* and Retry-After would turn four prose numbers into a
+    machine signal.
+related_quotas:
+  note: >-
+    Commercial quotas that are not per-minute API rate limits but do bound API
+    usage are recorded in ../plans/lucidya-ltd-plans-pricing.yml — notably the
+    OmniServe reply caps (150 / 800 on Growth, 400 / 2,000 on Enterprise), the
+    12-month data retention, survey-response caps, and the per-seat AI credit
+    pools.
+  blocking_behaviour: >-
+    Separately from 429, the published error registry states that a caller
+    "blocked due to many errors in particular time" receives 403 forbidden. A
+    client that hammers on 4xx can therefore be blocked outright rather than
+    throttled.
+cross_links:
+  errors: ../errors/lucidya-ltd-problem-types.yml
+  conventions: ../conventions/lucidya-ltd-conventions.yml
+  plans: ../plans/lucidya-ltd-plans-pricing.yml

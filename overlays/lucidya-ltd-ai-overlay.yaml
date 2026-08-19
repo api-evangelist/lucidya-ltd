@@ -1,0 +1,53 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay — Lucidya Public AI API
+  version: 1.0.0
+extends: ../openapi/lucidya-ltd-ai-api-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: openapi/lucidya-ltd-ai-api-openapi.yml
+x-note: 'Captures API Evangelist''s enrichment of Lucidya''s published contract. It never mutates the
+  original: openapi/_original/ holds the verbatim export from Lucidya''s Stoplight workspace. Every value
+  added here is sourced from Lucidya''s own documentation, not invented.'
+actions:
+- target: $.info
+  description: Record that this document was harvested verbatim from Lucidya's own public Stoplight workspace
+    (docs.lucidya.com, workspace slug 'lucdya') and note the API Evangelist enrichment provenance.
+  update:
+    x-apievangelist-source: https://stoplight.io/api/v1/projects/*/nodes
+    x-apievangelist-harvested: '2026-08-13'
+    x-apievangelist-provenance: first-party; exported from the provider-published Stoplight project
+- target: $
+  description: 'Attach the cross-cutting runtime semantics Lucidya publishes in prose but does not encode
+    in the contract: pagination, rate limits, the error envelope and versioning.'
+  update:
+    x-conventions: ../conventions/lucidya-ltd-conventions.yml
+    x-errors: ../errors/lucidya-ltd-problem-types.yml
+    x-rate-limits: ../rate-limits/lucidya-ltd-rate-limits.yml
+    x-lifecycle: ../lifecycle/lucidya-ltd-lifecycle.yml
+    x-authentication: ../authentication/lucidya-ltd-authentication.yml
+- target: $.components
+  description: Declare the luc-authorization API-token scheme this API actually requires. Lucidya documents
+    it in prose and in every cURL sample but declares it only in the OmniServe spec, leaving this document's
+    securitySchemes empty.
+  update:
+    securitySchemes:
+      LucAuthorization:
+        type: apiKey
+        in: header
+        name: luc-authorization
+        description: Lucidya API token, generated in the CXM console (Settings -> Lucidya API) after Customer
+          Success Manager approval. Bound to one API product type and to a subnet IP allow-list. Deactivated
+          after 30 days idle; expires after 60 days of continuous use.
+- target: $.paths.*.*.responses.429
+  description: Note that 429 carries no Retry-After or RateLimit-* header; the window resets at the top
+    of the next minute.
+  update:
+    x-retry-guidance: No Retry-After or RateLimit-* header is returned. Back off to the next minute boundary;
+      limits are fixed-window per minute.
+- target: $.paths.*.*.responses.202
+  description: Mark 202 as the in-progress signal of the create-then-poll pattern rather than a terminal
+    success.
+  update:
+    x-async-poll: Job still running. Re-issue the same GET until 200 is returned; do not treat 202 as
+      a final result.

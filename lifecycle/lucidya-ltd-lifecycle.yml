@@ -1,8 +1,13 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
-source: https://status.lucidya.com/
+source: https://docs.lucidya.com/docs/Social-Listening-api/unypk371jol78-versioning
 name: Lucidya API Lifecycle
 type: Lifecycle
+summary: >-
+  Lucidya runs a status page and a dated product-updates feed, and publishes a
+  short versioning statement per API product. It publishes no deprecation policy,
+  no sunset dates, no SLA, and emits no Deprecation or Sunset headers. Nothing in
+  the 73 published operations is marked deprecated.
 status_page:
   url: https://status.lucidya.com/
   platform: Atlassian Statuspage
@@ -10,19 +15,85 @@ status_page:
 change_log:
   url: https://news.lucidya.com/
   present: true
+  format: dated bilingual (English/Arabic) entries, paginated
+  ref: ../changelog/lucidya-ltd-changelog.yml
 versioning:
-  scheme: per-product public APIs
-  notes: >-
-    Lucidya exposes six independently documented public API products (Social
-    Listening, AI, CDP, OmniChannel, OmniServe Analytics, Webhooks), each with
-    its own authorization flow and reference under docs.lucidya.com.
+  scheme: none-in-path
+  current: v1
+  statement: >-
+    "As of now, the current version of the Lucidya API is Version 1 (V1)." The
+    version appears in neither the host nor the path — the documented v1 URLs are
+    https://api.lucidya.com/monitors_list and https://api.lucidya.com/widgets.
+  future_commitment: >-
+    "We will provide ample notice and updated documentation with each new
+    version." No notice period is quantified.
+  docs:
+    - https://docs.lucidya.com/docs/Social-Listening-api/unypk371jol78-versioning
+    - https://docs.lucidya.com/docs/ai-api/kro5yfsksufes-versioning
+    - https://docs.lucidya.com/docs/cdp-api/v4lqv90zhbnj0-versioning
+    - https://docs.lucidya.com/docs/omnichannel-api/adbd8h1fk91yh-versioning
+  spec_versions:
+    - { api: Social Listening, openapi: 3.0.1, info_version: v1 }
+    - { api: AI, openapi: 3.1.0, info_version: 0.1.0 }
+    - { api: CDP, openapi: 3.0.0, info_version: 1.0.0 }
+    - { api: OmniChannel, openapi: 3.0.0, info_version: 1.0.0 }
+    - { api: OmniServe Analytics, openapi: 3.0.3, info_version: 1.0.0 }
+  spec_version_note: >-
+    Five specs, four different OpenAPI versions and three different info.version
+    schemes (v1, 0.1.0, 1.0.0). The AI API — the newest and most agent-relevant
+    surface — still declares itself 0.1.0.
 deprecation:
   policy_url: null
   present: false
-  notes: No public deprecation / sunset policy located during this pass.
+  headers:
+    deprecation: false
+    sunset: false
+    rfc8594: false
+  deprecated_operations: 0
+  detail: >-
+    No deprecation or sunset policy is published on any product page, and no
+    operation across the five OpenAPI documents carries `deprecated: true`. No
+    Deprecation or Sunset response header is documented or declared. A consumer
+    has no published mechanism for learning that an endpoint is going away.
 sla:
   url: null
   present: false
   notes: >-
-    SLA / uptime commitments are referenced through the Trust Center
-    (trust.lucidya.com), which gates full documents behind NDA.
+    No uptime or response-time commitment is published. Availability commitments
+    are referenced through the Trust Center (trust.lucidya.com), which gates full
+    documents behind NDA.
+credential_lifecycle:
+  present: true
+  detail: >-
+    Lucidya does publish a lifecycle policy for credentials, which is unusual and
+    worth crediting: an API key idle for 30 days is deactivated, and a key used
+    continuously for 60 days expires. Both events trigger an email notice. Each
+    account may hold at most 3 keys per API type.
+  docs: https://docs.lucidya.com/docs/Social-Listening-api/sztlqqzqzmdb0-security-considerations
+  ref: ../authentication/lucidya-ltd-authentication.yml
+webhook_lifecycle:
+  present: true
+  detail: >-
+    A webhook destination that returns no response for 15 days is paused by
+    Lucidya.
+  ref: ../asyncapi/lucidya-ltd-webhooks.yml
+contract_freshness:
+  source: Stoplight project branch commit timestamps (public API, fetched 2026-08-13)
+  last_updated:
+    - { api: OmniServe Analytics, updated: '2026-08-02' }
+    - { api: OmniChannel, updated: '2026-07-26' }
+    - { api: AI, updated: '2026-07-12' }
+    - { api: Social Listening, updated: '2026-06-07' }
+    - { api: Webhooks (docs only), updated: '2026-06-07' }
+    - { api: CDP, updated: '2024-08-18' }
+  observation: >-
+    Four of six documentation projects were touched within the last two months.
+    The CDP API is the outlier at roughly two years without a documentation
+    update, while remaining the product with the richest write surface (create,
+    update, segment membership) and the only one that handles personal data.
+support:
+  email: customer.support@lucidya.com
+  help_center: https://help.lucidya.com/
+  docs:
+    - https://docs.lucidya.com/docs/Social-Listening-api/plsjnglhquahb-support
+    - https://docs.lucidya.com/docs/ai-api/3rguyo5rc90ak-support

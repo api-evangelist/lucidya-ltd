@@ -1,0 +1,3648 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: CDP (Customer Data Platform) API
+  description: "This document serves as the \U0001F4D8 comprehensive API guide for \U0001F50C integrating your product(s) with the Lucidya **Customer Data Platform (CDP)** via **RESTful** endpoints.\n\n\U0001F50D Explore how to seamlessly connect your offerings with our platform to leverage customer data insights and profiles.\n\nMethod | Endpoint | Description\n-------|----------|---------\n `GET` | **[Get Filters](https://docs.lucidya.com/docs/cdp-api/branches/main/7k92xwdm05e0i-get-filters)** | Reterive a list of all available filters on your account.\n `GET` | **[Get Profile List](https://docs.lucidya.com/docs/cdp-api/branches/main/3mjmoshm1vmcu-get-a-list-of-all-profiles)** | Reterive a list of all available customer profiles.\n `GET` | **[Get Profile by Id](https://docs.lucidya.com/docs/cdp-api/branches/main/b0aykazg3489q-get-custom-profile-data-by-id)** | Reterive a specific customer profile data by `profile_id`.\n `POST`| **[Create Profile](https://docs.lucidya.com/docs/cdp-api/c2d0471ce7599-create-profile)** | Create a new CDP profile by adding the profile information.\n `PUT` | **[Update Profile](https://docs.lucidya.com/docs/cdp-api/10c0d3000016a-update-profile)** | Update the information for a specific profile.\n `GET` | **[Get Survey data by Profile Id](https://docs.lucidya.com/docs/cdp-api/branches/main/zb4668e65pnoz-retrieve-survey-data-for-a-specific-profile-using-its-id)** | Reterive a data of all survey(ies) for specific customer by `profile_id`.\n `POST`| **[Create Interaction Profile](https://docs.lucidya.com/docs/cdp-api/branches/main/2kqwzyyvxixnr-create-interaction-profile)** | Create an interaction profile to get the `job_id`.\n `GET` | **[Get Interaction Profile](https://docs.lucidya.com/docs/cdp-api/branches/main/m7c5hv4h94339-get-interaction-profile-by-id)** | Reterive an interaction profile by `job_id` and `profile_id`.\n `GET` | **[Get Segments List](https://docs.lucidya.com/docs/cdp-api/6c947c3eaec37-paginated-segments-list)** | Retrieve a paginated list of segments associated with your account.\n `PUT` | **[Append Profile(s) to Segment](https://docs.lucidya.com/docs/cdp-api/ec7081a06df11-append-profile-s-into-segment)** | Add selected profiles to the segment.\n `DELETE` | **[Delete Profile(s) from Segment](https://docs.lucidya.com/docs/cdp-api/a0ac3ea7ae575-delete-profile-s-from-segment)** | Remove selected profiles from the segment.\n\n[\U0001F393 Learn more about Lucidya CDP](https://lucidya.com/product/audience/)."
+  termsOfService: 'https://lucidya.com/service-agreement/'
+  contact:
+    name: Lucidya
+    url: 'https://lucidya.com/'
+    email: customer.support@lucidya.com
+  license:
+    url: ''
+    name: ''
+servers:
+  - url: 'https://api.lucidya.com'
+    description: Production Server
+paths:
+  /profiles/filters:
+    get:
+      tags:
+        - Filters
+      summary: Get filters
+      description: "Utilize the `Get Filters` endpoint to **retrieve a list of filters** available in your CDP account.\n\nYou can get a list of all supported filters:\n\n- **\U0001F516 Segment**: You will get an array containing all available options for segment filter.\n- **\U0001F50D Data Source**: You will get an array containing all available options for data source filter.\n- **\U0001F4CD Location**: You will get an array containing all available options for location filter.\n- **\U0001F466 Gender**: You will get an array containing all available options for gender filter.\n- **✨ Themes**: You will get an array containing all available options for themes filter.\n- **\U0001F5BC️ Sub Themes**: You will get an array containing all available options for sub themes filter.\n- **\U0001F5E3️ Dialects**: You will get an array containing all available options for dialects filter.\n- **\U0001F3AD Sub Dialects**: You will get an array containing all available options for sub dialects filter.\n"
+      operationId: getFilters
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |-
+            ```json
+            {
+                "data": [
+                    {
+                        "id": 53,
+                        "name": "segment",
+                        "selection_attribute": "multi-select",
+                        "content_source": "engine_dynamic_api",
+                        "placeholder": null,
+                        "locale_source": null,
+                        "default_value": null,
+                        "priority": "1",
+                        "options": [
+                            {
+                                "label": "T",
+                                "value": 77
+                            },
+                            {
+                                "label": "magdy",
+                                "value": 76
+                            },
+                            {
+                                "label": "hi",
+                                "value": 75
+                            },
+                            {
+                                "label": "TestwShoroog",
+                                "value": 74
+                            },
+                            {
+                                "label": "ShoroogSegment",
+                                "value": 73
+                            },
+                            {
+                                "label": "test1234567948822323",
+                                "value": 72
+                            },
+                            {
+                                "label": "Al",
+                                "value": 70
+                            },
+                            {
+                                "label": "AA",
+                                "value": 69
+                            },
+                            {
+                                "label": "A",
+                                "value": 68
+                            },
+                            {
+                                "label": "عملاء",
+                                "value": 67
+                            },
+                            {
+                                "label": "r",
+                                "value": 66
+                            },
+                            {
+                                "label": "GameChangers",
+                                "value": 65
+                            },
+                            {
+                                "label": "test109",
+                                "value": 64
+                            },
+                            {
+                                "label": "ahmedtest1",
+                                "value": 63
+                            },
+                            {
+                                "label": "test2seg",
+                                "value": 62
+                            },
+                            {
+                                "label": "ahmedtestadd",
+                                "value": 61
+                            },
+                            {
+                                "label": "asd",
+                                "value": 58
+                            },
+                            {
+                                "label": "asd1",
+                                "value": 57
+                            },
+                            {
+                                "label": "test1asd",
+                                "value": 56
+                            },
+                            {
+                                "label": "ImportantClients",
+                                "value": 55
+                            },
+                            {
+                                "label": "all-87",
+                                "value": 54
+                            },
+                            {
+                                "label": "15",
+                                "value": 53
+                            },
+                            {
+                                "label": "test-45",
+                                "value": 52
+                            },
+                            {
+                                "label": "test_with_mo",
+                                "value": 51
+                            },
+                            {
+                                "label": "new_test",
+                                "value": 50
+                            },
+                            {
+                                "label": "VIB",
+                                "value": 49
+                            },
+                            {
+                                "label": "tes",
+                                "value": 48
+                            },
+                            {
+                                "label": "ghadeer",
+                                "value": 47
+                            },
+                            {
+                                "label": "خدمةعملاء",
+                                "value": 46
+                            },
+                            {
+                                "label": "sdafsafsfasdf",
+                                "value": 44
+                            },
+                            {
+                                "label": "gsadfasfdasfasdfasdf",
+                                "value": 40
+                            },
+                            {
+                                "label": "customer",
+                                "value": 36
+                            },
+                            {
+                                "label": "new",
+                                "value": 35
+                            },
+                            {
+                                "label": "test00",
+                                "value": 34
+                            },
+                            {
+                                "label": "VIP",
+                                "value": 32
+                            },
+                            {
+                                "label": "Yazeedn",
+                                "value": 28
+                            },
+                            {
+                                "label": "س",
+                                "value": 27
+                            },
+                            {
+                                "label": "test0",
+                                "value": 23
+                            },
+                            {
+                                "label": "Te",
+                                "value": 21
+                            },
+                            {
+                                "label": "Test",
+                                "value": 20
+                            },
+                            {
+                                "label": "GHANDI_TEST",
+                                "value": 18
+                            },
+                            {
+                                "label": "Test3",
+                                "value": 17
+                            },
+                            {
+                                "label": "Test2",
+                                "value": 14
+                            },
+                            {
+                                "label": "Test1",
+                                "value": 13
+                            }
+                        ]
+                    },
+                    {
+                        "id": 56,
+                        "name": "data_source",
+                        "selection_attribute": "multi-select",
+                        "content_source": "database_content",
+                        "placeholder": null,
+                        "locale_source": "front-end",
+                        "default_value": null,
+                        "priority": "2",
+                        "options": [
+                            {
+                                "label": "twitter",
+                                "value": 1
+                            },
+                            {
+                                "label": "facebook",
+                                "value": 2
+                            },
+                            {
+                                "label": "instagram",
+                                "value": 3
+                            },
+                            {
+                                "label": "intercom",
+                                "value": 6
+                            },
+                            {
+                                "label": "gmail",
+                                "value": 7
+                            },
+                            {
+                                "label": "whatsapp",
+                                "value": 9
+                            },
+                            {
+                                "label": "survey",
+                                "value": 14
+                            },
+                            {
+                                "label": "genesys",
+                                "value": 27
+                            },
+                            {
+                                "label": "linkedin",
+                                "value": 20
+                            },
+                            {
+                                "label": "googlemybusiness",
+                                "value": 15
+                            },
+                            {
+                                "label": "tiktok",
+                                "value": 38
+                            }
+                        ]
+                    },
+                    {
+                        "id": 59,
+                        "name": "location",
+                        "selection_attribute": "multi-select",
+                        "content_source": "engine_dynamic_api",
+                        "placeholder": null,
+                        "locale_source": null,
+                        "default_value": null,
+                        "priority": "3",
+                        "options": [
+                            {
+                                "label": "SA",
+                                "value": "SA"
+                            },
+                            {
+                                "label": "CO",
+                                "value": "CO"
+                            },
+                            {
+                                "label": "LY",
+                                "value": "LY"
+                            },
+                            {
+                                "label": "MY",
+                                "value": "MY"
+                            },
+                            {
+                                "label": "ES",
+                                "value": "ES"
+                            },
+                            {
+                                "label": "NG",
+                                "value": "NG"
+                            },
+                            {
+                                "label": "ZA",
+                                "value": "ZA"
+                            },
+                            {
+                                "label": "TZ",
+                                "value": "TZ"
+                            },
+                            {
+                                "label": "CU",
+                                "value": "CU"
+                            },
+                            {
+                                "label": "IN",
+                                "value": "IN"
+                            },
+                            {
+                                "label": "CA",
+                                "value": "CA"
+                            },
+                            {
+                                "label": "SN",
+                                "value": "SN"
+                            },
+                            {
+                                "label": "TR",
+                                "value": "TR"
+                            },
+                            {
+                                "label": "PT",
+                                "value": "PT"
+                            },
+                            {
+                                "label": "QA",
+                                "value": "QA"
+                            },
+                            {
+                                "label": "IT",
+                                "value": "IT"
+                            },
+                            {
+                                "label": "KE",
+                                "value": "KE"
+                            },
+                            {
+                                "label": "KW",
+                                "value": "KW"
+                            },
+                            {
+                                "label": "IQ",
+                                "value": "IQ"
+                            },
+                            {
+                                "label": "EG",
+                                "value": "EG"
+                            },
+                            {
+                                "label": "US",
+                                "value": "US"
+                            },
+                            {
+                                "label": "EC",
+                                "value": "EC"
+                            },
+                            {
+                                "label": "GH",
+                                "value": "GH"
+                            },
+                            {
+                                "label": "AE",
+                                "value": "AE"
+                            },
+                            {
+                                "label": "NI",
+                                "value": "NI"
+                            },
+                            {
+                                "label": "JO",
+                                "value": "JO"
+                            },
+                            {
+                                "label": "PY",
+                                "value": "PY"
+                            },
+                            {
+                                "label": "BH",
+                                "value": "BH"
+                            },
+                            {
+                                "label": "ID",
+                                "value": "ID"
+                            },
+                            {
+                                "label": "BR",
+                                "value": "BR"
+                            },
+                            {
+                                "label": "UG",
+                                "value": "UG"
+                            },
+                            {
+                                "label": "DE",
+                                "value": "DE"
+                            },
+                            {
+                                "label": "PH",
+                                "value": "PH"
+                            },
+                            {
+                                "label": "AR",
+                                "value": "AR"
+                            },
+                            {
+                                "label": "GB",
+                                "value": "GB"
+                            },
+                            {
+                                "label": "YE",
+                                "value": "YE"
+                            },
+                            {
+                                "label": "MR",
+                                "value": "MR"
+                            },
+                            {
+                                "label": "UA",
+                                "value": "UA"
+                            },
+                            {
+                                "label": "FR",
+                                "value": "FR"
+                            },
+                            {
+                                "label": "SD",
+                                "value": "SD"
+                            },
+                            {
+                                "label": "OM",
+                                "value": "OM"
+                            },
+                            {
+                                "label": "BW",
+                                "value": "BW"
+                            },
+                            {
+                                "label": "AU",
+                                "value": "AU"
+                            },
+                            {
+                                "label": "DZ",
+                                "value": "DZ"
+                            },
+                            {
+                                "label": "PK",
+                                "value": "PK"
+                            },
+                            {
+                                "label": "GQ",
+                                "value": "GQ"
+                            },
+                            {
+                                "label": "MV",
+                                "value": "MV"
+                            },
+                            {
+                                "label": "MX",
+                                "value": "MX"
+                            },
+                            {
+                                "label": "ET",
+                                "value": "ET"
+                            },
+                            {
+                                "label": "CD",
+                                "value": "CD"
+                            },
+                            {
+                                "label": "CH",
+                                "value": "CH"
+                            },
+                            {
+                                "label": "HT",
+                                "value": "HT"
+                            },
+                            {
+                                "label": "CN",
+                                "value": "CN"
+                            },
+                            {
+                                "label": "PE",
+                                "value": "PE"
+                            },
+                            {
+                                "label": "ME",
+                                "value": "ME"
+                            },
+                            {
+                                "label": "BE",
+                                "value": "BE"
+                            },
+                            {
+                                "label": "NL",
+                                "value": "NL"
+                            },
+                            {
+                                "label": "BF",
+                                "value": "BF"
+                            },
+                            {
+                                "label": "HU",
+                                "value": "HU"
+                            },
+                            {
+                                "label": "ZW",
+                                "value": "ZW"
+                            },
+                            {
+                                "label": "AF",
+                                "value": "AF"
+                            },
+                            {
+                                "label": "RW",
+                                "value": "RW"
+                            },
+                            {
+                                "label": "KR",
+                                "value": "KR"
+                            },
+                            {
+                                "label": "RU",
+                                "value": "RU"
+                            },
+                            {
+                                "label": "PS",
+                                "value": "PS"
+                            },
+                            {
+                                "label": "CL",
+                                "value": "CL"
+                            },
+                            {
+                                "label": "MA",
+                                "value": "MA"
+                            },
+                            {
+                                "label": "AO",
+                                "value": "AO"
+                            },
+                            {
+                                "label": "VE",
+                                "value": "VE"
+                            },
+                            {
+                                "label": "JP",
+                                "value": "JP"
+                            },
+                            {
+                                "label": "GT",
+                                "value": "GT"
+                            },
+                            {
+                                "label": "CM",
+                                "value": "CM"
+                            },
+                            {
+                                "label": "JE",
+                                "value": "JE"
+                            },
+                            {
+                                "label": "CZ",
+                                "value": "CZ"
+                            },
+                            {
+                                "label": "AZ",
+                                "value": "AZ"
+                            },
+                            {
+                                "label": "KP",
+                                "value": "KP"
+                            },
+                            {
+                                "label": "SV",
+                                "value": "SV"
+                            },
+                            {
+                                "label": "LB",
+                                "value": "LB"
+                            },
+                            {
+                                "label": "GM",
+                                "value": "GM"
+                            },
+                            {
+                                "label": "NZ",
+                                "value": "NZ"
+                            },
+                            {
+                                "label": "SY",
+                                "value": "SY"
+                            },
+                            {
+                                "label": "CG",
+                                "value": "CG"
+                            },
+                            {
+                                "label": "DJ",
+                                "value": "DJ"
+                            },
+                            {
+                                "label": "NO",
+                                "value": "NO"
+                            },
+                            {
+                                "label": "AQ",
+                                "value": "AQ"
+                            },
+                            {
+                                "label": "PR",
+                                "value": "PR"
+                            },
+                            {
+                                "label": "IE",
+                                "value": "IE"
+                            },
+                            {
+                                "label": "IL",
+                                "value": "IL"
+                            },
+                            {
+                                "label": "VN",
+                                "value": "VN"
+                            },
+                            {
+                                "label": "GE",
+                                "value": "GE"
+                            },
+                            {
+                                "label": "UY",
+                                "value": "UY"
+                            },
+                            {
+                                "label": "BM",
+                                "value": "BM"
+                            },
+                            {
+                                "label": "NP",
+                                "value": "NP"
+                            },
+                            {
+                                "label": "CR",
+                                "value": "CR"
+                            },
+                            {
+                                "label": "LK",
+                                "value": "LK"
+                            },
+                            {
+                                "label": "MZ",
+                                "value": "MZ"
+                            },
+                            {
+                                "label": "ML",
+                                "value": "ML"
+                            },
+                            {
+                                "label": "TH",
+                                "value": "TH"
+                            },
+                            {
+                                "label": "GR",
+                                "value": "GR"
+                            },
+                            {
+                                "label": "GN",
+                                "value": "GN"
+                            },
+                            {
+                                "label": "MW",
+                                "value": "MW"
+                            },
+                            {
+                                "label": "DO",
+                                "value": "DO"
+                            },
+                            {
+                                "label": "VU",
+                                "value": "VU"
+                            },
+                            {
+                                "label": "SO",
+                                "value": "SO"
+                            },
+                            {
+                                "label": "SI",
+                                "value": "SI"
+                            },
+                            {
+                                "label": "PG",
+                                "value": "PG"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 23,
+                        "name": "gender",
+                        "selection_attribute": "checkbox-labels",
+                        "content_source": "static_content",
+                        "placeholder": null,
+                        "locale_source": null,
+                        "default_value": null,
+                        "priority": "4",
+                        "options": [
+                            {
+                                "value": "m",
+                                "color": "blue",
+                                "label": "Male"
+                            },
+                            {
+                                "value": "f",
+                                "color": "blue",
+                                "label": "Female"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 42,
+                        "name": "themes",
+                        "selection_attribute": "multi-select",
+                        "content_source": "engine_dynamic_api",
+                        "placeholder": null,
+                        "locale_source": null,
+                        "default_value": null,
+                        "priority": "5",
+                        "options": [
+                            {
+                                "label": "Question",
+                                "value": "Question"
+                            },
+                            {
+                                "label": "Complaint",
+                                "value": "Complaint"
+                            },
+                            {
+                                "label": "Complement",
+                                "value": "Complement"
+                            },
+                            {
+                                "label": "Other",
+                                "value": "Other"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 43,
+                        "name": "sub_themes",
+                        "selection_attribute": "multi-select",
+                        "content_source": "engine_dynamic_api",
+                        "placeholder": null,
+                        "locale_source": null,
+                        "default_value": null,
+                        "priority": "6",
+                        "options": [
+                            {
+                                "label": "Products & Services",
+                                "value": "Products & Services"
+                            },
+                            {
+                                "label": "Delivery",
+                                "value": "Delivery"
+                            },
+                            {
+                                "label": "Portal/App",
+                                "value": "Portal/App"
+                            },
+                            {
+                                "label": "Payment",
+                                "value": "Payment"
+                            },
+                            {
+                                "label": "Customer Services",
+                                "value": "Customer Services"
+                            },
+                            {
+                                "label": "Undefined",
+                                "value": "Undefined"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 25,
+                        "name": "dialects",
+                        "selection_attribute": "multi-select",
+                        "content_source": "engine_dynamic_api",
+                        "placeholder": null,
+                        "locale_source": null,
+                        "default_value": null,
+                        "priority": "7",
+                        "options": [
+                            {
+                                "label": "saudi",
+                                "value": "saudi",
+                                "stats_count": ""
+                            },
+                            {
+                                "label": "khaleji",
+                                "value": "khaleji",
+                                "stats_count": ""
+                            },
+                            {
+                                "label": "egyptian",
+                                "value": "egyptian",
+                                "stats_count": ""
+                            },
+                            {
+                                "label": "modern ar",
+                                "value": "modern ar",
+                                "stats_count": ""
+                            },
+                            {
+                                "label": "iraqi",
+                                "value": "iraqi",
+                                "stats_count": ""
+                            },
+                            {
+                                "label": "shami",
+                                "value": "shami",
+                                "stats_count": ""
+                            },
+                            {
+                                "label": "maghrebi",
+                                "value": "maghrebi",
+                                "stats_count": ""
+                            },
+                            {
+                                "label": "white",
+                                "value": "white",
+                                "stats_count": ""
+                            }
+                        ]
+                    },
+                    {
+                        "id": 26,
+                        "name": "sub_dialects",
+                        "selection_attribute": "multi-select",
+                        "content_source": "engine_dynamic_api",
+                        "placeholder": null,
+                        "locale_source": null,
+                        "default_value": null,
+                        "priority": "8",
+                        "options": [
+                            {
+                                "label": "najdi-SA",
+                                "value": "najdi-SA"
+                            },
+                            {
+                                "label": "hijaze-SA",
+                                "value": "hijaze-SA"
+                            },
+                            {
+                                "label": "other-SA",
+                                "value": "other-SA"
+                            },
+                            {
+                                "label": "emirati",
+                                "value": "emirati"
+                            },
+                            {
+                                "label": "bahrani",
+                                "value": "bahrani"
+                            },
+                            {
+                                "label": "kuwaiti",
+                                "value": "kuwaiti"
+                            },
+                            {
+                                "label": "egyptian",
+                                "value": "egyptian"
+                            },
+                            {
+                                "label": "modern ar",
+                                "value": "modern ar"
+                            },
+                            {
+                                "label": "iraqi",
+                                "value": "iraqi"
+                            },
+                            {
+                                "label": "syrian",
+                                "value": "syrian"
+                            },
+                            {
+                                "label": "lebanese",
+                                "value": "lebanese"
+                            },
+                            {
+                                "label": "palestinian",
+                                "value": "palestinian"
+                            },
+                            {
+                                "label": "algerian",
+                                "value": "algerian"
+                            },
+                            {
+                                "label": "moroccan",
+                                "value": "moroccan"
+                            },
+                            {
+                                "label": "libyan",
+                                "value": "libyan"
+                            },
+                            {
+                                "label": "white",
+                                "value": "white"
+                            }
+                        ]
+                    },
+                    {
+                        "oldest_date": "2022-09-20"
+                    }
+                ]
+            }
+            ```
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    data:
+                      - id: 53
+                        name: segment
+                        selection_attribute: multi-select
+                        content_source: engine_dynamic_api
+                        placeholder: null
+                        locale_source: null
+                        default_value: null
+                        priority: '1'
+                        options:
+                          - label: T
+                            value: 77
+                          - label: magdy
+                            value: 76
+                          - label: hi
+                            value: 75
+                          - label: TestwShoroog
+                            value: 74
+                          - label: ShoroogSegment
+                            value: 73
+                          - label: test1234567948822323
+                            value: 72
+                          - label: Al
+                            value: 70
+                          - label: AA
+                            value: 69
+                          - label: A
+                            value: 68
+                          - label: عملاء
+                            value: 67
+                          - label: r
+                            value: 66
+                          - label: GameChangers
+                            value: 65
+                          - label: test109
+                            value: 64
+                          - label: ahmedtest1
+                            value: 63
+                          - label: test2seg
+                            value: 62
+                          - label: ahmedtestadd
+                            value: 61
+                          - label: asd
+                            value: 58
+                          - label: asd1
+                            value: 57
+                          - label: test1asd
+                            value: 56
+                          - label: ImportantClients
+                            value: 55
+                          - label: all-87
+                            value: 54
+                          - label: '15'
+                            value: 53
+                          - label: test-45
+                            value: 52
+                          - label: test_with_mo
+                            value: 51
+                          - label: new_test
+                            value: 50
+                          - label: VIB
+                            value: 49
+                          - label: tes
+                            value: 48
+                          - label: ghadeer
+                            value: 47
+                          - label: خدمةعملاء
+                            value: 46
+                          - label: sdafsafsfasdf
+                            value: 44
+                          - label: gsadfasfdasfasdfasdf
+                            value: 40
+                          - label: customer
+                            value: 36
+                          - label: new
+                            value: 35
+                          - label: test00
+                            value: 34
+                          - label: VIP
+                            value: 32
+                          - label: Yazeedn
+                            value: 28
+                          - label: س
+                            value: 27
+                          - label: test0
+                            value: 23
+                          - label: Te
+                            value: 21
+                          - label: Test
+                            value: 20
+                          - label: GHANDI_TEST
+                            value: 18
+                          - label: Test3
+                            value: 17
+                          - label: Test2
+                            value: 14
+                          - label: Test1
+                            value: 13
+                      - id: 56
+                        name: data_source
+                        selection_attribute: multi-select
+                        content_source: database_content
+                        placeholder: null
+                        locale_source: front-end
+                        default_value: null
+                        priority: '2'
+                        options:
+                          - label: twitter
+                            value: 1
+                          - label: facebook
+                            value: 2
+                          - label: instagram
+                            value: 3
+                          - label: intercom
+                            value: 6
+                          - label: gmail
+                            value: 7
+                          - label: whatsapp
+                            value: 9
+                          - label: survey
+                            value: 14
+                          - label: genesys
+                            value: 27
+                          - label: linkedin
+                            value: 20
+                          - label: googlemybusiness
+                            value: 15
+                          - label: tiktok
+                            value: 38
+                      - id: 59
+                        name: location
+                        selection_attribute: multi-select
+                        content_source: engine_dynamic_api
+                        placeholder: null
+                        locale_source: null
+                        default_value: null
+                        priority: '3'
+                        options:
+                          - label: SA
+                            value: SA
+                          - label: CO
+                            value: CO
+                          - label: LY
+                            value: LY
+                          - label: MY
+                            value: MY
+                          - label: ES
+                            value: ES
+                          - label: NG
+                            value: NG
+                          - label: ZA
+                            value: ZA
+                          - label: TZ
+                            value: TZ
+                          - label: CU
+                            value: CU
+                          - label: IN
+                            value: IN
+                          - label: CA
+                            value: CA
+                          - label: SN
+                            value: SN
+                          - label: TR
+                            value: TR
+                          - label: PT
+                            value: PT
+                          - label: QA
+                            value: QA
+                          - label: IT
+                            value: IT
+                          - label: KE
+                            value: KE
+                          - label: KW
+                            value: KW
+                          - label: IQ
+                            value: IQ
+                          - label: EG
+                            value: EG
+                          - label: US
+                            value: US
+                          - label: EC
+                            value: EC
+                          - label: GH
+                            value: GH
+                          - label: AE
+                            value: AE
+                          - label: NI
+                            value: NI
+                          - label: JO
+                            value: JO
+                          - label: PY
+                            value: PY
+                          - label: BH
+                            value: BH
+                          - label: ID
+                            value: ID
+                          - label: BR
+                            value: BR
+                          - label: UG
+                            value: UG
+                          - label: DE
+                            value: DE
+                          - label: PH
+                            value: PH
+                          - label: AR
+                            value: AR
+                          - label: GB
+                            value: GB
+                          - label: YE
+                            value: YE
+                          - label: MR
+                            value: MR
+                          - label: UA
+                            value: UA
+                          - label: FR
+                            value: FR
+                          - label: SD
+                            value: SD
+                          - label: OM
+                            value: OM
+                          - label: BW
+                            value: BW
+                          - label: AU
+                            value: AU
+                          - label: DZ
+                            value: DZ
+                          - label: PK
+                            value: PK
+                          - label: GQ
+                            value: GQ
+                          - label: MV
+                            value: MV
+                          - label: MX
+                            value: MX
+                          - label: ET
+                            value: ET
+                          - label: CD
+                            value: CD
+                          - label: CH
+                            value: CH
+                          - label: HT
+                            value: HT
+                          - label: CN
+                            value: CN
+                          - label: PE
+                            value: PE
+                          - label: ME
+                            value: ME
+                          - label: BE
+                            value: BE
+                          - label: NL
+                            value: NL
+                          - label: BF
+                            value: BF
+                          - label: HU
+                            value: HU
+                          - label: ZW
+                            value: ZW
+                          - label: AF
+                            value: AF
+                          - label: RW
+                            value: RW
+                          - label: KR
+                            value: KR
+                          - label: RU
+                            value: RU
+                          - label: PS
+                            value: PS
+                          - label: CL
+                            value: CL
+                          - label: MA
+                            value: MA
+                          - label: AO
+                            value: AO
+                          - label: VE
+                            value: VE
+                          - label: JP
+                            value: JP
+                          - label: GT
+                            value: GT
+                          - label: CM
+                            value: CM
+                          - label: JE
+                            value: JE
+                          - label: CZ
+                            value: CZ
+                          - label: AZ
+                            value: AZ
+                          - label: KP
+                            value: KP
+                          - label: SV
+                            value: SV
+                          - label: LB
+                            value: LB
+                          - label: GM
+                            value: GM
+                          - label: NZ
+                            value: NZ
+                          - label: SY
+                            value: SY
+                          - label: CG
+                            value: CG
+                          - label: DJ
+                            value: DJ
+                          - label: 'NO'
+                            value: 'NO'
+                          - label: AQ
+                            value: AQ
+                          - label: PR
+                            value: PR
+                          - label: IE
+                            value: IE
+                          - label: IL
+                            value: IL
+                          - label: VN
+                            value: VN
+                          - label: GE
+                            value: GE
+                          - label: UY
+                            value: UY
+                          - label: BM
+                            value: BM
+                          - label: NP
+                            value: NP
+                          - label: CR
+                            value: CR
+                          - label: LK
+                            value: LK
+                          - label: MZ
+                            value: MZ
+                          - label: ML
+                            value: ML
+                          - label: TH
+                            value: TH
+                          - label: GR
+                            value: GR
+                          - label: GN
+                            value: GN
+                          - label: MW
+                            value: MW
+                          - label: DO
+                            value: DO
+                          - label: VU
+                            value: VU
+                          - label: SO
+                            value: SO
+                          - label: SI
+                            value: SI
+                          - label: PG
+                            value: PG
+                      - id: 23
+                        name: gender
+                        selection_attribute: checkbox-labels
+                        content_source: static_content
+                        placeholder: null
+                        locale_source: null
+                        default_value: null
+                        priority: '4'
+                        options:
+                          - value: m
+                            color: blue
+                            label: Male
+                          - value: f
+                            color: blue
+                            label: Female
+                      - id: 42
+                        name: themes
+                        selection_attribute: multi-select
+                        content_source: engine_dynamic_api
+                        placeholder: null
+                        locale_source: null
+                        default_value: null
+                        priority: '5'
+                        options:
+                          - label: Question
+                            value: Question
+                          - label: Complaint
+                            value: Complaint
+                          - label: Complement
+                            value: Complement
+                          - label: Other
+                            value: Other
+                      - id: 43
+                        name: sub_themes
+                        selection_attribute: multi-select
+                        content_source: engine_dynamic_api
+                        placeholder: null
+                        locale_source: null
+                        default_value: null
+                        priority: '6'
+                        options:
+                          - label: Products & Services
+                            value: Products & Services
+                          - label: Delivery
+                            value: Delivery
+                          - label: Portal/App
+                            value: Portal/App
+                          - label: Payment
+                            value: Payment
+                          - label: Customer Services
+                            value: Customer Services
+                          - label: Undefined
+                            value: Undefined
+                      - id: 25
+                        name: dialects
+                        selection_attribute: multi-select
+                        content_source: engine_dynamic_api
+                        placeholder: null
+                        locale_source: null
+                        default_value: null
+                        priority: '7'
+                        options:
+                          - label: saudi
+                            value: saudi
+                            stats_count: ''
+                          - label: khaleji
+                            value: khaleji
+                            stats_count: ''
+                          - label: egyptian
+                            value: egyptian
+                            stats_count: ''
+                          - label: modern ar
+                            value: modern ar
+                            stats_count: ''
+                          - label: iraqi
+                            value: iraqi
+                            stats_count: ''
+                          - label: shami
+                            value: shami
+                            stats_count: ''
+                          - label: maghrebi
+                            value: maghrebi
+                            stats_count: ''
+                          - label: white
+                            value: white
+                            stats_count: ''
+                      - id: 26
+                        name: sub_dialects
+                        selection_attribute: multi-select
+                        content_source: engine_dynamic_api
+                        placeholder: null
+                        locale_source: null
+                        default_value: null
+                        priority: '8'
+                        options:
+                          - label: najdi-SA
+                            value: najdi-SA
+                          - label: hijaze-SA
+                            value: hijaze-SA
+                          - label: other-SA
+                            value: other-SA
+                          - label: emirati
+                            value: emirati
+                          - label: bahrani
+                            value: bahrani
+                          - label: kuwaiti
+                            value: kuwaiti
+                          - label: egyptian
+                            value: egyptian
+                          - label: modern ar
+                            value: modern ar
+                          - label: iraqi
+                            value: iraqi
+                          - label: syrian
+                            value: syrian
+                          - label: lebanese
+                            value: lebanese
+                          - label: palestinian
+                            value: palestinian
+                          - label: algerian
+                            value: algerian
+                          - label: moroccan
+                            value: moroccan
+                          - label: libyan
+                            value: libyan
+                          - label: white
+                            value: white
+                      - oldest_date: '2022-09-20'
+        '306':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '400':
+          description: Bad Request!
+        '401':
+          description: Unauthorized. Authorization error (Invalid API key).
+        '406':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '500':
+          description: 'Internal Server Error. We might be updating our services, please wait a while before trying again.'
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production
+  /profiles:
+    get:
+      tags:
+        - Profiles
+      summary: Get a list of all profiles
+      description: "This **Critical Endpoint** grants access to a detailed list, encompassing every profile along with the data specific to each one.\n\nThis endpoint will retrieve a list of **profile IDs**. To fetch detailed information for a specific user (customer) using their ID, please refer to [get profile data by Id endpoint](https://docs.lucidya.com/docs/cdp-api/branches/main/b0aykazg3489q-get-custom-profile-data-by-id).\n\n<!-- theme: success -->\n> #### \U0001F522 Pagination\n>\n> This endpoint enables pagination by using a `page` parameter, which is included in the request query parameters.\n\nYou can obtain a summary of data for each profile as follows:\n\n- **Information**: This field consists of an array containing key details of the customer profile, such as `profile_image_url`, `identifier`, `name`, and `identifier_source`.\n- **Segments**: This field is an array that encompasses all the segments associated with the customer.\n- **Sources**: This field comprises an array detailing all the data sources linked to the customer, such as X, TikTok.\n- **Completeness_Rate (%)**: This object offers a metric evaluating the completeness of the customer's profile data. A higher rate indicates a richer and more detailed set of details and insights about the customer.\n"
+      operationId: getProfileList
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: 'This is utilized to add a `page number` for the subsequent payload. You can find the `"total_pages": 3` attribute on the first payload.'
+          schema:
+            type: integer
+            example: '1'
+          examples:
+            default:
+              value: '1'
+        - name: start_date
+          in: query
+          description: 'This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`.'
+          required: true
+          schema:
+            type: integer
+            example: '1709164800'
+          examples:
+            default:
+              value: '1709164800'
+        - name: end_date
+          in: query
+          description: 'This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`.'
+          required: true
+          schema:
+            type: integer
+            example: '1710460799'
+          examples:
+            default:
+              value: '1710460799'
+      responses:
+        '200':
+          description: |-
+            ```json
+            {
+                "profiles_count": 42,
+                "total_pages": 3,
+                "data": [
+                    {
+                        "id": 46514,
+                        "created_at": 1709221862.858634,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1641818042135990274/jfBeVJse.jpg",
+                            "identifier": "harbi_nh",
+                            "name": "harbi_nh",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 12,
+                        "status": "UPDATE",
+                        "updated_at": 1713685693.7298
+                    },
+                    {
+                        "id": 46528,
+                        "created_at": 1709837412.863016,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1687712564476510208/jciYGNSg.jpg",
+                            "identifier": "nauatech",
+                            "name": "nauatech",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 16,
+                        "status": "UPDATE",
+                        "updated_at": 1712347713.912426
+                    },
+                    {
+                        "id": 46529,
+                        "created_at": 1709837529.326066,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1723388701152104448/dqZmgD0_.jpg",
+                            "identifier": "RedaBanjar",
+                            "name": "RedaBanjar",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 20,
+                        "status": "UPDATE",
+                        "updated_at": 1712347682.882938
+                    },
+                    {
+                        "id": 46560,
+                        "created_at": 1710457703.129456,
+                        "information": {
+                            "profile_image_url": "http://pbs.twimg.com/profile_images/1681974875546849280/4xUDoT7I.jpg",
+                            "identifier": "ishemb1",
+                            "name": "ishemb1",
+                            "identifier_source": "TWITTER_DM"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER_DM"
+                        ],
+                        "completeness_rate": 12,
+                        "status": "CREATE",
+                        "updated_at": 1710457703.129456
+                    },
+                    {
+                        "id": 46559,
+                        "created_at": 1710371745.646675,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1748293112592506880/RajX_jut.jpg",
+                            "identifier": "A_dkhe",
+                            "name": "A_dkhe",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 20,
+                        "status": "UPDATE",
+                        "updated_at": 1710433419.15248
+                    },
+                    {
+                        "id": 46558,
+                        "created_at": 1710330249.484066,
+                        "information": {
+                            "profile_image_url": "",
+                            "identifier": "+966552255328",
+                            "name": "+966552255328",
+                            "identifier_source": "GENESYS"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "GENESYS"
+                        ],
+                        "completeness_rate": 25,
+                        "status": "CREATE",
+                        "updated_at": 1710330249.484066
+                    },
+                    {
+                        "id": 46557,
+                        "created_at": 1710328366.09664,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/475363538362318848/itgdT5vY.jpeg",
+                            "identifier": "MobileMovieMag",
+                            "name": "MobileMovieMag",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 12,
+                        "status": "CREATE",
+                        "updated_at": 1710328366.09664
+                    },
+                    {
+                        "id": 46556,
+                        "created_at": 1710321877.849583,
+                        "information": {
+                            "profile_image_url": "",
+                            "identifier": "+966557699709",
+                            "name": "+966557699709",
+                            "identifier_source": "WHATSAPP"
+                        },
+                        "segments": [
+                            {
+                                "id": 54,
+                                "name": "all-87"
+                            },
+                            {
+                                "id": 62,
+                                "name": "test2seg"
+                            }
+                        ],
+                        "sources": [
+                            "WHATSAPP",
+                            "GENESYS"
+                        ],
+                        "completeness_rate": 25,
+                        "status": "UPDATE",
+                        "updated_at": 1710321880.381794
+                    },
+                    {
+                        "id": 46555,
+                        "created_at": 1710230346.803391,
+                        "information": {
+                            "profile_image_url": "",
+                            "identifier": "",
+                            "name": "",
+                            "identifier_source": ""
+                        },
+                        "segments": [],
+                        "sources": [
+                            "SURVEY"
+                        ],
+                        "completeness_rate": 30,
+                        "status": "UPDATE",
+                        "updated_at": 1710230353.429028
+                    },
+                    {
+                        "id": 46551,
+                        "created_at": 1710230279.340787,
+                        "information": {
+                            "profile_image_url": "",
+                            "identifier": "",
+                            "name": "",
+                            "identifier_source": ""
+                        },
+                        "segments": [],
+                        "sources": [
+                            "SURVEY"
+                        ],
+                        "completeness_rate": 15,
+                        "status": "UPDATE",
+                        "updated_at": 1710230283.10462
+                    },
+                    {
+                        "id": 46549,
+                        "created_at": 1710230262.580511,
+                        "information": {
+                            "profile_image_url": "",
+                            "identifier": "",
+                            "name": "",
+                            "identifier_source": ""
+                        },
+                        "segments": [],
+                        "sources": [
+                            "SURVEY"
+                        ],
+                        "completeness_rate": 15,
+                        "status": "UPDATE",
+                        "updated_at": 1710230266.338491
+                    },
+                    {
+                        "id": 46544,
+                        "created_at": 1709924008.723147,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1601647021688967169/4VK_gA82.jpg",
+                            "identifier": "awadallah",
+                            "name": "awadallah",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 14,
+                        "status": "UPDATE",
+                        "updated_at": 1710101604.616023
+                    },
+                    {
+                        "id": 46543,
+                        "created_at": 1709923822.396281,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1580039594778578944/MlHtGTxp.jpg",
+                            "identifier": "vectara",
+                            "name": "vectara",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 14,
+                        "status": "UPDATE",
+                        "updated_at": 1710100826.705523
+                    },
+                    {
+                        "id": 46531,
+                        "created_at": 1709854600.435535,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/378800000258465691/5e0c7fe16051992884eb2af468c39373.jpeg",
+                            "identifier": "bernardmoon",
+                            "name": "bernardmoon",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 16,
+                        "status": "UPDATE",
+                        "updated_at": 1710087745.36858
+                    },
+                    {
+                        "id": 46547,
+                        "created_at": 1710084300.778945,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1377214755526557699/e6p0GXme.jpg",
+                            "identifier": "MohammedGhorab2",
+                            "name": "MohammedGhorab2",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 14,
+                        "status": "CREATE",
+                        "updated_at": 1710084300.778945
+                    },
+                    {
+                        "id": 46546,
+                        "created_at": 1710055334.881383,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1621883161742303234/lBVaqlBb.jpg",
+                            "identifier": "alneyazi",
+                            "name": "alneyazi",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 12,
+                        "status": "CREATE",
+                        "updated_at": 1710055334.881383
+                    },
+                    {
+                        "id": 46530,
+                        "created_at": 1709852894.873228,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1028143624947556352/_V4KGVz7.jpg",
+                            "identifier": "sparklabsgroup",
+                            "name": "sparklabsgroup",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 16,
+                        "status": "UPDATE",
+                        "updated_at": 1710054741.806721
+                    },
+                    {
+                        "id": 46545,
+                        "created_at": 1709948502.204857,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1746640245158727680/A0py0xgn.jpg",
+                            "identifier": "B_BaderH",
+                            "name": "B_BaderH",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 18,
+                        "status": "CREATE",
+                        "updated_at": 1709948502.204857
+                    },
+                    {
+                        "id": 46542,
+                        "created_at": 1709908294.964243,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1658909947025924108/kl5WbjWk.jpg",
+                            "identifier": "SpirosMargaris",
+                            "name": "SpirosMargaris",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 16,
+                        "status": "UPDATE",
+                        "updated_at": 1709908364.028899
+                    },
+                    {
+                        "id": 46541,
+                        "created_at": 1709904659.541819,
+                        "information": {
+                            "profile_image_url": "https://pbs.twimg.com/profile_images/1765195335763099648/OyeLG6YG.jpg",
+                            "identifier": "EvanJohnso63180",
+                            "name": "EvanJohnso63180",
+                            "identifier_source": "TWITTER"
+                        },
+                        "segments": [],
+                        "sources": [
+                            "TWITTER"
+                        ],
+                        "completeness_rate": 15,
+                        "status": "CREATE",
+                        "updated_at": 1709904659.541819
+                    }
+                ]
+            }
+            ```
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    profiles_count: 42
+                    total_pages: 3
+                    data:
+                      - id: 46514
+                        created_at: 1709221862.858634
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1641818042135990274/jfBeVJse.jpg'
+                          identifier: harbi_nh
+                          name: harbi_nh
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 12
+                        status: UPDATE
+                        updated_at: 1713685693.7298
+                      - id: 46528
+                        created_at: 1709837412.863016
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1687712564476510208/jciYGNSg.jpg'
+                          identifier: nauatech
+                          name: nauatech
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 16
+                        status: UPDATE
+                        updated_at: 1712347713.912426
+                      - id: 46529
+                        created_at: 1709837529.326066
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1723388701152104448/dqZmgD0_.jpg'
+                          identifier: RedaBanjar
+                          name: RedaBanjar
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 20
+                        status: UPDATE
+                        updated_at: 1712347682.882938
+                      - id: 46560
+                        created_at: 1710457703.129456
+                        information:
+                          profile_image_url: 'http://pbs.twimg.com/profile_images/1681974875546849280/4xUDoT7I.jpg'
+                          identifier: ishemb1
+                          name: ishemb1
+                          identifier_source: TWITTER_DM
+                        segments: []
+                        sources:
+                          - TWITTER_DM
+                        completeness_rate: 12
+                        status: CREATE
+                        updated_at: 1710457703.129456
+                      - id: 46559
+                        created_at: 1710371745.646675
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1748293112592506880/RajX_jut.jpg'
+                          identifier: A_dkhe
+                          name: A_dkhe
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 20
+                        status: UPDATE
+                        updated_at: 1710433419.15248
+                      - id: 46558
+                        created_at: 1710330249.484066
+                        information:
+                          profile_image_url: ''
+                          identifier: '+966552255328'
+                          name: '+966552255328'
+                          identifier_source: GENESYS
+                        segments: []
+                        sources:
+                          - GENESYS
+                        completeness_rate: 25
+                        status: CREATE
+                        updated_at: 1710330249.484066
+                      - id: 46557
+                        created_at: 1710328366.09664
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/475363538362318848/itgdT5vY.jpeg'
+                          identifier: MobileMovieMag
+                          name: MobileMovieMag
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 12
+                        status: CREATE
+                        updated_at: 1710328366.09664
+                      - id: 46556
+                        created_at: 1710321877.849583
+                        information:
+                          profile_image_url: ''
+                          identifier: '+966557699709'
+                          name: '+966557699709'
+                          identifier_source: WHATSAPP
+                        segments:
+                          - id: 54
+                            name: all-87
+                          - id: 62
+                            name: test2seg
+                        sources:
+                          - GENESYS
+                          - WHATSAPP
+                        completeness_rate: 25
+                        status: UPDATE
+                        updated_at: 1710321880.381794
+                      - id: 46555
+                        created_at: 1710230346.803391
+                        information:
+                          profile_image_url: ''
+                          identifier: ''
+                          name: ''
+                          identifier_source: ''
+                        segments: []
+                        sources:
+                          - SURVEY
+                        completeness_rate: 30
+                        status: UPDATE
+                        updated_at: 1710230353.429028
+                      - id: 46551
+                        created_at: 1710230279.340787
+                        information:
+                          profile_image_url: ''
+                          identifier: ''
+                          name: ''
+                          identifier_source: ''
+                        segments: []
+                        sources:
+                          - SURVEY
+                        completeness_rate: 15
+                        status: UPDATE
+                        updated_at: 1710230283.10462
+                      - id: 46549
+                        created_at: 1710230262.580511
+                        information:
+                          profile_image_url: ''
+                          identifier: ''
+                          name: ''
+                          identifier_source: ''
+                        segments: []
+                        sources:
+                          - SURVEY
+                        completeness_rate: 15
+                        status: UPDATE
+                        updated_at: 1710230266.338491
+                      - id: 46544
+                        created_at: 1709924008.723147
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1601647021688967169/4VK_gA82.jpg'
+                          identifier: awadallah
+                          name: awadallah
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 14
+                        status: UPDATE
+                        updated_at: 1710101604.616023
+                      - id: 46543
+                        created_at: 1709923822.396281
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1580039594778578944/MlHtGTxp.jpg'
+                          identifier: vectara
+                          name: vectara
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 14
+                        status: UPDATE
+                        updated_at: 1710100826.705523
+                      - id: 46531
+                        created_at: 1709854600.435535
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/378800000258465691/5e0c7fe16051992884eb2af468c39373.jpeg'
+                          identifier: bernardmoon
+                          name: bernardmoon
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 16
+                        status: UPDATE
+                        updated_at: 1710087745.36858
+                      - id: 46547
+                        created_at: 1710084300.778945
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1377214755526557699/e6p0GXme.jpg'
+                          identifier: MohammedGhorab2
+                          name: MohammedGhorab2
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 14
+                        status: CREATE
+                        updated_at: 1710084300.778945
+                      - id: 46546
+                        created_at: 1710055334.881383
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1621883161742303234/lBVaqlBb.jpg'
+                          identifier: alneyazi
+                          name: alneyazi
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 12
+                        status: CREATE
+                        updated_at: 1710055334.881383
+                      - id: 46530
+                        created_at: 1709852894.873228
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1028143624947556352/_V4KGVz7.jpg'
+                          identifier: sparklabsgroup
+                          name: sparklabsgroup
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 16
+                        status: UPDATE
+                        updated_at: 1710054741.806721
+                      - id: 46545
+                        created_at: 1709948502.204857
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1746640245158727680/A0py0xgn.jpg'
+                          identifier: B_BaderH
+                          name: B_BaderH
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 18
+                        status: CREATE
+                        updated_at: 1709948502.204857
+                      - id: 46542
+                        created_at: 1709908294.964243
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1658909947025924108/kl5WbjWk.jpg'
+                          identifier: SpirosMargaris
+                          name: SpirosMargaris
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 16
+                        status: UPDATE
+                        updated_at: 1709908364.028899
+                      - id: 46541
+                        created_at: 1709904659.541819
+                        information:
+                          profile_image_url: 'https://pbs.twimg.com/profile_images/1765195335763099648/OyeLG6YG.jpg'
+                          identifier: EvanJohnso63180
+                          name: EvanJohnso63180
+                          identifier_source: TWITTER
+                        segments: []
+                        sources:
+                          - TWITTER
+                        completeness_rate: 15
+                        status: CREATE
+                        updated_at: 1709904659.541819
+        '400':
+          description: Bad Request.
+        '401':
+          description: Unauthorized. Authorization error (Invalid API key).
+        '403':
+          description: Forbidden!
+        '404':
+          description: Not Found!
+        '406':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '500':
+          description: 'Internal Server Error. We might be updating our services, please wait a while before trying again.'
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production Server
+    post:
+      tags:
+        - Profiles
+      summary: Create Profile
+      description: This endpoint allows you to create a new CDP profile.
+      operationId: createProfile
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The user name of the profile, only accepts letters, digits, spaces, underscores and hyphen.'
+                data:
+                  type: object
+                  description: 'At least one of the values of phone, email or social media account should be provided.'
+                  properties:
+                    email:
+                      type: string
+                    phone_number:
+                      type: string
+                    twitter:
+                      type: string
+                    facebook:
+                      type: string
+                    instagram:
+                      type: string
+                    intercom:
+                      type: string
+                    gmail:
+                      type: string
+                    whatsapp:
+                      type: string
+                    tiktok:
+                      type: string
+              x-examples:
+                Example 1:
+                  name: LucidyaUser
+                  data:
+                    email: user@example.com
+                    phone_number: '+966583827'
+                    twitter: user_example
+                    facebook: user_example
+                    instagram: user_example
+                    intercom: user@example.com
+                    gmail: user@example.com
+                    whatsapp: '+1234567890'
+                    tiktok: user_example
+            examples:
+              Example:
+                value:
+                  name: LucidyaUser
+                  data:
+                    email: user@example.com
+                    phone_number: '+966583827'
+                    twitter: user_example
+                    facebook: user_example
+                    instagram: user_example
+                    intercom: user@example.com
+                    gmail: user@example.com
+                    whatsapp: '+1234567890'
+                    tiktok: user_example
+      responses:
+        '200':
+          description: Successful Operation - OK.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Type of response message.
+                  profile_id:
+                    type: integer
+                    description: The unique identifier for the created profile.
+                x-examples:
+                  Example 1:
+                    message: Profile created successfully
+                    profile_id: 47423
+              examples:
+                default:
+                  value:
+                    profile_id: 47423
+                    message: Profile created successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 400
+                            detail: invalid base64
+                      example_1:
+                        value:
+                          message: 'You already added this {field_name}: {field_value}'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 401
+                            detail: Failure of getting data due to token not found
+        '422':
+          description: Unprocessable Entity (WebDAV) (RFC 4918)
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value: null
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 503
+                            detail: USER_NOT_AUTHORIZED
+                      example_1:
+                        value:
+                          error:
+                            status: 503
+                            detail: SOMETHING_WENT_WRONG
+                      example_2:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter data is required
+                      example_3:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter name is required
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production Server
+    put:
+      tags:
+        - Profiles
+      summary: Update Profile
+      description: This endpoint allows you to update CDP profile data.
+      operationId: updateProfile
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: query
+          description: The unique identifier of the profile.
+          required: true
+          schema:
+            type: integer
+            example: '229102'
+          examples:
+            default:
+              value: '229102'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  description: 'At least one of the values of name, phone, email, or social media account should be provided along with an action. If the action is delete, a field ID must be provided.'
+                  items:
+                    type: object
+                    properties:
+                      field_value:
+                        type: string
+                        description: Add the value you want to update it.
+                      field_name:
+                        type: string
+                        description: Add the field name you want to select it.
+                      action:
+                        type: string
+                        description: Add the action as an `add` type to update the value or `delete` to delete the value.
+                      id:
+                        type: integer
+                        description: The field id for the delete action.
+                  example:
+                    - field_value: Test_user
+                      field_name: name
+                      action: add
+                    - field_value: user@example.com
+                      field_name: email
+                      action: delete
+                      id: 123
+      responses:
+        '200':
+          description: Successful Operation - Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  profile_id:
+                    type: integer
+                    description: The unique identifier for the updated profile.
+                  message:
+                    type: string
+                    description: Type of response message.
+                x-examples:
+                  Example 1:
+                    profile_id: 47423
+                    message: Profile created successfully
+              examples:
+                '200':
+                  value:
+                    profile_id: 47423
+                    message: Profile created successfully
+                default:
+                  value:
+                    message: The profile was updated successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 400
+                            detail: invalid base64
+                      example_1:
+                        value:
+                          message: Missing required parameters
+                      example_2:
+                        value:
+                          message: Profile was not found
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 401
+                            detail: Failure of getting data due to token not found
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 503
+                            detail: USER_NOT_AUTHORIZED
+                      example_1:
+                        value:
+                          error:
+                            status: 503
+                            detail: SOMETHING_WENT_WRONG
+                      example_2:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter data is required
+                      example_3:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter data cannot have length less than 1
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production Server
+  '/profiles/{id}':
+    get:
+      tags:
+        - Profiles
+      summary: Get custom profile data by Id
+      description: |-
+        This endpoint retrieve a comprehensive profile information by specifying the customer profile's unique identifier (Id).
+
+        This endpoint enables you to access all gathered & analysed information from Lucidya engines for specific customer profile, encompassing but not limited to the following details:
+
+        - **Full Name/ User Name**: This is the full name or user name of the customer.
+        - **Profile_Image_URL**: Direct link to the customer's profile picture, providing a visual identifier.
+        - **Main Details**: An object encompassing key customer information, including **Name**, **Phone Number**, **Email**, **Twitter (X)** or **Other Social Accounts**, and **Segments** classifications.
+        - **Basic Info**: This object provides essential information about the customer, featuring fields such as **Gender Type**, **Location**, **Dialect**, **Sub-Dialect**, **Main Themes**, and **Sub-Themes**.
+      operationId: getProfileById
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: Unique identifier of the customer profile.
+          required: true
+          schema:
+            type: string
+            example: '46555'
+          examples:
+            default:
+              value: '46555'
+      responses:
+        '200':
+          description: |-
+            ```json
+            {
+                "id": 46514,
+                "created_at": 1709221862.858634,
+                "name": "harbi_nh",
+                "profile_image_url": "https://pbs.twimg.com/profile_images/1641818042135990274/jfBeVJse.jpg",
+                "details": {
+                    "name": [
+                        {
+                            "value": "Eng. Naif Alharbi",
+                            "editable": false,
+                            "id": null
+                        }
+                    ],
+                    "phone_number": [],
+                    "email": [],
+                    "twitter": [
+                        {
+                            "value": "harbi_nh",
+                            "editable": false,
+                            "id": null
+                        }
+                    ],
+                    "segments": []
+                },
+                "basic_info": {
+                    "gender": "male",
+                    "location": {
+                        "name": "",
+                        "code": ""
+                    },
+                    "dialect": "",
+                    "sub_dialect": "",
+                    "sentiment": "",
+                    "main_themes": [],
+                    "sub_themes": []
+                }
+            }
+            ```
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    id: 46514
+                    created_at: 1709221862.858634
+                    name: harbi_nh
+                    profile_image_url: 'https://pbs.twimg.com/profile_images/1641818042135990274/jfBeVJse.jpg'
+                    details:
+                      name:
+                        - value: Eng. Naif Alharbi
+                          editable: false
+                          id: null
+                      phone_number: []
+                      email: []
+                      twitter:
+                        - value: harbi_nh
+                          editable: false
+                          id: null
+                      segments: []
+                    basic_info:
+                      gender: male
+                      location:
+                        name: ''
+                        code: ''
+                      dialect: ''
+                      sub_dialect: ''
+                      sentiment: ''
+                      main_themes: []
+                      sub_themes: []
+        '400':
+          description: Bad Request.
+        '401':
+          description: Unauthorized. Authorization error (Invalid API key).
+        '403':
+          description: Forbidden!
+        '404':
+          description: Not Found!
+        '406':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '500':
+          description: 'Internal Server Error. We might be updating our services, please wait a while before trying again.'
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production Server
+  '/profiles/{id}/surveys':
+    get:
+      tags:
+        - Surveys
+      summary: Retrieve survey data for a specific profile using Its Id
+      description: "This endpoint allows you to retrieve survey(s) data for a particular profile by specifying its ID.\n\n<!-- theme: success -->\n> #### \U0001F522 Pagination\n>\n> This endpoint enables pagination through the use of a `page` parameter, which can be included in the request query parameters.\n"
+      operationId: getSurveyByProfileId
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          description: 'This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`.'
+          required: true
+          schema:
+            type: integer
+            example: '1709769600'
+          examples:
+            default:
+              value: '1709769600'
+        - name: end_date
+          in: query
+          description: 'This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`.'
+          required: true
+          schema:
+            type: integer
+            example: '1710374399'
+          examples:
+            default:
+              value: '1710374399'
+        - name: page
+          in: query
+          description: 'This is utilized to add a `page number` for the subsequent payload. You can find the `"total_pages": 3` parameter on the first payload.'
+          schema:
+            type: integer
+            example: '1'
+          examples:
+            default:
+              value: '1'
+        - name: id
+          in: path
+          description: Unique identifier of the customer profile.
+          required: true
+          schema:
+            type: string
+            example: '46555'
+          examples:
+            default:
+              value: '46555'
+      responses:
+        '200':
+          description: |-
+            ```json
+            {
+                "status": "success",
+                "data": [
+                    {
+                        "id": 1938,
+                        "respondant_id": 1938,
+                        "survey_name": "test 12",
+                        "submitted_date": 1710230337.98197,
+                        "survey": [
+                            {
+                                "id": 15,
+                                "name": "default",
+                                "order": 1,
+                                "survey": 1674,
+                                "is_deleted": false,
+                                "section_id": 15,
+                                "questions": [
+                                    {
+                                        "id": 16201,
+                                        "order": 1,
+                                        "section": 15,
+                                        "question": "Enter your E-mail.",
+                                        "type": "email",
+                                        "constraints": {},
+                                        "answer": "test@test.com"
+                                    },
+                                    {
+                                        "id": 16202,
+                                        "order": 2,
+                                        "section": 15,
+                                        "question": "Enter your phone number.",
+                                        "type": "phone_number",
+                                        "constraints": {},
+                                        "answer": [
+                                            {
+                                                "phone_number": "545462356",
+                                                "country_code": "SA"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 16203,
+                                        "order": 3,
+                                        "section": 15,
+                                        "question": "Click here to add number question:",
+                                        "type": "number",
+                                        "constraints": {},
+                                        "answer": ""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+            ```
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    status: success
+                    data:
+                      - id: 1938
+                        respondant_id: 1938
+                        survey_name: test 12
+                        submitted_date: 1710230337.98197
+                        survey:
+                          - id: 15
+                            name: default
+                            order: 1
+                            survey: 1674
+                            is_deleted: false
+                            section_id: 15
+                            questions:
+                              - id: 16201
+                                order: 1
+                                section: 15
+                                question: Enter your E-mail.
+                                type: email
+                                constraints: {}
+                                answer: test@test.com
+                              - id: 16202
+                                order: 2
+                                section: 15
+                                question: Enter your phone number.
+                                type: phone_number
+                                constraints: {}
+                                answer:
+                                  - phone_number: '545462356'
+                                    country_code: SA
+                              - id: 16203
+                                order: 3
+                                section: 15
+                                question: 'Click here to add number question:'
+                                type: number
+                                constraints: {}
+                                answer: ''
+        '400':
+          description: Bad Request!
+        '401':
+          description: Unauthorized. Authorization error (Invalid API key).
+        '403':
+          description: Forbidden!
+        '404':
+          description: Not Found!
+        '406':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '422':
+          description: |-
+            Unprocessable Entity (WebDAV).
+
+            ```json
+            {
+                "detail": [
+                    {
+                        "loc": [
+                            "path",
+                            "profile_id"
+                        ],
+                        "msg": "value is not a valid integer",
+                        "type": "type_error.integer"
+                    }
+                ]
+            }
+            ```
+        '500':
+          description: 'Internal Server Error. We might be updating our services, please wait a while before trying again.'
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production Server
+  /profiles/interactions:
+    post:
+      tags:
+        - Profile Interactions
+      summary: Create interaction profile
+      description: |
+        This endpoint enables you to execute a `POST` request by including the following parameters:
+
+        - `start_date`: Defines the `Unix` timestamp marking the beginning of the interaction period on the customer's profile.
+        - `end_date`: Sets the `Unix` timestamp that signifies the end of the interaction period on the customer's profile.
+        - `profile_id`: Acts as the unique identifier for the customer.
+
+        Upon successful submission, the endpoint will return a `job_id`.
+
+        This `job_id` serves as a key to **access all interactions** tied to a specific customer.
+
+        For more information on how to retrieve interactions for a particular customer using their `Id` and `job_id`, please check [retrieve interaction profile endpoint](https://docs.lucidya.com/docs/cdp-api/branches/main/m7c5hv4h94339-get-interaction-profile).
+      operationId: createInteractionProfile
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          description: 'This is utilized to specify a `start_date` filter using the Unix format, for example, `1713033600`.'
+          required: true
+          schema:
+            type: integer
+            example: '1713033600'
+          examples:
+            default:
+              value: '1713033600'
+        - name: end_date
+          in: query
+          description: 'This is utilized to specify an `end_date` filter using the Unix format, for example, `1715625600`.'
+          required: true
+          schema:
+            type: integer
+            example: '1715625600'
+          examples:
+            default:
+              value: '1715625600'
+        - name: profile_id
+          in: query
+          description: This is the unique identifier of the customer profile.
+          required: true
+          schema:
+            type: integer
+            example: '46597'
+          examples:
+            default:
+              value: '46597'
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: |-
+            ```json
+            {
+                "data": {
+                    "job_id": "69702ad6-6076-4219-bcb5-af42846f0d57",
+                    "data_sources": [
+                        "gmail",
+                        "genesys",
+                        "intercom",
+                        "whatsapp",
+                        "tiktok_public",
+                        "twitter_public",
+                        "facebook_public",
+                        "linkedin_public",
+                        "twitter_private",
+                        "facebook_private",
+                        "googlemybusiness",
+                        "instagram_public",
+                        "instagram_private"
+                    ]
+                }
+            }
+            ```
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: 0de4d8b1-5c78-47e5-ba14-96c05f7029f6
+                      data_sources:
+                        - gmail
+                        - genesys
+                        - intercom
+                        - whatsapp
+                        - tiktok_public
+                        - twitter_public
+                        - facebook_public
+                        - linkedin_public
+                        - twitter_private
+                        - facebook_private
+                        - googlemybusiness
+                        - instagram_public
+                        - instagram_private
+        '400':
+          description: Invalid date!
+        '401':
+          description: Unauthorized. Authorization error (Invalid API key).
+        '403':
+          description: Forbidden!
+        '404':
+          description: Not Found!
+        '406':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '500':
+          description: 'Internal Server Error. We might be updating our services, please wait a while before trying again.'
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      security: []
+  '/profiles/{id}/interactions':
+    get:
+      tags:
+        - Profile Interactions
+      summary: Get interaction profile by Id
+      description: |-
+        This endpoint retrieves **all interactions**, both public and private, from the customer's all social media accounts.
+
+        <!-- theme: info -->
+
+        > #### Info
+        >
+        > To retrieve all interactions for a specific customer based on their `profile_id`, you must provide the `job_id` generated by the [create interaction profile endpoint](https://docs.lucidya.com/docs/cdp-api/2kqwzyyvxixnr-create-interaction-profile).
+      operationId: getInteractionProfileById
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+        - name: job_id
+          in: query
+          description: 'This `job_id` represents the identifier for the [newly created interaction profile](https://docs.lucidya.com/docs/cdp-api/branches/main/2kqwzyyvxixnr-create-interaction-profile).'
+          required: true
+          schema:
+            type: string
+            example: 472d0c0c-708f-4af6-95dc-6dbe87807ac5
+          examples:
+            default:
+              value: 472d0c0c-708f-4af6-95dc-6dbe87807ac5
+        - name: id
+          in: path
+          description: Unique identifier of the customer profile.
+          required: true
+          schema:
+            type: string
+            example: '46555'
+          examples:
+            default:
+              value: '46555'
+      responses:
+        '200':
+          description: |-
+            ```json
+            {
+                "data": {
+                    "dataAvailable": true,
+                    "widget_data": {
+                        "tiktok_public": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "googlemybusiness": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "genesys": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "intercom": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "whatsapp": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "facebook_private": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "twitter_private": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "facebook_public": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "twitter_public": {
+                            "latest_interactions": [
+                                {
+                                    "id": "1784957717129343329",
+                                    "channel_id": 1,
+                                    "tracker_id": 70869,
+                                    "text": "@cxheroesxyz \nHi, I need assistance in opening a new account",
+                                    "created_by": "NadaShahwan4",
+                                    "name": "Nada Shahwan",
+                                    "media_url": "",
+                                    "created_at": 1714412857,
+                                    "sentiment": null,
+                                    "themes": null,
+                                    "sub_themes": null
+                                }
+                            ],
+                            "interactions_count": 1
+                        },
+                        "linkedin_public": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "gmail": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "instagram_public": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        },
+                        "instagram_private": {
+                            "latest_interactions": [],
+                            "interactions_count": 0
+                        }
+                    }
+                }
+            }
+            ```
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        tiktok_public:
+                          latest_interactions: []
+                          interactions_count: 0
+                        googlemybusiness:
+                          latest_interactions: []
+                          interactions_count: 0
+                        genesys:
+                          latest_interactions: []
+                          interactions_count: 0
+                        intercom:
+                          latest_interactions: []
+                          interactions_count: 0
+                        whatsapp:
+                          latest_interactions: []
+                          interactions_count: 0
+                        facebook_private:
+                          latest_interactions: []
+                          interactions_count: 0
+                        twitter_private:
+                          latest_interactions: []
+                          interactions_count: 0
+                        facebook_public:
+                          latest_interactions: []
+                          interactions_count: 0
+                        twitter_public:
+                          latest_interactions:
+                            - id: '1784957717129343329'
+                              channel_id: 1
+                              tracker_id: 70869
+                              text: |-
+                                @cxheroesxyz 
+                                Hi, I need assistance in opening a new account
+                              created_by: NadaShahwan4
+                              name: Nada Shahwan
+                              media_url: ''
+                              created_at: 1714412857
+                              sentiment: null
+                              themes: null
+                              sub_themes: null
+                          interactions_count: 1
+                        linkedin_public:
+                          latest_interactions: []
+                          interactions_count: 0
+                        gmail:
+                          latest_interactions: []
+                          interactions_count: 0
+                        instagram_public:
+                          latest_interactions: []
+                          interactions_count: 0
+                        instagram_private:
+                          latest_interactions: []
+                          interactions_count: 0
+        '400':
+          description: Bad Request!
+        '401':
+          description: Unauthorized. Authorization error (Invalid API key).
+        '404':
+          description: Not Found!
+        '406':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '500':
+          description: 'Internal Server Error. We might be updating our services, please wait a while before trying again.'
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production Server
+  /segments:
+    get:
+      tags:
+        - Segments
+      summary: Paginated Segments List
+      description: "This endpoint retrieves a list of segments associated with your account.\n\n<!-- theme: success -->\n> #### \U0001F522 Pagination\n>\n> This endpoint enables pagination by using a `page` parameter, which is included in the request query parameters."
+      operationId: getSegmentList
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            example: application/json
+          examples:
+            default:
+              value: application/json
+        - name: page
+          in: query
+          description: The page number.
+          schema:
+            type: string
+            example: 1
+          examples:
+            default:
+              value: 1
+        - name: sort_by
+          in: query
+          description: 'The field by which to sort the results. Can be one of ''id'', ''name'', ''created_at'',or ''profiles_count''.'
+          schema:
+            type: string
+            example: id
+          examples:
+            default:
+              value: id
+        - name: order_by
+          in: query
+          description: The order of results. Can be one of 'desc' or 'asc'.
+          schema:
+            type: string
+            example: desc
+          examples:
+            default:
+              value: desc
+      responses:
+        '200':
+          description: Successful Operation - Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  examples:
+                    type: object
+                    properties:
+                      example:
+                        type: object
+                        properties:
+                          value:
+                            type: object
+                            properties:
+                              segments_count:
+                                type: integer
+                                description: Total number of available segments.
+                              total_pages:
+                                type: integer
+                                description: Total number of paginated pages.
+                              data:
+                                type: array
+                                description: Array of segment data.
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      description: Id of the segment.
+                                    name:
+                                      type: string
+                                      description: Name of the sagment.
+                                    created_at:
+                                      type: number
+                                      description: Creation date of the segment in Unix timestamp format.
+                                    creator_user:
+                                      type: string
+                                      description: Name of the user who created the segment.
+                                    profiles_count:
+                                      type: integer
+                                      description: Total number of profiles in the segment.
+                              sorting_keys:
+                                type: array
+                                description: 'Array of available sort options: `id`, `name`, `created_at`,or `profiles_count`.'
+                                items:
+                                  type: string
+                x-examples:
+                  Example:
+                    examples:
+                      example:
+                        value:
+                          segments_count: 71
+                          total_pages: 8
+                          data:
+                            - id: 2
+                              name: test2
+                              created_at: 1717401642.404909
+                              creator_user: magdy
+                              profiles_count: 0
+                            - id: 1
+                              name: test1
+                              created_at: 1716212055.565269
+                              creator_user: Abdulaziz
+                              profiles_count: 0
+                          sorting_keys:
+                            - name
+                            - id
+                            - created_at
+                            - profiles_count
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          segments_count: 71
+                          total_pages: 8
+                          data:
+                            - id: 2
+                              name: test2
+                              created_at: 1717401642.404909
+                              creator_user: magdy
+                              profiles_count: 0
+                            - id: 1
+                              name: test1
+                              created_at: 1716212055.565269
+                              creator_user: Abdulaziz
+                              profiles_count: 0
+                          sorting_keys:
+                            - name
+                            - id
+                            - created_at
+                            - profiles_count
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 400
+                            detail: invalid base64
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 401
+                            detail: Failure of getting data due to token not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 503
+                            detail: USER_NOT_AUTHORIZED
+                      example_1:
+                        value:
+                          error:
+                            status: 503
+                            detail: SOMETHING_WENT_WRONG
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production Server
+  /segments/append_profiles:
+    put:
+      tags:
+        - Segments
+      summary: Append Profile(s) into Segment
+      description: Use this endpoint to append profile(s) into the selected segment.
+      operationId: appendProfilleToSegment
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            example: application/json
+          examples:
+            default:
+              value: application/json
+        - name: segment_id
+          in: query
+          description: The unique identifier (id) of the segment to append profile(s).
+          required: true
+          schema:
+            type: integer
+            example: <integer>
+          examples:
+            default:
+              value: <integer>
+        - name: profiles_ids
+          in: query
+          description: Comma-separated list of profile IDs to append.
+          required: true
+          schema:
+            type: array
+            example: <array>
+          examples:
+            default:
+              value: <array>
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful Operation - Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  examples:
+                    type: object
+                    properties:
+                      example_0:
+                        type: object
+                        properties:
+                          value:
+                            type: object
+                            properties:
+                              message:
+                                type: string
+                                description: Type of response message.
+                x-examples:
+                  Example 1:
+                    examples:
+                      example_0:
+                        value:
+                          message: Profile(s) removed successfully
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          message: Profile(s) added successfully
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 400
+                            detail: invalid base64
+                      example_1:
+                        value:
+                          message: 'No profiles found for the IDs {1,2,3}'
+                      example_2:
+                        value:
+                          message: Segment was not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 401
+                            detail: Failure of getting data due to token not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 503
+                            detail: USER_NOT_AUTHORIZED
+                      example_1:
+                        value:
+                          error:
+                            status: 503
+                            detail: SOMETHING_WENT_WRONG
+                      example_2:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter segment_id is required
+                      example_3:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter profiles_ids is required
+                      example_4:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter profiles_ids cannot have length less than 1
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production Server
+  /segments/delete_profiles:
+    delete:
+      tags:
+        - Segments
+      summary: Delete Profile(s) from Segment
+      description: Use this endpoint to delete profile(s) from the segment.
+      operationId: deleteProfilleFromSegment
+      parameters:
+        - name: luc-authorization
+          in: header
+          description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+          required: true
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            example: application/json
+          examples:
+            default:
+              value: application/json
+        - name: segment_id
+          in: query
+          description: The unique identifier (id) of the segment to delete profile(s) from it.
+          required: true
+          schema:
+            type: integer
+            example: <integer>
+          examples:
+            default:
+              value: <integer>
+        - name: profiles_ids
+          in: query
+          description: Comma-separated list of profile ID(s) to delete.
+          required: true
+          schema:
+            type: array
+            example: <array>
+          examples:
+            default:
+              value: <array>
+      responses:
+        '200':
+          description: Successful Operation - Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  examples:
+                    type: object
+                    properties:
+                      example_0:
+                        type: object
+                        properties:
+                          value:
+                            type: object
+                            properties:
+                              message:
+                                type: string
+                                description: Type of response message.
+                x-examples:
+                  Example 1:
+                    examples:
+                      example_0:
+                        value:
+                          message: Profile(s) removed successfully
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          message: Profile(s) removed successfully
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 400
+                            detail: invalid base64
+                      example_1:
+                        value:
+                          message: 'No profiles found for the IDs {1,2,3}'
+                      example_2:
+                        value:
+                          message: Segment was not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 401
+                            detail: Failure of getting data due to token not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '503':
+          description: Service Unavailable.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 503
+                            detail: USER_NOT_AUTHORIZED
+                      example_1:
+                        value:
+                          error:
+                            status: 503
+                            detail: SOMETHING_WENT_WRONG
+                      example_2:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter segment_id is required
+                      example_3:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter profiles_ids is required
+                      example_4:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter profiles_ids cannot have length less than 1
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+      servers:
+        - url: 'https://api.lucidya.com'
+          description: Production Server
+tags:
+  - name: Filters
+  - name: Profiles
+  - name: Surveys
+  - name: Profile Interactions
+x-internal: false

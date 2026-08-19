@@ -1,0 +1,40 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay — OmniServe Analytics API
+  version: 1.0.0
+extends: ../openapi/lucidya-ltd-omniserve-analytics-api-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: openapi/lucidya-ltd-omniserve-analytics-api-openapi.yml
+x-note: 'Captures API Evangelist''s enrichment of Lucidya''s published contract. It never mutates the
+  original: openapi/_original/ holds the verbatim export from Lucidya''s Stoplight workspace. Every value
+  added here is sourced from Lucidya''s own documentation, not invented.'
+actions:
+- target: $.info
+  description: Record that this document was harvested verbatim from Lucidya's own public Stoplight workspace
+    (docs.lucidya.com, workspace slug 'lucdya') and note the API Evangelist enrichment provenance.
+  update:
+    x-apievangelist-source: https://stoplight.io/api/v1/projects/*/nodes
+    x-apievangelist-harvested: '2026-08-13'
+    x-apievangelist-provenance: first-party; exported from the provider-published Stoplight project
+- target: $
+  description: 'Attach the cross-cutting runtime semantics Lucidya publishes in prose but does not encode
+    in the contract: pagination, rate limits, the error envelope and versioning.'
+  update:
+    x-conventions: ../conventions/lucidya-ltd-conventions.yml
+    x-errors: ../errors/lucidya-ltd-problem-types.yml
+    x-rate-limits: ../rate-limits/lucidya-ltd-rate-limits.yml
+    x-lifecycle: ../lifecycle/lucidya-ltd-lifecycle.yml
+    x-authentication: ../authentication/lucidya-ltd-authentication.yml
+- target: $.paths.*.*.responses.429
+  description: Note that 429 carries no Retry-After or RateLimit-* header; the window resets at the top
+    of the next minute.
+  update:
+    x-retry-guidance: No Retry-After or RateLimit-* header is returned. Back off to the next minute boundary;
+      limits are fixed-window per minute.
+- target: $.paths.*.*.responses.202
+  description: Mark 202 as the in-progress signal of the create-then-poll pattern rather than a terminal
+    success.
+  update:
+    x-async-poll: Job still running. Re-issue the same GET until 200 is returned; do not treat 202 as
+      a final result.

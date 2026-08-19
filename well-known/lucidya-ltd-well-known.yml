@@ -1,0 +1,109 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTP probes of every host named in apis.yml and in the five OpenAPI servers[] blocks
+name: Lucidya .well-known probe
+type: WellKnownProbe
+summary: >-
+  Every standard /.well-known/ discovery path was probed against all five Lucidya
+  hosts. Nothing was found. No security.txt, no OpenID/OAuth metadata, no
+  RFC 9727 api-catalog, no ai-plugin, no A2A agent card. No WellKnown or
+  SecurityTxt pointer is emitted in apis.yml because no path returned a real
+  document.
+result: none
+real_documents_found: 0
+hosts_probed:
+  - lucidya.com
+  - www.lucidya.com
+  - api.lucidya.com
+  - docs.lucidya.com
+  - cxm.lucidya.com
+probes:
+  - host: lucidya.com
+    edge: Webflow
+    paths:
+      - { path: /.well-known/security.txt, status: 404 }
+      - { path: /.well-known/openid-configuration, status: 404 }
+      - { path: /.well-known/oauth-authorization-server, status: 404 }
+      - { path: /.well-known/oauth-protected-resource, status: 404 }
+      - { path: /.well-known/api-catalog, status: 404 }
+      - { path: /.well-known/ai-plugin.json, status: 404 }
+      - { path: /.well-known/agent-card.json, status: 404 }
+      - { path: /.well-known/agent.json, status: 404 }
+      - { path: /llms.txt, status: 404 }
+    note: >-
+      All /.well-known/* paths return an explicit 404 body reading
+      "Invalid .well-known request" — an honest negative, not a catch-all.
+  - host: www.lucidya.com
+    edge: Webflow
+    paths:
+      - { path: /.well-known/security.txt, status: 404 }
+      - { path: /.well-known/openid-configuration, status: 404 }
+      - { path: /.well-known/oauth-authorization-server, status: 404 }
+      - { path: /.well-known/oauth-protected-resource, status: 404 }
+      - { path: /.well-known/api-catalog, status: 404 }
+      - { path: /.well-known/ai-plugin.json, status: 404 }
+      - { path: /.well-known/agent-card.json, status: 404 }
+      - { path: /.well-known/agent.json, status: 404 }
+      - { path: /llms.txt, status: 404 }
+  - host: api.lucidya.com
+    edge: Kong gateway behind Cloudflare Access
+    paths:
+      - { path: /.well-known/security.txt, status: 404 }
+      - { path: /.well-known/openid-configuration, status: 404 }
+      - { path: /.well-known/oauth-authorization-server, status: 404 }
+      - { path: /.well-known/oauth-protected-resource, status: 404 }
+      - { path: /.well-known/api-catalog, status: 404 }
+      - { path: /.well-known/ai-plugin.json, status: 404 }
+      - { path: /.well-known/agent-card.json, status: 404 }
+      - { path: /.well-known/agent.json, status: 404 }
+      - { path: /llms.txt, status: 404 }
+    note: >-
+      Every miss returns Kong's {"message":"no Route matched with those values"}
+      JSON — a genuine unmatched route.
+  - host: docs.lucidya.com
+    edge: Stoplight-hosted documentation
+    paths:
+      - { path: /.well-known/security.txt, status: 404 }
+      - { path: /.well-known/openid-configuration, status: 404 }
+      - { path: /.well-known/oauth-authorization-server, status: 404 }
+      - { path: /.well-known/oauth-protected-resource, status: 404 }
+      - { path: /.well-known/api-catalog, status: 404 }
+      - { path: /.well-known/ai-plugin.json, status: 404 }
+      - { path: /.well-known/agent-card.json, status: 404 }
+      - { path: /.well-known/agent.json, status: 404 }
+      - { path: /llms.txt, status: 404 }
+  - host: cxm.lucidya.com
+    edge: SPA (application console)
+    paths:
+      - { path: /.well-known/security.txt, status: 404 }
+      - { path: /.well-known/openid-configuration, status: 200, real_document: false }
+      - { path: /.well-known/oauth-authorization-server, status: 200, real_document: false }
+      - { path: /.well-known/oauth-protected-resource, status: 200, real_document: false }
+      - { path: /.well-known/api-catalog, status: 200, real_document: false }
+      - { path: /.well-known/ai-plugin.json, status: 404 }
+      - { path: /.well-known/agent-card.json, status: 404 }
+      - { path: /.well-known/agent.json, status: 404 }
+      - { path: /llms.txt, status: 404 }
+    note: >-
+      FALSE POSITIVE, recorded deliberately. cxm.lucidya.com is a single-page
+      application whose router answers 200 with the same text/html app shell for
+      several /.well-known/* paths. None of these is a document: no JSON parses,
+      no OAuth or OpenID metadata is served, and there is no authorization server
+      to describe. Treated as a miss.
+security_txt:
+  present: false
+  note: >-
+    Lucidya does run a real vulnerability disclosure programme, but it is
+    published as a web page rather than as RFC 9116 security.txt. See
+    ../security/lucidya-ltd-vulnerability-disclosure.yml.
+oauth_metadata:
+  present: false
+  note: >-
+    Consistent with the authentication profile — Lucidya uses an API-token header
+    scheme, not OAuth, so there is no authorization server to advertise.
+agent_card:
+  present: false
+  note: >-
+    No A2A agent card at either the canonical /.well-known/agent-card.json or the
+    legacy /.well-known/agent.json on any host. Per pipeline rule, no a2a/
+    artifact and no AgentCard pointer is written.

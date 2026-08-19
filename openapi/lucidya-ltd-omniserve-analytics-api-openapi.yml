@@ -1,0 +1,2312 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: OmniServe Analytics API
+  description: "Complete API collection for Lucidya OmniServe Analytics Endpoints. This API provides access\
+    \ to \nanalytics data for engagement monitoring, CSAT surveys, and reporting capabilities.\n\nFeatures\
+    \ include:\n- Analytics pages and widgets discovery\n- Job-based analytics data retrieval\n- CSAT\
+    \ survey analytics\n- Reference data access (agents, teams, data sources)\n"
+  contact:
+    name: API Support
+    email: support@lucidya.com
+    url: https://lucidya.com
+  license:
+    url: https://opensource.org/licenses/MIT
+    name: MIT
+servers:
+- url: https://api.lucidya.com/public_api/omniserve
+  description: Production Server
+paths:
+  /analytics/pages:
+    get:
+      tags:
+      - Analytics Pages
+      summary: Get Analytics Pages
+      description: 'This endpoint enables you to get the list of all analytics pages available to your
+        company.
+
+
+        **Note:** Returns pages like inbox, slas, agents, and in-chat-survey.
+
+        '
+      operationId: getAnalyticsPages
+      responses:
+        '200':
+          description: Pages list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: inbox
+              examples:
+                default:
+                  value:
+                    data:
+                    - id: 1
+                      name: inbox
+                    - id: 2
+                      name: slas
+                    - id: 3
+                      name: agents
+                    - id: 4
+                      name: in-chat-survey
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/{page_name}/widgets:
+    get:
+      tags:
+      - Analytics Pages
+      summary: Get Page Widgets
+      description: 'This endpoint enables you to list available widgets for a specific analytics page.
+
+        '
+      operationId: getPageWidgets
+      parameters:
+      - name: page_name
+        in: path
+        description: Analytics page identifier (e.g., inbox, slas, agents)
+        required: true
+        schema:
+          type: string
+          example: inbox
+      responses:
+        '200':
+          description: Widgets metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  widgets_names:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - Inbox Overview
+                    - Engagements Volume
+                  company_time_zone:
+                    type: integer
+                    example: 3
+                  page_name:
+                    type: string
+                    example: inbox
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/{page_name}/filters:
+    get:
+      tags:
+      - Analytics Pages
+      summary: Get Page Filters
+      description: 'This endpoint enables you to get filter definitions for a specific analytics page.
+
+        '
+      operationId: getPageFilters
+      parameters:
+      - name: page_name
+        in: path
+        description: Analytics page identifier
+        required: true
+        schema:
+          type: string
+          example: inbox
+      responses:
+        '200':
+          description: Filters list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  filters:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        filter_key:
+                          type: string
+                          example: data_sources
+                        filter_label:
+                          type: string
+                          example: Data Sources
+                        values:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              label:
+                                type: string
+                                example: twitter
+                              value:
+                                type: integer
+                                example: 1
+                  page_name:
+                    type: string
+                    example: inbox
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/{page_name}/create:
+    post:
+      tags:
+      - Analytics Jobs
+      summary: Create Analytics Job
+      description: 'This endpoint enables you to create an analytics job for a page and returns a job_id
+        for retrieving results.
+
+        '
+      operationId: createAnalyticsJob
+      parameters:
+      - name: page_name
+        in: path
+        description: Analytics page identifier
+        required: true
+        schema:
+          type: string
+          example: inbox
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                widgets_names:
+                  type: array
+                  description: Array of widget names to fetch
+                  items:
+                    type: string
+                  example:
+                  - Inbox Overview
+                  - Engagements Volume
+                start_date:
+                  type: integer
+                  description: Unix timestamp for start date
+                  format: int64
+                  example: 1640995200
+                end_date:
+                  type: integer
+                  description: Unix timestamp for end date
+                  format: int64
+                  example: 1641081600
+                filters:
+                  type: object
+                  description: Filter object (optional)
+                  example: {}
+              required:
+              - widgets_names
+              - start_date
+              - end_date
+            examples:
+              inboxFilters:
+                summary: Apply filters - inbox page
+                value:
+                  widgets_names:
+                  - Inbox Overview
+                  - Engagements Volume
+                  start_date: 1727395200
+                  end_date: 1728000000
+                  monitors: 101,102
+                  filters:
+                    data_sources: twitter,facebook
+                    engagement_types: posts,direct_messages,emails
+                    routings_ids: '5'
+                    tags_ids: 10,12
+                    exact_match: false
+                    untagged_engagements: false
+              slasFilters:
+                summary: Apply filters - slas page
+                value:
+                  widgets_names:
+                  - SLAs Overview
+                  - Breach Rate
+                  start_date: 1727395200
+                  end_date: 1728000000
+                  monitors: '101'
+                  filters:
+                    data_sources: twitter
+                    engagement_types: posts,direct_messages
+                    slas_ids: 7,9
+                    sla_type: time_to_complete,first_response_time,next_response_time,unassigned_response_time
+                    tags_ids: 10,12
+                    exact_match: false
+                    untagged_engagements: false
+              agentsFilters:
+                summary: Apply filters - agents page
+                value:
+                  widgets_names:
+                  - Agents Performance
+                  - Agents Workload
+                  start_date: 1727395200
+                  end_date: 1728000000
+                  monitors: '101'
+                  filters:
+                    data_sources: facebook
+                    engagement_types: posts,direct_messages
+                    assignees_ids: 201,202
+                    exact_match: false
+                    untagged_engagements: false
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  format: int64
+                  example: 1760313600
+                end_date:
+                  type: integer
+                  format: int64
+                  example: 1760918399
+                monitors:
+                  type: string
+                  description: Comma-separated monitor IDs
+                  example: 45930,45922
+                filters:
+                  type: string
+                  description: URL-encoded JSON string of filters
+                  example: '%7B%22data_sources%22:%22twitter,facebook,instagram,whatsapp,email,livechat%22,%22engagement_types%22:%22posts,direct_messages%22,%22routings_ids%22:%2256,57,62%22,%22tags_ids%22:%2218,2,1,21,28,27%22,%22exact_match%22:false,%22untagged_engagements%22:false%7D'
+              required:
+              - start_date
+              - end_date
+            examples:
+              rawConcatenated:
+                summary: Raw form-encoded body
+                value: product_id=10&start_date=1760313600&end_date=1760918399&monitors=45930,45922&filters=%7B%22data_sources%22:%22twitter,facebook,instagram,whatsapp,email,livechat%22,%22engagement_types%22:%22posts,direct_messages%22,%22routings_ids%22:%2256,57,62%22,%22tags_ids%22:%2218,2,1,21,28,27%22,%22exact_match%22:false,%22untagged_engagements%22:false%7D
+      responses:
+        '200':
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                        format: uuid
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      page_name:
+                        type: string
+                        example: inbox
+                      widgets_names:
+                        type: array
+                        items:
+                          type: string
+                        example:
+                        - Inbox Overview
+                        - Engagements Volume
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/{page_name}/index:
+    get:
+      tags:
+      - Analytics Jobs
+      summary: Get Analytics Results
+      description: "This endpoint enables you to get the results of a previously created analytics job.\n\
+        \n## Response Structure\n\nThe response contains:\n- **dataAvailable**: Boolean indicating if\
+        \ all widget results are ready (true when complete)\n- **widget_data**: Object keyed by widget\
+        \ name, where each value is the widget's payload\n\n## Inbox Page Widgets\n\n### Inbox Overview\n\
+        Aggregates counts per data source (twitter, twitter_dm, instagram, etc.):\n- **total_engagements**:\
+        \ Total found items in the period\n- **total_completed**: Count of completed engagements\n- **total_replied**:\
+        \ Count of replied engagements\n\n### Engagements Volume\n- **total_datasource_count**: Breakdown\
+        \ by engagement type (direct_message, comments_mentions, email_messages)\n- **engagements_overtime/posts_over_time**:\
+        \ Time-series data per source and engagement type\n\n### Agents Performance\n- **agents_performance**:\
+        \ Per-source array of agent performance objects containing:\n  - agent_id: Agent identifier\n\
+        \  - assigned: Number of assigned engagements\n  - completed: Number of completed engagements\n\
+        \n### Average SLAs\nContains current_period and previous_period data with aggregated sums and\
+        \ counts for:\n- **first_response_time**: Time to first agent response\n- **next_response_time**:\
+        \ Time between subsequent responses\n- **time_to_complete**: Total time to close the engagement\n\
+        - **unassigned_response_time**: Time spent unassigned (TUT)\n- **handling_time**: Calculated as\
+        \ time_to_complete - unassigned_response_time (for completed interactions only)\n\n### Data Sources\n\
+        - **data_source_distribution**: Total engagements per data source\n\n### Completion Reason\n-\
+        \ **completion_reasons**: Per-source arrays of completion reasons with:\n  - id: Reason identifier\n\
+        \  - reason_en: Reason text in English\n  - reason_ar: Reason text in Arabic\n  - value: Count\
+        \ of engagements with this reason\n\n### Engagement Distribution Over Routings\nPer-source routing\
+        \ arrays containing:\n- routing_id: Routing identifier\n- value: Number of engagements\n\n###\
+        \ Tags Distribution Over Engagements\n- **tags_performance**: Arrays per source with tag label,\
+        \ color, and usage count\n\n### Tags Usage Over Time\n- **total_datasource_count**: Breakdown\
+        \ by engagement type\n- **engagement_tags_usage_overtime**: Time-series tag usage per source\n\
+        \n### Engagers Activity (Unique)\n- **result**: 2D heatmap matrix arrays showing activity distribution\n\
+        - **min_value/max_value**: Range of values in the heatmap\n\n### Engagements Completed Overtime\n\
+        - **total_datasource_count**: Total completed by engagement type\n- **completed_engagements_overtime**:\
+        \ Time-series of completed engagements\n\n### Engagements Completed By Teams\n- **engagements_completed_by_teams**:\
+        \ Per-source arrays with team_id and completion count\n\n---\n\n## SLAs Page Widgets\n\n### Average\
+        \ SLAs\nSame structure as Inbox page - contains current_period and previous_period aggregated\
+        \ sums and counts for all SLA metrics.\n\n### SLAs Overview\nHigh-level KPI summary:\n- **breach_rate_percentage**:\
+        \ Percentage of SLA breaches\n- **met_sla_count**: Total number of interactions that met SLA\n\
+        - **breached_sla_count**: Total number of SLA breaches\n\n### SLAs Time Distribution\nBucketed\
+        \ counts showing duration distribution (in minutes) for SLA metrics:\n- **time_to_complete**:\
+        \ Bucketed time ranges (e.g., 0-30, 31-60, 61-120, 121+)\n- **first_response_time**: Bucketed\
+        \ response times (e.g., 0-5, 6-15, 16+)\n- **next_response_time**: Bucketed time ranges\n- **unassigned_response_time**:\
+        \ Bucketed response times\n- **Note**: Time values are returned from APIs in seconds and need\
+        \ to be converted to minutes or hours\n\nEach bucket contains a label and value (count)\n\n###\
+        \ Average SLAs Overview\nPeriod averages (in minutes) for all SLA metrics:\n- first_response_time\n\
+        - next_response_time\n- time_to_complete\n- unassigned_response_time\n- handling_time\n\n### Hits\
+        \ Activity\nTime-series data of interactions that met SLA (hits):\n- **total_count**: Total hits\
+        \ in the period\n- **over_time**: Array of timestamp and count pairs\n\n### Misses Activity\n\
+        Time-series data of interactions that breached SLA (misses):\n- **total_count**: Total misses\
+        \ in the period\n- **over_time**: Array of timestamp and count pairs\n\n---\n\n## Agents Page\
+        \ Widgets\n\n### Overview\nHigh-level agent metrics per data source:\n- **total_assigned_engagements**:\
+        \ Total number of assigned engagements\n- **assigned_public_engagements**: Public engagements\
+        \ assigned count\n- **assigned_dm_engagements**: Direct message engagements assigned count\n-\
+        \ **assigned_email_engagements**: Email engagements assigned count\n- **manual_assigned_engagements**:\
+        \ Manually assigned engagement count\n- **auto_assigned_engagements**: Auto-assigned engagement\
+        \ count\n- **total_unique_contacts**: Number of unique contacts\n- **avg_engagements_per_contact**:\
+        \ Average engagements per contact\n\n### Agent Inbox Performance\nAgent performance metrics over\
+        \ time:\n- **agent_inbox_performance**: Per-source performance data\n  - total_assigned: Total\
+        \ assigned to agents\n  - posts_over_time: Time-series arrays for assigned and completed\n  -\
+        \ total_completed: Total completed count\n- **agent_inbox_legends**: Summary legend with name-value\
+        \ pairs for assigned and completed\n\n### Agent CSAT Score Overtime\nCustomer satisfaction scores\
+        \ over time:\n- **csat_scores_overtime**: Per-source CSAT data\n  - csat_scores_over_time: Array\
+        \ of date and scores (5-point scale array)\n  - csat_scores_piechart: Distribution breakdown (e.g.,\
+        \ csat_neutral, csat_positive, csat_negative)\n\n### Agents Performance\nIndividual agent performance\
+        \ metrics:\n- **agents_performance**: Per-source array of agent objects\n  - agent_id: Agent identifier\n\
+        \  - assigned: Number of assigned engagements\n  - completed: Number of completed engagements\n\
+        \n### Agents CSAT Score\nAgent-specific CSAT metrics per data source:\n- **data**: Object containing:\n\
+        \  - total_csat: Total CSAT score\n  - scores: Array of score distributions (csat_neutral, csat_positive,\
+        \ csat_negative)\n\n### Agent Status Overview\nCurrent agent status distribution:\n- **data**:\
+        \ Array of status objects with:\n  - status: Agent status (e.g., available, busy, offline)\n \
+        \ - total_sum: Count of agents in this status\n- **count**: Total number of agents\n\n### Agent\
+        \ Status Summary\nDetailed agent status information:\n- **data**: Array of agent status details\n\
+        \n### Agents Distribution\nDistribution of engagements across agents:\n- **engagement_distribution_over_agents**:\
+        \ Per-source distribution\n  - total_engagements: Total engagement count\n  - agents: Array of\
+        \ agent-specific distributions\n\n### Engagements Analytics\nComprehensive engagement analytics\
+        \ per data source:\n- **total_replied_engagements**: Count of replied engagements\n- **total_completed_engagements**:\
+        \ Count of completed engagements\n- **reopens**: Number of reopened engagements\n- **avg_handle_time**:\
+        \ Average handling time with value and count\n- **total_in_chat_survey_sent**: Number of in-chat\
+        \ surveys sent\n- **total_in_chat_survey_responses**: Number of survey responses received\n- **total_tags_on_engagements**:\
+        \ Total tags applied to engagements\n- **engagements_with_notes**: Count of engagements with notes\n"
+      parameters:
+      - name: job_id
+        in: query
+        description: Job identifier returned from the create job endpoint
+        required: true
+        schema:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+      - name: page_name
+        in: path
+        description: Analytics page identifier
+        required: true
+        schema:
+          type: string
+          example: inbox
+      responses:
+        '200':
+          description: Job results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      dataAvailable:
+                        type: boolean
+                        description: Indicates whether all requested widgets finished processing; true
+                          when results are complete.
+                        example: true
+                      widget_data:
+                        type: object
+                        description: Map of widget name to its payload; each widget has its own structure
+                          (see example descriptions).
+                        additionalProperties:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                              description: Example KPI value for simple metric widgets; for complex widgets,
+                                see examples.
+                              example: 150
+                            trend:
+                              type: string
+                              description: Example trend direction for KPI widgets (e.g., up/down/flat).
+                              example: up
+                            percentage_change:
+                              type: number
+                              description: Example percentage change for KPI widgets.
+                              example: 12.5
+              examples:
+                Inbox Job Results:
+                  summary: Inbox page job results (condensed)
+                  description: "Key meanings:\n- data: Top-level response wrapper.\n- dataAvailable: Boolean\
+                    \ indicating if all widget results are ready.\n- widget_data: Object keyed by widget\
+                    \ name; each value is the widget payload.\n- Inbox Overview: Aggregates counts per\
+                    \ data source (e.g., twitter, twitter_dm, instagram)\n  - total_engagements: Total\
+                    \ found items in period\n  - total_completed: Completed engagements count\n  - total_replied:\
+                    \ Replied engagements count\n- Engagements Volume:\n  - total_datasource_count: Breakdown\
+                    \ by engagement type (direct_message, comments_mentions, email_messages)\n  - engagements_overtime/posts_over_time:\
+                    \ Time-series per source and type\n- Agents Performance:\n  - agents_performance:\
+                    \ Per source array of agent performance objects { agent_id, assigned, completed }\n\
+                    - Average SLAs:\n  - current_period/previous_period: Aggregated sums and counts for\
+                    \ SLA metrics (first_response_time, next_response_time, time_to_complete, unassigned_response_time,\
+                    \ handling_time)\n  - handling_time: Calculated as time_to_complete - unassigned_response_time\
+                    \ (TUT), for completed interactions only\n- Data Sources:\n  - data_source_distribution:\
+                    \ Total engagements per source\n- Completion Reason:\n  - completion_reasons: Per\
+                    \ source arrays of reasons with { id, reason_en, reason_ar, value }\n- Engagement\
+                    \ Distribution Over Routings:\n  - per-source routings arrays with { routing_id, value\
+                    \ }\n- Tags Distribution Over Engagements / Tags Usage Over Time:\n  - tags_performance\
+                    \ arrays and time-series usage per source\n- Engagers Activity (Unique):\n  - result:\
+                    \ 2D heatmap matrix arrays; min_value/max_value show range\n"
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        Inbox Overview:
+                          twitter_dm:
+                            total_engagements: 79
+                            total_completed: 64
+                            total_replied: 38
+                          twitter:
+                            total_engagements: 119
+                            total_completed: 29
+                            total_replied: 55
+                          instagram:
+                            total_engagements: 77
+                            total_completed: 27
+                        Engagements Volume:
+                          total_datasource_count:
+                          - name: direct_message
+                            value: 152
+                          - name: comments_mentions
+                            value: 215
+                          - name: email_messages
+                            value: 5
+                        Agents Performance:
+                          agents_performance:
+                            twitter_dm:
+                            - agent_id: 1341
+                              assigned: 17
+                              completed: 16
+                        Average SLAs:
+                          twitter_dm:
+                            current_period:
+                              first_response_time:
+                                sum: 465343
+                                count: 18
+                              next_response_time:
+                                sum: 1223
+                                count: 3
+                              time_to_complete:
+                                sum: 1906072
+                                count: 52
+                              unassigned_response_time:
+                                sum: 2143735
+                                count: 61
+                              handling_time:
+                                sum: 156415
+                                count: 51
+                            previous_period:
+                              first_response_time:
+                                sum: 262023
+                                count: 8
+                              next_response_time:
+                                sum: 50729817
+                                count: 4
+                              time_to_complete:
+                                sum: 5281021
+                                count: 48
+                              unassigned_response_time:
+                                sum: 4067691
+                                count: 49
+                              handling_time:
+                                sum: 1213330
+                                count: 48
+                        Data Sources:
+                          data_source_distribution:
+                            twitter_dm:
+                              total_engagements: 79
+                            twitter:
+                              total_engagements: 119
+                        Engagement Distribution Over Routings:
+                          engagement_distribution_over_routings:
+                            twitter:
+                              routings:
+                              - routing_id: 62
+                                value: 135
+                        Tags Distribution Over Engagements:
+                          tags_performance:
+                            twitter_dm:
+                            - label: Spam
+                              color: '#FF3C2D'
+                              value: 2
+                        Tags Usage Over Time:
+                          total_datasource_count:
+                          - name: direct_message
+                            value: 2
+                          - name: comments_mentions
+                            value: 1
+                          engagement_tags_usage_overtime:
+                            twitter_dm:
+                              total_count: 2
+                              posts_over_time:
+                                direct_message:
+                                - name: 1758412800
+                                  value: 1
+                        Engagers Activity (Unique):
+                          engager_activity:
+                            instagram:
+                              result:
+                              - - 0
+                                - 0
+                                - 0
+                              - - 1
+                                - 0
+                                - 0
+                              max_value: 6
+                              min_value: 0
+                        Completion Reason:
+                          completion_reasons:
+                            twitter:
+                            - id: 1
+                              reason_en: REASON_EN_VALUE
+                              reason_ar: REASON_AR_VALUE
+                              value: 26
+                        Engagements Completed Overtime:
+                          total_datasource_count:
+                          - name: direct_message
+                            value: 124
+                          - name: comments_mentions
+                            value: 64
+                          completed_engagements_overtime:
+                            twitter_dm:
+                              total_count: 64
+                              posts_over_time:
+                                direct_message:
+                                - name: 1758412800
+                                  value: 12
+                        Engagements Completed By Teams:
+                          engagements_completed_by_teams:
+                            twitter:
+                            - team_id: 83
+                              value: 15
+                            twitter_dm:
+                            - team_id: 83
+                              value: 26
+                SLAs Job Results:
+                  summary: SLAs page job results (condensed)
+                  description: "Key meanings (SLAs page):\n- data: Top-level response wrapper\n- dataAvailable:\
+                    \ True when all widget results are ready\n- widget_data: Object keyed by widget name;\
+                    \ value is the widget payload\n- Average SLAs:\n  - current_period/previous_period:\
+                    \ Aggregated sums and counts for SLA metrics\n    (first_response_time, next_response_time,\
+                    \ time_to_complete, unassigned_response_time, handling_time)\n  - handling_time: time_to_complete\
+                    \ - unassigned_response_time (TUT), for completed interactions only\n- SLAs Overview:\
+                    \ KPI summary such as met_sla_count, breached_sla_count, breach_rate_percentage\n\
+                    - SLAs Time Distribution: Bucketed counts of durations (minutes) for SLA metrics (e.g.,\
+                    \ time_to_complete, first_response_time)\n- Average SLAs Overview: Period averages\
+                    \ (minutes) for SLA metrics including handling_time\n- Hits Activity: Time-series\
+                    \ of interactions that met SLA (hits)\n- Misses Activity: Time-series of interactions\
+                    \ that breached SLA (misses)\n"
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        Average SLAs:
+                          twitter_dm:
+                            current_period:
+                              first_response_time:
+                                sum: 465343
+                                count: 18
+                              next_response_time:
+                                sum: 1223
+                                count: 3
+                              time_to_complete:
+                                sum: 1906072
+                                count: 52
+                              unassigned_response_time:
+                                sum: 2143735
+                                count: 61
+                              handling_time:
+                                sum: 156415
+                                count: 51
+                            previous_period:
+                              first_response_time:
+                                sum: 262023
+                                count: 8
+                              next_response_time:
+                                sum: 50729817
+                                count: 4
+                              time_to_complete:
+                                sum: 5281021
+                                count: 48
+                              unassigned_response_time:
+                                sum: 4067691
+                                count: 49
+                              handling_time:
+                                sum: 1213330
+                                count: 48
+                        SLAs Overview:
+                          breach_rate_percentage: 12.5
+                          met_sla_count: 420
+                          breached_sla_count: 60
+                        SLAs Time Distribution:
+                          time_distribution:
+                            time_to_complete:
+                            - label: 0-30
+                              value: 120
+                            - label: 31-60
+                              value: 75
+                            - label: 61-120
+                              value: 40
+                            - label: 121+
+                              value: 18
+                            first_response_time:
+                            - label: 0-5
+                              value: 210
+                            - label: 6-15
+                              value: 35
+                            - label: 16+
+                              value: 8
+                        Average SLAs Overview:
+                          description: Period averages for SLA metrics (in minutes).
+                          averages:
+                            first_response_time: 12.8
+                            next_response_time: 7.5
+                            time_to_complete: 85.4
+                            unassigned_response_time: 34.2
+                            handling_time: 51.2
+                        Hits Activity:
+                          description: Interactions that met SLA over time (hits)
+                          hits_activity:
+                            twitter_dm:
+                              total_count: 40
+                              over_time:
+                              - name: 1758412800
+                                value: 3
+                              - name: 1758499200
+                                value: 5
+                        Misses Activity:
+                          description: Interactions that breached SLA over time (misses)
+                          misses_activity:
+                            twitter_dm:
+                              total_count: 12
+                              over_time:
+                              - name: 1758412800
+                                value: 1
+                              - name: 1758499200
+                                value: 2
+                Agents Job Results:
+                  summary: Agents page job results (condensed)
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        Overview:
+                          twitter_dm:
+                          - total_assigned_engagements: 0
+                            assigned_public_engagements: 0
+                            assigned_dm_engagements: 0
+                            assigned_email_engagements: 0
+                            manual_assigned_engagements: 0
+                            auto_assigned_engagements: 0
+                          total_unique_contacts: 0
+                          avg_engagements_per_contact: 0
+                        Agent Inbox Performance:
+                          agent_inbox_performance:
+                            twitter_dm:
+                            - total_assigned: 0
+                              posts_over_time:
+                                assigned: []
+                                completed: []
+                              total_completed: 0
+                          agent_inbox_legends:
+                          - name: assigned
+                            value: 0
+                          - name: completed
+                            value: 0
+                        Agent CSAT Score Overtime:
+                          csat_scores_overtime:
+                            twitter:
+                              csat_scores_over_time:
+                              - date: 1727319600
+                                scores:
+                                - 0
+                                - 0
+                                - 0
+                                - 0
+                                - 0
+                              csat_scores_piechart:
+                              - name: csat_neutral
+                                value: 0
+                        Agents Performance:
+                          agents_performance:
+                            twitter_dm:
+                            - agent_id: 1341
+                              assigned: 0
+                              completed: 0
+                        Agents CSAT Score:
+                          twitter_dm:
+                          - data:
+                              total_csat: 0
+                              scores:
+                              - name: csat_neutral
+                                value: 0
+                        Agent Status Overview:
+                          data:
+                          - status: available
+                            total_sum: 0
+                          count: 21
+                        Agent Status Summary:
+                          data: []
+                        Agents Distribution:
+                          engagement_distribution_over_agents:
+                            twitter:
+                            - total_engagements: 0
+                              agents: []
+                        Engagements Analytics:
+                          twitter_dm:
+                          - total_replied_engagements: 0
+                            total_completed_engagements: 0
+                            reopens: 0
+                            avg_handle_time:
+                              value: 0
+                              count: 0
+                            total_in_chat_survey_sent: 0
+                            total_in_chat_survey_responses: 0
+                            total_tags_on_engagements: 0
+                            engagements_with_notes: 0
+        '202':
+          description: Processing (if applicable)
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/csat_questions:
+    get:
+      tags:
+      - CSAT Analytics
+      summary: Get CSAT Questions
+      description: 'This endpoint enables you to retrieve CSAT questions for a data source with pagination
+        and optional search.
+
+
+        **Note:** This endpoint supports pagination.
+
+        '
+      operationId: getCsatQuestions
+      parameters:
+      - name: data_source_name
+        in: query
+        description: Data source identifier (e.g., twitter, facebook)
+        required: true
+        schema:
+          type: string
+          example: twitter
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+          example: 1
+      - name: search
+        in: query
+        description: Optional search term to filter questions
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Questions list with pagination
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        question_text:
+                          type: string
+                          example: How satisfied are you with our service?
+                        question_type:
+                          type: string
+                          example: rating
+                        is_deleted:
+                          type: boolean
+                          example: false
+                        created_at:
+                          type: string
+                          format: date-time
+                          example: '2024-01-01T00:00:00Z'
+                  pagination:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                        example: 1
+                      items:
+                        type: integer
+                        example: 10
+                      pages:
+                        type: integer
+                        example: 3
+                      count:
+                        type: integer
+                        example: 25
+                      last:
+                        type: integer
+                        example: 3
+                      from:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 10
+                      prev:
+                        type: integer
+                        nullable: true
+                        example: null
+                      next:
+                        type: integer
+                        nullable: true
+                        example: 2
+                  data_source_name:
+                    type: string
+                    example: twitter
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/filters:
+    get:
+      tags:
+      - CSAT Analytics
+      summary: Get In-Chat-Survey Page Filters
+      description: 'This endpoint enables you to get available filters for the `in-chat-survey` analytics
+        page.
+
+        '
+      responses:
+        '200':
+          description: Filters list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  filters:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        filter_key:
+                          type: string
+                          example: data_sources
+                        filter_label:
+                          type: string
+                          example: Data Sources
+                        values:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              label:
+                                type: string
+                                example: twitter
+                              value:
+                                type: integer
+                                example: 1
+                  page_name:
+                    type: string
+                    example: in-chat-survey
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/index:
+    get:
+      tags:
+      - CSAT Analytics
+      summary: Get CSAT Job Results
+      description: 'This endpoint enables you to get the results of a previously created CSAT analytics
+        job for the `in-chat-survey` page.
+
+        '
+      parameters:
+      - name: job_id
+        in: query
+        description: Job identifier returned from a CSAT create endpoint
+        required: true
+        schema:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+      responses:
+        '200':
+          description: Job results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      dataAvailable:
+                        type: boolean
+                        example: true
+                      widget_data:
+                        type: object
+                        additionalProperties:
+                          type: object
+              examples:
+                CSAT Response Counts Result:
+                  summary: Response counts job result
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        CSAT Response Counts:
+                          meta:
+                            data_source_name: twitter
+                            question_ids: 1,2,3
+                          results:
+                          - question_id: 1
+                            counts: 20
+                CSAT Question Responses Result:
+                  summary: Question responses job result
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        CSAT Question Responses:
+                          question_id: 1
+                          page_number: 1
+                          responses:
+                          - comment: COMMENT_DICT
+                          - comment: COMMENT_DICT
+        '202':
+          description: Processing (if applicable)
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/csat_response_counts:
+    post:
+      tags:
+      - CSAT Analytics
+      summary: CSAT Response Counts
+      description: 'This endpoint enables you to create a CSAT response counts analytics job and returns
+        a job_id with question metadata.
+
+        '
+      operationId: csatResponseCounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  description: Unix timestamp for start date
+                  format: int64
+                  example: 1640995200
+                end_date:
+                  type: integer
+                  description: Unix timestamp for end date
+                  format: int64
+                  example: 1641081600
+                data_source_name:
+                  type: string
+                  description: Data source identifier
+                  example: twitter
+                question_ids:
+                  type: string
+                  description: Comma-separated question IDs
+                  example: 1,2,3
+                filters:
+                  type: object
+                  description: Filter object (optional)
+                  example: {}
+              required:
+              - start_date
+              - end_date
+              - data_source_name
+              - question_ids
+      responses:
+        '200':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                        format: uuid
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      page_name:
+                        type: string
+                        example: in-chat-survey
+                      question_ids:
+                        type: string
+                        example: 1,2,3
+                      data_source_name:
+                        type: string
+                        example: twitter
+                      csat_questions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            question_text:
+                              type: string
+                              example: How satisfied are you with our service?
+                            question_type:
+                              type: string
+                              example: rating
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/csat_question_responses:
+    post:
+      tags:
+      - CSAT Analytics
+      summary: CSAT Question Responses
+      description: 'This endpoint enables you to create a CSAT question responses job for a specific question
+        and returns a job_id.
+
+        '
+      operationId: csatQuestionResponses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  description: Unix timestamp for start date
+                  format: int64
+                  example: 1640995200
+                end_date:
+                  type: integer
+                  description: Unix timestamp for end date
+                  format: int64
+                  example: 1641081600
+                data_source_name:
+                  type: string
+                  description: Data source identifier
+                  example: twitter
+                question_id:
+                  type: integer
+                  description: Specific question ID
+                  example: 1
+                page_number:
+                  type: integer
+                  description: Page number for pagination
+                  example: 1
+                filters:
+                  type: object
+                  description: Filter object (optional)
+                  example: {}
+                product_id:
+                  type: integer
+                  description: Product identifier
+                  example: 1
+              required:
+              - start_date
+              - end_date
+              - data_source_name
+              - question_id
+              - page_number
+      responses:
+        '200':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                        format: uuid
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      page_name:
+                        type: string
+                        example: in-chat-survey
+                      question_id:
+                        type: integer
+                        example: 1
+                      page_number:
+                        type: integer
+                        example: 1
+                      data_source_name:
+                        type: string
+                        example: twitter
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/csat_user_responses:
+    post:
+      tags:
+      - CSAT Analytics
+      summary: CSAT User Responses
+      description: 'This endpoint enables you to create a CSAT user responses analytics job and returns
+        a job_id.
+
+        '
+      operationId: csatUserResponses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  description: Unix timestamp for start date
+                  format: int64
+                  example: 1640995200
+                end_date:
+                  type: integer
+                  description: Unix timestamp for end date
+                  format: int64
+                  example: 1641081600
+                filters:
+                  type: object
+                  description: Filter object (optional)
+                  example: {}
+              required:
+              - start_date
+              - end_date
+              - filters
+      responses:
+        '200':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                        format: uuid
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      page_name:
+                        type: string
+                        example: in-chat-survey
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/custom_fields:
+    post:
+      tags:
+      - Custom Fields
+      summary: Create Custom Fields Job
+      description: 'This endpoint enables you to create a job that returns, per engagement, the applied
+
+        custom-field values for the given period and filters. It returns a `job_id` you then
+
+        poll via `GET /analytics/custom_fields` to retrieve paginated results.
+
+
+        **Note:** Results are paginated (10 engagements per page). When more pages exist, the
+
+        index response includes `next_page_job_id` to fetch the next page.
+
+        '
+      operationId: createCustomFieldsJob
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  description: Unix timestamp for start date
+                  format: int64
+                  example: 1727395200
+                end_date:
+                  type: integer
+                  description: Unix timestamp for end date
+                  format: int64
+                  example: 1728000000
+                monitors:
+                  type: string
+                  description: Comma-separated monitor IDs
+                  example: 101,102
+                page_number:
+                  type: integer
+                  description: Page number to fetch (defaults to 1)
+                  example: 1
+                filters:
+                  type: object
+                  description: Filter object (optional)
+                  example:
+                    data_sources: twitter,facebook
+                    engagement_types: posts,direct_messages,emails
+                    routings_ids: '5'
+                    tags_ids: 10,12
+                    exact_match: false
+                    untagged_engagements: false
+              required:
+              - start_date
+              - end_date
+            examples:
+              customFields:
+                summary: Custom fields job with filters
+                value:
+                  start_date: 1727395200
+                  end_date: 1728000000
+                  monitors: 101,102
+                  page_number: 1
+                  filters:
+                    data_sources: twitter,facebook
+                    engagement_types: posts,direct_messages,emails
+                    routings_ids: '5'
+                    tags_ids: 10,12
+                    exact_match: false
+                    untagged_engagements: false
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  format: int64
+                  example: 1760313600
+                end_date:
+                  type: integer
+                  format: int64
+                  example: 1760918399
+                monitors:
+                  type: string
+                  description: Comma-separated monitor IDs
+                  example: 45930,45922
+                page_number:
+                  type: integer
+                  example: 1
+                filters:
+                  type: string
+                  description: URL-encoded JSON string of filters
+                  example: '%7B%22data_sources%22:%22twitter,facebook%22,%22engagement_types%22:%22posts,direct_messages%22%7D'
+              required:
+              - start_date
+              - end_date
+      responses:
+        '200':
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                        format: uuid
+                        example: 550e8400-e29b-41d4-a716-446655440000
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: 550e8400-e29b-41d4-a716-446655440000
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+    get:
+      tags:
+      - Custom Fields
+      summary: Get Custom Fields Results
+      description: 'This endpoint enables you to get the results of a previously created custom-fields
+        job.
+
+
+        ## Response Structure
+
+        - **dataAvailable**: Boolean indicating if the page results are ready (true when complete).
+
+        - **engagements**: Array of engagements, each with its applied custom-field values.
+
+        - **pagination**: Pagination metadata for the current page.
+
+        - **next_page_job_id**: Present only when more pages exist; use it as the `job_id` for the next
+        `GET` call.
+
+        '
+      operationId: getCustomFieldsResults
+      parameters:
+      - name: job_id
+        in: query
+        description: Job identifier returned from the create custom fields endpoint
+        required: true
+        schema:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+      responses:
+        '200':
+          description: Job results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      dataAvailable:
+                        type: boolean
+                        description: Indicates whether the page finished processing; true when results
+                          are complete.
+                        example: true
+                      engagements:
+                        type: array
+                        description: Engagements with their applied custom-field values.
+                        items:
+                          type: object
+                      pagination:
+                        type: object
+                        description: Pagination metadata for the current page.
+                      next_page_job_id:
+                        type: string
+                        description: Present only when more pages exist; use as job_id for the next page.
+                        format: uuid
+                        example: 660e8400-e29b-41d4-a716-446655440111
+              examples:
+                Custom Fields Results:
+                  summary: Custom fields job results
+                  value:
+                    data:
+                      dataAvailable: true
+                      engagements:
+                      - engagement_id: '123456'
+                        data_source: twitter
+                        custom_fields:
+                        - id: 1
+                          name: Priority
+                          value: High
+                        - id: 2
+                          name: Region
+                          value: EMEA
+                      pagination:
+                        page: 1
+                        items: 10
+                        count: 25
+                        next_page: true
+                      next_page_job_id: 660e8400-e29b-41d4-a716-446655440111
+        '202':
+          description: Processing (if applicable)
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/agents:
+    get:
+      tags:
+      - Reference Data
+      summary: Get Agents
+      description: 'This endpoint enables you to get all agents (active users) for the current company.
+
+        '
+      operationId: getAgents
+      responses:
+        '200':
+          description: Agents list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 101
+                        name:
+                          type: string
+                          example: Agent One
+                        status:
+                          type: string
+                          example: available
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/teams:
+    get:
+      tags:
+      - Reference Data
+      summary: Get Teams
+      description: 'This endpoint enables you to get all teams for the current company.
+
+        '
+      operationId: getTeams
+      responses:
+        '200':
+          description: Teams list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 11
+                        name:
+                          type: string
+                          example: Support
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/data_sources:
+    get:
+      tags:
+      - Reference Data
+      summary: Get Data Sources
+      description: 'This endpoint enables you to get all available data sources for the current company.
+
+        '
+      operationId: getDataSources
+      responses:
+        '200':
+          description: Data sources list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: twitter
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/routings:
+    get:
+      tags:
+      - Reference Data
+      summary: Get Routings
+      description: 'This endpoint enables you to get all inbound routings for the current company.
+
+        '
+      operationId: getRoutings
+      responses:
+        '200':
+          description: Routings list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 62
+                        name:
+                          type: string
+                          example: High Priority Routing
+              examples:
+                default:
+                  value:
+                    data:
+                    - id: 62
+                      name: High Priority Routing
+                    - id: 77
+                      name: Default Routing
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/slas:
+    get:
+      tags:
+      - Reference Data
+      summary: Get SLAs
+      description: 'This endpoint enables you to get all SLAs for the current company with their time
+        thresholds.
+
+        '
+      operationId: getSlas
+      responses:
+        '200':
+          description: SLAs list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 3
+                        name:
+                          type: string
+                          example: Standard SLA
+                        first_response_time:
+                          type: object
+                          properties:
+                            value:
+                              type: integer
+                              example: 15
+                            unit:
+                              type: string
+                              example: minutes
+                        next_response_time:
+                          type: object
+                          properties:
+                            value:
+                              type: integer
+                              example: 30
+                            unit:
+                              type: string
+                              example: minutes
+                        time_to_complete:
+                          type: object
+                          properties:
+                            value:
+                              type: integer
+                              example: 240
+                            unit:
+                              type: string
+                              example: minutes
+                        total_unassigned_time:
+                          type: object
+                          properties:
+                            value:
+                              type: integer
+                              example: 60
+                            unit:
+                              type: string
+                              example: minutes
+              examples:
+                default:
+                  value:
+                    data:
+                    - id: 3
+                      name: Standard SLA
+                      first_response_time:
+                        value: 15
+                        unit: minutes
+                      next_response_time:
+                        value: 30
+                        unit: minutes
+                      time_to_complete:
+                        value: 240
+                        unit: minutes
+                      total_unassigned_time:
+                        value: 60
+                        unit: minutes
+                    - id: 4
+                      name: VIP SLA
+                      first_response_time:
+                        value: 5
+                        unit: minutes
+                      next_response_time:
+                        value: 15
+                        unit: minutes
+                      time_to_complete:
+                        value: 120
+                        unit: minutes
+                      total_unassigned_time:
+                        value: 15
+                        unit: minutes
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+tags:
+- name: Analytics Pages
+  description: Endpoints for discovering and managing analytics pages, widgets, and filters
+- name: Analytics Jobs
+  description: Endpoints for creating and retrieving analytics jobs
+- name: CSAT Analytics
+  description: Endpoints for CSAT (Customer Satisfaction) survey analytics
+- name: Custom Fields
+  description: Endpoints for retrieving per-engagement applied custom-field values (job-based)
+- name: Reference Data
+  description: Endpoints for fetching reference data (agents, teams, data sources)
+components:
+  securitySchemes:
+    OmniserveToken:
+      type: apiKey
+      description: The API authorization token for the request
+      name: luc-authorization
+      in: header
+      x-example: YOUR_API_TOKEN_HERE
+  responses:
+    BadRequest:
+      description: Bad request - invalid input or validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 400
+                detail: Page_id is required
+    Unauthorized:
+      description: Unauthorized - invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 401
+                message: Authentication required
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 403
+                message: Access denied
+    NotFound:
+      description: Not Found - the specified resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 404
+                message: Resource not found
+    MethodNotAllowed:
+      description: Method Not Allowed - HTTP method is not supported for this endpoint
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 405
+                message: Method not allowed
+    NotAcceptable:
+      description: Not Acceptable - the requested format is not supported
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 406
+                message: Not acceptable
+    Gone:
+      description: Gone - the requested resource is no longer available
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 410
+                message: Resource gone
+    ValidationFailed:
+      description: Unprocessable Entity - validation failed or missing required fields
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 422
+                message: Validation failed
+    RateLimited:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 429
+                message: Rate limit exceeded
+                retry_after: 60
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 500
+                message: Internal server error
+    ServiceUnavailable:
+      description: Service Unavailable - temporary server overload or maintenance
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 503
+                message: Service unavailable
+    GatewayTimeout:
+      description: Gateway Timeout - server took too long to respond
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 504
+                message: Gateway timeout
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            detail:
+              type: string
+              example: Page_id is required
+        status:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Error message
+        code:
+          type: string
+          example: ERROR_CODE
+security:
+- OmniserveToken: []

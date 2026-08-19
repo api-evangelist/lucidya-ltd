@@ -1,33 +1,167 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
-source: https://docs.lucidya.com/
+source: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
 name: Lucidya API Conventions
 type: Conventions
 summary: >-
-  Cross-cutting semantics for Lucidya's suite of RESTful APIs, captured from the
-  public developer docs. Six API products share a common REST + OAuth style and
-  a real-time webhook event surface.
+  Cross-cutting runtime semantics shared by Lucidya's five public REST APIs
+  (Social Listening, AI, CDP, OmniChannel, OmniServe Analytics) plus the outbound
+  webhook surface. Captured from the provider's own Stoplight-published
+  introduction articles (Get Started, Authorization, Security Considerations,
+  Responses, Pagination, Rate Limiting, Versioning) and cross-checked against the
+  five OpenAPI documents in openapi/.
 style: REST/JSON
+media_type: application/json
+transport:
+  https_required: true
+  http_allowed: false
 auth:
-  style: oauth2
-  detail: Per-product OAuth authorization flow; Authorization header bearer token.
+  style: apiKey
+  header: luc-authorization
+  detail: >-
+    One opaque API token per API product type, sent in the custom
+    `luc-authorization` header. No OAuth, no scopes.
   ref: ../authentication/lucidya-ltd-authentication.yml
+pagination:
+  style: page-number
+  supported: partial
+  request:
+    param: page_id
+    location: query
+    starts_at: 1
+    increment: >-
+      Repeat the same request with page_id + 1 until page_number reaches count.
+  response:
+    envelope_key: pagination
+    fields:
+      - name: page_number
+        meaning: The current page, returned as a string (e.g. "2").
+      - name: count
+        meaning: The total number of pages available.
+    example: |
+      {
+        "page_number": "2",
+        "count": 113
+      }
+  page_size:
+    default: 10
+    configurable: false
+    note: >-
+      Docs state a fixed batch of 10 results per page. The prose also claims
+      "The page_number parameter may be used to increase the number of results
+      per request", which contradicts the fixed batch and the page_id parameter
+      actually used in every sample — recorded as a documentation inconsistency,
+      not resolved.
+  applies_to:
+    - Social Listening monitors_list
+    - OmniChannel monitors_list (get channel list)
+    - CDP profiles list and segments list
+  docs:
+    - https://docs.lucidya.com/docs/Social-Listening-api/5jscj2hvwndbd-pagination
+    - https://docs.lucidya.com/docs/omnichannel-api/1tznenpz24wbl-pagination
+    - https://docs.lucidya.com/docs/cdp-api/rc9aova8s2jii-pagination
+response_envelope:
+  success:
+    shape: >-
+      2xx responses carry a `success` boolean set to true and a `status` field
+      echoing the HTTP status, alongside the payload under `data`.
+    example: |
+      {
+        "status": 200,
+        "success": true,
+        "data": { "message": null, "code": 200 }
+      }
+  error:
+    shape: A single `error` object carrying `status` and `detail`.
+    rfc9457: false
+    content_type: application/json
+    example: |
+      {
+        "error": {
+          "status": 401,
+          "detail": "Failure of getting data due to monitor not found"
+        }
+      }
+    multi_error_note: >-
+      The Responses article states that a 4xx resulting from multiple validation
+      problems returns a list of "fields" with an array of message "values"; no
+      worked example of that multi-error shape is published.
+  ref: ../errors/lucidya-ltd-problem-types.yml
+rate_limits:
+  signaled_in_headers: false
+  status_on_exhaustion: 429
+  slug: too_many_requests
+  detail: >-
+    Limits are plan-dependent and documented in prose only. No RateLimit-*,
+    X-RateLimit-* or Retry-After response headers are documented or declared in
+    any of the five OpenAPI documents, so a client cannot read remaining budget
+    at runtime and must back off blindly.
+  ref: ../rate-limits/lucidya-ltd-rate-limits.yml
+idempotency:
+  supported: false
+  header: null
+  detail: >-
+    No idempotency key, request-replay, or safe-retry convention is documented on
+    any product, and none of the 73 operations across the five OpenAPI documents
+    declares an idempotency header parameter. Notably the OmniChannel and
+    OmniServe "create job" operations (POST .../widget_data,
+    POST /analytics/{page_name}/create) are the exact async job-submission
+    pattern where a duplicate POST is expensive, and they carry no dedupe key.
+versioning:
+  scheme: none-in-path
+  current: v1
+  detail: >-
+    "As of now, the current version of the Lucidya API is Version 1 (V1)." No
+    version segment appears in any path or host — https://api.lucidya.com/monitors_list
+    and https://api.lucidya.com/widgets are the documented v1 URLs. Lucidya
+    commits to "ample notice and updated documentation" for future versions but
+    publishes no dated deprecation or sunset policy.
+  docs: https://docs.lucidya.com/docs/Social-Listening-api/unypk371jol78-versioning
+  ref: ../lifecycle/lucidya-ltd-lifecycle.yml
+request_id_tracing:
+  supported: unknown
+  detail: >-
+    No correlation-id or request-id header is documented or declared in any spec.
+field_expansion:
+  supported: false
+  detail: No sparse-fieldset or expand convention is documented.
+filtering:
+  style: dedicated-filter-endpoints
+  detail: >-
+    Rather than a query grammar, Lucidya exposes filter-discovery endpoints
+    (GET /filters, GET /profiles/filters, GET /analytics/{page_name}/filters)
+    that return the filter set a caller may then post back with a widget or
+    analytics job request.
+async_job_pattern:
+  present: true
+  detail: >-
+    OmniChannel, OmniServe Analytics and the AI audio-transcription surface all
+    use a create-then-poll pattern: a POST creates a job, and a GET on the
+    matching path returns 202 while the job is still running and 200 once the
+    result is ready.
+  examples:
+    - create: createAnalyticsJob (POST /analytics/{page_name}/create)
+      poll: GET /analytics/{page_name}/index (202 while pending)
+    - create: post_audio_transcription_transcribe_offline (POST /audio_transcription/transcribe_offline)
+      poll: checkAudioAnalysisStatus (GET /audio_transcription/check_status), then getAudioAnalysisResult
+    - create: createTwitterWidgetData (POST /omnichannel/twitter/widget_data)
+      poll: getSocialWidgetData / per-channel GET on the same path
 events:
   style: webhooks
   detail: >-
-    Real-time push notifications when specific events or conditions are met
-    across monitors (e.g. Activity Log Webhook). Documented under the Webhooks
-    product.
-  url: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
-versioning:
-  detail: Per-product public API references under docs.lucidya.com.
-  ref: ../lifecycle/lucidya-ltd-lifecycle.yml
-idempotency:
-  supported: unknown
-  detail: No idempotency-key convention documented on the public developer pages.
-pagination:
-  detail: List endpoints (e.g. Public API monitors list, CDP profiles list) are exposed; exact pagination params were not public on this pass.
+    Outbound HTTP POST alerts configured per-alert in the CXM console. A webhook
+    URL that returns no response for 15 days is paused.
+  ref: ../asyncapi/lucidya-ltd-webhooks.yml
+cross_links:
+  authentication: ../authentication/lucidya-ltd-authentication.yml
+  errors: ../errors/lucidya-ltd-problem-types.yml
+  lifecycle: ../lifecycle/lucidya-ltd-lifecycle.yml
+  rate_limits: ../rate-limits/lucidya-ltd-rate-limits.yml
+  data_model: ../data-model/lucidya-ltd-data-model.yml
 notes: >-
-  Idempotency, rate-limit signaling, and error-envelope shape were not published
-  on the public surface reached during this pass and are therefore left unstated
-  rather than invented.
+  This file replaces the 2026-07-20 version, which recorded auth as OAuth and
+  left pagination, idempotency, rate-limit signaling and the error envelope as
+  "not published". All of those were in fact published — inside the Stoplight
+  introduction articles, which render client-side and were unreachable to the
+  earlier pass. Nothing here is inferred: every value is quoted from the
+  provider's own article or read out of the five OpenAPI documents.

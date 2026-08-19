@@ -1,0 +1,4486 @@
+{
+  "item": [
+    {
+      "id": "381c96b7-5b71-4ad1-9969-1ec5dbafef2d",
+      "name": "Public API - Monitors List",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "44d9a4db-50bd-4d4d-a649-b07d9239a7bf",
+          "name": "Public API - Monitors List",
+          "request": {
+            "name": "Public API - Monitors List",
+            "description": {
+              "content": "This endpoint enables you tp get the list of all monitors in your account.\n<!-- theme: success -->\n> #### 💡 Note\n>\n> This endpoint supports pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "monitors_list"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_id",
+                  "value": "<integer>",
+                  "description": "(Required) this parameter indicates the number of page to retrive"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The API authorization token for the request.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "040e6bba-3804-40fa-850b-c226964e79dc",
+              "name": "Return all monitors list",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "monitors_list"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_id",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"12345\",\n      \"type\": \"monitor_model\",\n      \"attributes\": {\n        \"id\": 12345,\n        \"status\": \"active\",\n        \"name\": \"Dummy Monitor\",\n        \"monitor_type_name\": \"keyword\",\n        \"paused\": 0,\n        \"description\": \"This is a dummy monitor\",\n        \"is_deleted\": 0,\n        \"created_at\": \"2022-01-01\",\n        \"data_sources\": [\n          \"twitter\"\n        ],\n        \"added_by\": \"John Doe\",\n        \"data_category\": \"social media\",\n        \"channel\": [\n          \"twitter\"\n        ],\n        \"account_name\": \"Dummy Account\",\n        \"total_count\": 100,\n        \"third_party_unique_id\": null,\n        \"percentage\": 0,\n        \"stream_status\": \"collecting\",\n        \"limit_error\": [],\n        \"monitor_owner\": false,\n        \"keywords_stats\": {\n          \"twitter_keywords_count\": 1\n        },\n        \"monitor_creator\": {\n          \"id\": 1234,\n          \"email\": \"johndoe@example.com\",\n          \"name\": \"John Doe\"\n        },\n        \"created_at_in_unix\": 1640995200,\n        \"dm_channel\": 0,\n        \"dm_configuration_id\": 0,\n        \"topics\": [],\n        \"account_error\": [],\n        \"account_valid_error\": [],\n        \"monitor_account_name\": \"\",\n        \"monitor_warning\": \"\"\n      }\n    }\n  ],\n  \"page_number\": \"1\",\n  \"count\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "916de66c-d7a6-42d9-b058-f54711250c85",
+              "name": "missing_params",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "monitors_list"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_id",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6e163e3-8cb6-4408-8c2a-b102c7fc87e6",
+              "name": "missing_API_key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "monitors_list"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_id",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0549d8df-2358-4b08-b5a0-618c491c79ae",
+              "name": "not_authorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "monitors_list"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_id",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "79e9a1ad-2455-447d-a056-cb90c2db591b",
+              "name": "too_many_requests",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "monitors_list"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_id",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4eed884-452f-4058-8640-ff01983176a9",
+              "name": "internal_server_error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "monitors_list"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_id",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8948785a-0dbd-4615-ab76-55bf00fe9ad8",
+              "name": "service_unavailable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "monitors_list"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_id",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1455eb07-17ce-44cb-8e0d-e7b90a8abb5f",
+              "name": "request_timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "monitors_list"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_id",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "af3d9119-e141-4108-93cc-b69a28c7f94f",
+      "name": "Public APIs - Social Listening - Base APIs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69561033-e4b1-4fa1-8a02-f8f00e5c2a2e",
+          "name": "Social Listening - Base APIs",
+          "request": {
+            "name": "Social Listening - Base APIs",
+            "description": {
+              "content": "This endpoint enanles you to get all widgets from your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "widgets"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "monitor_id",
+                  "value": "<integer>",
+                  "description": "(Required) The ID of the monitor being used."
+                },
+                {
+                  "disabled": false,
+                  "key": "product_id",
+                  "value": "<integer>",
+                  "description": "(Required) The ID of the product being monitored."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_name",
+                  "value": "<string>",
+                  "description": "(Required) The name of the page being monitored."
+                },
+                {
+                  "disabled": false,
+                  "key": "data_source",
+                  "value": "<string>",
+                  "description": "(Required) The data source being used for monitoring."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The API authorization token for the request.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "example_0"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "294b68d8-9a1c-47e0-ab40-e97e12bdfb5f",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f393a776-2be2-4872-8f43-baee3cdabbc2",
+              "name": "failure of getting data due to missing params",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41554663-b332-4e5e-885a-06aad7df16c9",
+              "name": "missing_API_key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "14d14dc4-83c5-4b92-844c-bdc04ef6c7c7",
+              "name": "not_authorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e9ffbbd-67df-4694-b30f-2aec70de1e59",
+              "name": "Page Not Found or Monitor Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a623c8f9-ab66-4246-94fc-cc392b2594dd",
+              "name": "too_many_requests",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f8d84a4-655a-4e48-87ff-03a584eb4d6c",
+              "name": "internal_server_error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ff27186-7c79-4605-b7e6-8a22db38d7ab",
+              "name": "service_unavailable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9f6ea725-d872-4fcb-b3aa-194bd99c6b8c",
+              "name": "request_timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4710418-3da7-4104-a5ff-fb51e023f091",
+          "name": "Social Listening - Base APIs",
+          "request": {
+            "name": "Social Listening - Base APIs",
+            "description": {
+              "content": "This endpoint enables you to apply filters for specific monitor data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "filters"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "monitor_id",
+                  "value": "<integer>",
+                  "description": "(Required) The ID of the monitor being used."
+                },
+                {
+                  "disabled": false,
+                  "key": "data_source",
+                  "value": "<string>",
+                  "description": "(Required) The data source being used for monitoring."
+                },
+                {
+                  "disabled": false,
+                  "key": "product_id",
+                  "value": "<integer>",
+                  "description": "(Required) The ID of the product being monitored."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_name",
+                  "value": "<string>",
+                  "description": "(Required) The name of the page being monitored."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The API authorization token for the request.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "example_0"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a35fd6cf-1b28-4260-ad66-654f1391ddf8",
+              "name": "Return all filters for a specific data_source Page",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75d4153d-0d1b-447d-915b-1345d7edf589",
+              "name": "missing_API_key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60e7c156-59de-43ba-8cad-412ed33d0c73",
+              "name": "not_authorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2c6d998-fdba-4461-aa2b-4bc2c2b7b83f",
+              "name": "Page Not Found or Monitor Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "595604a6-6c77-4bef-b2a1-82802f651a59",
+              "name": "too_many_requests",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "324294fc-b5a3-4227-920d-2ee56beb623b",
+              "name": "internal_server_error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16825fd7-9183-46d1-9f73-b739b18843b5",
+              "name": "service_unavailable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e2dbe9b-7d91-4abf-951f-a7776e01587f",
+              "name": "request_timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd34d88f-4aab-4c8f-a7cb-da592535809c",
+          "name": "Social Listening - Base APIs",
+          "request": {
+            "name": "Social Listening - Base APIs",
+            "description": {
+              "content": "This endpoint enables you to get specific page data from your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "pages"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "monitor_id",
+                  "value": "<integer>",
+                  "description": "(Required) The ID of the monitor being used."
+                },
+                {
+                  "disabled": false,
+                  "key": "data_source",
+                  "value": "<string>",
+                  "description": "(Required) The data source being used for monitoring."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The API authorization token for the request.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "example_0"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5a1386d-7764-4f90-b80c-32c0b6f9a80f",
+              "name": "Return all filters for a specific data_source Page",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "pages"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2702918f-bfd4-42ca-b050-c78443adbffc",
+              "name": "missing_API_key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "pages"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60e2f62c-ef2b-49db-a8ec-d0e75185212a",
+              "name": "not_authorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "pages"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6726d5d9-9868-41b0-81cb-13081e30b41e",
+              "name": "Page Not Found or Monitor Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "pages"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2496c4da-1646-40b0-8810-36641c9205ed",
+              "name": "too_many_requests",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "pages"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a879ca8-8802-46a4-8d6b-f3dedcc7d91d",
+              "name": "internal_server_error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "pages"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bfadcdfc-e624-4f55-b3a1-fc42f0da9d2e",
+              "name": "service_unavailable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "pages"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "046149e5-0871-4962-b9ec-450b23431479",
+              "name": "request_timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "pages"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2962443b-2559-4476-af8f-8802fb58e6c3",
+      "name": "Public APIs - Social Listening - Facebook widget_data APIs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a29221b-a2c8-4b61-b557-1cd320426ea4",
+          "name": "Social Listening - Facebook widget_data APIs",
+          "request": {
+            "name": "Social Listening - Facebook widget_data APIs",
+            "description": {
+              "content": "This endpoint enables you to apply filters for the Facebook widgets and get the `job_id`.\n<!-- theme: success -->\n> #### 💡 Note\n>\n> The `start_date` and `end_date` should be within 30 days only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "facebook",
+                "widget_data"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "monitor_id",
+                  "value": "<integer>",
+                  "description": "(Required) The ID of the monitor being used."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_name",
+                  "value": "<string>",
+                  "description": "(Required) The name of the page being monitored."
+                },
+                {
+                  "disabled": false,
+                  "key": "data_source",
+                  "value": "<string>",
+                  "description": "(Required) The data source being used for monitoring."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<integer>",
+                  "description": "(Required) The start date of the monitoring period in Unix timestamp format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<integer>",
+                  "description": "(Required) The end date of the monitoring period in Unix timestamp format."
+                },
+                {
+                  "disabled": false,
+                  "key": "widgets_names",
+                  "value": "<string>",
+                  "description": "(Required) The names of the widgets being monitored."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The API authorization token for the request.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "example_0"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e3cb751-277d-4144-826e-aaf31aa79249",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "facebook",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e48ba69-3d51-4faa-9ff2-3e256c8238c5",
+              "name": "missing_API_key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "facebook",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba1bef43-e724-4b15-a74d-71bb51aecf51",
+              "name": "not_authorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "facebook",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae5771ad-6569-40e4-8610-a023e85bd2a9",
+              "name": "too_many_requests",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "facebook",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ffe9d25c-7928-44aa-ab74-7d1149869d9d",
+              "name": "internal_server_error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "facebook",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75a4631a-e7cf-4849-b434-5c2b1c166135",
+              "name": "service_unavailable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "facebook",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09a130fd-45a4-4081-8f7d-41b2649c677f",
+              "name": "request_timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "facebook",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "58f5b3fd-0b37-4a80-bce9-41cb8afdfee6",
+      "name": "Public APIs - Social Listening - instagram widget_data APIs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd4fec0b-e368-468a-9875-fab827cd2678",
+          "name": "Social Listening - instagram widget_data APIs",
+          "request": {
+            "name": "Social Listening - instagram widget_data APIs",
+            "description": {
+              "content": "This endpoint enables you to apply filters for the Instagram widgets and get the `job_id`.\n<!-- theme: success -->\n> #### 💡 Note\n>\n> The `start_date` and `end_date` should be within 30 days only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "instagram",
+                "widget_data"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "monitor_id",
+                  "value": "<integer>",
+                  "description": "(Required) The ID of the monitor being used."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_name",
+                  "value": "<string>",
+                  "description": "(Required) The name of the page being monitored."
+                },
+                {
+                  "disabled": false,
+                  "key": "data_source",
+                  "value": "<string>",
+                  "description": "(Required) The data source being used for monitoring."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<integer>",
+                  "description": "(Required) The start date of the monitoring period in Unix timestamp format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<integer>",
+                  "description": "(Required) The end date of the monitoring period in Unix timestamp format."
+                },
+                {
+                  "disabled": false,
+                  "key": "widgets_names",
+                  "value": "<string>",
+                  "description": "(Required) The names of the widgets being monitored."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The API authorization token for the request.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "example_0"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "217b4813-bca1-4626-a50c-43fb5cc788bf",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "instagram",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "Instagram"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1203a53-0259-4690-89b5-6a3ccb059e29",
+              "name": "missing_API_key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "instagram",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "Instagram"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ca20f7b-9077-4c3c-9916-93825b65a58f",
+              "name": "not_authorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "instagram",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "Instagram"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ab960d47-c00f-4287-96a9-f5a0f4fcf369",
+              "name": "too_many_requests",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "instagram",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "Instagram"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e842abd-0633-4913-97f1-a9801ee4de7b",
+              "name": "internal_server_error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "instagram",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "Instagram"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "14f4b0e9-6c87-472a-8b39-3bd569445301",
+              "name": "service_unavailable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "instagram",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "Instagram"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "091b6d5f-f916-4d80-bf25-5f1c9e9678a0",
+              "name": "request_timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "instagram",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "Instagram"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "15b00f81-5a37-49d0-a387-4a92680816f4",
+      "name": "Public APIs - Social Listening - nb widget_data APIs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36b97d8d-af09-4d6e-b1b7-70170a669974",
+          "name": "Social Listening - nb widget_data APIs",
+          "request": {
+            "name": "Social Listening - nb widget_data APIs",
+            "description": {
+              "content": "This endpoint enables you to apply filters for the News & Blogs widgets and get the `job_id`.\n<!-- theme: success -->\n> #### 💡 Note\n>\n> The `start_date` and `end_date` should be within 30 days only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "nb",
+                "widget_data"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "monitor_id",
+                  "value": "<integer>",
+                  "description": "(Required) The ID of the monitor being used."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_name",
+                  "value": "<string>",
+                  "description": "(Required) The name of the page being monitored."
+                },
+                {
+                  "disabled": false,
+                  "key": "data_source",
+                  "value": "<string>",
+                  "description": "(Required) The data source being used for monitoring."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<integer>",
+                  "description": "(Required) The start date of the monitoring period in Unix timestamp format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<integer>",
+                  "description": "(Required) The end date of the monitoring period in Unix timestamp format."
+                },
+                {
+                  "disabled": false,
+                  "key": "widgets_names",
+                  "value": "<string>",
+                  "description": "(Required) The names of the widgets being monitored."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The API authorization token for the request.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "example_0"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16015edd-e4fa-4c44-99c4-f04ebaaf2f96",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "nb",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "TALKWALKER"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5f8e41c-dad1-476c-b598-60af57b56ff2",
+              "name": "missing_API_key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "nb",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "TALKWALKER"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "63126e9d-f209-4e2a-a31e-3330844fd2df",
+              "name": "not_authorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "nb",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "TALKWALKER"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6bac20f7-32a5-42f6-9261-7f8d14be3da1",
+              "name": "Page Not Found or Monitor Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "nb",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "TALKWALKER"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f42a1b0b-0cbe-45fc-b935-2c4481158dac",
+              "name": "too_many_requests",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "nb",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "TALKWALKER"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ae1ebd8-f185-4ef8-9e3f-d161103121e6",
+              "name": "internal_server_error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "nb",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "TALKWALKER"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d36b129f-e2d3-4311-8d3e-37b9c0de6f7a",
+              "name": "service_unavailable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "nb",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "TALKWALKER"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36716f10-49c6-4d06-8598-1941b32273c6",
+              "name": "request_timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "nb",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "TALKWALKER"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "057cb7d1-1d1b-407e-9a0d-a54be0a7a611",
+      "name": "Public APIs - Social Listening - twitter widget_data APIs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "05bf019a-d111-4419-9d1f-327c57998d20",
+          "name": "Social Listening - twitter widget_data APIs",
+          "request": {
+            "name": "Social Listening - twitter widget_data APIs",
+            "description": {
+              "content": "This endpoint enables you to apply filters for the Twitter widgets and get the `job_id`.\n<!-- theme: success -->\n> #### 💡 Note\n>\n> The `start_date` and `end_date` should be within 30 days only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "twitter",
+                "widget_data"
+              ],
+              "host": [
+                "api",
+                "lucidya",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "monitor_id",
+                  "value": "<integer>",
+                  "description": "(Required) The ID of the monitor being used."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_name",
+                  "value": "<string>",
+                  "description": "(Required) The name of the page being monitored."
+                },
+                {
+                  "disabled": false,
+                  "key": "data_source",
+                  "value": "<string>",
+                  "description": "(Required) The data source being used for monitoring."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<integer>",
+                  "description": "(Required) The start date of the monitoring period in Unix timestamp format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<integer>",
+                  "description": "(Required) The end date of the monitoring period in Unix timestamp format."
+                },
+                {
+                  "disabled": false,
+                  "key": "widgets_names",
+                  "value": "<string>",
+                  "description": "(Required) The names of the widgets being monitored."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The API authorization token for the request.",
+                "key": "luc-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "example_0"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd0e5000-20dd-454a-88b3-08bf13a16e78",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "twitter",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f8ab061-4dda-4759-8c2a-d04fefad3635",
+              "name": "missing_API_key",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "twitter",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6cc12060-bbd2-4dd5-a939-1cfaed6d103b",
+              "name": "not_authorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "twitter",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "63ea6a94-db47-409b-a614-aca2330dc3f6",
+              "name": "Page Not Found or Monitor Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "twitter",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ea5916c6-a3ef-4ebf-bfcc-6bcf628f2eff",
+              "name": "too_many_requests",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "twitter",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "example_0"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "example_0"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e4ba118b-470c-4dd3-aab7-963b0d15d492",
+              "name": "internal_server_error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "twitter",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "31940a34-006e-439d-93e7-24c85f98b722",
+              "name": "service_unavailable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "twitter",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7820e19d-8066-4666-9152-f78d0b9d08e5",
+              "name": "request_timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "twitter",
+                    "widget_data"
+                  ],
+                  "host": [
+                    "api",
+                    "lucidya",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "monitor_id",
+                      "value": "7709"
+                    },
+                    {
+                      "key": "page_name",
+                      "value": "account_page"
+                    },
+                    {
+                      "key": "data_source",
+                      "value": "twitter"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1622505600"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1622592000"
+                    },
+                    {
+                      "key": "widgets_names",
+                      "value": "[\"engagements\",\"customer_care\"]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API authorization token for the request.",
+                    "key": "luc-authorization",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lucidya.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f7550d4-fddd-49da-9941-5c5c85b545e6",
+    "name": "Lucidya Social Listening Public API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the Public API Reference for the Social Listening Product. Use our Social Listening Endpoints to integrate with your product. \n\nContact Support:\n Name: Lucidya Support\n Email: customer.support@lucidya.com",
+      "type": "text/plain"
+    }
+  }
+}

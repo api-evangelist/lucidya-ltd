@@ -1,0 +1,116 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/ (five OpenAPI documents, 73 operations)
+name: Lucidya MCP Server
+type: MCPServer
+status: candidate
+summary: >-
+  Lucidya ships no MCP server. This is a DERIVED candidate tool list — what a
+  server over the five published REST APIs would expose — recorded so the gap is
+  legible. Nothing here is live and no endpoint is asserted.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: derived
+search_evidence:
+  - what: Web search for a first-party Lucidya MCP server
+    result: >-
+      No Lucidya MCP server exists. Every result for "Lucidya MCP" resolves to
+      Lucid (lucid.co / mcp.lucid.app) or Lucidworks — different companies with
+      confusable names. Recorded explicitly so a later pass does not credit
+      Lucidya with Lucid's server.
+  - what: POST tools/list to plausible endpoints
+    probes:
+      - { url: 'https://mcp.lucidya.com/mcp', status: 0, note: DNS does not resolve }
+      - { url: 'https://api.lucidya.com/mcp', status: 404, note: Kong "no Route matched with those values" }
+      - { url: 'https://lucidya.com/mcp', status: 405, note: Webflow marketing site, not an MCP transport }
+  - what: GitHub organisation github.com/lucidya
+    status: 200
+    result: Zero public repositories; no MCP server source, no npm/PyPI package.
+  - what: Third-party repositories
+    result: >-
+      github.com/ahmed-salama22/lucidya-mcp and
+      github.com/muzakkirhussain011/lucidya-mcp-prototype exist but are
+      individual community experiments, not Lucidya-published, and are not
+      treated as a provider surface.
+candidate_tools:
+  note: >-
+    Derived one-to-one from real operationIds in openapi/. Each candidate tool
+    would inherit that operation's parameters and requestBody as its inputSchema.
+    Grouped by product.
+  social_listening:
+    - { tool: list_monitors, rest: monitors_list, method: GET, path: /monitors_list }
+    - { tool: list_widgets, rest: Widgets, method: GET, path: /widgets }
+    - { tool: list_filters, rest: filters, method: GET, path: /filters }
+    - { tool: list_pages, rest: pages, method: GET, path: /pages }
+    - { tool: get_twitter_widget_data, rest: post-twitter-widget-data, method: POST, path: /twitter/widget_data }
+    - { tool: get_facebook_widget_data, rest: post-facebook-widget-data, method: POST, path: /facebook/widget_data }
+    - { tool: get_instagram_widget_data, rest: post-instagram-widget-data, method: POST, path: /instagram/widget_data }
+    - { tool: get_news_blogs_widget_data, rest: post-new-blogs-widget-data, method: POST, path: /nb/widget_data }
+  ai:
+    - { tool: predict_sentiment, rest: predict_sentiment_batch_ai_sentiment_predict_batch_post, method: POST, path: /sentiment/predict_batch }
+    - { tool: predict_dialects, rest: predict_dialects_batch_ai_dialects_predict_batch_post, method: POST, path: /dialects/predict_batch }
+    - { tool: predict_domains, rest: predict_domains_batch_ai_domains_predict_batch_post, method: POST, path: /domains/predict_batch }
+    - { tool: predict_themes, rest: predict_themes_batch_ai_themes_predict_batch_post, method: POST, path: /themes/predict_batch }
+    - { tool: submit_audio_transcription, rest: post_audio_transcription_transcribe_offline, method: POST, path: /audio_transcription/transcribe_offline }
+    - { tool: check_audio_status, rest: checkAudioAnalysisStatus, method: GET, path: /audio_transcription/check_status }
+    - { tool: get_audio_result, rest: getAudioAnalysisResult, method: GET, path: /audio_transcription/get_transcription_result }
+  cdp:
+    - { tool: list_profiles, rest: getProfileList, method: GET, path: /profiles }
+    - { tool: get_profile, rest: getProfileById, method: GET, path: '/profiles/{id}' }
+    - { tool: create_profile, rest: createProfile, method: POST, path: /profiles }
+    - { tool: update_profile, rest: updateProfile, method: PUT, path: /profiles }
+    - { tool: list_profile_filters, rest: getFilters, method: GET, path: /profiles/filters }
+    - { tool: get_profile_surveys, rest: getSurveyByProfileId, method: GET, path: '/profiles/{id}/surveys' }
+    - { tool: get_profile_interactions, rest: getInteractionProfileById, method: GET, path: '/profiles/{id}/interactions' }
+    - { tool: create_profile_interaction, rest: createInteractionProfile, method: POST, path: /profiles/interactions }
+    - { tool: list_segments, rest: getSegmentList, method: GET, path: /segments }
+    - { tool: append_profiles_to_segment, rest: appendProfilleToSegment, method: PUT, path: /segments/append_profiles }
+    - { tool: remove_profiles_from_segment, rest: deleteProfilleFromSegment, method: DELETE, path: /segments/delete_profiles }
+  omnichannel:
+    - { tool: list_channels, rest: getChannelList, method: GET, path: /monitors_list }
+    - { tool: list_channel_categories, rest: getCategories, method: GET, path: /omnichannel/base/categories }
+    - { tool: list_channel_widgets, rest: getWidgetNames, method: GET, path: /omnichannel/base/widgets }
+    - { tool: create_channel_widget_job, rest: 'createTwitterWidgetData | createFacebookWidgetData | createInstagramWidgetData | createTikTokWidgetData | createLinkedInWidgetData | createSocialWidgetData | createWhatsappWidgetData | createIntercomWidgetData | createChatsWidgetData | createGoogleMyBusinessWidgetData | createGenesysWidgetData | createGmailWidgetData | createAnalyticsWidgetData | createInteractionsWidgetData', note: 'Fourteen near-identical POST operations, one per channel; a server would collapse these behind a channel enum.' }
+    - { tool: get_channel_widget_data, rest: 'getFacebookWidgetData | getInstagramWidgetData | get-omnichannel-tiktok-widget_data | getLinkedInWidgetData | getSocialWidgetData | getWhatsappWidgetData | getIntercomWidgetData | getChatsWidgetData | getGoogleMyBusinessWidgetData | getGenesysWidgetData | getGmailWidgetData | getAnalyticsInteractionsWidgetData', note: 'Twelve matching GET pollers.' }
+  omniserve:
+    - { tool: list_analytics_pages, rest: getAnalyticsPages, method: GET, path: /analytics/pages }
+    - { tool: list_page_widgets, rest: getPageWidgets, method: GET, path: '/analytics/{page_name}/widgets' }
+    - { tool: list_page_filters, rest: getPageFilters, method: GET, path: '/analytics/{page_name}/filters' }
+    - { tool: create_analytics_job, rest: createAnalyticsJob, method: POST, path: '/analytics/{page_name}/create' }
+    - { tool: get_analytics_results, rest: 'GET /analytics/{page_name}/index', method: GET, note: 'Operation has no operationId in the spec.' }
+    - { tool: get_csat_questions, rest: getCsatQuestions, method: GET, path: /analytics/in-chat-survey/csat_questions }
+    - { tool: get_csat_response_counts, rest: csatResponseCounts, method: POST, path: /analytics/in-chat-survey/csat_response_counts }
+    - { tool: get_csat_question_responses, rest: csatQuestionResponses, method: POST, path: /analytics/in-chat-survey/csat_question_responses }
+    - { tool: get_csat_user_responses, rest: csatUserResponses, method: POST, path: /analytics/in-chat-survey/csat_user_responses }
+    - { tool: create_custom_fields_job, rest: createCustomFieldsJob, method: POST, path: /analytics/custom_fields }
+    - { tool: get_custom_fields_results, rest: getCustomFieldsResults, method: GET, path: /analytics/custom_fields }
+    - { tool: list_agents, rest: getAgents, method: GET, path: /analytics/agents }
+    - { tool: list_teams, rest: getTeams, method: GET, path: /analytics/teams }
+    - { tool: list_data_sources, rest: getDataSources, method: GET, path: /analytics/data_sources }
+    - { tool: list_routings, rest: getRoutings, method: GET, path: /analytics/routings }
+    - { tool: list_slas, rest: getSlas, method: GET, path: /analytics/slas }
+candidate_tool_count: 52
+build_notes:
+  auth: >-
+    A server would pass a single `luc-authorization` header. Because tokens are
+    bound to one API product type and a maximum of three keys exist per type, a
+    server covering all five products needs five distinct tokens, not one.
+  ip_allowlist: >-
+    Keys carry subnet IP allow-lists, so a hosted remote MCP server would need
+    its egress ranges registered on the customer's key — a real obstacle to a
+    vendor-hosted remote server and an argument for local-stdio.
+  async: >-
+    Fourteen of the candidate tools are job creators whose results arrive on a
+    separate poll endpoint. A useful server would fold create-then-poll into one
+    tool call rather than exposing both halves.
+  rate_limits: >-
+    6 requests/minute on the AI API is the binding constraint for any agent
+    workload; a server must pace itself, since no RateLimit-* header is returned.
+cross_links:
+  authentication: ../authentication/lucidya-ltd-authentication.yml
+  rate_limits: ../rate-limits/lucidya-ltd-rate-limits.yml
+  conventions: ../conventions/lucidya-ltd-conventions.yml
