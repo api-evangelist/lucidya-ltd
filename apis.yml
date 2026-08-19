@@ -41,7 +41,7 @@ x-tier-reason: >-
   Five first-party OpenAPI documents (73 operations) harvested from the
   provider's own public Stoplight workspace on 2026-08-13, plus the full docs
   set for auth, pagination, errors, rate limits and versioning.
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-08-13'
 tags:
