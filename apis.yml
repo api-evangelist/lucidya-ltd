@@ -55,116 +55,9 @@ tags:
 - Arabic NLP
 - MENA
 apis:
-- name: Lucidya Social Listening API
-  description: >-
-    Monitor and retrieve data across social platforms (X, Instagram, Intercom,
-    and more); apply filters, configure alerts, and track API usage.
-  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
-  baseURL: https://api.lucidya.com
-  properties:
-  - type: Documentation
-    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
-  - type: APIReference
-    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
-  - type: GettingStarted
-    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
-  - type: Authentication
-    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
-  - type: OpenAPI
-    url: openapi/lucidya-ltd-social-listening-api-openapi.yml
-  - type: Overlay
-    url: overlays/lucidya-ltd-social-listening-overlay.yaml
-  - type: AgentSkill
-    url: skills/lucidya-ltd-pull-social-listening-widget-data.md
-- name: Lucidya AI API
-  description: >-
-    Analyze text and audio with Lucidya's AI models — sentiment analysis, Arabic
-    dialect detection, theme/sub-theme classification, domain categorization, and
-    audio transcription.
-  humanURL: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
-  baseURL: https://api.lucidya.com
-  properties:
-  - type: Documentation
-    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
-  - type: APIReference
-    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
-  - type: GettingStarted
-    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
-  - type: Authentication
-    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
-  - type: OpenAPI
-    url: openapi/lucidya-ltd-ai-api-openapi.yml
-  - type: Overlay
-    url: overlays/lucidya-ltd-ai-overlay.yaml
-  - type: AgentSkill
-    url: skills/lucidya-ltd-analyze-arabic-text.md
-  - type: AgentSkill
-    url: skills/lucidya-ltd-transcribe-audio.md
-- name: Lucidya CDP API
-  description: >-
-    Access unified customer profiles, interaction histories, and survey data from
-    the Customer Data Platform.
-  humanURL: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
-  baseURL: https://api.lucidya.com
-  properties:
-  - type: Documentation
-    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
-  - type: APIReference
-    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
-  - type: GettingStarted
-    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
-  - type: Authentication
-    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
-  - type: OpenAPI
-    url: openapi/lucidya-ltd-cdp-api-openapi.yml
-  - type: Overlay
-    url: overlays/lucidya-ltd-cdp-overlay.yaml
-  - type: AgentSkill
-    url: skills/lucidya-ltd-manage-cdp-profiles-and-segments.md
-- name: Lucidya OmniChannel API
-  description: >-
-    Retrieve widget data across all connected channels — social, chat, rating,
-    mail, and call.
-  humanURL: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
-  baseURL: https://api.lucidya.com
-  properties:
-  - type: Documentation
-    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
-  - type: APIReference
-    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
-  - type: GettingStarted
-    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
-  - type: Authentication
-    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
-  - type: OpenAPI
-    url: openapi/lucidya-ltd-omnichannel-api-openapi.yml
-  - type: Overlay
-    url: overlays/lucidya-ltd-omnichannel-overlay.yaml
-- name: Lucidya OmniServe Analytics API
-  description: >-
-    Fetch analytics results for Inbox, SLAs, Agents, and In-Chat Survey,
-    including KPIs, time-series, and distributions.
-  humanURL: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
-  baseURL: https://api.lucidya.com/public_api/omniserve
-  properties:
-  - type: Documentation
-    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
-  - type: APIReference
-    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
-  - type: GettingStarted
-    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
-  - type: Authentication
-    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
-  - type: OpenAPI
-    url: openapi/lucidya-ltd-omniserve-analytics-api-openapi.yml
-  - type: Overlay
-    url: overlays/lucidya-ltd-omniserve-analytics-overlay.yaml
-  - type: AgentSkill
-    url: skills/lucidya-ltd-run-omniserve-analytics-job.md
 - name: Lucidya Webhooks
   description: >-
-    Receive real-time push notifications when specific events or conditions are
-    met across your monitors.
+    Receive real-time push notifications when specific events or conditions are met across your monitors.
   humanURL: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
   baseURL: https://api.lucidya.com
   properties:
@@ -174,12 +67,1918 @@ apis:
     url: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
   - type: Documentation
     url: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
+- aid: lucidya-ltd:lucidya-ltd-aggregated-pages-analytics-api
+  name: Lucidya Ltd aggregated pages > Analytics API
+  description: >-
+    The aggregated pages > Analytics API from Lucidya Ltd — 1 operation(s) for aggregated pages > analytics.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - aggregated pages > Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-aggregated-pages-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-aggregated-pages-interactions-api
+  name: Lucidya Ltd aggregated pages > Interactions API
+  description: >-
+    The aggregated pages > Interactions API from Lucidya Ltd — 1 operation(s) for aggregated pages > interactions.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - aggregated pages > Interactions
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-aggregated-pages-interactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-analytics-jobs-api
+  name: Lucidya Ltd Analytics Jobs API
+  description: Endpoints for creating and retrieving analytics jobs
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Analytics Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-analytics-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-analytics-pages-api
+  name: Lucidya Ltd Analytics Pages API
+  description: Endpoints for discovering and managing analytics pages, widgets, and filters
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Analytics Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-analytics-pages-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-audio-transcription-api
+  name: Lucidya Ltd Audio Transcription API
+  description: The Audio Transcription API from Lucidya Ltd — 3 operation(s) for audio transcription.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Audio Transcription
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-audio-transcription-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-calls-genesys-api
+  name: Lucidya Ltd Calls > Genesys API
+  description: Operations related to Genesys channel.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Calls > Genesys
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-calls-genesys-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-chats-chats-api
+  name: Lucidya Ltd Chats > chats API
+  description: The Chats > chats API from Lucidya Ltd — 1 operation(s) for chats > chats.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Chats > chats
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-chats-chats-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-chats-intercom-api
+  name: Lucidya Ltd Chats > Intercom API
+  description: Operations related to Intercom channel.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Chats > Intercom
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-chats-intercom-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-chats-whatsapp-api
+  name: Lucidya Ltd Chats > Whatsapp API
+  description: The Chats > Whatsapp API from Lucidya Ltd — 1 operation(s) for chats > whatsapp.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Chats > Whatsapp
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-chats-whatsapp-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-csat-analytics-api
+  name: Lucidya Ltd CSAT Analytics API
+  description: Endpoints for CSAT (Customer Satisfaction) survey analytics
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - CSAT Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-csat-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-custom-fields-api
+  name: Lucidya Ltd Custom Fields API
+  description: Endpoints for retrieving per-engagement applied custom-field values (job-based)
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Custom Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-custom-fields-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-default-api
+  name: Lucidya Ltd Default API
+  description: Operations related to default and main endpoints on OmniChannel.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Default
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-default-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-dialects-api
+  name: Lucidya Ltd Dialects API
+  description: The Dialects API from Lucidya Ltd — 1 operation(s) for dialects.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Dialects
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-dialects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-domains-api
+  name: Lucidya Ltd Domains API
+  description: The Domains API from Lucidya Ltd — 1 operation(s) for domains.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-domains-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-email-gmail-api
+  name: Lucidya Ltd Email > Gmail API
+  description: Operations related to Gmail channel.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Email > Gmail
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-email-gmail-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-filters-api
+  name: Lucidya Ltd Filters API
+  description: The Filters API from Lucidya Ltd — 1 operation(s) for filters.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Filters
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-filters-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-profile-interactions-api
+  name: Lucidya Ltd Profile Interactions API
+  description: The Profile Interactions API from Lucidya Ltd — 2 operation(s) for profile interactions.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Profile Interactions
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-profile-interactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-profiles-api
+  name: Lucidya Ltd Profiles API
+  description: The Profiles API from Lucidya Ltd — 2 operation(s) for profiles.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-public-api-monitors-list-api
+  name: Lucidya Ltd Public API - Monitors List API
+  description: >-
+    The Public API - Monitors List API from Lucidya Ltd — 1 operation(s) for public api - monitors list.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Public API - Monitors List
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-public-api-monitors-list-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-public-apis-social-listening-base-apis-api
+  name: Lucidya Ltd Public APIs - Social Listening - Base APIs API
+  description: >-
+    The Public APIs - Social Listening - Base APIs API from Lucidya Ltd — 3 operation(s) for public apis
+    - social listening - base apis.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Public APIs - Social Listening - Base APIs
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-public-apis-social-listening-base-apis-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-public-apis-social-listening-facebook-widget-data-apis-api
+  name: Lucidya Ltd Public APIs - Social Listening - Facebook widget_data APIs API
+  description: >-
+    The Public APIs - Social Listening - Facebook widget_data APIs API from Lucidya Ltd — 1 operation(s)
+    for public apis - social listening - facebook widget_data apis.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Public APIs - Social Listening - Facebook widget_data APIs
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/lucidya-ltd-public-apis-social-listening-facebook-widget-data-apis-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-public-apis-social-listening-instagram-widget-data-apis-api
+  name: Lucidya Ltd Public APIs - Social Listening - instagram widget_data APIs API
+  description: >-
+    The Public APIs - Social Listening - instagram widget_data APIs API from Lucidya Ltd — 1 operation(s)
+    for public apis - social listening - instagram widget_data apis.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Public APIs - Social Listening - instagram widget_data APIs
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/lucidya-ltd-public-apis-social-listening-instagram-widget-data-apis-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-public-apis-social-listening-nb-widget-data-apis-api
+  name: Lucidya Ltd Public APIs - Social Listening - nb widget_data APIs API
+  description: >-
+    The Public APIs - Social Listening - nb widget_data APIs API from Lucidya Ltd — 1 operation(s) for
+    public apis - social listening - nb widget_data apis.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Public APIs - Social Listening - nb widget_data APIs
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-public-apis-social-listening-nb-widget-data-apis-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-public-apis-social-listening-twitter-widget-data-apis-api
+  name: Lucidya Ltd Public APIs - Social Listening - twitter widget_data APIs API
+  description: >-
+    The Public APIs - Social Listening - twitter widget_data APIs API from Lucidya Ltd — 1 operation(s)
+    for public apis - social listening - twitter widget_data apis.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Public APIs - Social Listening - twitter widget_data APIs
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/lucidya-ltd-public-apis-social-listening-twitter-widget-data-apis-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-rating-google-my-business-api
+  name: Lucidya Ltd Rating > Google My Business API
+  description: Operations related to Google My Business channel.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Rating > Google My Business
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-rating-google-my-business-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-reference-data-api
+  name: Lucidya Ltd Reference Data API
+  description: Endpoints for fetching reference data (agents, teams, data sources)
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Reference Data
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-reference-data-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-segments-api
+  name: Lucidya Ltd Segments API
+  description: The Segments API from Lucidya Ltd — 3 operation(s) for segments.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Segments
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-segments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-sentiment-api
+  name: Lucidya Ltd Sentiment API
+  description: The Sentiment API from Lucidya Ltd — 1 operation(s) for sentiment.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Sentiment
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-sentiment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-social-media-facebook-api
+  name: Lucidya Ltd Social Media > Facebook API
+  description: Operations related to Facebook "Public and Private" channel.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Social Media > Facebook
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-social-media-facebook-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-social-media-instagram-api
+  name: Lucidya Ltd Social Media > Instagram API
+  description: Operations related to Instagram "Public and Private" channel.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Social Media > Instagram
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-social-media-instagram-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-social-media-linkedin-api
+  name: Lucidya Ltd Social Media > Linkedin API
+  description: Operations related to Linkedin channel.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Social Media > Linkedin
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-social-media-linkedin-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-social-media-social-api
+  name: Lucidya Ltd Social Media > Social API
+  description: Operations related to all social cannels.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Social Media > Social
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-social-media-social-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-social-media-tiktok-api
+  name: Lucidya Ltd Social Media > TikTok API
+  description: Operations related to TikTok channel.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Social Media > TikTok
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-social-media-tiktok-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-social-media-x-twitter-api
+  name: Lucidya Ltd Social Media > X (Twitter) API
+  description: Operations related to X (Twitter) "Public and Private" channel.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Social Media > X (Twitter)
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-social-media-x-twitter-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-surveys-api
+  name: Lucidya Ltd Surveys API
+  description: The Surveys API from Lucidya Ltd — 1 operation(s) for surveys.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Surveys
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-surveys-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
+- aid: lucidya-ltd:lucidya-ltd-themes-api
+  name: Lucidya Ltd Themes API
+  description: The Themes API from Lucidya Ltd — 1 operation(s) for themes.
+  humanURL: >-
+    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  baseURL: https://api.lucidya.com
+  tags:
+  - Themes
+  properties:
+  - type: OpenAPI
+    url: openapi/lucidya-ltd-themes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: APIReference
+    url: >-
+      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/Social-Listening-api/uh64vtmx7x4kl-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/ai-api/zl9th61r4qjdz-lucidya-public-ai-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/ai-api/l9nsga0nmis4v-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/ai-api/sjq8uo8o8lt93-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/cdp-api/ns8sfqyr1dgw6-cdp-customer-data-platform-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/cdp-api/lnrpbrm3b9yp9-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/cdp-api/6tqmgs82r4jxa-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omnichannel-api/d1ow4caem6i5x-omni-channel-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omnichannel-api/q1nc0ntpokxgs-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omnichannel-api/cfqqlsohea8mv-authorization
+  - type: Documentation
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: APIReference
+    url: https://docs.lucidya.com/docs/omniserve/mjhuba7fdw882-omni-serve-analytics-api
+  - type: GettingStarted
+    url: https://docs.lucidya.com/docs/omniserve/jjdvsz08tba5c-get-started
+  - type: Authentication
+    url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgentSkill
+  url: skills/lucidya-ltd-pull-social-listening-widget-data.md
+- type: Overlay
+  url: overlays/lucidya-ltd-ai-overlay.yaml
+- type: AgentSkill
+  url: skills/lucidya-ltd-analyze-arabic-text.md
+- type: AgentSkill
+  url: skills/lucidya-ltd-transcribe-audio.md
+- type: Overlay
+  url: overlays/lucidya-ltd-cdp-overlay.yaml
+- type: AgentSkill
+  url: skills/lucidya-ltd-manage-cdp-profiles-and-segments.md
+- type: Overlay
+  url: overlays/lucidya-ltd-omnichannel-overlay.yaml
+- type: Overlay
+  url: overlays/lucidya-ltd-omniserve-analytics-overlay.yaml
+- type: AgentSkill
+  url: skills/lucidya-ltd-run-omniserve-analytics-job.md
 - type: Website
   url: https://lucidya.com
 - type: DeveloperPortal
