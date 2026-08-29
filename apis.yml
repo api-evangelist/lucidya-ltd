@@ -11,6 +11,18 @@ description: >-
   notifications. Lucidya is a 500 Global portfolio company headquartered in Saudi
   Arabia and is certified for SOC 2 Type 2 and ISO 27001.
 url: https://raw.githubusercontent.com/api-evangelist/lucidya-ltd/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: published
   onboarding: approval-required
@@ -1961,6 +1973,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/lucidya-ltd-capability-edges.yml
+  name: Lucidya Ltd Business Capability Map
 - type: AgentSkill
   url: skills/lucidya-ltd-pull-social-listening-widget-data.md
 - type: Overlay
