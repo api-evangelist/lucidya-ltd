@@ -659,7 +659,8 @@ apis:
   humanURL: >-
     https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
-  tags:
+  tags: []
+  tags_raw:
   - Default
   properties:
   - type: OpenAPI
@@ -1078,7 +1079,8 @@ apis:
   humanURL: >-
     https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
-  tags:
+  tags: []
+  tags_raw:
   - Public APIs - Social Listening - Base APIs
   properties:
   - type: OpenAPI
@@ -1132,7 +1134,8 @@ apis:
   humanURL: >-
     https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
-  tags:
+  tags: []
+  tags_raw:
   - Public APIs - Social Listening - Facebook widget_data APIs
   properties:
   - type: OpenAPI
@@ -1187,7 +1190,8 @@ apis:
   humanURL: >-
     https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
-  tags:
+  tags: []
+  tags_raw:
   - Public APIs - Social Listening - instagram widget_data APIs
   properties:
   - type: OpenAPI
@@ -1242,7 +1246,8 @@ apis:
   humanURL: >-
     https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
-  tags:
+  tags: []
+  tags_raw:
   - Public APIs - Social Listening - nb widget_data APIs
   properties:
   - type: OpenAPI
@@ -1296,7 +1301,8 @@ apis:
   humanURL: >-
     https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
-  tags:
+  tags: []
+  tags_raw:
   - Public APIs - Social Listening - twitter widget_data APIs
   properties:
   - type: OpenAPI
