@@ -1,0 +1,173 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniChannel aggregated pages > Interactions API
+  description: 'This document serves as the 📘 comprehensive API guide for 🔌 integrating your product(s) with the Lucidya **OmniChannel** via **RESTful** endpoints.
+
+
+    🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
+
+
+    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: aggregated pages > Interactions
+paths:
+  /omnichannel/interactions/widget_data:
+    post:
+      tags:
+      - aggregated pages > Interactions
+      summary: Create Interactions Widget Data
+      description: 'Use this endpoint to create **Interactions** widget data.
+
+
+        <!-- theme: info -->
+
+        > #### Note
+
+        >
+
+        > You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.'
+      operationId: createInteractionsWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, example in this endpoint, `INTERACTIONS`.
+        required: true
+        schema:
+          type: string
+          example: INTERACTIONS
+        examples:
+          default:
+            value: INTERACTIONS
+      - name: data_source
+        in: query
+        description: Use this to add the data source name, example in this endpoint, `interactions`.
+        required: true
+        schema:
+          type: string
+          example: interactions
+        examples:
+          default:
+            value: interactions
+      - name: start_date
+        in: query
+        description: This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`.
+        required: true
+        schema:
+          type: integer
+          example: '1708732800'
+        examples:
+          default:
+            value: '1708732800'
+      - name: end_date
+        in: query
+        description: This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`.
+        required: true
+        schema:
+          type: integer
+          example: '1709337599'
+        examples:
+          default:
+            value: '1709337599'
+      - name: widgets_names
+        in: query
+        description: Use this to add widget names for the provided page name.
+        required: true
+        schema:
+          type: array
+          example: '["OverView"]'
+        examples:
+          default:
+            value: '["OverView"]'
+      - name: filters
+        in: query
+        description: Use this to apply custom filters like `gender_filter` or `main_dialect_filter`.
+        schema:
+          type: string
+          example: '{%22gender_filter%22%3A[]%2C%22main_dialect_filter%22%3A[]%2C%22sub_dialect_filter%22%3A[]%2C%22monitor_list%22%3A[]%2C%22sentiment_filter%22%3A[]%2C%22sub_themes_filter%22%3A[]%2C%22themes_filter%22%3A[]%2C%22waiting_filter%22%3A[]%2C%22cities_filter%22%3A[]%2C%22countries_filter%22%3A[]%2C%22languages_filter%22%3A[]%2C%22categories%22%3A[]%2C%22interaction_type%22%3A[]%2C%22dm_list%22%3A[]%2C%22channels%22%3A[]%2C%22locations%22%3A[]%2C%22with_comment%22%3A[]%2C%22manual_topics%22%3A[]%2C%22call_status%22%3A[]%2C%22keyword%22%3A[]%2C%22question_status%22%3A[]}'
+        examples:
+          default:
+            value: '{%22gender_filter%22%3A[]%2C%22main_dialect_filter%22%3A[]%2C%22sub_dialect_filter%22%3A[]%2C%22monitor_list%22%3A[]%2C%22sentiment_filter%22%3A[]%2C%22sub_themes_filter%22%3A[]%2C%22themes_filter%22%3A[]%2C%22waiting_filter%22%3A[]%2C%22cities_filter%22%3A[]%2C%22countries_filter%22%3A[]%2C%22languages_filter%22%3A[]%2C%22categories%22%3A[]%2C%22interaction_type%22%3A[]%2C%22dm_list%22%3A[]%2C%22channels%22%3A[]%2C%22locations%22%3A[]%2C%22with_comment%22%3A[]%2C%22manual_topics%22%3A[]%2C%22call_status%22%3A[]%2C%22keyword%22%3A[]%2C%22question_status%22%3A[]}'
+      - name: monitors_list
+        in: query
+        description: Use this to add monitors list ID(s) for the channel(s).
+        required: true
+        schema:
+          type: array
+          example: '[]'
+        examples:
+          default:
+            value: '[]'
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResult'
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: 115be415-32c2-4a66-ab86-2e0cd1b89a8e
+                      widgets_names:
+                      - OverView
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+components:
+  schemas:
+    JobResult:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: The unique identifier of the job.
+          example: 3e6d9c25-14dc-4e9e-9f59-98e4a377ebf4
+        widgets_names:
+          type: array
+          description: 'A list of widget names for which results are available. This may be a subset of the widgets requested in the original job.
+
+            '
+          items:
+            type: string

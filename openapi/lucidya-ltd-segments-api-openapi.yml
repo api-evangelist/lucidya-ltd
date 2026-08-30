@@ -1,0 +1,587 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: CDP (Customer Data Platform) Segments API
+  description: "This document serves as the \U0001F4D8 comprehensive API guide for \U0001F50C integrating your product(s) with the Lucidya **Customer Data Platform (CDP)** via **RESTful** endpoints.\n\n\U0001F50D Explore how to seamlessly connect your offerings with our platform to leverage customer data insights and profiles.\n\nMethod | Endpoint | Description\n-------|----------|---------\n `GET` | **[Get Filters](https://docs.lucidya.com/docs/cdp-api/branches/main/7k92xwdm05e0i-get-filters)** | Reterive a list of all available filters on your account.\n `GET` | **[Get Profile List](https://docs.lucidya.com/docs/cdp-api/branches/main/3mjmoshm1vmcu-get-a-list-of-all-profiles)** | Reterive a list of all available customer profiles.\n `GET` | **[Get Profile by Id](https://docs.lucidya.com/docs/cdp-api/branches/main/b0aykazg3489q-get-custom-profile-data-by-id)** | Reterive a specific customer profile data by `profile_id`.\n `POST`| **[Create Profile](https://docs.lucidya.com/docs/cdp-api/c2d0471ce7599-create-profile)** | Create a new CDP profile by adding the profile information.\n `PUT` | **[Update Profile](https://docs.lucidya.com/docs/cdp-api/10c0d3000016a-update-profile)** | Update the information for a specific profile.\n `GET` | **[Get Survey data by Profile Id](https://docs.lucidya.com/docs/cdp-api/branches/main/zb4668e65pnoz-retrieve-survey-data-for-a-specific-profile-using-its-id)** | Reterive a data of all survey(ies) for specific customer by `profile_id`.\n `POST`| **[Create Interaction Profile](https://docs.lucidya.com/docs/cdp-api/branches/main/2kqwzyyvxixnr-create-interaction-profile)** | Create an interaction profile to get the `job_id`.\n `GET` | **[Get Interaction Profile](https://docs.lucidya.com/docs/cdp-api/branches/main/m7c5hv4h94339-get-interaction-profile-by-id)** | Reterive an interaction profile by `job_id` and `profile_id`.\n `GET` | **[Get Segments List](https://docs.lucidya.com/docs/cdp-api/6c947c3eaec37-paginated-segments-list)** | Retrieve a paginated list of segments associated with your account.\n `PUT` | **[Append Profile(s) to Segment](https://docs.lucidya.com/docs/cdp-api/ec7081a06df11-append-profile-s-into-segment)** | Add selected profiles to the segment.\n `DELETE` | **[Delete Profile(s) from Segment](https://docs.lucidya.com/docs/cdp-api/a0ac3ea7ae575-delete-profile-s-from-segment)** | Remove selected profiles from the segment.\n\n[\U0001F393 Learn more about Lucidya CDP](https://lucidya.com/product/audience/)."
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+  license:
+    url: ''
+    name: ''
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: Segments
+paths:
+  /segments:
+    get:
+      tags:
+      - Segments
+      summary: Paginated Segments List
+      description: 'This endpoint retrieves a list of segments associated with your account.
+
+
+        <!-- theme: success -->
+
+        > #### 🔢 Pagination
+
+        >
+
+        > This endpoint enables pagination by using a `page` parameter, which is included in the request query parameters.'
+      operationId: getSegmentList
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        schema:
+          type: string
+          example: application/json
+        examples:
+          default:
+            value: application/json
+      - name: page
+        in: query
+        description: The page number.
+        schema:
+          type: string
+          example: 1
+        examples:
+          default:
+            value: 1
+      - name: sort_by
+        in: query
+        description: The field by which to sort the results. Can be one of 'id', 'name', 'created_at',or 'profiles_count'.
+        schema:
+          type: string
+          example: id
+        examples:
+          default:
+            value: id
+      - name: order_by
+        in: query
+        description: The order of results. Can be one of 'desc' or 'asc'.
+        schema:
+          type: string
+          example: desc
+        examples:
+          default:
+            value: desc
+      responses:
+        '200':
+          description: Successful Operation - Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  examples:
+                    type: object
+                    properties:
+                      example:
+                        type: object
+                        properties:
+                          value:
+                            type: object
+                            properties:
+                              segments_count:
+                                type: integer
+                                description: Total number of available segments.
+                              total_pages:
+                                type: integer
+                                description: Total number of paginated pages.
+                              data:
+                                type: array
+                                description: Array of segment data.
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      description: Id of the segment.
+                                    name:
+                                      type: string
+                                      description: Name of the sagment.
+                                    created_at:
+                                      type: number
+                                      description: Creation date of the segment in Unix timestamp format.
+                                    creator_user:
+                                      type: string
+                                      description: Name of the user who created the segment.
+                                    profiles_count:
+                                      type: integer
+                                      description: Total number of profiles in the segment.
+                              sorting_keys:
+                                type: array
+                                description: 'Array of available sort options: `id`, `name`, `created_at`,or `profiles_count`.'
+                                items:
+                                  type: string
+                x-examples:
+                  Example:
+                    examples:
+                      example:
+                        value:
+                          segments_count: 71
+                          total_pages: 8
+                          data:
+                          - id: 2
+                            name: test2
+                            created_at: 1717401642.404909
+                            creator_user: magdy
+                            profiles_count: 0
+                          - id: 1
+                            name: test1
+                            created_at: 1716212055.565269
+                            creator_user: Abdulaziz
+                            profiles_count: 0
+                          sorting_keys:
+                          - name
+                          - id
+                          - created_at
+                          - profiles_count
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          segments_count: 71
+                          total_pages: 8
+                          data:
+                          - id: 2
+                            name: test2
+                            created_at: 1717401642.404909
+                            creator_user: magdy
+                            profiles_count: 0
+                          - id: 1
+                            name: test1
+                            created_at: 1716212055.565269
+                            creator_user: Abdulaziz
+                            profiles_count: 0
+                          sorting_keys:
+                          - name
+                          - id
+                          - created_at
+                          - profiles_count
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 400
+                            detail: invalid base64
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 401
+                            detail: Failure of getting data due to token not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 503
+                            detail: USER_NOT_AUTHORIZED
+                      example_1:
+                        value:
+                          error:
+                            status: 503
+                            detail: SOMETHING_WENT_WRONG
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+  /segments/append_profiles:
+    put:
+      tags:
+      - Segments
+      summary: Append Profile(s) into Segment
+      description: Use this endpoint to append profile(s) into the selected segment.
+      operationId: appendProfilleToSegment
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        schema:
+          type: string
+          example: application/json
+        examples:
+          default:
+            value: application/json
+      - name: segment_id
+        in: query
+        description: The unique identifier (id) of the segment to append profile(s).
+        required: true
+        schema:
+          type: integer
+          example: <integer>
+        examples:
+          default:
+            value: <integer>
+      - name: profiles_ids
+        in: query
+        description: Comma-separated list of profile IDs to append.
+        required: true
+        schema:
+          type: array
+          example: <array>
+        examples:
+          default:
+            value: <array>
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful Operation - Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  examples:
+                    type: object
+                    properties:
+                      example_0:
+                        type: object
+                        properties:
+                          value:
+                            type: object
+                            properties:
+                              message:
+                                type: string
+                                description: Type of response message.
+                x-examples:
+                  Example 1:
+                    examples:
+                      example_0:
+                        value:
+                          message: Profile(s) removed successfully
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          message: Profile(s) added successfully
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 400
+                            detail: invalid base64
+                      example_1:
+                        value:
+                          message: No profiles found for the IDs {1,2,3}
+                      example_2:
+                        value:
+                          message: Segment was not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 401
+                            detail: Failure of getting data due to token not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 503
+                            detail: USER_NOT_AUTHORIZED
+                      example_1:
+                        value:
+                          error:
+                            status: 503
+                            detail: SOMETHING_WENT_WRONG
+                      example_2:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter segment_id is required
+                      example_3:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter profiles_ids is required
+                      example_4:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter profiles_ids cannot have length less than 1
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+  /segments/delete_profiles:
+    delete:
+      tags:
+      - Segments
+      summary: Delete Profile(s) from Segment
+      description: Use this endpoint to delete profile(s) from the segment.
+      operationId: deleteProfilleFromSegment
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        schema:
+          type: string
+          example: application/json
+        examples:
+          default:
+            value: application/json
+      - name: segment_id
+        in: query
+        description: The unique identifier (id) of the segment to delete profile(s) from it.
+        required: true
+        schema:
+          type: integer
+          example: <integer>
+        examples:
+          default:
+            value: <integer>
+      - name: profiles_ids
+        in: query
+        description: Comma-separated list of profile ID(s) to delete.
+        required: true
+        schema:
+          type: array
+          example: <array>
+        examples:
+          default:
+            value: <array>
+      responses:
+        '200':
+          description: Successful Operation - Ok.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  examples:
+                    type: object
+                    properties:
+                      example_0:
+                        type: object
+                        properties:
+                          value:
+                            type: object
+                            properties:
+                              message:
+                                type: string
+                                description: Type of response message.
+                x-examples:
+                  Example 1:
+                    examples:
+                      example_0:
+                        value:
+                          message: Profile(s) removed successfully
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          message: Profile(s) removed successfully
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 400
+                            detail: invalid base64
+                      example_1:
+                        value:
+                          message: No profiles found for the IDs {1,2,3}
+                      example_2:
+                        value:
+                          message: Segment was not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 401
+                            detail: Failure of getting data due to token not found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+        '503':
+          description: Service Unavailable.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    examples:
+                      example_0:
+                        value:
+                          error:
+                            status: 503
+                            detail: USER_NOT_AUTHORIZED
+                      example_1:
+                        value:
+                          error:
+                            status: 503
+                            detail: SOMETHING_WENT_WRONG
+                      example_2:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter segment_id is required
+                      example_3:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter profiles_ids is required
+                      example_4:
+                        value:
+                          error:
+                            status: 503
+                            detail: Parameter profiles_ids cannot have length less than 1
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+x-internal: false

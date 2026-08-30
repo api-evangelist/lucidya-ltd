@@ -1,0 +1,773 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniServe Analytics CSAT Analytics API
+  description: "Complete API collection for Lucidya OmniServe Analytics Endpoints. This API provides access to \nanalytics data for engagement monitoring, CSAT surveys, and reporting capabilities.\n\nFeatures include:\n- Analytics pages and widgets discovery\n- Job-based analytics data retrieval\n- CSAT survey analytics\n- Reference data access (agents, teams, data sources)\n"
+  contact:
+    name: API Support
+    email: support@lucidya.com
+    url: https://lucidya.com
+  license:
+    url: https://opensource.org/licenses/MIT
+    name: MIT
+servers:
+- url: https://api.lucidya.com/public_api/omniserve
+  description: Production Server
+security:
+- OmniserveToken: []
+tags:
+- name: CSAT Analytics
+  description: Endpoints for CSAT (Customer Satisfaction) survey analytics
+paths:
+  /analytics/in-chat-survey/csat_questions:
+    get:
+      tags:
+      - CSAT Analytics
+      summary: Get CSAT Questions
+      description: 'This endpoint enables you to retrieve CSAT questions for a data source with pagination and optional search.
+
+
+        **Note:** This endpoint supports pagination.
+
+        '
+      operationId: getCsatQuestions
+      parameters:
+      - name: data_source_name
+        in: query
+        description: Data source identifier (e.g., twitter, facebook)
+        required: true
+        schema:
+          type: string
+          example: twitter
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+          example: 1
+      - name: search
+        in: query
+        description: Optional search term to filter questions
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Questions list with pagination
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        question_text:
+                          type: string
+                          example: How satisfied are you with our service?
+                        question_type:
+                          type: string
+                          example: rating
+                        is_deleted:
+                          type: boolean
+                          example: false
+                        created_at:
+                          type: string
+                          format: date-time
+                          example: '2024-01-01T00:00:00Z'
+                  pagination:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                        example: 1
+                      items:
+                        type: integer
+                        example: 10
+                      pages:
+                        type: integer
+                        example: 3
+                      count:
+                        type: integer
+                        example: 25
+                      last:
+                        type: integer
+                        example: 3
+                      from:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 10
+                      prev:
+                        type:
+                        - integer
+                        - 'null'
+                        example: null
+                      next:
+                        type:
+                        - integer
+                        - 'null'
+                        example: 2
+                  data_source_name:
+                    type: string
+                    example: twitter
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/filters:
+    get:
+      tags:
+      - CSAT Analytics
+      summary: Get In-Chat-Survey Page Filters
+      description: 'This endpoint enables you to get available filters for the `in-chat-survey` analytics page.
+
+        '
+      responses:
+        '200':
+          description: Filters list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  filters:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        filter_key:
+                          type: string
+                          example: data_sources
+                        filter_label:
+                          type: string
+                          example: Data Sources
+                        values:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              label:
+                                type: string
+                                example: twitter
+                              value:
+                                type: integer
+                                example: 1
+                  page_name:
+                    type: string
+                    example: in-chat-survey
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/index:
+    get:
+      tags:
+      - CSAT Analytics
+      summary: Get CSAT Job Results
+      description: 'This endpoint enables you to get the results of a previously created CSAT analytics job for the `in-chat-survey` page.
+
+        '
+      parameters:
+      - name: job_id
+        in: query
+        description: Job identifier returned from a CSAT create endpoint
+        required: true
+        schema:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+      responses:
+        '200':
+          description: Job results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      dataAvailable:
+                        type: boolean
+                        example: true
+                      widget_data:
+                        type: object
+                        additionalProperties:
+                          type: object
+              examples:
+                CSAT Response Counts Result:
+                  summary: Response counts job result
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        CSAT Response Counts:
+                          meta:
+                            data_source_name: twitter
+                            question_ids: 1,2,3
+                          results:
+                          - question_id: 1
+                            counts: 20
+                CSAT Question Responses Result:
+                  summary: Question responses job result
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        CSAT Question Responses:
+                          question_id: 1
+                          page_number: 1
+                          responses:
+                          - comment: COMMENT_DICT
+                          - comment: COMMENT_DICT
+        '202':
+          description: Processing (if applicable)
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/csat_response_counts:
+    post:
+      tags:
+      - CSAT Analytics
+      summary: CSAT Response Counts
+      description: 'This endpoint enables you to create a CSAT response counts analytics job and returns a job_id with question metadata.
+
+        '
+      operationId: csatResponseCounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  description: Unix timestamp for start date
+                  format: int64
+                  example: 1640995200
+                end_date:
+                  type: integer
+                  description: Unix timestamp for end date
+                  format: int64
+                  example: 1641081600
+                data_source_name:
+                  type: string
+                  description: Data source identifier
+                  example: twitter
+                question_ids:
+                  type: string
+                  description: Comma-separated question IDs
+                  example: 1,2,3
+                filters:
+                  type: object
+                  description: Filter object (optional)
+                  example: {}
+              required:
+              - start_date
+              - end_date
+              - data_source_name
+              - question_ids
+      responses:
+        '200':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                        format: uuid
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      page_name:
+                        type: string
+                        example: in-chat-survey
+                      question_ids:
+                        type: string
+                        example: 1,2,3
+                      data_source_name:
+                        type: string
+                        example: twitter
+                      csat_questions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            question_text:
+                              type: string
+                              example: How satisfied are you with our service?
+                            question_type:
+                              type: string
+                              example: rating
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/csat_question_responses:
+    post:
+      tags:
+      - CSAT Analytics
+      summary: CSAT Question Responses
+      description: 'This endpoint enables you to create a CSAT question responses job for a specific question and returns a job_id.
+
+        '
+      operationId: csatQuestionResponses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  description: Unix timestamp for start date
+                  format: int64
+                  example: 1640995200
+                end_date:
+                  type: integer
+                  description: Unix timestamp for end date
+                  format: int64
+                  example: 1641081600
+                data_source_name:
+                  type: string
+                  description: Data source identifier
+                  example: twitter
+                question_id:
+                  type: integer
+                  description: Specific question ID
+                  example: 1
+                page_number:
+                  type: integer
+                  description: Page number for pagination
+                  example: 1
+                filters:
+                  type: object
+                  description: Filter object (optional)
+                  example: {}
+                product_id:
+                  type: integer
+                  description: Product identifier
+                  example: 1
+              required:
+              - start_date
+              - end_date
+              - data_source_name
+              - question_id
+              - page_number
+      responses:
+        '200':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                        format: uuid
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      page_name:
+                        type: string
+                        example: in-chat-survey
+                      question_id:
+                        type: integer
+                        example: 1
+                      page_number:
+                        type: integer
+                        example: 1
+                      data_source_name:
+                        type: string
+                        example: twitter
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/in-chat-survey/csat_user_responses:
+    post:
+      tags:
+      - CSAT Analytics
+      summary: CSAT User Responses
+      description: 'This endpoint enables you to create a CSAT user responses analytics job and returns a job_id.
+
+        '
+      operationId: csatUserResponses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  description: Unix timestamp for start date
+                  format: int64
+                  example: 1640995200
+                end_date:
+                  type: integer
+                  description: Unix timestamp for end date
+                  format: int64
+                  example: 1641081600
+                filters:
+                  type: object
+                  description: Filter object (optional)
+                  example: {}
+              required:
+              - start_date
+              - end_date
+              - filters
+      responses:
+        '200':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                        format: uuid
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      page_name:
+                        type: string
+                        example: in-chat-survey
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+components:
+  responses:
+    ValidationFailed:
+      description: Unprocessable Entity - validation failed or missing required fields
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 422
+                message: Validation failed
+    NotAcceptable:
+      description: Not Acceptable - the requested format is not supported
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 406
+                message: Not acceptable
+    BadRequest:
+      description: Bad request - invalid input or validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 400
+                detail: Page_id is required
+    RateLimited:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 429
+                message: Rate limit exceeded
+                retry_after: 60
+    GatewayTimeout:
+      description: Gateway Timeout - server took too long to respond
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 504
+                message: Gateway timeout
+    Gone:
+      description: Gone - the requested resource is no longer available
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 410
+                message: Resource gone
+    NotFound:
+      description: Not Found - the specified resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 404
+                message: Resource not found
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 500
+                message: Internal server error
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 403
+                message: Access denied
+    ServiceUnavailable:
+      description: Service Unavailable - temporary server overload or maintenance
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 503
+                message: Service unavailable
+    Unauthorized:
+      description: Unauthorized - invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 401
+                message: Authentication required
+    MethodNotAllowed:
+      description: Method Not Allowed - HTTP method is not supported for this endpoint
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 405
+                message: Method not allowed
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            detail:
+              type: string
+              example: Page_id is required
+        status:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Error message
+        code:
+          type: string
+          example: ERROR_CODE
+  securitySchemes:
+    OmniserveToken:
+      type: apiKey
+      description: The API authorization token for the request
+      name: luc-authorization
+      in: header
+      x-example: YOUR_API_TOKEN_HERE

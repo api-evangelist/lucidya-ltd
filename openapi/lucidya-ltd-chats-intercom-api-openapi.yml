@@ -1,0 +1,275 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniChannel Chats > Intercom API
+  description: 'This document serves as the 📘 comprehensive API guide for 🔌 integrating your product(s) with the Lucidya **OmniChannel** via **RESTful** endpoints.
+
+
+    🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
+
+
+    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: Chats > Intercom
+  description: Operations related to Intercom channel.
+paths:
+  /omnichannel/intercom/widget_data:
+    post:
+      tags:
+      - Chats > Intercom
+      summary: Create Intercom Public Widget Data
+      description: 'Use this endpoint to create a request for Intercom public widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/4fpvb0sh2f2zc-get-intercom-public-widget-data).
+
+
+        <!-- theme: info -->
+
+        > #### Note
+
+        >
+
+        > You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.
+
+        '
+      operationId: createIntercomWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: monitors_list
+        in: query
+        description: Use this to add monitors list ID(s) for the channel(s).
+        required: true
+        schema:
+          type: array
+          example: '[67689]'
+        examples:
+          default:
+            value: '[67689]'
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, example in this endpoint, `INTERCOM`.
+        required: true
+        schema:
+          type: string
+          example: intercom
+        examples:
+          default:
+            value: intercom
+      - name: data_source
+        in: query
+        description: Use this to add the data source name, example in this endpoint, `intercom`.
+        required: true
+        schema:
+          type: string
+          example: intercom
+        examples:
+          default:
+            value: intercom
+      - name: start_date
+        in: query
+        description: This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`.
+        required: true
+        schema:
+          type: integer
+          example: '1714867200'
+        examples:
+          default:
+            value: '1714867200'
+      - name: end_date
+        in: query
+        description: This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`.
+        required: true
+        schema:
+          type: integer
+          example: '1717027200'
+        examples:
+          default:
+            value: '1717027200'
+      - name: widgets_names
+        in: query
+        description: Use this to add widget names for the provided page name.
+        required: true
+        schema:
+          type: array
+          example: '           ["OverView"]'
+        examples:
+          default:
+            value: '           ["OverView"]'
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResult'
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: 46461299-935a-42fd-b8cb-e284bae72eea
+                      widgets_names:
+                      - OverView
+                Intercom_Widget_Data:
+                  value:
+                    data:
+                      job_id: 46461299-935a-42fd-b8cb-e284bae72eea
+                      widgets_names:
+                      - OverView
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+    get:
+      tags:
+      - Chats > Intercom
+      summary: Get Intercom Public Widget Data
+      description: Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/a3q98pj4ic3qy-create-intercom-public-widget-data).
+      operationId: getIntercomWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, for example in this endpoint, `INTERCOM`.
+        required: true
+        schema:
+          type: string
+          example: intercom
+        examples:
+          default:
+            value: intercom
+      - name: data_source
+        in: query
+        description: Use this to add the data source name , for example in this endpoint, `intercom`.
+        required: true
+        schema:
+          type: string
+          example: intercom
+        examples:
+          default:
+            value: intercom
+      - name: job_id
+        in: query
+        description: This `job_id` represents the identifier for the [newly created intercom widgets data](https://docs.lucidya.com/docs/omnichannel-api/a3q98pj4ic3qy-create-intercom-public-widget-data).
+        required: true
+        schema:
+          type: string
+          example: 46461299-935a-42fd-b8cb-e284bae72eea
+        examples:
+          default:
+            value: 46461299-935a-42fd-b8cb-e284bae72eea
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetDataResponse'
+              examples:
+                Intercom_Widget_Data:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        Intercom__CASingleDataSourceInsightsPage__overview:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: null
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            avg_conversation_per_hour: 0
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+      x-internal: false
+components:
+  schemas:
+    WidgetDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            widget_data:
+              type: object
+              description: The structure of this object is variable depending on the widget type and data.
+    JobResult:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: The unique identifier of the job.
+          example: 3e6d9c25-14dc-4e9e-9f59-98e4a377ebf4
+        widgets_names:
+          type: array
+          description: 'A list of widget names for which results are available. This may be a subset of the widgets requested in the original job.
+
+            '
+          items:
+            type: string

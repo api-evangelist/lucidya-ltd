@@ -1,0 +1,267 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniChannel Email > Gmail API
+  description: 'This document serves as the 📘 comprehensive API guide for 🔌 integrating your product(s) with the Lucidya **OmniChannel** via **RESTful** endpoints.
+
+
+    🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
+
+
+    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: Email > Gmail
+  description: Operations related to Gmail channel.
+paths:
+  /omnichannel/gmail/widget_data:
+    post:
+      tags:
+      - Email > Gmail
+      summary: Create Gmail Public Widget Data
+      description: 'Use this endpoint to create a request for Gmail public widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/u28t34xzui5i2-get-gmail-public-widget-data).
+
+
+        <!-- theme: info -->
+
+        > #### Note
+
+        >
+
+        > You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.'
+      operationId: createGmailWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: monitors_list
+        in: query
+        description: Use this to add monitors list ID(s) for the channel(s).
+        required: true
+        schema:
+          type: array
+          example: '[30662]'
+        examples:
+          default:
+            value: '[30662]'
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, example in this endpoint, `GMAIL`.
+        required: true
+        schema:
+          type: string
+          example: gmail
+        examples:
+          default:
+            value: gmail
+      - name: data_source
+        in: query
+        description: Use this to add the data source name, example in this endpoint, `gmail`.
+        required: true
+        schema:
+          type: string
+          example: gmail
+        examples:
+          default:
+            value: gmail
+      - name: start_date
+        in: query
+        description: This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`.
+        required: true
+        schema:
+          type: integer
+          example: '1698105600'
+        examples:
+          default:
+            value: '1698105600'
+      - name: end_date
+        in: query
+        description: This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`.
+        required: true
+        schema:
+          type: integer
+          example: '1700524799'
+        examples:
+          default:
+            value: '1700524799'
+      - name: widgets_names
+        in: query
+        description: Use this to add widget names for the provided page name.
+        required: true
+        schema:
+          type: array
+          example: '           ["OverView"]'
+        examples:
+          default:
+            value: '           ["OverView"]'
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResult'
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: 115be415-32c2-4a66-ab86-2e0cd1b89a8e
+                      widgets_names:
+                      - OverView
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+    get:
+      tags:
+      - Email > Gmail
+      summary: Get Gmail Public Widget Data
+      description: Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/a8f12q0go8xiy-create-gmail-public-widget-data).
+      operationId: getGmailWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, example in this endpoint, `GMAIL`.
+        required: true
+        schema:
+          type: string
+          example: gmail
+        examples:
+          default:
+            value: gmail
+      - name: data_source
+        in: query
+        description: Use this to add the data source name, example in this endpoint, `gmail`.
+        required: true
+        schema:
+          type: string
+          example: gmail
+        examples:
+          default:
+            value: gmail
+      - name: job_id
+        in: query
+        description: This `job_id` represents the identifier for the [newly created gmail widgets data](https://docs.lucidya.com/docs/omnichannel-api/a8f12q0go8xiy-create-gmail-public-widget-data).
+        required: true
+        schema:
+          type: string
+          example: 115be415-32c2-4a66-ab86-2e0cd1b89a8e
+        examples:
+          default:
+            value: 115be415-32c2-4a66-ab86-2e0cd1b89a8e
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetDataResponse'
+              examples:
+                Gmail_Widget_Data:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        Gmail__CASingleDataSourceInsightsPage__overview:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            average_interactions_per_day: 0
+                            total_people: 0
+                            total_interactions: 0
+                            response_rate: 0
+                            net_sentiment:
+                            - name: null
+                              value: 0
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+components:
+  schemas:
+    WidgetDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            widget_data:
+              type: object
+              description: The structure of this object is variable depending on the widget type and data.
+    JobResult:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: The unique identifier of the job.
+          example: 3e6d9c25-14dc-4e9e-9f59-98e4a377ebf4
+        widgets_names:
+          type: array
+          description: 'A list of widget names for which results are available. This may be a subset of the widgets requested in the original job.
+
+            '
+          items:
+            type: string

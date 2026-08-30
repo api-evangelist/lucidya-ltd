@@ -1,0 +1,147 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Lucidya Social Listening Public Public API - Monitors List API
+  description: 'This is the Public API Reference for the Social Listening Product. Use our Social Listening Endpoints to integrate with your product. '
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya Support
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production
+tags:
+- name: Public API - Monitors List
+paths:
+  /monitors_list:
+    get:
+      tags:
+      - Public API - Monitors List
+      summary: Public API - Monitors List
+      description: 'This endpoint enables you tp get the list of all monitors in your account.
+
+        <!-- theme: success -->
+
+        > #### 💡 Note
+
+        >
+
+        > This endpoint supports pagination.'
+      operationId: monitors_list
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: The API authorization token for the request.
+        required: true
+        schema:
+          type: string
+      - name: page_id
+        in: query
+        description: this parameter indicates the number of page to retrive
+        required: true
+        schema:
+          type: integer
+          example: 1
+        examples:
+          default:
+            value: 1
+      responses:
+        '200':
+          description: Return all monitors list
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    data:
+                    - id: '12345'
+                      type: monitor_model
+                      attributes:
+                        id: 12345
+                        status: active
+                        name: Dummy Monitor
+                        monitor_type_name: keyword
+                        paused: 0
+                        description: This is a dummy monitor
+                        is_deleted: 0
+                        created_at: '2022-01-01'
+                        data_sources:
+                        - twitter
+                        added_by: John Doe
+                        data_category: social media
+                        channel:
+                        - twitter
+                        account_name: Dummy Account
+                        total_count: 100
+                        third_party_unique_id: null
+                        percentage: 0
+                        stream_status: collecting
+                        limit_error: []
+                        monitor_owner: false
+                        keywords_stats:
+                          twitter_keywords_count: 1
+                        monitor_creator:
+                          id: 1234
+                          email: johndoe@example.com
+                          name: John Doe
+                        created_at_in_unix: 1640995200
+                        dm_channel: 0
+                        dm_configuration_id: 0
+                        topics: []
+                        account_error: []
+                        account_valid_error: []
+                        monitor_account_name: ''
+                        monitor_warning: ''
+                    page_number: '1'
+                    count: 1
+        '400':
+          description: missing_params
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 400
+                      detail: Page_id is required
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 400
+                      detail: Page_id must be a number
+        '401':
+          description: missing_API_key
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: No API key found in request
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    message: Invalid authentication credentials
+        '403':
+          description: not_authorized
+        '429':
+          description: too_many_requests
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: API rate limit exceeded
+        '500':
+          description: internal_server_error
+        '503':
+          description: service_unavailable
+        '504':
+          description: request_timeout
+      servers:
+      - url: https://api.lucidya.com
+        description: Production
+x-internal: false

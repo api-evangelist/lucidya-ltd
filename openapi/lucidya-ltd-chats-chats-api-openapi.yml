@@ -1,0 +1,265 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniChannel Chats > chats API
+  description: 'This document serves as the 📘 comprehensive API guide for 🔌 integrating your product(s) with the Lucidya **OmniChannel** via **RESTful** endpoints.
+
+
+    🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
+
+
+    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: Chats > chats
+paths:
+  /omnichannel/chats/widget_data:
+    post:
+      tags:
+      - Chats > chats
+      summary: Create Chats Public Widget Data
+      description: 'Use this endpoint to create a request for all chats connected channels and obtain the `job_id` necessary to [retrieve widget analysis for all social channels](https://docs.lucidya.com/docs/omnichannel-api/zs7yoh19cj3o2-get-chats-public-widget-data).
+
+        '
+      operationId: createChatsWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, example in this endpoint, `chats`.
+        required: true
+        schema:
+          type: string
+          example: chats
+        examples:
+          default:
+            value: chats
+      - name: data_source
+        in: query
+        description: Use this to add the data source name, example in this endpoint, `chats`.
+        required: true
+        schema:
+          type: string
+          example: chats
+        examples:
+          default:
+            value: chats
+      - name: start_date
+        in: query
+        description: This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`.
+        required: true
+        schema:
+          type: integer
+          example: '1714867200'
+        examples:
+          default:
+            value: '1714867200'
+      - name: end_date
+        in: query
+        description: This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`.
+        required: true
+        schema:
+          type: integer
+          example: '1717027200'
+        examples:
+          default:
+            value: '1717027200'
+      - name: widgets_names
+        in: query
+        description: Use this to add widget names for the provided page name.
+        required: true
+        schema:
+          type: array
+          example: '           ["OverView"]'
+        examples:
+          default:
+            value: '           ["OverView"]'
+      - name: monitors_list
+        in: query
+        description: Use this to add monitors list ID(s) for the channel(s).
+        required: true
+        schema:
+          type: array
+          example: '[]'
+        examples:
+          default:
+            value: '[]'
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResult'
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: 35d176d5-9374-4b32-98ae-1e3566d1a31e
+                      widgets_names:
+                      - OverView
+                Chats_Widget_Data:
+                  value:
+                    data:
+                      job_id: da0af275-484e-4340-8317-63cc2c362632
+                      widgets_names:
+                      - OverView
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+    get:
+      tags:
+      - Chats > chats
+      summary: Get Chats Public Widget Data
+      description: 'Retrieve a list of all chats channels widget data and get an overview for all using this endpoint.
+
+
+        <!-- theme: success -->
+
+        > #### Tip
+
+        >
+
+        > This endpoint provides an overview of data for all chats channels.'
+      operationId: getChatsWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, for example in this endpoint, `chats`.
+        required: true
+        schema:
+          type: string
+          example: chats
+        examples:
+          default:
+            value: chats
+      - name: data_source
+        in: query
+        description: Use this to add the data source name , for example in this endpoint, `chats`.
+        required: true
+        schema:
+          type: string
+          example: chats
+        examples:
+          default:
+            value: chats
+      - name: job_id
+        in: query
+        description: This `job_id` represents the identifier for the [newly created chats widgets data](https://docs.lucidya.com/docs/omnichannel-api/9bfbcpl4ca3q4-create-chats-public-widget-data).
+        required: true
+        schema:
+          type: string
+          example: a7265c6b-3bf3-4d1c-a464-2c2f4ca1adb9
+        examples:
+          default:
+            value: a7265c6b-3bf3-4d1c-a464-2c2f4ca1adb9
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetDataResponse'
+              examples:
+                Chats_Widget_Data:
+                  value:
+                    data:
+                      dataAvailable: false
+                      widget_data: []
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+      x-internal: false
+components:
+  schemas:
+    WidgetDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            widget_data:
+              type: object
+              description: The structure of this object is variable depending on the widget type and data.
+    JobResult:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: The unique identifier of the job.
+          example: 3e6d9c25-14dc-4e9e-9f59-98e4a377ebf4
+        widgets_names:
+          type: array
+          description: 'A list of widget names for which results are available. This may be a subset of the widgets requested in the original job.
+
+            '
+          items:
+            type: string

@@ -1,0 +1,440 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniServe Analytics Custom Fields API
+  description: "Complete API collection for Lucidya OmniServe Analytics Endpoints. This API provides access to \nanalytics data for engagement monitoring, CSAT surveys, and reporting capabilities.\n\nFeatures include:\n- Analytics pages and widgets discovery\n- Job-based analytics data retrieval\n- CSAT survey analytics\n- Reference data access (agents, teams, data sources)\n"
+  contact:
+    name: API Support
+    email: support@lucidya.com
+    url: https://lucidya.com
+  license:
+    url: https://opensource.org/licenses/MIT
+    name: MIT
+servers:
+- url: https://api.lucidya.com/public_api/omniserve
+  description: Production Server
+security:
+- OmniserveToken: []
+tags:
+- name: Custom Fields
+  description: Endpoints for retrieving per-engagement applied custom-field values (job-based)
+paths:
+  /analytics/custom_fields:
+    post:
+      tags:
+      - Custom Fields
+      summary: Create Custom Fields Job
+      description: 'This endpoint enables you to create a job that returns, per engagement, the applied
+
+        custom-field values for the given period and filters. It returns a `job_id` you then
+
+        poll via `GET /analytics/custom_fields` to retrieve paginated results.
+
+
+        **Note:** Results are paginated (10 engagements per page). When more pages exist, the
+
+        index response includes `next_page_job_id` to fetch the next page.
+
+        '
+      operationId: createCustomFieldsJob
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  description: Unix timestamp for start date
+                  format: int64
+                  example: 1727395200
+                end_date:
+                  type: integer
+                  description: Unix timestamp for end date
+                  format: int64
+                  example: 1728000000
+                monitors:
+                  type: string
+                  description: Comma-separated monitor IDs
+                  example: 101,102
+                page_number:
+                  type: integer
+                  description: Page number to fetch (defaults to 1)
+                  example: 1
+                filters:
+                  type: object
+                  description: Filter object (optional)
+                  example:
+                    data_sources: twitter,facebook
+                    engagement_types: posts,direct_messages,emails
+                    routings_ids: '5'
+                    tags_ids: 10,12
+                    exact_match: false
+                    untagged_engagements: false
+              required:
+              - start_date
+              - end_date
+            examples:
+              customFields:
+                summary: Custom fields job with filters
+                value:
+                  start_date: 1727395200
+                  end_date: 1728000000
+                  monitors: 101,102
+                  page_number: 1
+                  filters:
+                    data_sources: twitter,facebook
+                    engagement_types: posts,direct_messages,emails
+                    routings_ids: '5'
+                    tags_ids: 10,12
+                    exact_match: false
+                    untagged_engagements: false
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: integer
+                  format: int64
+                  example: 1760313600
+                end_date:
+                  type: integer
+                  format: int64
+                  example: 1760918399
+                monitors:
+                  type: string
+                  description: Comma-separated monitor IDs
+                  example: 45930,45922
+                page_number:
+                  type: integer
+                  example: 1
+                filters:
+                  type: string
+                  description: URL-encoded JSON string of filters
+                  example: '%7B%22data_sources%22:%22twitter,facebook%22,%22engagement_types%22:%22posts,direct_messages%22%7D'
+              required:
+              - start_date
+              - end_date
+      responses:
+        '200':
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                        format: uuid
+                        example: 550e8400-e29b-41d4-a716-446655440000
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: 550e8400-e29b-41d4-a716-446655440000
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+    get:
+      tags:
+      - Custom Fields
+      summary: Get Custom Fields Results
+      description: 'This endpoint enables you to get the results of a previously created custom-fields job.
+
+
+        ## Response Structure
+
+        - **dataAvailable**: Boolean indicating if the page results are ready (true when complete).
+
+        - **engagements**: Array of engagements, each with its applied custom-field values.
+
+        - **pagination**: Pagination metadata for the current page.
+
+        - **next_page_job_id**: Present only when more pages exist; use it as the `job_id` for the next `GET` call.
+
+        '
+      operationId: getCustomFieldsResults
+      parameters:
+      - name: job_id
+        in: query
+        description: Job identifier returned from the create custom fields endpoint
+        required: true
+        schema:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+      responses:
+        '200':
+          description: Job results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      dataAvailable:
+                        type: boolean
+                        description: Indicates whether the page finished processing; true when results are complete.
+                        example: true
+                      engagements:
+                        type: array
+                        description: Engagements with their applied custom-field values.
+                        items:
+                          type: object
+                      pagination:
+                        type: object
+                        description: Pagination metadata for the current page.
+                      next_page_job_id:
+                        type: string
+                        description: Present only when more pages exist; use as job_id for the next page.
+                        format: uuid
+                        example: 660e8400-e29b-41d4-a716-446655440111
+              examples:
+                Custom Fields Results:
+                  summary: Custom fields job results
+                  value:
+                    data:
+                      dataAvailable: true
+                      engagements:
+                      - engagement_id: '123456'
+                        data_source: twitter
+                        custom_fields:
+                        - id: 1
+                          name: Priority
+                          value: High
+                        - id: 2
+                          name: Region
+                          value: EMEA
+                      pagination:
+                        page: 1
+                        items: 10
+                        count: 25
+                        next_page: true
+                      next_page_job_id: 660e8400-e29b-41d4-a716-446655440111
+        '202':
+          description: Processing (if applicable)
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+components:
+  responses:
+    ValidationFailed:
+      description: Unprocessable Entity - validation failed or missing required fields
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 422
+                message: Validation failed
+    NotAcceptable:
+      description: Not Acceptable - the requested format is not supported
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 406
+                message: Not acceptable
+    BadRequest:
+      description: Bad request - invalid input or validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 400
+                detail: Page_id is required
+    RateLimited:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 429
+                message: Rate limit exceeded
+                retry_after: 60
+    GatewayTimeout:
+      description: Gateway Timeout - server took too long to respond
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 504
+                message: Gateway timeout
+    Gone:
+      description: Gone - the requested resource is no longer available
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 410
+                message: Resource gone
+    NotFound:
+      description: Not Found - the specified resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 404
+                message: Resource not found
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 500
+                message: Internal server error
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 403
+                message: Access denied
+    ServiceUnavailable:
+      description: Service Unavailable - temporary server overload or maintenance
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 503
+                message: Service unavailable
+    Unauthorized:
+      description: Unauthorized - invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 401
+                message: Authentication required
+    MethodNotAllowed:
+      description: Method Not Allowed - HTTP method is not supported for this endpoint
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 405
+                message: Method not allowed
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            detail:
+              type: string
+              example: Page_id is required
+        status:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Error message
+        code:
+          type: string
+          example: ERROR_CODE
+  securitySchemes:
+    OmniserveToken:
+      type: apiKey
+      description: The API authorization token for the request
+      name: luc-authorization
+      in: header
+      x-example: YOUR_API_TOKEN_HERE

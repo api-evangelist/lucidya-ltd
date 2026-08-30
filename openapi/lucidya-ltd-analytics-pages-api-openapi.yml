@@ -1,0 +1,403 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniServe Analytics Analytics Pages API
+  description: "Complete API collection for Lucidya OmniServe Analytics Endpoints. This API provides access to \nanalytics data for engagement monitoring, CSAT surveys, and reporting capabilities.\n\nFeatures include:\n- Analytics pages and widgets discovery\n- Job-based analytics data retrieval\n- CSAT survey analytics\n- Reference data access (agents, teams, data sources)\n"
+  contact:
+    name: API Support
+    email: support@lucidya.com
+    url: https://lucidya.com
+  license:
+    url: https://opensource.org/licenses/MIT
+    name: MIT
+servers:
+- url: https://api.lucidya.com/public_api/omniserve
+  description: Production Server
+security:
+- OmniserveToken: []
+tags:
+- name: Analytics Pages
+  description: Endpoints for discovering and managing analytics pages, widgets, and filters
+paths:
+  /analytics/pages:
+    get:
+      tags:
+      - Analytics Pages
+      summary: Get Analytics Pages
+      description: 'This endpoint enables you to get the list of all analytics pages available to your company.
+
+
+        **Note:** Returns pages like inbox, slas, agents, and in-chat-survey.
+
+        '
+      operationId: getAnalyticsPages
+      responses:
+        '200':
+          description: Pages list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: inbox
+              examples:
+                default:
+                  value:
+                    data:
+                    - id: 1
+                      name: inbox
+                    - id: 2
+                      name: slas
+                    - id: 3
+                      name: agents
+                    - id: 4
+                      name: in-chat-survey
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/{page_name}/widgets:
+    get:
+      tags:
+      - Analytics Pages
+      summary: Get Page Widgets
+      description: 'This endpoint enables you to list available widgets for a specific analytics page.
+
+        '
+      operationId: getPageWidgets
+      parameters:
+      - name: page_name
+        in: path
+        description: Analytics page identifier (e.g., inbox, slas, agents)
+        required: true
+        schema:
+          type: string
+          example: inbox
+      responses:
+        '200':
+          description: Widgets metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  widgets_names:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - Inbox Overview
+                    - Engagements Volume
+                  company_time_zone:
+                    type: integer
+                    example: 3
+                  page_name:
+                    type: string
+                    example: inbox
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+  /analytics/{page_name}/filters:
+    get:
+      tags:
+      - Analytics Pages
+      summary: Get Page Filters
+      description: 'This endpoint enables you to get filter definitions for a specific analytics page.
+
+        '
+      operationId: getPageFilters
+      parameters:
+      - name: page_name
+        in: path
+        description: Analytics page identifier
+        required: true
+        schema:
+          type: string
+          example: inbox
+      responses:
+        '200':
+          description: Filters list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  filters:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        filter_key:
+                          type: string
+                          example: data_sources
+                        filter_label:
+                          type: string
+                          example: Data Sources
+                        values:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              label:
+                                type: string
+                                example: twitter
+                              value:
+                                type: integer
+                                example: 1
+                  page_name:
+                    type: string
+                    example: inbox
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '410':
+          $ref: '#/components/responses/Gone'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+      security:
+      - OmniserveToken: []
+      servers:
+      - url: https://api.lucidya.com/public_api/omniserve
+        description: Production Server
+components:
+  responses:
+    ValidationFailed:
+      description: Unprocessable Entity - validation failed or missing required fields
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 422
+                message: Validation failed
+    NotAcceptable:
+      description: Not Acceptable - the requested format is not supported
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 406
+                message: Not acceptable
+    BadRequest:
+      description: Bad request - invalid input or validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 400
+                detail: Page_id is required
+    RateLimited:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 429
+                message: Rate limit exceeded
+                retry_after: 60
+    GatewayTimeout:
+      description: Gateway Timeout - server took too long to respond
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 504
+                message: Gateway timeout
+    Gone:
+      description: Gone - the requested resource is no longer available
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 410
+                message: Resource gone
+    NotFound:
+      description: Not Found - the specified resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 404
+                message: Resource not found
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 500
+                message: Internal server error
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 403
+                message: Access denied
+    ServiceUnavailable:
+      description: Service Unavailable - temporary server overload or maintenance
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 503
+                message: Service unavailable
+    Unauthorized:
+      description: Unauthorized - invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 401
+                message: Authentication required
+    MethodNotAllowed:
+      description: Method Not Allowed - HTTP method is not supported for this endpoint
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 405
+                message: Method not allowed
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            detail:
+              type: string
+              example: Page_id is required
+        status:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Error message
+        code:
+          type: string
+          example: ERROR_CODE
+  securitySchemes:
+    OmniserveToken:
+      type: apiKey
+      description: The API authorization token for the request
+      name: luc-authorization
+      in: header
+      x-example: YOUR_API_TOKEN_HERE

@@ -1,0 +1,481 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniChannel Social Media > Social API
+  description: 'This document serves as the 📘 comprehensive API guide for 🔌 integrating your product(s) with the Lucidya **OmniChannel** via **RESTful** endpoints.
+
+
+    🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
+
+
+    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: Social Media > Social
+  description: Operations related to all social cannels.
+paths:
+  /omnichannel/social_media/widget_data:
+    post:
+      tags:
+      - Social Media > Social
+      summary: Create Social Widget Data
+      description: 'Use this endpoint to create a request for all social connected channels and obtain the `job_id` necessary to [retrieve widget analysis for all social channels](https://docs.lucidya.com/docs/omnichannel-api/3z0h5zr07jmqb-get-social-widget-data-analysis).
+
+        '
+      operationId: createSocialWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: monitors_list
+        in: query
+        description: Use this to add monitors list ID(s) for the channel(s).
+        required: true
+        schema:
+          type: array
+          example: '[65999]'
+        examples:
+          default:
+            value: '[65999]'
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, example in this endpoint, `SOCIAL`.
+        required: true
+        schema:
+          type: string
+          example: SOCIAL
+        examples:
+          default:
+            value: SOCIAL
+      - name: data_source
+        in: query
+        description: Use this to add the data source name, example in this endpoint, `social`.
+        required: true
+        schema:
+          type: string
+          example: social
+        examples:
+          default:
+            value: social
+      - name: start_date
+        in: query
+        description: This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`.
+        required: true
+        schema:
+          type: integer
+          example: '1698105600'
+        examples:
+          default:
+            value: '1698105600'
+      - name: end_date
+        in: query
+        description: This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`.
+        required: true
+        schema:
+          type: integer
+          example: '1700524799'
+        examples:
+          default:
+            value: '1700524799'
+      - name: widgets_names
+        in: query
+        description: Use this to add widget names for the provided page name.
+        required: true
+        schema:
+          type: array
+          example: '           ["OverView"]'
+        examples:
+          default:
+            value: '           ["OverView"]'
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResult'
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: a81ff4df-1ec8-480d-b648-dab89943e642
+                      widgets_names:
+                      - OverView
+                Social_Widget_Data:
+                  value:
+                    data:
+                      job_id: a81ff4df-1ec8-480d-b648-dab89943e642
+                      widgets_names:
+                      - OverView
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+    get:
+      tags:
+      - Social Media > Social
+      summary: Get Social Widget Data Analysis
+      description: 'Retrieve a list of all social channels widget data and get an overview for all using this endpoint.
+
+
+        <!-- theme: success -->
+
+        > #### Tip
+
+        >
+
+        > This endpoint provides an overview of data for all social channels.'
+      operationId: getSocialWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, example in this endpoint, `SOCIAL`.
+        required: true
+        schema:
+          type: string
+          example: SOCIAL
+        examples:
+          default:
+            value: SOCIAL
+      - name: data_source
+        in: query
+        description: Use this to add the data source name , for example in this endpoint, `social`.
+        required: true
+        schema:
+          type: string
+          example: social
+        examples:
+          default:
+            value: social
+      - name: job_id
+        in: query
+        description: This `job_id` represents the identifier for the [newly created social widgets data](https://docs.lucidya.com/docs/omnichannel-api/branches/main/tqo81ld59cdf5-create-social-public-widget-data).
+        required: true
+        schema:
+          type: string
+          example: 43b81c5c-3a7f-4f41-9084-193cda046dc6
+        examples:
+          default:
+            value: 43b81c5c-3a7f-4f41-9084-193cda046dc6
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetDataResponse'
+              examples:
+                default:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        facebook_private:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                        tiktok_public__Social_Media__overview:
+                          overview:
+                            total_interactions: 0
+                            total_contacts: 0
+                            net_sentiment:
+                            - name: null
+                              value: 0
+                        twitter_private:
+                          overview:
+                            total_interactions: 0
+                            total_requests: 0
+                            average_waiting_time: 0:00:00
+                            total_people: 0
+                            response_rate: 0
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                        linkedin_public:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                        twitter_public:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                        facebook_public:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                        instagram_public:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                        instagram_private:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                Social_Widget_Data:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        facebook_private:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                        tiktok_public__Social_Media__overview:
+                          overview:
+                            total_interactions: 0
+                            total_contacts: 0
+                            net_sentiment:
+                            - name: null
+                              value: 0
+                        twitter_private:
+                          overview:
+                            total_interactions: 0
+                            total_requests: 0
+                            average_waiting_time: 0:00:00
+                            total_people: 0
+                            response_rate: 0
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                        linkedin_public:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                        twitter_public:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                        facebook_public:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                        instagram_public:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+                        instagram_private:
+                          overview:
+                            average_waiting_time: 0:00:00
+                            net_sentiment:
+                            - name: negative
+                              value: 0
+                            - name: positive
+                              value: 0
+                            - name: neutral
+                              value: 0
+                            response_rate: 0
+                            total_interactions: 0
+                            total_people: 0
+                            total_requests: 0
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+      x-internal: false
+components:
+  schemas:
+    WidgetDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            widget_data:
+              type: object
+              description: The structure of this object is variable depending on the widget type and data.
+    JobResult:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: The unique identifier of the job.
+          example: 3e6d9c25-14dc-4e9e-9f59-98e4a377ebf4
+        widgets_names:
+          type: array
+          description: 'A list of widget names for which results are available. This may be a subset of the widgets requested in the original job.
+
+            '
+          items:
+            type: string

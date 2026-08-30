@@ -1,0 +1,455 @@
+openapi: 3.2.0
+info:
+  version: 0.1.0
+  title: Lucidya Public AI Audio Transcription API
+  summary: This is the Public API Reference for the Lucidya **AI** Product.
+  description: Our AI API enables you to get insightful analytics and predictions from your text batches.
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya Support
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production
+tags:
+- name: Audio Transcription
+paths:
+  /audio_transcription/transcribe_offline:
+    post:
+      tags:
+      - Audio Transcription
+      summary: Submit Audio for Analysis
+      description: 'Upload an audio file for transcription and analysis. The service processes the audio asynchronously — use the returned `job_id` to poll for status and retrieve results.
+
+
+        **Supported audio formats:** MP3, MP4, MP4A, WAV, AIFF, FLAC, M4A, ALAC, WavPack, AAC, Ogg Vorbis, Opus, PCM.
+
+
+        **Rate limit:** The total duration of submitted audio files must not exceed **100 minutes per minute**. If you exceed this limit, subsequent requests will be denied until the start of the next minute. This applies whether you submit one long file or multiple shorter files.
+
+
+        **Next steps after submission:**
+
+        1. [Check Audio Analysis Status](../audio_transcription/check_status) — lightweight status poll (`completed` or `in_progress`).
+
+        2. [Get Audio Analysis Result](../audio_transcription/get_transcription_result) — full transcription with dialects, sentiments, and themes once status is `completed`.'
+      operationId: post_audio_transcription_transcribe_offline
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: API authorization token.
+        required: true
+        schema:
+          type: string
+      - name: num_speakers
+        in: query
+        description: The number of speakers in the audio file. Used for speaker diarization.
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+      - name: language
+        in: query
+        description: The language of the audio (e.g. "English", "Arabic"). If omitted, the language is detected automatically.
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: The audio file to transcribe.
+                  contentMediaType: application/octet-stream
+              required:
+              - file
+      responses:
+        '200':
+          description: Audio file accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioSubmissionResponse'
+              examples:
+                with_language:
+                  summary: Language specified by the caller
+                  value:
+                    job_id: abc123
+                    message: File submitted successfully. Transcription in progress.
+                without_language:
+                  summary: Language auto-detected
+                  value:
+                    job_id: abc123
+                    message: File submitted successfully, transcription is in progress. Since no language was specified, the ai will detect the language automatically.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioErrorResponse'
+              examples:
+                invalid_format:
+                  summary: Invalid audio format
+                  value:
+                    error: Invalid audio format.
+                invalid_company:
+                  summary: Incorrect company ID
+                  value:
+                    error: The company id is incorrect.
+                duration_exceeded:
+                  summary: File duration exceeds limit
+                  value:
+                    error: File duration exceeds the limit.
+                missing_speakers:
+                  summary: Number of speakers missing
+                  value:
+                    error: The Number of Speakers parameter is missing.
+                unsupported_language:
+                  summary: Unsupported language specified
+                  value:
+                    error: The specified language is not supported.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioErrorResponse'
+              examples:
+                unauthorized:
+                  value:
+                    error: Invalid or missing authorization token.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioErrorResponse'
+              examples:
+                audio_duration_limit:
+                  summary: Audio duration rate limit
+                  value:
+                    error: You have exceeded the allowed limit of 100 minutes of audio transcription per minute. Please try again after a minute.
+                request_count_limit:
+                  summary: Request count rate limit
+                  value:
+                    error: You have exceeded the allowed limit of 100 requests per minute. Please try again after a minute.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production
+  /audio_transcription/check_status:
+    get:
+      tags:
+      - Audio Transcription
+      summary: Check Audio Analysis Status
+      description: 'Check the processing status of a submitted audio transcription job. Returns only the job ID and current status — no transcript or analysis data.
+
+
+        Use this endpoint for lightweight polling. Once the status is `completed`, call [Get Audio Analysis Result](../audio_transcription/get_transcription_result) to retrieve the full transcript, dialects, sentiments, and themes.'
+      operationId: checkAudioAnalysisStatus
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: API authorization token.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        description: The job ID returned from the POST /audio_transcription/transcribe_offline submission.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioStatusResponse'
+              examples:
+                completed:
+                  value:
+                    job_id: d38ee71d-b72b-4e28-9962-430a1612bb93
+                    status: completed
+        '202':
+          description: Job still in progress.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioStatusResponse'
+              examples:
+                in_progress:
+                  value:
+                    job_id: d38ee71d-b72b-4e28-9962-430a1612bb93
+                    status: in_progress
+        '404':
+          description: Job not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioErrorResponse'
+              examples:
+                not_found:
+                  value:
+                    error: Job ID not found. It may have been removed if it is too old.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production
+  /audio_transcription/get_transcription_result:
+    get:
+      tags:
+      - Audio Transcription
+      summary: Get Audio Analysis Result
+      description: 'Retrieve the full transcription and analysis result for a completed audio job.
+
+
+        Returns the transcript with speaker diarization, dialect detection, sentiment analysis, and theme classification. If the job is still processing, the response will be `202` with an empty result.
+
+
+        Use [Check Audio Analysis Status](../audio_transcription/check_status) for lightweight polling before calling this endpoint.'
+      operationId: getAudioAnalysisResult
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: API authorization token.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        description: The job ID returned from the POST /audio_transcription/transcribe_offline submission.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transcription completed. Full analysis result returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioAnalysisResult'
+              examples:
+                completed:
+                  summary: Completed single-speaker analysis
+                  value:
+                    job_id: d38ee71d-b72b-4e28-9962-430a1612bb93
+                    status: completed
+                    result:
+                      transcripts_json:
+                      - text: طيب مرحبا
+                        speaker: 0
+                        begins: 1280
+                        ends: 1972
+                      - text: أهلا وسهلا
+                        speaker: 1
+                        begins: 3288
+                        ends: 3946
+                      dialects:
+                        speaker0:
+                          dialect: egyptian
+                          sub_dialect: egyptian
+                        speaker1:
+                          dialect: iraqi
+                          sub_dialect: iraqi
+                      sentiments:
+                        speaker0: positive
+                        speaker1: neutral
+                      themes:
+                        speaker0:
+                          themes: complaint
+                          sub_themes: awad
+                        speaker1:
+                          themes: question
+                          sub_themes: Gamingggm
+        '202':
+          description: Transcription still in progress.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioAnalysisInProgress'
+              examples:
+                in_progress:
+                  value:
+                    job_id: d38ee71d-b72b-4e28-9962-430a1612bb93
+                    status: in_progress
+                    result: ''
+        '400':
+          description: Missing job ID parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioErrorResponse'
+              examples:
+                missing_id:
+                  value:
+                    error: Missing job ID parameter.
+        '404':
+          description: Job not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioErrorResponse'
+              examples:
+                not_found:
+                  value:
+                    error: Job ID not found. It may have been removed if it is too old.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production
+components:
+  schemas:
+    SpeakerThemes:
+      type: object
+      title: SpeakerThemes
+      description: Theme classification result for a single speaker.
+      properties:
+        themes:
+          type: string
+          description: Primary theme classification (e.g. "complaint", "question").
+        sub_themes:
+          type: string
+          description: Sub-theme classification.
+      required:
+      - themes
+      - sub_themes
+    AudioSubmissionResponse:
+      type: object
+      title: AudioSubmissionResponse
+      description: Response returned when an audio file is successfully submitted for processing.
+      properties:
+        job_id:
+          type: string
+          description: Unique identifier for the transcription job. Use this to poll status and retrieve results.
+        message:
+          type: string
+          description: Human-readable confirmation message.
+      required:
+      - job_id
+      - message
+    AudioErrorResponse:
+      type: object
+      title: AudioErrorResponse
+      description: Error response returned by audio transcription endpoints.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+      required:
+      - error
+    TranscriptSegment:
+      type: object
+      title: TranscriptSegment
+      description: A single segment of transcribed speech.
+      properties:
+        text:
+          type: string
+          description: Transcribed text for this segment.
+        speaker:
+          type: integer
+          description: Zero-indexed speaker identifier.
+        begins:
+          type: integer
+          description: Segment start time in milliseconds from the beginning of the audio.
+        ends:
+          type: integer
+          description: Segment end time in milliseconds from the beginning of the audio.
+      required:
+      - text
+      - speaker
+      - begins
+      - ends
+    AudioAnalysisInProgress:
+      type: object
+      title: AudioAnalysisInProgress
+      description: Returned when the transcription job is still being processed.
+      properties:
+        job_id:
+          type: string
+        status:
+          const: in_progress
+        result:
+          type: string
+          description: Empty string while processing is in progress.
+      required:
+      - job_id
+      - status
+      - result
+    AudioStatusResponse:
+      type: object
+      title: AudioStatusResponse
+      description: Lightweight status-only response for a transcription job.
+      properties:
+        job_id:
+          type: string
+        status:
+          type: string
+          enum:
+          - completed
+          - in_progress
+      required:
+      - job_id
+      - status
+    SpeakerDialect:
+      type: object
+      title: SpeakerDialect
+      description: Dialect detection result for a single speaker.
+      properties:
+        dialect:
+          type: string
+          description: Primary dialect classification (e.g. "egyptian", "iraqi", "saudi").
+        sub_dialect:
+          type: string
+          description: More specific sub-dialect classification (e.g. "najdi", "egyptian").
+      required:
+      - dialect
+      - sub_dialect
+    AudioAnalysisResult:
+      type: object
+      title: AudioAnalysisResult
+      description: Full transcription and analysis result for a completed audio job.
+      properties:
+        job_id:
+          type: string
+        status:
+          const: completed
+        result:
+          type: object
+          properties:
+            transcripts_json:
+              type: array
+              description: Ordered list of transcript segments with speaker labels and timestamps (in milliseconds).
+              items:
+                $ref: '#/components/schemas/TranscriptSegment'
+            dialects:
+              type: object
+              description: Detected Arabic dialect per speaker. Keys are `speaker0`, `speaker1`, etc.
+              additionalProperties:
+                $ref: '#/components/schemas/SpeakerDialect'
+            sentiments:
+              type: object
+              description: Overall sentiment per speaker. Keys are `speaker0`, `speaker1`, etc.
+              additionalProperties:
+                type: string
+                enum:
+                - positive
+                - neutral
+                - negative
+            themes:
+              type: object
+              description: Detected themes per speaker. Keys are `speaker0`, `speaker1`, etc.
+              additionalProperties:
+                $ref: '#/components/schemas/SpeakerThemes'
+          required:
+          - transcripts_json
+          - dialects
+          - sentiments
+          - themes
+      required:
+      - job_id
+      - status
+      - result

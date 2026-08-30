@@ -1,0 +1,559 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: CDP (Customer Data Platform) Filters API
+  description: "This document serves as the \U0001F4D8 comprehensive API guide for \U0001F50C integrating your product(s) with the Lucidya **Customer Data Platform (CDP)** via **RESTful** endpoints.\n\n\U0001F50D Explore how to seamlessly connect your offerings with our platform to leverage customer data insights and profiles.\n\nMethod | Endpoint | Description\n-------|----------|---------\n `GET` | **[Get Filters](https://docs.lucidya.com/docs/cdp-api/branches/main/7k92xwdm05e0i-get-filters)** | Reterive a list of all available filters on your account.\n `GET` | **[Get Profile List](https://docs.lucidya.com/docs/cdp-api/branches/main/3mjmoshm1vmcu-get-a-list-of-all-profiles)** | Reterive a list of all available customer profiles.\n `GET` | **[Get Profile by Id](https://docs.lucidya.com/docs/cdp-api/branches/main/b0aykazg3489q-get-custom-profile-data-by-id)** | Reterive a specific customer profile data by `profile_id`.\n `POST`| **[Create Profile](https://docs.lucidya.com/docs/cdp-api/c2d0471ce7599-create-profile)** | Create a new CDP profile by adding the profile information.\n `PUT` | **[Update Profile](https://docs.lucidya.com/docs/cdp-api/10c0d3000016a-update-profile)** | Update the information for a specific profile.\n `GET` | **[Get Survey data by Profile Id](https://docs.lucidya.com/docs/cdp-api/branches/main/zb4668e65pnoz-retrieve-survey-data-for-a-specific-profile-using-its-id)** | Reterive a data of all survey(ies) for specific customer by `profile_id`.\n `POST`| **[Create Interaction Profile](https://docs.lucidya.com/docs/cdp-api/branches/main/2kqwzyyvxixnr-create-interaction-profile)** | Create an interaction profile to get the `job_id`.\n `GET` | **[Get Interaction Profile](https://docs.lucidya.com/docs/cdp-api/branches/main/m7c5hv4h94339-get-interaction-profile-by-id)** | Reterive an interaction profile by `job_id` and `profile_id`.\n `GET` | **[Get Segments List](https://docs.lucidya.com/docs/cdp-api/6c947c3eaec37-paginated-segments-list)** | Retrieve a paginated list of segments associated with your account.\n `PUT` | **[Append Profile(s) to Segment](https://docs.lucidya.com/docs/cdp-api/ec7081a06df11-append-profile-s-into-segment)** | Add selected profiles to the segment.\n `DELETE` | **[Delete Profile(s) from Segment](https://docs.lucidya.com/docs/cdp-api/a0ac3ea7ae575-delete-profile-s-from-segment)** | Remove selected profiles from the segment.\n\n[\U0001F393 Learn more about Lucidya CDP](https://lucidya.com/product/audience/)."
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+  license:
+    url: ''
+    name: ''
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: Filters
+paths:
+  /profiles/filters:
+    get:
+      tags:
+      - Filters
+      summary: Get filters
+      description: 'Utilize the `Get Filters` endpoint to **retrieve a list of filters** available in your CDP account.
+
+
+        You can get a list of all supported filters:
+
+
+        - **🔖 Segment**: You will get an array containing all available options for segment filter.
+
+        - **🔍 Data Source**: You will get an array containing all available options for data source filter.
+
+        - **📍 Location**: You will get an array containing all available options for location filter.
+
+        - **👦 Gender**: You will get an array containing all available options for gender filter.
+
+        - **✨ Themes**: You will get an array containing all available options for themes filter.
+
+        - **🖼️ Sub Themes**: You will get an array containing all available options for sub themes filter.
+
+        - **🗣️ Dialects**: You will get an array containing all available options for dialects filter.
+
+        - **🎭 Sub Dialects**: You will get an array containing all available options for sub dialects filter.
+
+        '
+      operationId: getFilters
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: "```json\n{\n    \"data\": [\n        {\n            \"id\": 53,\n            \"name\": \"segment\",\n            \"selection_attribute\": \"multi-select\",\n            \"content_source\": \"engine_dynamic_api\",\n            \"placeholder\": null,\n            \"locale_source\": null,\n            \"default_value\": null,\n            \"priority\": \"1\",\n            \"options\": [\n                {\n                    \"label\": \"T\",\n                    \"value\": 77\n                },\n                {\n                    \"label\": \"magdy\",\n                    \"value\": 76\n                },\n                {\n                    \"label\": \"hi\",\n                    \"value\": 75\n                },\n                {\n                    \"label\": \"TestwShoroog\",\n                    \"value\": 74\n                },\n                {\n                    \"label\": \"ShoroogSegment\",\n                    \"value\": 73\n                },\n                {\n                    \"label\": \"test1234567948822323\",\n                    \"value\": 72\n                },\n                {\n                    \"label\": \"Al\",\n                    \"value\": 70\n                },\n                {\n                    \"label\": \"AA\",\n                    \"value\": 69\n                },\n                {\n                    \"label\": \"A\",\n                    \"value\": 68\n                },\n                {\n                    \"label\": \"عملاء\",\n                    \"value\": 67\n                },\n                {\n                    \"label\": \"r\",\n                    \"value\": 66\n                },\n                {\n                    \"label\": \"GameChangers\",\n                    \"value\": 65\n                },\n                {\n                    \"label\": \"test109\",\n                    \"value\": 64\n                },\n                {\n                    \"label\": \"ahmedtest1\",\n                    \"value\": 63\n                },\n                {\n                    \"label\": \"test2seg\",\n                    \"value\": 62\n                },\n                {\n                    \"label\": \"ahmedtestadd\",\n                    \"value\": 61\n                },\n                {\n                    \"label\": \"asd\",\n                    \"value\": 58\n                },\n                {\n                    \"label\": \"asd1\",\n                    \"value\": 57\n                },\n                {\n                    \"label\": \"test1asd\",\n                    \"value\": 56\n                },\n                {\n                    \"label\": \"ImportantClients\",\n                    \"value\": 55\n                },\n                {\n                    \"label\": \"all-87\",\n                    \"value\": 54\n                },\n                {\n                    \"label\": \"15\",\n                    \"value\": 53\n                },\n                {\n                    \"label\": \"test-45\",\n                    \"value\": 52\n                },\n                {\n                    \"label\": \"test_with_mo\",\n                    \"value\": 51\n                },\n                {\n                    \"label\": \"new_test\",\n                    \"value\": 50\n                },\n                {\n                    \"label\": \"VIB\",\n                    \"value\": 49\n                },\n                {\n                    \"label\": \"tes\",\n                    \"value\": 48\n                },\n                {\n                    \"label\": \"ghadeer\",\n                    \"value\": 47\n                },\n                {\n                    \"label\": \"خدمةعملاء\",\n                    \"value\": 46\n                },\n                {\n                    \"label\": \"sdafsafsfasdf\",\n                    \"value\": 44\n                },\n                {\n                    \"label\": \"gsadfasfdasfasdfasdf\",\n                    \"value\": 40\n                },\n                {\n                    \"label\": \"customer\",\n                    \"value\": 36\n                },\n                {\n                    \"label\": \"new\",\n                    \"value\": 35\n                },\n                {\n                    \"label\": \"test00\",\n                    \"value\": 34\n                },\n                {\n                    \"label\": \"VIP\",\n                    \"value\": 32\n                },\n                {\n                    \"label\": \"Yazeedn\",\n                    \"value\": 28\n                },\n                {\n                    \"label\": \"س\",\n                    \"value\": 27\n                },\n                {\n                    \"label\": \"test0\",\n                    \"value\": 23\n                },\n                {\n                    \"label\": \"Te\",\n                    \"value\": 21\n                },\n                {\n                    \"label\": \"Test\",\n                    \"value\": 20\n                },\n                {\n                    \"label\": \"GHANDI_TEST\",\n                    \"value\": 18\n                },\n                {\n                    \"label\": \"Test3\",\n                    \"value\": 17\n                },\n                {\n                    \"label\": \"Test2\",\n                    \"value\": 14\n                },\n                {\n                    \"label\": \"Test1\",\n                    \"value\": 13\n                }\n            ]\n        },\n        {\n            \"id\": 56,\n            \"name\": \"data_source\",\n            \"selection_attribute\": \"multi-select\",\n            \"content_source\": \"database_content\",\n            \"placeholder\": null,\n            \"locale_source\": \"front-end\",\n            \"default_value\": null,\n            \"priority\": \"2\",\n            \"options\": [\n                {\n                    \"label\": \"twitter\",\n                    \"value\": 1\n                },\n                {\n                    \"label\": \"facebook\",\n                    \"value\": 2\n                },\n                {\n                    \"label\": \"instagram\",\n                    \"value\": 3\n                },\n                {\n                    \"label\": \"intercom\",\n                    \"value\": 6\n                },\n                {\n                    \"label\": \"gmail\",\n                    \"value\": 7\n                },\n                {\n                    \"label\": \"whatsapp\",\n                    \"value\": 9\n                },\n                {\n                    \"label\": \"survey\",\n                    \"value\": 14\n                },\n                {\n                    \"label\": \"genesys\",\n                    \"value\": 27\n                },\n                {\n                    \"label\": \"linkedin\",\n                    \"value\": 20\n                },\n                {\n                    \"label\": \"googlemybusiness\",\n                    \"value\": 15\n                },\n                {\n                    \"label\": \"tiktok\",\n                    \"value\": 38\n                }\n            ]\n        },\n        {\n            \"id\": 59,\n            \"name\": \"location\",\n            \"selection_attribute\": \"multi-select\",\n            \"content_source\": \"engine_dynamic_api\",\n            \"placeholder\": null,\n            \"locale_source\": null,\n            \"default_value\": null,\n            \"priority\": \"3\",\n            \"options\": [\n                {\n                    \"label\": \"SA\",\n                    \"value\": \"SA\"\n                },\n                {\n                    \"label\": \"CO\",\n                    \"value\": \"CO\"\n                },\n                {\n                    \"label\": \"LY\",\n                    \"value\": \"LY\"\n                },\n                {\n                    \"label\": \"MY\",\n                    \"value\": \"MY\"\n                },\n                {\n                    \"label\": \"ES\",\n                    \"value\": \"ES\"\n                },\n                {\n                    \"label\": \"NG\",\n                    \"value\": \"NG\"\n                },\n                {\n                    \"label\": \"ZA\",\n                    \"value\": \"ZA\"\n                },\n                {\n                    \"label\": \"TZ\",\n                    \"value\": \"TZ\"\n                },\n                {\n                    \"label\": \"CU\",\n                    \"value\": \"CU\"\n                },\n                {\n                    \"label\": \"IN\",\n                    \"value\": \"IN\"\n                },\n                {\n                    \"label\": \"CA\",\n                    \"value\": \"CA\"\n                },\n                {\n                    \"label\": \"SN\",\n                    \"value\": \"SN\"\n                },\n                {\n                    \"label\": \"TR\",\n                    \"value\": \"TR\"\n                },\n                {\n                    \"label\": \"PT\",\n                    \"value\": \"PT\"\n                },\n                {\n                    \"label\": \"QA\",\n                    \"value\": \"QA\"\n                },\n                {\n                    \"label\": \"IT\",\n                    \"value\": \"IT\"\n                },\n                {\n                    \"label\": \"KE\",\n                    \"value\": \"KE\"\n                },\n                {\n                    \"label\": \"KW\",\n                    \"value\": \"KW\"\n                },\n                {\n                    \"label\": \"IQ\",\n                    \"value\": \"IQ\"\n                },\n                {\n                    \"label\": \"EG\",\n                    \"value\": \"EG\"\n                },\n                {\n                    \"label\": \"US\",\n                    \"value\": \"US\"\n                },\n                {\n                    \"label\": \"EC\",\n                    \"value\": \"EC\"\n                },\n                {\n                    \"label\": \"GH\",\n                    \"value\": \"GH\"\n                },\n                {\n                    \"label\": \"AE\",\n                    \"value\": \"AE\"\n                },\n                {\n                    \"label\": \"NI\",\n                    \"value\": \"NI\"\n                },\n                {\n                    \"label\": \"JO\",\n                    \"value\": \"JO\"\n                },\n                {\n                    \"label\": \"PY\",\n                    \"value\": \"PY\"\n                },\n                {\n                    \"label\": \"BH\",\n                    \"value\": \"BH\"\n                },\n                {\n                    \"label\": \"ID\",\n                    \"value\": \"ID\"\n                },\n                {\n                    \"label\": \"BR\",\n                    \"value\": \"BR\"\n                },\n                {\n                    \"label\": \"UG\",\n                    \"value\": \"UG\"\n                },\n                {\n                    \"label\": \"DE\",\n                    \"value\": \"DE\"\n                },\n                {\n                    \"label\": \"PH\",\n                    \"value\": \"PH\"\n                },\n                {\n                    \"label\": \"AR\",\n                    \"value\": \"AR\"\n                },\n                {\n                    \"label\": \"GB\",\n                    \"value\": \"GB\"\n                },\n                {\n                    \"label\": \"YE\",\n                    \"value\": \"YE\"\n                },\n                {\n                    \"label\": \"MR\",\n                    \"value\": \"MR\"\n                },\n                {\n                    \"label\": \"UA\",\n                    \"value\": \"UA\"\n                },\n                {\n                    \"label\": \"FR\",\n                    \"value\": \"FR\"\n                },\n                {\n                    \"label\": \"SD\",\n                    \"value\": \"SD\"\n                },\n                {\n                    \"label\": \"OM\",\n                    \"value\": \"OM\"\n                },\n                {\n                    \"label\": \"BW\",\n                    \"value\": \"BW\"\n                },\n                {\n                    \"label\": \"AU\",\n                    \"value\": \"AU\"\n                },\n                {\n                    \"label\": \"DZ\",\n                    \"value\": \"DZ\"\n                },\n                {\n                    \"label\": \"PK\",\n                    \"value\": \"PK\"\n                },\n                {\n                    \"label\": \"GQ\",\n                    \"value\": \"GQ\"\n                },\n                {\n                    \"label\": \"MV\",\n                    \"value\": \"MV\"\n                },\n                {\n                    \"label\": \"MX\",\n                    \"value\": \"MX\"\n                },\n                {\n                    \"label\": \"ET\",\n                    \"value\": \"ET\"\n                },\n                {\n                    \"label\": \"CD\",\n                    \"value\": \"CD\"\n                },\n                {\n                    \"label\": \"CH\",\n                    \"value\": \"CH\"\n                },\n                {\n                    \"label\": \"HT\",\n                    \"value\": \"HT\"\n                },\n                {\n                    \"label\": \"CN\",\n                    \"value\": \"CN\"\n                },\n                {\n                    \"label\": \"PE\",\n                    \"value\": \"PE\"\n                },\n                {\n                    \"label\": \"ME\",\n                    \"value\": \"ME\"\n                },\n                {\n                    \"label\": \"BE\",\n                    \"value\": \"BE\"\n                },\n                {\n                    \"label\": \"NL\",\n                    \"value\": \"NL\"\n                },\n                {\n                    \"label\": \"BF\",\n                    \"value\": \"BF\"\n                },\n                {\n                    \"label\": \"HU\",\n                    \"value\": \"HU\"\n                },\n                {\n                    \"label\": \"ZW\",\n                    \"value\": \"ZW\"\n                },\n                {\n                    \"label\": \"AF\",\n                    \"value\": \"AF\"\n                },\n                {\n                    \"label\": \"RW\",\n                    \"value\": \"RW\"\n                },\n                {\n                    \"label\": \"KR\",\n                    \"value\": \"KR\"\n                },\n                {\n                    \"label\": \"RU\",\n                    \"value\": \"RU\"\n                },\n                {\n                    \"label\": \"PS\",\n                    \"value\": \"PS\"\n                },\n                {\n                    \"label\": \"CL\",\n                    \"value\": \"CL\"\n                },\n                {\n                    \"label\": \"MA\",\n                    \"value\": \"MA\"\n                },\n                {\n                    \"label\": \"AO\",\n                    \"value\": \"AO\"\n                },\n                {\n                    \"label\": \"VE\",\n                    \"value\": \"VE\"\n                },\n                {\n                    \"label\": \"JP\",\n                    \"value\": \"JP\"\n                },\n                {\n                    \"label\": \"GT\",\n                    \"value\": \"GT\"\n                },\n                {\n                    \"label\": \"CM\",\n                    \"value\": \"CM\"\n                },\n                {\n                    \"label\": \"JE\",\n                    \"value\": \"JE\"\n                },\n                {\n                    \"label\": \"CZ\",\n                    \"value\": \"CZ\"\n                },\n                {\n                    \"label\": \"AZ\",\n                    \"value\": \"AZ\"\n                },\n                {\n                    \"label\": \"KP\",\n                    \"value\": \"KP\"\n                },\n                {\n                    \"label\": \"SV\",\n                    \"value\": \"SV\"\n                },\n                {\n                    \"label\": \"LB\",\n                    \"value\": \"LB\"\n                },\n                {\n                    \"label\": \"GM\",\n                    \"value\": \"GM\"\n                },\n                {\n                    \"label\": \"NZ\",\n                    \"value\": \"NZ\"\n                },\n                {\n                    \"label\": \"SY\",\n                    \"value\": \"SY\"\n                },\n                {\n                    \"label\": \"CG\",\n                    \"value\": \"CG\"\n                },\n                {\n                    \"label\": \"DJ\",\n                    \"value\": \"DJ\"\n                },\n                {\n                    \"label\": \"NO\",\n                    \"value\": \"NO\"\n                },\n                {\n                    \"label\": \"AQ\",\n                    \"value\": \"AQ\"\n                },\n                {\n                    \"label\": \"PR\",\n                    \"value\": \"PR\"\n                },\n                {\n                    \"label\": \"IE\",\n                    \"value\": \"IE\"\n                },\n                {\n                    \"label\": \"IL\",\n                    \"value\": \"IL\"\n                },\n                {\n                    \"label\": \"VN\",\n                    \"value\": \"VN\"\n                },\n                {\n                    \"label\": \"GE\",\n                    \"value\": \"GE\"\n                },\n                {\n                    \"label\": \"UY\",\n                    \"value\": \"UY\"\n                },\n                {\n                    \"label\": \"BM\",\n                    \"value\": \"BM\"\n                },\n                {\n                    \"label\": \"NP\",\n                    \"value\": \"NP\"\n                },\n                {\n                    \"label\": \"CR\",\n                    \"value\": \"CR\"\n                },\n                {\n                    \"label\": \"LK\",\n                    \"value\": \"LK\"\n                },\n                {\n                    \"label\": \"MZ\",\n                    \"value\": \"MZ\"\n                },\n                {\n                    \"label\": \"ML\",\n                    \"value\": \"ML\"\n                },\n                {\n                    \"label\": \"TH\",\n                    \"value\": \"TH\"\n                },\n                {\n                    \"label\": \"GR\",\n                    \"value\": \"GR\"\n                },\n                {\n                    \"label\": \"GN\",\n                    \"value\": \"GN\"\n                },\n                {\n                    \"label\": \"MW\",\n                    \"value\": \"MW\"\n                },\n                {\n                    \"label\": \"DO\",\n                    \"value\": \"DO\"\n                },\n                {\n                    \"label\": \"VU\",\n                    \"value\": \"VU\"\n                },\n                {\n                    \"label\": \"SO\",\n                    \"value\": \"SO\"\n                },\n                {\n                    \"label\": \"SI\",\n                    \"value\": \"SI\"\n                },\n                {\n                    \"label\": \"PG\",\n                    \"value\": \"PG\"\n                }\n            ]\n        },\n        {\n            \"id\": 23,\n            \"name\": \"gender\",\n            \"selection_attribute\": \"checkbox-labels\",\n            \"content_source\": \"static_content\",\n            \"placeholder\": null,\n            \"locale_source\": null,\n            \"default_value\": null,\n            \"priority\": \"4\",\n            \"options\": [\n                {\n                    \"value\": \"m\",\n                    \"color\": \"blue\",\n                    \"label\": \"Male\"\n                },\n                {\n                    \"value\": \"f\",\n                    \"color\": \"blue\",\n                    \"label\": \"Female\"\n                }\n            ]\n        },\n        {\n            \"id\": 42,\n            \"name\": \"themes\",\n            \"selection_attribute\": \"multi-select\",\n            \"content_source\": \"engine_dynamic_api\",\n            \"placeholder\": null,\n            \"locale_source\": null,\n            \"default_value\": null,\n            \"priority\": \"5\",\n            \"options\": [\n                {\n                    \"label\": \"Question\",\n                    \"value\": \"Question\"\n                },\n                {\n                    \"label\": \"Complaint\",\n                    \"value\": \"Complaint\"\n                },\n                {\n                    \"label\": \"Complement\",\n                    \"value\": \"Complement\"\n                },\n                {\n                    \"label\": \"Other\",\n                    \"value\": \"Other\"\n                }\n            ]\n        },\n        {\n            \"id\": 43,\n            \"name\": \"sub_themes\",\n            \"selection_attribute\": \"multi-select\",\n            \"content_source\": \"engine_dynamic_api\",\n            \"placeholder\": null,\n            \"locale_source\": null,\n            \"default_value\": null,\n            \"priority\": \"6\",\n            \"options\": [\n                {\n                    \"label\": \"Products & Services\",\n                    \"value\": \"Products & Services\"\n                },\n                {\n                    \"label\": \"Delivery\",\n                    \"value\": \"Delivery\"\n                },\n                {\n                    \"label\": \"Portal/App\",\n                    \"value\": \"Portal/App\"\n                },\n                {\n                    \"label\": \"Payment\",\n                    \"value\": \"Payment\"\n                },\n                {\n                    \"label\": \"Customer Services\",\n                    \"value\": \"Customer Services\"\n                },\n                {\n                    \"label\": \"Undefined\",\n                    \"value\": \"Undefined\"\n                }\n            ]\n        },\n        {\n            \"id\": 25,\n            \"name\": \"dialects\",\n            \"selection_attribute\": \"multi-select\",\n            \"content_source\": \"engine_dynamic_api\",\n            \"placeholder\": null,\n            \"locale_source\": null,\n            \"default_value\": null,\n            \"priority\": \"7\",\n            \"options\": [\n                {\n                    \"label\": \"saudi\",\n                    \"value\": \"saudi\",\n                    \"stats_count\": \"\"\n                },\n                {\n                    \"label\": \"khaleji\",\n                    \"value\": \"khaleji\",\n                    \"stats_count\": \"\"\n                },\n                {\n                    \"label\": \"egyptian\",\n                    \"value\": \"egyptian\",\n                    \"stats_count\": \"\"\n                },\n                {\n                    \"label\": \"modern ar\",\n                    \"value\": \"modern ar\",\n                    \"stats_count\": \"\"\n                },\n                {\n                    \"label\": \"iraqi\",\n                    \"value\": \"iraqi\",\n                    \"stats_count\": \"\"\n                },\n                {\n                    \"label\": \"shami\",\n                    \"value\": \"shami\",\n                    \"stats_count\": \"\"\n                },\n                {\n                    \"label\": \"maghrebi\",\n                    \"value\": \"maghrebi\",\n                    \"stats_count\": \"\"\n                },\n                {\n                    \"label\": \"white\",\n                    \"value\": \"white\",\n                    \"stats_count\": \"\"\n                }\n            ]\n        },\n        {\n            \"id\": 26,\n            \"name\": \"sub_dialects\",\n            \"selection_attribute\": \"multi-select\",\n            \"content_source\": \"engine_dynamic_api\",\n            \"placeholder\": null,\n            \"locale_source\": null,\n            \"default_value\": null,\n            \"priority\": \"8\",\n            \"options\": [\n                {\n                    \"label\": \"najdi-SA\",\n                    \"value\": \"najdi-SA\"\n                },\n                {\n                    \"label\": \"hijaze-SA\",\n                    \"value\": \"hijaze-SA\"\n                },\n                {\n                    \"label\": \"other-SA\",\n                    \"value\": \"other-SA\"\n                },\n                {\n                    \"label\": \"emirati\",\n                    \"value\": \"emirati\"\n                },\n                {\n                    \"label\": \"bahrani\",\n                    \"value\": \"bahrani\"\n                },\n                {\n                    \"label\": \"kuwaiti\",\n                    \"value\": \"kuwaiti\"\n                },\n                {\n                    \"label\": \"egyptian\",\n                    \"value\": \"egyptian\"\n                },\n                {\n                    \"label\": \"modern ar\",\n                    \"value\": \"modern ar\"\n                },\n                {\n                    \"label\": \"iraqi\",\n                    \"value\": \"iraqi\"\n                },\n                {\n                    \"label\": \"syrian\",\n                    \"value\": \"syrian\"\n                },\n                {\n                    \"label\": \"lebanese\",\n                    \"value\": \"lebanese\"\n                },\n                {\n                    \"label\": \"palestinian\",\n                    \"value\": \"palestinian\"\n                },\n                {\n                    \"label\": \"algerian\",\n                    \"value\": \"algerian\"\n                },\n                {\n                    \"label\": \"moroccan\",\n                    \"value\": \"moroccan\"\n                },\n                {\n                    \"label\": \"libyan\",\n                    \"value\": \"libyan\"\n                },\n                {\n                    \"label\": \"white\",\n                    \"value\": \"white\"\n                }\n            ]\n        },\n        {\n            \"oldest_date\": \"2022-09-20\"\n        }\n    ]\n}\n```"
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    data:
+                    - id: 53
+                      name: segment
+                      selection_attribute: multi-select
+                      content_source: engine_dynamic_api
+                      placeholder: null
+                      locale_source: null
+                      default_value: null
+                      priority: '1'
+                      options:
+                      - label: T
+                        value: 77
+                      - label: magdy
+                        value: 76
+                      - label: hi
+                        value: 75
+                      - label: TestwShoroog
+                        value: 74
+                      - label: ShoroogSegment
+                        value: 73
+                      - label: test1234567948822323
+                        value: 72
+                      - label: Al
+                        value: 70
+                      - label: AA
+                        value: 69
+                      - label: A
+                        value: 68
+                      - label: عملاء
+                        value: 67
+                      - label: r
+                        value: 66
+                      - label: GameChangers
+                        value: 65
+                      - label: test109
+                        value: 64
+                      - label: ahmedtest1
+                        value: 63
+                      - label: test2seg
+                        value: 62
+                      - label: ahmedtestadd
+                        value: 61
+                      - label: asd
+                        value: 58
+                      - label: asd1
+                        value: 57
+                      - label: test1asd
+                        value: 56
+                      - label: ImportantClients
+                        value: 55
+                      - label: all-87
+                        value: 54
+                      - label: '15'
+                        value: 53
+                      - label: test-45
+                        value: 52
+                      - label: test_with_mo
+                        value: 51
+                      - label: new_test
+                        value: 50
+                      - label: VIB
+                        value: 49
+                      - label: tes
+                        value: 48
+                      - label: ghadeer
+                        value: 47
+                      - label: خدمةعملاء
+                        value: 46
+                      - label: sdafsafsfasdf
+                        value: 44
+                      - label: gsadfasfdasfasdfasdf
+                        value: 40
+                      - label: customer
+                        value: 36
+                      - label: new
+                        value: 35
+                      - label: test00
+                        value: 34
+                      - label: VIP
+                        value: 32
+                      - label: Yazeedn
+                        value: 28
+                      - label: س
+                        value: 27
+                      - label: test0
+                        value: 23
+                      - label: Te
+                        value: 21
+                      - label: Test
+                        value: 20
+                      - label: GHANDI_TEST
+                        value: 18
+                      - label: Test3
+                        value: 17
+                      - label: Test2
+                        value: 14
+                      - label: Test1
+                        value: 13
+                    - id: 56
+                      name: data_source
+                      selection_attribute: multi-select
+                      content_source: database_content
+                      placeholder: null
+                      locale_source: front-end
+                      default_value: null
+                      priority: '2'
+                      options:
+                      - label: twitter
+                        value: 1
+                      - label: facebook
+                        value: 2
+                      - label: instagram
+                        value: 3
+                      - label: intercom
+                        value: 6
+                      - label: gmail
+                        value: 7
+                      - label: whatsapp
+                        value: 9
+                      - label: survey
+                        value: 14
+                      - label: genesys
+                        value: 27
+                      - label: linkedin
+                        value: 20
+                      - label: googlemybusiness
+                        value: 15
+                      - label: tiktok
+                        value: 38
+                    - id: 59
+                      name: location
+                      selection_attribute: multi-select
+                      content_source: engine_dynamic_api
+                      placeholder: null
+                      locale_source: null
+                      default_value: null
+                      priority: '3'
+                      options:
+                      - label: SA
+                        value: SA
+                      - label: CO
+                        value: CO
+                      - label: LY
+                        value: LY
+                      - label: MY
+                        value: MY
+                      - label: ES
+                        value: ES
+                      - label: NG
+                        value: NG
+                      - label: ZA
+                        value: ZA
+                      - label: TZ
+                        value: TZ
+                      - label: CU
+                        value: CU
+                      - label: IN
+                        value: IN
+                      - label: CA
+                        value: CA
+                      - label: SN
+                        value: SN
+                      - label: TR
+                        value: TR
+                      - label: PT
+                        value: PT
+                      - label: QA
+                        value: QA
+                      - label: IT
+                        value: IT
+                      - label: KE
+                        value: KE
+                      - label: KW
+                        value: KW
+                      - label: IQ
+                        value: IQ
+                      - label: EG
+                        value: EG
+                      - label: US
+                        value: US
+                      - label: EC
+                        value: EC
+                      - label: GH
+                        value: GH
+                      - label: AE
+                        value: AE
+                      - label: NI
+                        value: NI
+                      - label: JO
+                        value: JO
+                      - label: PY
+                        value: PY
+                      - label: BH
+                        value: BH
+                      - label: ID
+                        value: ID
+                      - label: BR
+                        value: BR
+                      - label: UG
+                        value: UG
+                      - label: DE
+                        value: DE
+                      - label: PH
+                        value: PH
+                      - label: AR
+                        value: AR
+                      - label: GB
+                        value: GB
+                      - label: YE
+                        value: YE
+                      - label: MR
+                        value: MR
+                      - label: UA
+                        value: UA
+                      - label: FR
+                        value: FR
+                      - label: SD
+                        value: SD
+                      - label: OM
+                        value: OM
+                      - label: BW
+                        value: BW
+                      - label: AU
+                        value: AU
+                      - label: DZ
+                        value: DZ
+                      - label: PK
+                        value: PK
+                      - label: GQ
+                        value: GQ
+                      - label: MV
+                        value: MV
+                      - label: MX
+                        value: MX
+                      - label: ET
+                        value: ET
+                      - label: CD
+                        value: CD
+                      - label: CH
+                        value: CH
+                      - label: HT
+                        value: HT
+                      - label: CN
+                        value: CN
+                      - label: PE
+                        value: PE
+                      - label: ME
+                        value: ME
+                      - label: BE
+                        value: BE
+                      - label: NL
+                        value: NL
+                      - label: BF
+                        value: BF
+                      - label: HU
+                        value: HU
+                      - label: ZW
+                        value: ZW
+                      - label: AF
+                        value: AF
+                      - label: RW
+                        value: RW
+                      - label: KR
+                        value: KR
+                      - label: RU
+                        value: RU
+                      - label: PS
+                        value: PS
+                      - label: CL
+                        value: CL
+                      - label: MA
+                        value: MA
+                      - label: AO
+                        value: AO
+                      - label: VE
+                        value: VE
+                      - label: JP
+                        value: JP
+                      - label: GT
+                        value: GT
+                      - label: CM
+                        value: CM
+                      - label: JE
+                        value: JE
+                      - label: CZ
+                        value: CZ
+                      - label: AZ
+                        value: AZ
+                      - label: KP
+                        value: KP
+                      - label: SV
+                        value: SV
+                      - label: LB
+                        value: LB
+                      - label: GM
+                        value: GM
+                      - label: NZ
+                        value: NZ
+                      - label: SY
+                        value: SY
+                      - label: CG
+                        value: CG
+                      - label: DJ
+                        value: DJ
+                      - label: 'NO'
+                        value: 'NO'
+                      - label: AQ
+                        value: AQ
+                      - label: PR
+                        value: PR
+                      - label: IE
+                        value: IE
+                      - label: IL
+                        value: IL
+                      - label: VN
+                        value: VN
+                      - label: GE
+                        value: GE
+                      - label: UY
+                        value: UY
+                      - label: BM
+                        value: BM
+                      - label: NP
+                        value: NP
+                      - label: CR
+                        value: CR
+                      - label: LK
+                        value: LK
+                      - label: MZ
+                        value: MZ
+                      - label: ML
+                        value: ML
+                      - label: TH
+                        value: TH
+                      - label: GR
+                        value: GR
+                      - label: GN
+                        value: GN
+                      - label: MW
+                        value: MW
+                      - label: DO
+                        value: DO
+                      - label: VU
+                        value: VU
+                      - label: SO
+                        value: SO
+                      - label: SI
+                        value: SI
+                      - label: PG
+                        value: PG
+                    - id: 23
+                      name: gender
+                      selection_attribute: checkbox-labels
+                      content_source: static_content
+                      placeholder: null
+                      locale_source: null
+                      default_value: null
+                      priority: '4'
+                      options:
+                      - value: m
+                        color: blue
+                        label: Male
+                      - value: f
+                        color: blue
+                        label: Female
+                    - id: 42
+                      name: themes
+                      selection_attribute: multi-select
+                      content_source: engine_dynamic_api
+                      placeholder: null
+                      locale_source: null
+                      default_value: null
+                      priority: '5'
+                      options:
+                      - label: Question
+                        value: Question
+                      - label: Complaint
+                        value: Complaint
+                      - label: Complement
+                        value: Complement
+                      - label: Other
+                        value: Other
+                    - id: 43
+                      name: sub_themes
+                      selection_attribute: multi-select
+                      content_source: engine_dynamic_api
+                      placeholder: null
+                      locale_source: null
+                      default_value: null
+                      priority: '6'
+                      options:
+                      - label: Products & Services
+                        value: Products & Services
+                      - label: Delivery
+                        value: Delivery
+                      - label: Portal/App
+                        value: Portal/App
+                      - label: Payment
+                        value: Payment
+                      - label: Customer Services
+                        value: Customer Services
+                      - label: Undefined
+                        value: Undefined
+                    - id: 25
+                      name: dialects
+                      selection_attribute: multi-select
+                      content_source: engine_dynamic_api
+                      placeholder: null
+                      locale_source: null
+                      default_value: null
+                      priority: '7'
+                      options:
+                      - label: saudi
+                        value: saudi
+                        stats_count: ''
+                      - label: khaleji
+                        value: khaleji
+                        stats_count: ''
+                      - label: egyptian
+                        value: egyptian
+                        stats_count: ''
+                      - label: modern ar
+                        value: modern ar
+                        stats_count: ''
+                      - label: iraqi
+                        value: iraqi
+                        stats_count: ''
+                      - label: shami
+                        value: shami
+                        stats_count: ''
+                      - label: maghrebi
+                        value: maghrebi
+                        stats_count: ''
+                      - label: white
+                        value: white
+                        stats_count: ''
+                    - id: 26
+                      name: sub_dialects
+                      selection_attribute: multi-select
+                      content_source: engine_dynamic_api
+                      placeholder: null
+                      locale_source: null
+                      default_value: null
+                      priority: '8'
+                      options:
+                      - label: najdi-SA
+                        value: najdi-SA
+                      - label: hijaze-SA
+                        value: hijaze-SA
+                      - label: other-SA
+                        value: other-SA
+                      - label: emirati
+                        value: emirati
+                      - label: bahrani
+                        value: bahrani
+                      - label: kuwaiti
+                        value: kuwaiti
+                      - label: egyptian
+                        value: egyptian
+                      - label: modern ar
+                        value: modern ar
+                      - label: iraqi
+                        value: iraqi
+                      - label: syrian
+                        value: syrian
+                      - label: lebanese
+                        value: lebanese
+                      - label: palestinian
+                        value: palestinian
+                      - label: algerian
+                        value: algerian
+                      - label: moroccan
+                        value: moroccan
+                      - label: libyan
+                        value: libyan
+                      - label: white
+                        value: white
+                    - oldest_date: '2022-09-20'
+        '306':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '400':
+          description: Bad Request!
+        '401':
+          description: Unauthorized. Authorization error (Invalid API key).
+        '406':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '500':
+          description: Internal Server Error. We might be updating our services, please wait a while before trying again.
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production
+x-internal: false

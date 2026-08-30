@@ -1,0 +1,1058 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniChannel Default API
+  description: 'This document serves as the 📘 comprehensive API guide for 🔌 integrating your product(s) with the Lucidya **OmniChannel** via **RESTful** endpoints.
+
+
+    🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
+
+
+    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: Default
+  description: Operations related to default and main endpoints on OmniChannel.
+paths:
+  /monitors_list:
+    get:
+      tags:
+      - Default
+      summary: Get Channel List
+      description: 'Use this endpoint to retrieve a comprehensive list of all connected channels within the **OmniChannel** product.
+
+
+        <!-- theme: success -->
+
+        > #### 🔢 Pagination
+
+        >
+
+        > This endpoint enables pagination by using a `page_id` parameter, which is included in the request query parameters. Each payload retrieves **10** channels.
+
+        '
+      operationId: getChannelList
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: product_name
+        in: query
+        description: This specifies the product name, which in this case is `omnichannel`.
+        required: true
+        schema:
+          type: string
+          example: omnichannel
+        examples:
+          default:
+            value: omnichannel
+      - name: page_id
+        in: query
+        description: 'This adds a `page_id` for the subsequent payload. The current page can be identified by the `"page_number": "1"` attribute in the initial payload.'
+        required: true
+        schema:
+          type: integer
+          example: '1'
+        examples:
+          default:
+            value: '1'
+      responses:
+        '200':
+          description: A list of channels
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChannelList'
+                  page_number:
+                    type: string
+                    description: This represents the current page number.
+                  count:
+                    type: integer
+                    description: This represents the total number of connected channels.
+              examples:
+                ChannelListExample:
+                  value:
+                    data:
+                    - id: '76729'
+                      type: channel
+                      attributes:
+                        id: 76729
+                        status: ''
+                        name: Muhab Abbas
+                        monitor_type_name: ACCOUNT_ANALYSIS
+                        paused: 0
+                        created_at: '2024-05-28'
+                        data_sources:
+                        - TWITTER
+                        is_engagement_monitor: true
+                        added_by: Muhab Abbas
+                        authenticated_by: Abdullah Salem
+                        data_category: Social Media
+                        channel:
+                        - TWITTER
+                        account_name: abbasmuhab
+                        total_count: 1
+                        third_party_unique_id: abbasmuhab
+                        percentage: 0
+                        stream_status: collecting
+                        monitor_owner: false
+                        disable_reauth: false
+                        dm_channel: 0
+                        dm_configuration_id: 0
+                        limit_error: []
+                        account_error: []
+                        account_tiktok_token_error: false
+                        account_valid_error: []
+                        is_dm: false
+                        auth_error_login: []
+                        auth_error_permission: []
+                        customer_care_accounts: []
+                    - id: '76299'
+                      type: channel
+                      attributes:
+                        id: 76299
+                        status: ''
+                        name: Mostafa
+                        monitor_type_name: Monitor_dm_configuration
+                        paused: 0
+                        created_at: '2024-05-24'
+                        data_sources:
+                        - FACEBOOK
+                        is_engagement_monitor: true
+                        added_by: Mostafa user1
+                        authenticated_by: Mostafa Salama
+                        data_category: Social Media
+                        channel:
+                        - FACEBOOK
+                        account_name: Mostafa
+                        total_count: 0
+                        third_party_unique_id: null
+                        percentage: 0
+                        stream_status: collecting
+                        monitor_owner: false
+                        disable_reauth: false
+                        dm_channel: 1
+                        dm_configuration_id: 1919
+                        limit_error: []
+                        account_error: []
+                        account_tiktok_token_error: false
+                        account_valid_error: []
+                        is_dm: true
+                        auth_error_login: []
+                        auth_error_permission: []
+                        customer_care_accounts: []
+                    - id: '76294'
+                      type: channel
+                      attributes:
+                        id: 76294
+                        status: ''
+                        name: IslamShaaban
+                        monitor_type_name: ACCOUNT_ANALYSIS
+                        paused: 1
+                        created_at: '2024-05-24'
+                        data_sources:
+                        - TWITTER
+                        is_engagement_monitor: true
+                        added_by: Mostafa Salama
+                        authenticated_by: Islam Shaaban
+                        data_category: Social Media
+                        channel:
+                        - TWITTER
+                        account_name: islam_lucidya
+                        total_count: 0
+                        third_party_unique_id: islam_lucidya
+                        percentage: 0
+                        stream_status: paused
+                        monitor_owner: false
+                        disable_reauth: false
+                        dm_channel: 0
+                        dm_configuration_id: 0
+                        limit_error: []
+                        account_error: []
+                        account_tiktok_token_error: false
+                        account_valid_error: []
+                        is_dm: false
+                        auth_error_login: []
+                        auth_error_permission: []
+                        customer_care_accounts: []
+                    - id: '76214'
+                      type: channel
+                      attributes:
+                        id: 76214
+                        status: ''
+                        name: IG Lucidya DM
+                        monitor_type_name: Monitor_dm_configuration
+                        paused: 0
+                        created_at: '2024-05-23'
+                        data_sources:
+                        - FACEBOOK
+                        is_engagement_monitor: true
+                        added_by: Islam Shaaban
+                        authenticated_by: Islam Shaaban
+                        data_category: Social Media
+                        channel:
+                        - FACEBOOK
+                        account_name: IG Lucidya DM
+                        total_count: 0
+                        third_party_unique_id: null
+                        percentage: 0
+                        stream_status: collecting
+                        monitor_owner: false
+                        disable_reauth: false
+                        dm_channel: 1
+                        dm_configuration_id: 1914
+                        limit_error: []
+                        account_error: []
+                        account_tiktok_token_error: false
+                        account_valid_error: []
+                        is_dm: true
+                        auth_error_login: []
+                        auth_error_permission: []
+                        customer_care_accounts: []
+                    - id: '75944'
+                      type: channel
+                      attributes:
+                        id: 75944
+                        status: ''
+                        name: MhdTest
+                        monitor_type_name: ACCOUNT_ANALYSIS
+                        paused: 0
+                        created_at: '2024-05-22'
+                        data_sources:
+                        - TWITTER
+                        is_engagement_monitor: false
+                        added_by: Mohammed Alasli
+                        authenticated_by: Mohammed Alasli
+                        data_category: Social Media
+                        channel:
+                        - TWITTER
+                        account_name: testmhd45680
+                        total_count: 0
+                        third_party_unique_id: testmhd45680
+                        percentage: 0
+                        stream_status: collecting
+                        monitor_owner: false
+                        disable_reauth: false
+                        dm_channel: 0
+                        dm_configuration_id: 0
+                        limit_error: []
+                        account_error: []
+                        account_tiktok_token_error: false
+                        account_valid_error: []
+                        is_dm: false
+                        auth_error_login: []
+                        auth_error_permission: []
+                        customer_care_accounts:
+                        - TestMhd45680
+                    - id: '75854'
+                      type: channel
+                      attributes:
+                        id: 75854
+                        status: ''
+                        name: Test-luc-2
+                        monitor_type_name: MANAGED_ACCOUNT
+                        paused: 0
+                        created_at: '2024-05-21'
+                        data_sources:
+                        - LINKEDIN
+                        is_engagement_monitor: false
+                        added_by: Islam Shaaban
+                        authenticated_by: Islam Shaaban
+                        data_category: Social Media
+                        channel:
+                        - LINKEDIN
+                        account_name: Test-luc-2
+                        total_count: 29
+                        third_party_unique_id: Test-luc-2
+                        percentage: 0
+                        stream_status: collecting
+                        monitor_owner: false
+                        disable_reauth: false
+                        dm_channel: 0
+                        dm_configuration_id: 0
+                        limit_error: []
+                        account_error: []
+                        account_tiktok_token_error: false
+                        account_valid_error: []
+                        is_dm: false
+                        auth_error_login: []
+                        auth_error_permission: []
+                        customer_care_accounts: []
+                    - id: '75429'
+                      type: channel
+                      attributes:
+                        id: 75429
+                        status: ''
+                        name: Mostafa Hossam
+                        monitor_type_name: ACCOUNT_ANALYSIS
+                        paused: 0
+                        created_at: '2024-05-18'
+                        data_sources:
+                        - TWITTER
+                        is_engagement_monitor: false
+                        added_by: Mostafa user1
+                        authenticated_by: Mostafa user1
+                        data_category: Social Media
+                        channel:
+                        - TWITTER
+                        account_name: mostafa07289794
+                        total_count: 4
+                        third_party_unique_id: mostafa07289794
+                        percentage: -0.3333333432674408
+                        stream_status: collecting
+                        monitor_owner: false
+                        disable_reauth: false
+                        dm_channel: 0
+                        dm_configuration_id: 0
+                        limit_error: []
+                        account_error: []
+                        account_tiktok_token_error: false
+                        account_valid_error: []
+                        is_dm: false
+                        auth_error_login: []
+                        auth_error_permission: []
+                        customer_care_accounts: []
+                    - id: '75419'
+                      type: channel
+                      attributes:
+                        id: 75419
+                        status: ''
+                        name: Mostafa Hossam
+                        monitor_type_name: Monitor_dm_configuration
+                        paused: 0
+                        created_at: '2024-05-18'
+                        data_sources:
+                        - TWITTER
+                        is_engagement_monitor: false
+                        added_by: Mostafa user1
+                        authenticated_by: Mostafa user1
+                        data_category: Social Media
+                        channel:
+                        - TWITTER
+                        account_name: Mostafa07289794
+                        total_count: 0
+                        third_party_unique_id: null
+                        percentage: 0
+                        stream_status: collecting
+                        monitor_owner: false
+                        disable_reauth: false
+                        dm_channel: 1
+                        dm_configuration_id: 1884
+                        limit_error: []
+                        account_error: []
+                        account_tiktok_token_error: false
+                        account_valid_error: []
+                        is_dm: true
+                        auth_error_login: []
+                        auth_error_permission: []
+                        customer_care_accounts: []
+                    - id: '75284'
+                      type: channel
+                      attributes:
+                        id: 75284
+                        status: ''
+                        name: MhdTest
+                        monitor_type_name: Monitor_dm_configuration
+                        paused: 0
+                        created_at: '2024-05-16'
+                        data_sources:
+                        - TWITTER
+                        is_engagement_monitor: false
+                        added_by: Mohammed Alasli
+                        authenticated_by: Mohammed Alasli
+                        data_category: Social Media
+                        channel:
+                        - TWITTER
+                        account_name: TestMhd45680
+                        total_count: 0
+                        third_party_unique_id: null
+                        percentage: 0
+                        stream_status: collecting
+                        monitor_owner: false
+                        disable_reauth: false
+                        dm_channel: 1
+                        dm_configuration_id: 1874
+                        limit_error: []
+                        account_error: []
+                        account_tiktok_token_error: false
+                        account_valid_error: []
+                        is_dm: true
+                        auth_error_login: []
+                        auth_error_permission: []
+                        customer_care_accounts: []
+                    - id: '75039'
+                      type: channel
+                      attributes:
+                        id: 75039
+                        status: ''
+                        name: Abdullah Salem
+                        monitor_type_name: Monitor_dm_configuration
+                        paused: 0
+                        created_at: '2024-05-15'
+                        data_sources:
+                        - TWITTER
+                        is_engagement_monitor: true
+                        added_by: a tharwat 1111
+                        authenticated_by: a tharwat 1111
+                        data_category: Social Media
+                        channel:
+                        - TWITTER
+                        account_name: Abdulla75881452
+                        total_count: 0
+                        third_party_unique_id: null
+                        percentage: 0
+                        stream_status: collecting
+                        monitor_owner: false
+                        disable_reauth: false
+                        dm_channel: 1
+                        dm_configuration_id: 1829
+                        limit_error: []
+                        account_error: []
+                        account_tiktok_token_error: false
+                        account_valid_error: []
+                        is_dm: true
+                        auth_error_login: []
+                        auth_error_permission: []
+                        customer_care_accounts: []
+                    page_number: '1'
+                    count: 31
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '500':
+          description: A required parameter is missing or the parameter format is incorrect.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Missing_Parameter:
+                  value:
+                    error:
+                      status: 500
+                      detail: Page_id is required
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+  /omnichannel/base/categories:
+    get:
+      tags:
+      - Default
+      summary: Get Categories
+      description: Retieve all categories with all available data sources for each one and the main categories on the OmniChannel product eg.. social media, reviews, calls,..etc
+      operationId: getCategories
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Categories'
+              examples:
+                Retrieve Categories:
+                  value:
+                    data:
+                    - name: Social Media
+                      data_sources:
+                      - id: 1
+                        source: TWITTER_PRIVATE
+                      - id: 1
+                        source: TWITTER_PUBLIC
+                      - id: 2
+                        source: FACEBOOK_PRIVATE
+                      - id: 2
+                        source: FACEBOOK_PUBLIC
+                      - id: 3
+                        source: INSTAGRAM_PUBLIC
+                      - id: 3
+                        source: INSTAGRAM_PRIVATE
+                      - id: 20
+                        source: LINKEDIN_PUBLIC
+                      - id: 38
+                        source: TIKTOK_PUBLIC
+                    - name: chats
+                      data_sources:
+                      - id: 6
+                        source: INTERCOM
+                      - id: 9
+                        source: WHATSAPP
+                    - name: emails
+                      data_sources:
+                      - id: 7
+                        source: GMAIL
+                    - name: Ratings
+                      data_sources:
+                      - id: 15
+                        source: GOOGLEMYBUSINESS
+                    - name: Calls
+                      data_sources:
+                      - id: 27
+                        source: GENESYS
+                    - main_categories:
+                      - analytics
+                      - interactions
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+          content:
+            application/json:
+              schema:
+                type: object
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+  /omnichannel/base/widgets:
+    get:
+      tags:
+      - Default
+      summary: Get Widget Names
+      description: 'Retrieve a list of all widget names for a specific channel by using `page_name` and `section_name`.
+
+
+        <!-- theme: success -->
+
+        > #### Tip
+
+        >
+
+        > You can find all page names and their related section names on the [categories endpoint](https://docs.lucidya.com/docs/omnichannel-api/branches/main/oaihft14jx8iv-get-categories).'
+      operationId: getWidgetNames
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: page_name
+        in: query
+        description: Use this parameter to add the specific `page_name`, which means data source, like `TWITTER_PUBLIC`.
+        required: true
+        schema:
+          type: string
+          example: WHATSAPP
+        examples:
+          default:
+            value: WHATSAPP
+      - name: section_name
+        in: query
+        description: Use this parameter to add the related `section_name`, which means category, like `Social Media`.
+        required: true
+        schema:
+          type: string
+          example: chats
+        examples:
+          default:
+            value: chats
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetConfig'
+              examples:
+                Twitter_Public_Widget_Names:
+                  value:
+                    data:
+                      page_name: TWITTER_PUBLIC
+                      widgets_names:
+                      - posts_FollowersGrowth
+                      - posts_VolumeOvertime
+                      - comments_VolumeOvertime
+                      company_time_zone: -1
+                      section_name: social
+                Twitter_Private_Widget_Names:
+                  value:
+                    data:
+                      page_name: TWITTER_PRIVATE
+                      widgets_names:
+                      - OverView
+                      - VolumeOvertime
+                      - SentimentAnalysis
+                      - Themes
+                      - DialectsSubDialects
+                      - ContentType
+                      company_time_zone: 2
+                      section_name: social
+                Facebook_Public_Widget_Names:
+                  value:
+                    data:
+                      page_name: FACEBOOK_PUBLIC
+                      widgets_names:
+                      - posts_AccountAuthorsActivity
+                      - posts_ContentType
+                      - posts_TopImages
+                      - posts_TopVideos
+                      - posts_VolumeOvertime
+                      - posts_Reactions
+                      - posts_PostsInteractions
+                      - posts_TopKeywords
+                      - posts_TopHashTags
+                      - comments_OverView
+                      - comments_VolumeOvertime
+                      - comments_Reactions
+                      - comments_Themes
+                      - comments_SentimentAnalysis
+                      - comments_AssociatedTopics
+                      - comments_PostsEngagers
+                      - comments_DialectsSubDialects
+                      - comments_AccountAuthorsActivity
+                      - comments_TopPosts
+                      - comments_TopKeywords
+                      - comments_TopHashTags
+                      - comments_PostsInteractions
+                      - CustomerCarePerformance
+                      company_time_zone: 2
+                      section_name: social
+                Facebook_Private_Widget_Names:
+                  value:
+                    data:
+                      page_name: FACEBOOK_PRIVATE
+                      widgets_names:
+                      - OverView
+                      - VolumeOvertime
+                      - SentimentAnalysis
+                      - Themes
+                      - DialectsSubDialects
+                      - ChannelAccounts
+                      - ContentType
+                      - AccountContactsActivity
+                      - TopKeywords
+                      - GenderDistribution
+                      - TopEngagers
+                      - LatestInteractions
+                      company_time_zone: 2
+                      section_name: social
+                Instagram_Public_Widget_Names:
+                  value:
+                    data:
+                      page_name: INSTAGRAM_PUBLIC
+                      widgets_names:
+                      - posts_AccountAuthorsActivity
+                      - posts_VolumeOvertime
+                      - posts_PostsInteractions
+                      - posts_AverageEngagementPerPosts
+                      - posts_ContentType
+                      - posts_TopVideos
+                      - posts_TopImages
+                      - comments_OverView
+                      - comments_VolumeOvertime
+                      - comments_SentimentAnalysis
+                      - comments_Themes
+                      - comments_CommentsInteractions
+                      - comments_TopKeywords
+                      - comments_TopHashTags
+                      - comments_AssociatedTopics
+                      - comments_DialectsSubDialects
+                      - comments_TopEngagers
+                      - CustomerCarePerformance
+                      - comments_TopPosts
+                      company_time_zone: 2
+                      section_name: social
+                Instagram_Private_Widget_Names:
+                  value:
+                    data:
+                      page_name: INSTAGRAM_PRIVATE
+                      widgets_names:
+                      - OverView
+                      - VolumeOvertime
+                      - SentimentAnalysis
+                      - Themes
+                      - DialectsSubDialects
+                      - ChannelAccounts
+                      - ContentType
+                      - AccountContactsActivity
+                      - TopKeywords
+                      - GenderDistribution
+                      - TopEngagers
+                      - LatestInteractions
+                      company_time_zone: 2
+                      section_name: social
+                LinkedIn_Public_Widget_Names:
+                  value:
+                    data:
+                      page_name: LINKEDIN_PUBLIC
+                      widgets_names:
+                      - OverView
+                      - VolumeOvertime
+                      - SentimentAnalysis
+                      - Themes
+                      - ChannelAccounts
+                      - ContentType
+                      - DialectsSubDialects
+                      - AccountAuthorsActivity
+                      - TopKeywords
+                      - TopHashTags
+                      - TopImages
+                      - TopVideos
+                      - PostsEngagers
+                      - GenderDistribution
+                      - Reactions
+                      - TopEngagers
+                      - TopPosts
+                      company_time_zone: 2
+                      section_name: social
+                TikTok_Public_Widget_Names:
+                  value:
+                    data:
+                      page_name: TIKTOK_PUBLIC
+                      widgets_names:
+                      - overview
+                      - video_volume
+                      - follower_growth_overtime
+                      - account_authors_activity
+                      - videos_interactions
+                      - top_videos
+                      - comments_volume
+                      - sentiment_analysis
+                      - themes
+                      - top_keywords
+                      - top_hashtags
+                      - gender
+                      - associated_topics
+                      - top_languages
+                      - dialects
+                      - top_engagers
+                      - customer_care_performance
+                      - latest_interactions
+                      company_time_zone: 2
+                      section_name: social
+                Intercom_Widget_Names:
+                  value:
+                    data:
+                      page_name: INTERCOM
+                      widgets_names:
+                      - OverView
+                      - VolumeOvertime
+                      - SentimentAnalysis
+                      - Themes
+                      - GenderDistribution
+                      - TopCountries
+                      - TopCities
+                      - DialectsSubDialects
+                      - TopKeywords
+                      - TopPosts
+                      company_time_zone: 2
+                      section_name: chats
+                WhatsApp_Widget_Names:
+                  value:
+                    data:
+                      page_name: WHATSAPP
+                      widgets_names:
+                      - OverView
+                      - VolumeOvertime
+                      - SentimentAnalysis
+                      - ClientEngagements
+                      - ContentType
+                      - Themes
+                      - MessagesStatus
+                      - DialectsSubDialects
+                      - AccountAuthorsActivity
+                      - TopCountries
+                      - TopKeywords
+                      - TopPosts
+                      company_time_zone: 2
+                      section_name: chats
+                Gmail_Widget_Names:
+                  value:
+                    data:
+                      page_name: GMAIL
+                      widgets_names:
+                      - OverView
+                      - DialectsSubDialects
+                      - TopKeywords
+                      - TopPosts
+                      - VolumeOvertime
+                      - Themes
+                      - SentimentAnalysis
+                      company_time_zone: 2
+                      section_name: emails
+                GoogleMyBusiness_Widget_Names:
+                  value:
+                    data:
+                      page_name: GOOGLEMYBUSINESS
+                      widgets_names:
+                      - OverView
+                      - VolumeOvertime
+                      - SentimentAnalysis
+                      - WhereFindBusinessOnGoogle
+                      - TopCountries
+                      - TopCities
+                      - GenderDistribution
+                      - DialectsSubDialects
+                      - TopKeywords
+                      - RateReviews
+                      - TopPosts
+                      company_time_zone: 2
+                      section_name: ratings
+                Genesys_Widget_Names:
+                  value:
+                    data:
+                      page_name: GENESYS
+                      widgets_names:
+                      - OverView
+                      - VolumeOvertime
+                      - SentimentAnalysis
+                      - Themes
+                      - ChannelAccounts
+                      - DialectsSubDialects
+                      - AccountAuthorsActivity
+                      - TopKeywords
+                      - PostsEngagers
+                      - TopCountries
+                      - TopPosts
+                      - TopEngagers
+                      company_time_zone: 2
+                      section_name: calls
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+components:
+  schemas:
+    Categories:
+      type: object
+      description: This module provides all categories with all available data sources for each one and the main categories on the OmniChannel product.
+      properties:
+        name:
+          type: string
+          description: This is the name of the category/section. You can use this name for the relevant endpoint(s) on OmniChannel.
+        data_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSourceItem'
+        main_categories:
+          type: array
+          description: This provides a list of main categories on OmniChannel, like `analytics` and `interactions` categories.
+          items:
+            type: string
+    ChannelList:
+      type: object
+      description: This module provides a list of all connected channels' data within the OmniChannel product.
+      properties:
+        id:
+          type: string
+          description: This is the identified ID of the monitor.
+        type:
+          type: string
+          description: This is the type of monitor, and in this case, it's a `channel`.
+        attributes:
+          type: object
+          description: This is a data attribute for the channel.
+          properties:
+            id:
+              type: integer
+              description: This is the identified ID of the channel.
+            status:
+              type: string
+              description: This provides the current status of the channel.
+            name:
+              type: string
+              description: This is the name of the connected channel.
+            monitor_type_name:
+              type: string
+              description: 'This provides the monitor type name, and there are two types:
+
+
+                - `ACCOUNT_ANALYSIS`: This means this is a public analytics for this connected channel.
+
+                - `Monitor_dm_configuration`: This means this is a private analytics for this connected channel.'
+            paused:
+              type: integer
+              description: This indicates whether this channel is paused or not.
+            created_at:
+              type: string
+              description: This provides the created/connected date for this channel.
+            data_sources:
+              type: array
+              description: This provides a list of data sources for this channel.
+              items:
+                type: string
+            is_engagement_monitor:
+              type: boolean
+              description: This indicates whether this channel is an engagement monitor or not.
+            added_by:
+              type: string
+              description: This provides the user who added this channel on OmniChannel.
+            authenticated_by:
+              type: string
+              description: This provides the user who authenticated this channel on OmniChannel.
+            data_category:
+              type: string
+              description: 'This indicates which category this channel belongs to.
+
+
+                Check [categories endpoint](https://docs.lucidya.com/docs/omnichannel-api/branches/main/1ff0a71d0d8c6-get-categories) to view all categories on OmniChannel.'
+            channel:
+              type: array
+              description: This provides a name list of connected channel(s).
+              items:
+                type: string
+            account_name:
+              type: string
+              description: This indicates the social account name for the connected channel.
+            total_count:
+              type: integer
+            third_party_unique_id:
+              type: string
+              description: This indicates the unique social ID for the connected channel.
+            percentage:
+              type: number
+            stream_status:
+              type: string
+              description: This represents the streaming status for the channel.
+            monitor_owner:
+              type: boolean
+              description: This indicates whether this user is the monitor owner or not.
+            disable_reauth:
+              type: boolean
+            dm_channel:
+              type: integer
+              description: This indicates whether this channel is a direct messaging channel or not.
+            dm_configuration_id:
+              type: integer
+              description: This represents the unique direct message configuration ID.
+            limit_error:
+              type: array
+              items:
+                type: string
+            account_error:
+              type: array
+              items:
+                type: string
+            account_tiktok_token_error:
+              type: boolean
+            account_valid_error:
+              type: array
+              items:
+                type: string
+            is_dm:
+              type: boolean
+              description: This indicates whether this channel is a direct messaging channel or not.
+            auth_error_login:
+              type: array
+              items:
+                type: string
+            auth_error_permission:
+              type: array
+              items:
+                type: string
+            customer_care_accounts:
+              type: array
+              items:
+                type: string
+    WidgetConfig:
+      type: object
+      description: This module provides a list of all widget names for the provided page name/data source/social channel.
+      properties:
+        page_name:
+          type: string
+          description: The name of the social media/channel page.
+          example: TWITTER_PUBLIC
+        widgets_names:
+          type: array
+          description: A list of available widget names for the provided page name.
+          items:
+            type: string
+        company_time_zone:
+          type: integer
+          description: The company's time zone offset from GMT+3.
+          example: -1
+        section_name:
+          type: string
+          description: The section or category the channel/page belong to.
+          example: social
+    DataSourceItem:
+      type: object
+      description: This module provides a list of all data sources for a specific category.
+      properties:
+        id:
+          type: integer
+          description: This is the unique identifier of the data source.
+        source:
+          type: string
+          description: This is the name of the source, page, or connected channel. You can use this name for the relevant endpoint(s) on OmniChannel.
+      required:
+      - id
+      - source

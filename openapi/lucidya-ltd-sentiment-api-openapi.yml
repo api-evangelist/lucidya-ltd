@@ -1,0 +1,138 @@
+openapi: 3.2.0
+info:
+  version: 0.1.0
+  title: Lucidya Public AI Sentiment API
+  summary: This is the Public API Reference for the Lucidya **AI** Product.
+  description: Our AI API enables you to get insightful analytics and predictions from your text batches.
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya Support
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production
+tags:
+- name: Sentiment
+paths:
+  /sentiment/predict_batch:
+    post:
+      summary: Predict Sentiment - Batch
+      description: This endpoint enables you to add your posts (Texts) to get a sentiment prediction from your batch.
+      operationId: predict_sentiment_batch_ai_sentiment_predict_batch_post
+      parameters:
+      - name: luc-authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          title: Luc-Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Texts'
+      responses:
+        '200':
+          description: Successful prediction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SentimentPredictions'
+        '400':
+          description: Missing params, invalid input, strings too long or items not in range 1-100
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: The server encountered an unexpected condition which prevented it from fulfilling the request
+        '503':
+          description: Service Unavailable - The server is currently unavailable (because it is overloaded or down for maintenance)
+        '504':
+          description: The request timed out
+      servers:
+      - url: https://api.lucidya.com
+        description: Production
+      tags:
+      - Sentiment
+components:
+  schemas:
+    SentimentPredictions:
+      type: object
+      title: SentimentPredictions
+      properties:
+        sentiments:
+          type: array
+          title: Sentiments
+          examples:
+          - - positive
+            - neutral
+            - negative
+            - negative
+          items:
+            type: string
+      required:
+      - sentiments
+    ValidationError:
+      type: object
+      title: ValidationError
+      properties:
+        loc:
+          type: array
+          title: Location
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      required:
+      - loc
+      - msg
+      - type
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ErrorMessage:
+      type: object
+      title: ErrorMessage
+      properties:
+        message:
+          type: string
+          title: Message
+      required:
+      - message
+    Texts:
+      type: object
+      title: Texts
+      properties:
+        texts:
+          type: array
+          title: Texts
+          examples:
+          - - منتج عظيم
+            - السلام عليكم ورحمة الله وبركاته
+            - ما صارت!! الى متى التأخير
+            - شتريت جوال امبارح ومش راضي يفتح معايا
+          items:
+            type: string
+      required:
+      - texts

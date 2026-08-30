@@ -1,0 +1,153 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Lucidya Social Listening Public Public APIs - Social Listening - nb widget_data APIs API
+  description: 'This is the Public API Reference for the Social Listening Product. Use our Social Listening Endpoints to integrate with your product. '
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya Support
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production
+tags:
+- name: Public APIs - Social Listening - nb widget_data APIs
+paths:
+  /nb/widget_data:
+    post:
+      tags:
+      - Public APIs - Social Listening - nb widget_data APIs
+      summary: Social Listening - nb widget_data APIs
+      description: 'This endpoint enables you to apply filters for the News & Blogs widgets and get the `job_id`.
+
+        <!-- theme: success -->
+
+        > #### 💡 Note
+
+        >
+
+        > The `start_date` and `end_date` should be within 30 days only.'
+      operationId: post-new-blogs-widget-data
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: The API authorization token for the request.
+        required: true
+        schema:
+          type: string
+      - name: monitor_id
+        in: query
+        description: The ID of the monitor being used.
+        required: true
+        schema:
+          type: integer
+          example: 7709
+        examples:
+          default:
+            value: 7709
+      - name: page_name
+        in: query
+        description: The name of the page being monitored.
+        required: true
+        schema:
+          type: string
+          example: account_page
+        examples:
+          default:
+            value: account_page
+      - name: data_source
+        in: query
+        description: The data source being used for monitoring.
+        required: true
+        schema:
+          type: string
+          example: TALKWALKER
+        examples:
+          default:
+            value: TALKWALKER
+      - name: start_date
+        in: query
+        description: The start date of the monitoring period in Unix timestamp format.
+        required: true
+        schema:
+          type: integer
+          example: 1622505600
+        examples:
+          default:
+            value: 1622505600
+      - name: end_date
+        in: query
+        description: The end date of the monitoring period in Unix timestamp format.
+        required: true
+        schema:
+          type: integer
+          example: 1622592000
+        examples:
+          default:
+            value: 1622592000
+      - name: widgets_names
+        in: query
+        description: The names of the widgets being monitored.
+        required: true
+        schema:
+          type: string
+          example: '["engagements","customer_care"]'
+        examples:
+          default:
+            value: '["engagements","customer_care"]'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    data:
+                      job_id: 604e6ca1-d166-4bfa-a51f-f3189f538b94
+                      monitor_id: 1234
+                      widgets_names: '[''customer_care'',''engagements'']'
+        '401':
+          description: missing_API_key
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: No API key found in request
+            example_1:
+              examples:
+                example_0:
+                  value:
+                    message: Invalid authentication credentials
+        '403':
+          description: not_authorized
+        '404':
+          description: Page Not Found or Monitor Not Found
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    error:
+                      status: 404
+                      detail: Couldn't find MonitorModel with 'id'=12354443
+        '429':
+          description: too_many_requests
+          content:
+            example_0:
+              examples:
+                example_0:
+                  value:
+                    message: API rate limit exceeded
+        '500':
+          description: internal_server_error
+        '503':
+          description: service_unavailable
+        '504':
+          description: request_timeout
+      servers:
+      - url: https://api.lucidya.com
+        description: Production
+x-internal: false

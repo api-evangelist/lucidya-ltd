@@ -1,0 +1,355 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniChannel Social Media > Instagram API
+  description: 'This document serves as the 📘 comprehensive API guide for 🔌 integrating your product(s) with the Lucidya **OmniChannel** via **RESTful** endpoints.
+
+
+    🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
+
+
+    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: Social Media > Instagram
+  description: Operations related to Instagram "Public and Private" channel.
+paths:
+  /omnichannel/instagram/widget_data:
+    post:
+      tags:
+      - Social Media > Instagram
+      summary: Create Instagram (Public & Private) Widget Data
+      description: 'Use this endpoint to create a request for public or private Instagram widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/branches/main/ktkbxhqnuucg0-get-instagram-public-and-private-widget-data).
+
+
+        <!-- theme: info -->
+
+        > #### Note
+
+        >
+
+        > You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.
+
+
+        <!-- theme: success -->
+
+        > #### Tip
+
+        >
+
+        > Use `page_name` as `INSTAGRAM_PUBLIC` for Instagram public channel or `INSTAGRAM_PRIVATE` for Instagram private (direct message) channel.'
+      operationId: createInstagramWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: monitors_list
+        in: query
+        description: Use this to add monitors list ID(s) for the channel(s).
+        required: true
+        schema:
+          type: array
+          example: '[75024]'
+        examples:
+          default:
+            value: '[75024]'
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, example in this endpoint, `INSTAGRAM_PUBLIC` or `INSTAGRAM_PRIVATE`.
+        required: true
+        schema:
+          type: string
+          example: INSTAGRAM_PRIVATE
+        examples:
+          default:
+            value: INSTAGRAM_PRIVATE
+      - name: data_source
+        in: query
+        description: Use this to add the data source name, example in this endpoint, `instagram`.
+        required: true
+        schema:
+          type: string
+          example: instagram
+        examples:
+          default:
+            value: instagram
+      - name: start_date
+        in: query
+        description: This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`.
+        required: true
+        schema:
+          type: integer
+          example: '1714867200'
+        examples:
+          default:
+            value: '1714867200'
+      - name: end_date
+        in: query
+        description: This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`.
+        required: true
+        schema:
+          type: integer
+          example: '1717027200'
+        examples:
+          default:
+            value: '1717027200'
+      - name: widgets_names
+        in: query
+        description: Use this to add widget names for the provided page name.
+        required: true
+        schema:
+          type: array
+          example: '["OverView"]'
+        examples:
+          default:
+            value: '["OverView"]'
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResult'
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: e94c67fb-ba23-42ae-b7ce-9f460e85fb25
+                      widgets_names:
+                      - OverView
+                Default:
+                  value:
+                    job_id: 3e6d9c25-14dc-4e9e-9f59-98e4a377ebf4
+                    widgets_names:
+                    - string
+                Instagram_Public_Widget_Data:
+                  value:
+                    data:
+                      job_id: cc00d9fc-4d53-4b78-baf6-dc2b9387f895
+                      widgets_names:
+                      - CustomerCarePerformance
+                      - comments_OverView
+                Instagram_Private_Widget_Data:
+                  value:
+                    data:
+                      job_id: e94c67fb-ba23-42ae-b7ce-9f460e85fb25
+                      widgets_names:
+                      - OverView
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+    get:
+      tags:
+      - Social Media > Instagram
+      summary: Get Instagram (Public & Private) Widget Data
+      description: 'Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/branches/main/j8b3b5lnzx0lu-create-instagram-public-and-private-widget-data).
+
+
+        <!-- theme: success -->
+
+        > #### Tip
+
+        >
+
+        > Use `page_name` as `INSTAGRAM_PUBLIC` for Instagram public channel or `INSTAGRAM_PRIVATE` for Instagram private (direct message) channel.'
+      operationId: getInstagramWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, for example in this endpoint, `INSTAGRAM_PUBLIC` or `INSTAGRAM_PRIVATE`.
+        required: true
+        schema:
+          type: string
+          example: INSTAGRAM_PRIVATE
+        examples:
+          default:
+            value: INSTAGRAM_PRIVATE
+      - name: data_source
+        in: query
+        description: Use this to add the data source name , for example in this endpoint, `instagram`.
+        required: true
+        schema:
+          type: string
+          example: instagram
+        examples:
+          default:
+            value: instagram
+      - name: job_id
+        in: query
+        description: This `job_id` represents the identifier for the [newly created instagram widgets data](https://docs.lucidya.com/docs/omnichannel-api/branches/main/j8b3b5lnzx0lu-create-instagram-public-and-private-widget-data).
+        required: true
+        schema:
+          type: string
+          example: e94c67fb-ba23-42ae-b7ce-9f460e85fb25
+        examples:
+          default:
+            value: e94c67fb-ba23-42ae-b7ce-9f460e85fb25
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetDataResponse'
+              examples:
+                default:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        overview:
+                          overview:
+                            total_interactions: 33
+                            total_messages: 408
+                            inbound_messages: 255
+                            outbound_messages: 153
+                            total_people: 14
+                            net_sentiment:
+                            - name: neutral
+                              value: 26
+                Default:
+                  value:
+                    data:
+                      widget_data: {}
+                Instagram_Public_Widget_Data:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        Instagram__CASingleDataSourceInsightsPage__customer_care_performance:
+                          total_number_of_questions: 0
+                          number_of_answered_questions: 0
+                          avg_response_time_in_seconds: 0
+                          response_time_segment:
+                            <10min: 0
+                            10-30min: 0
+                            30-60min: 0
+                            60-90min: 0
+                            90min-2hr: 0
+                            2hr-4hr: 0
+                            4hr-6hr: 0
+                            6hr-12hr: 0
+                            12hr-24hr: 0
+                            24hr-48hr: 0
+                            48hr-72hr: 0
+                            '>72hr': 0
+                        Instagram__EngagementsPage__overview:
+                          overview:
+                            total_interactions: 7
+                            net_sentiment:
+                            - name: positive
+                              value: 6
+                            total_people: 3
+                            total_requests: 0
+                            response_rate: 0
+                            average_waiting_time: 0:00:00
+                Instagram_Private_Widget_Data:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        overview:
+                          overview:
+                            total_interactions: 33
+                            total_messages: 408
+                            inbound_messages: 255
+                            outbound_messages: 153
+                            total_people: 14
+                            net_sentiment:
+                            - name: neutral
+                              value: 26
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+      x-internal: false
+components:
+  schemas:
+    WidgetDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            widget_data:
+              type: object
+              description: The structure of this object is variable depending on the widget type and data.
+    JobResult:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: The unique identifier of the job.
+          example: 3e6d9c25-14dc-4e9e-9f59-98e4a377ebf4
+        widgets_names:
+          type: array
+          description: 'A list of widget names for which results are available. This may be a subset of the widgets requested in the original job.
+
+            '
+          items:
+            type: string

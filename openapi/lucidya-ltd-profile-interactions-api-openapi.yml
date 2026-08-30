@@ -1,0 +1,247 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: CDP (Customer Data Platform) Profile Interactions API
+  description: "This document serves as the \U0001F4D8 comprehensive API guide for \U0001F50C integrating your product(s) with the Lucidya **Customer Data Platform (CDP)** via **RESTful** endpoints.\n\n\U0001F50D Explore how to seamlessly connect your offerings with our platform to leverage customer data insights and profiles.\n\nMethod | Endpoint | Description\n-------|----------|---------\n `GET` | **[Get Filters](https://docs.lucidya.com/docs/cdp-api/branches/main/7k92xwdm05e0i-get-filters)** | Reterive a list of all available filters on your account.\n `GET` | **[Get Profile List](https://docs.lucidya.com/docs/cdp-api/branches/main/3mjmoshm1vmcu-get-a-list-of-all-profiles)** | Reterive a list of all available customer profiles.\n `GET` | **[Get Profile by Id](https://docs.lucidya.com/docs/cdp-api/branches/main/b0aykazg3489q-get-custom-profile-data-by-id)** | Reterive a specific customer profile data by `profile_id`.\n `POST`| **[Create Profile](https://docs.lucidya.com/docs/cdp-api/c2d0471ce7599-create-profile)** | Create a new CDP profile by adding the profile information.\n `PUT` | **[Update Profile](https://docs.lucidya.com/docs/cdp-api/10c0d3000016a-update-profile)** | Update the information for a specific profile.\n `GET` | **[Get Survey data by Profile Id](https://docs.lucidya.com/docs/cdp-api/branches/main/zb4668e65pnoz-retrieve-survey-data-for-a-specific-profile-using-its-id)** | Reterive a data of all survey(ies) for specific customer by `profile_id`.\n `POST`| **[Create Interaction Profile](https://docs.lucidya.com/docs/cdp-api/branches/main/2kqwzyyvxixnr-create-interaction-profile)** | Create an interaction profile to get the `job_id`.\n `GET` | **[Get Interaction Profile](https://docs.lucidya.com/docs/cdp-api/branches/main/m7c5hv4h94339-get-interaction-profile-by-id)** | Reterive an interaction profile by `job_id` and `profile_id`.\n `GET` | **[Get Segments List](https://docs.lucidya.com/docs/cdp-api/6c947c3eaec37-paginated-segments-list)** | Retrieve a paginated list of segments associated with your account.\n `PUT` | **[Append Profile(s) to Segment](https://docs.lucidya.com/docs/cdp-api/ec7081a06df11-append-profile-s-into-segment)** | Add selected profiles to the segment.\n `DELETE` | **[Delete Profile(s) from Segment](https://docs.lucidya.com/docs/cdp-api/a0ac3ea7ae575-delete-profile-s-from-segment)** | Remove selected profiles from the segment.\n\n[\U0001F393 Learn more about Lucidya CDP](https://lucidya.com/product/audience/)."
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+  license:
+    url: ''
+    name: ''
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: Profile Interactions
+paths:
+  /profiles/interactions:
+    post:
+      tags:
+      - Profile Interactions
+      summary: Create interaction profile
+      description: 'This endpoint enables you to execute a `POST` request by including the following parameters:
+
+
+        - `start_date`: Defines the `Unix` timestamp marking the beginning of the interaction period on the customer''s profile.
+
+        - `end_date`: Sets the `Unix` timestamp that signifies the end of the interaction period on the customer''s profile.
+
+        - `profile_id`: Acts as the unique identifier for the customer.
+
+
+        Upon successful submission, the endpoint will return a `job_id`.
+
+
+        This `job_id` serves as a key to **access all interactions** tied to a specific customer.
+
+
+        For more information on how to retrieve interactions for a particular customer using their `Id` and `job_id`, please check [retrieve interaction profile endpoint](https://docs.lucidya.com/docs/cdp-api/branches/main/m7c5hv4h94339-get-interaction-profile).
+
+        '
+      operationId: createInteractionProfile
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        description: This is utilized to specify a `start_date` filter using the Unix format, for example, `1713033600`.
+        required: true
+        schema:
+          type: integer
+          example: '1713033600'
+        examples:
+          default:
+            value: '1713033600'
+      - name: end_date
+        in: query
+        description: This is utilized to specify an `end_date` filter using the Unix format, for example, `1715625600`.
+        required: true
+        schema:
+          type: integer
+          example: '1715625600'
+        examples:
+          default:
+            value: '1715625600'
+      - name: profile_id
+        in: query
+        description: This is the unique identifier of the customer profile.
+        required: true
+        schema:
+          type: integer
+          example: '46597'
+        examples:
+          default:
+            value: '46597'
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: "```json\n{\n    \"data\": {\n        \"job_id\": \"69702ad6-6076-4219-bcb5-af42846f0d57\",\n        \"data_sources\": [\n            \"gmail\",\n            \"genesys\",\n            \"intercom\",\n            \"whatsapp\",\n            \"tiktok_public\",\n            \"twitter_public\",\n            \"facebook_public\",\n            \"linkedin_public\",\n            \"twitter_private\",\n            \"facebook_private\",\n            \"googlemybusiness\",\n            \"instagram_public\",\n            \"instagram_private\"\n        ]\n    }\n}\n```"
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: 0de4d8b1-5c78-47e5-ba14-96c05f7029f6
+                      data_sources:
+                      - gmail
+                      - genesys
+                      - intercom
+                      - whatsapp
+                      - tiktok_public
+                      - twitter_public
+                      - facebook_public
+                      - linkedin_public
+                      - twitter_private
+                      - facebook_private
+                      - googlemybusiness
+                      - instagram_public
+                      - instagram_private
+        '400':
+          description: Invalid date!
+        '401':
+          description: Unauthorized. Authorization error (Invalid API key).
+        '403':
+          description: Forbidden!
+        '404':
+          description: Not Found!
+        '406':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '500':
+          description: Internal Server Error. We might be updating our services, please wait a while before trying again.
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      security: []
+  /profiles/{id}/interactions:
+    get:
+      tags:
+      - Profile Interactions
+      summary: Get interaction profile by Id
+      description: 'This endpoint retrieves **all interactions**, both public and private, from the customer''s all social media accounts.
+
+
+        <!-- theme: info -->
+
+
+        > #### Info
+
+        >
+
+        > To retrieve all interactions for a specific customer based on their `profile_id`, you must provide the `job_id` generated by the [create interaction profile endpoint](https://docs.lucidya.com/docs/cdp-api/2kqwzyyvxixnr-create-interaction-profile).'
+      operationId: getInteractionProfileById
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: job_id
+        in: query
+        description: This `job_id` represents the identifier for the [newly created interaction profile](https://docs.lucidya.com/docs/cdp-api/branches/main/2kqwzyyvxixnr-create-interaction-profile).
+        required: true
+        schema:
+          type: string
+          example: 472d0c0c-708f-4af6-95dc-6dbe87807ac5
+        examples:
+          default:
+            value: 472d0c0c-708f-4af6-95dc-6dbe87807ac5
+      - name: id
+        in: path
+        description: Unique identifier of the customer profile.
+        required: true
+        schema:
+          type: string
+          example: '46555'
+        examples:
+          default:
+            value: '46555'
+      responses:
+        '200':
+          description: "```json\n{\n    \"data\": {\n        \"dataAvailable\": true,\n        \"widget_data\": {\n            \"tiktok_public\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"googlemybusiness\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"genesys\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"intercom\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"whatsapp\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"facebook_private\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"twitter_private\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"facebook_public\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"twitter_public\": {\n                \"latest_interactions\": [\n                    {\n                        \"id\": \"1784957717129343329\",\n                        \"channel_id\": 1,\n                        \"tracker_id\": 70869,\n                        \"text\": \"@cxheroesxyz \\nHi, I need assistance in opening a new account\",\n                        \"created_by\": \"NadaShahwan4\",\n                        \"name\": \"Nada Shahwan\",\n                        \"media_url\": \"\",\n                        \"created_at\": 1714412857,\n                        \"sentiment\": null,\n                        \"themes\": null,\n                        \"sub_themes\": null\n                    }\n                ],\n                \"interactions_count\": 1\n            },\n            \"linkedin_public\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"gmail\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"instagram_public\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            },\n            \"instagram_private\": {\n                \"latest_interactions\": [],\n                \"interactions_count\": 0\n            }\n        }\n    }\n}\n```"
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+              examples:
+                default:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        tiktok_public:
+                          latest_interactions: []
+                          interactions_count: 0
+                        googlemybusiness:
+                          latest_interactions: []
+                          interactions_count: 0
+                        genesys:
+                          latest_interactions: []
+                          interactions_count: 0
+                        intercom:
+                          latest_interactions: []
+                          interactions_count: 0
+                        whatsapp:
+                          latest_interactions: []
+                          interactions_count: 0
+                        facebook_private:
+                          latest_interactions: []
+                          interactions_count: 0
+                        twitter_private:
+                          latest_interactions: []
+                          interactions_count: 0
+                        facebook_public:
+                          latest_interactions: []
+                          interactions_count: 0
+                        twitter_public:
+                          latest_interactions:
+                          - id: '1784957717129343329'
+                            channel_id: 1
+                            tracker_id: 70869
+                            text: "@cxheroesxyz \nHi, I need assistance in opening a new account"
+                            created_by: NadaShahwan4
+                            name: Nada Shahwan
+                            media_url: ''
+                            created_at: 1714412857
+                            sentiment: null
+                            themes: null
+                            sub_themes: null
+                          interactions_count: 1
+                        linkedin_public:
+                          latest_interactions: []
+                          interactions_count: 0
+                        gmail:
+                          latest_interactions: []
+                          interactions_count: 0
+                        instagram_public:
+                          latest_interactions: []
+                          interactions_count: 0
+                        instagram_private:
+                          latest_interactions: []
+                          interactions_count: 0
+        '400':
+          description: Bad Request!
+        '401':
+          description: Unauthorized. Authorization error (Invalid API key).
+        '404':
+          description: Not Found!
+        '406':
+          description: "Not Acceptable!\tThe format used is not acceptable."
+        '500':
+          description: Internal Server Error. We might be updating our services, please wait a while before trying again.
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+x-internal: false

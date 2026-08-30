@@ -1,0 +1,342 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: OmniChannel Social Media > Facebook API
+  description: 'This document serves as the 📘 comprehensive API guide for 🔌 integrating your product(s) with the Lucidya **OmniChannel** via **RESTful** endpoints.
+
+
+    🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
+
+
+    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+  termsOfService: https://lucidya.com/service-agreement/
+  contact:
+    name: Lucidya
+    url: https://lucidya.com/
+    email: customer.support@lucidya.com
+servers:
+- url: https://api.lucidya.com
+  description: Production Server
+tags:
+- name: Social Media > Facebook
+  description: Operations related to Facebook "Public and Private" channel.
+paths:
+  /omnichannel/facebook/widget_data:
+    post:
+      tags:
+      - Social Media > Facebook
+      summary: Create Facebook (Public & Private) Widget Data
+      description: 'Use this endpoint to create a request for public or private Facebook widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/branches/main/t4pmsi5o4uf3l-get-facebook-public-and-private-widget-data).
+
+
+        <!-- theme: info -->
+
+        > #### Note
+
+        >
+
+        > You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.
+
+
+        <!-- theme: success -->
+
+        > #### Tip
+
+        >
+
+        > Use `page_name` as `FACEBOOK_PUBLIC` for Facebook public channel or `FACEBOOK_PRIVATE` for Facebook private (direct message) channel.'
+      operationId: createFacebookWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: monitors_list
+        in: query
+        description: Use this to add monitors list ID(s) for the channel(s).
+        required: true
+        schema:
+          type: array
+          example: '[76299]'
+        examples:
+          default:
+            value: '[76299]'
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, example in this endpoint, `FACEBOOK_PUBLIC` or `FACEBOOK_PRIVATE`.
+        required: true
+        schema:
+          type: string
+          example: FACEBOOK_PRIVATE
+        examples:
+          default:
+            value: FACEBOOK_PRIVATE
+      - name: data_source
+        in: query
+        description: Use this to add the data source name, example in this endpoint, `facebook`.
+        required: true
+        schema:
+          type: string
+          example: facebook
+        examples:
+          default:
+            value: facebook
+      - name: start_date
+        in: query
+        description: This is utilized to specify a `start_date` filter using the Unix format, for example, `1709164800`.
+        required: true
+        schema:
+          type: integer
+          example: '1714867200'
+        examples:
+          default:
+            value: '1714867200'
+      - name: end_date
+        in: query
+        description: This is utilized to specify an `end_date` filter using the Unix format, for example, `1710460799`.
+        required: true
+        schema:
+          type: integer
+          example: '1717027200'
+        examples:
+          default:
+            value: '1717027200'
+      - name: widgets_names
+        in: query
+        description: Use this to add widget names for the provided page name.
+        required: true
+        schema:
+          type: array
+          example: '["OverView"]'
+        examples:
+          default:
+            value: '["OverView"]'
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResult'
+              examples:
+                default:
+                  value:
+                    data:
+                      job_id: a4a51892-928f-47c1-a60d-ab4e736bd348
+                      widgets_names:
+                      - OverView
+                Default:
+                  value:
+                    job_id: 3e6d9c25-14dc-4e9e-9f59-98e4a377ebf4
+                    widgets_names:
+                    - string
+                Facebook_Public_Widget_Data:
+                  value:
+                    data:
+                      job_id: 484e96a0-64b9-4294-9584-3f8410a1c7fb
+                      widgets_names:
+                      - comments_OverView
+                Facebook_Private_Widget_Data:
+                  value:
+                    data:
+                      job_id: e3fffaeb-77ca-42f6-a073-35a872b052a7
+                      widgets_names:
+                      - OverView
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+    get:
+      tags:
+      - Social Media > Facebook
+      summary: Get Facebook (Public & Private) Widget Data
+      description: 'Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/branches/main/aq08ddkfsugxr-create-facebook-public-and-private-widget-data).
+
+
+        <!-- theme: success -->
+
+        > #### Tip
+
+        >
+
+        > Use `page_name` as `FACEBOOK_PUBLIC` for Facebook public channel or `FACEBOOK_PRIVATE` for Facebook private (direct message) channel.'
+      operationId: getFacebookWidgetData
+      parameters:
+      - name: luc-authorization
+        in: header
+        description: This is used to add the `API key` generated from your Lucidya account to authenticate.
+        required: true
+        schema:
+          type: string
+      - name: page_name
+        in: query
+        description: Use this to add the page name or source name, for example in this endpoint, `FACEBOOK_PUBLIC` or `FACEBOOK_PRIVATE`.
+        required: true
+        schema:
+          type: string
+          example: FACEBOOK_PRIVATE
+        examples:
+          default:
+            value: FACEBOOK_PRIVATE
+      - name: data_source
+        in: query
+        description: Use this to add the data source name , for example in this endpoint, `facebook`.
+        required: true
+        schema:
+          type: string
+          example: facebook
+        examples:
+          default:
+            value: facebook
+      - name: job_id
+        in: query
+        description: This `job_id` represents the identifier for the [newly created facebook widgets data](https://docs.lucidya.com/docs/omnichannel-api/branches/main/aq08ddkfsugxr-create-facebook-public-and-private-widget-data).
+        required: true
+        schema:
+          type: string
+          example: a4a51892-928f-47c1-a60d-ab4e736bd348
+        examples:
+          default:
+            value: a4a51892-928f-47c1-a60d-ab4e736bd348
+      - name: monitors_list
+        in: query
+        description: Use this to apply filters by monitors list ID(s) for the channel(s).
+        schema:
+          type: array
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetDataResponse'
+              examples:
+                default:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        overview:
+                          overview:
+                            total_interactions: 4
+                            total_messages: 12
+                            inbound_messages: 7
+                            outbound_messages: 5
+                            total_people: 1
+                            net_sentiment:
+                            - name: neutral
+                              value: 4
+                Default:
+                  value:
+                    data:
+                      widget_data: {}
+                Facebook_Public_Widget_Data:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        Facebook__EngagementsPage__overview:
+                          overview:
+                            total_interactions: 1
+                            net_sentiment:
+                            - name: positive
+                              value: 1
+                            total_people: 1
+                            total_requests: 0
+                            response_rate: 0
+                            average_waiting_time: 0:00:00
+                Facebook_Private_Widget_Data:
+                  value:
+                    data:
+                      dataAvailable: true
+                      widget_data:
+                        overview:
+                          overview:
+                            total_interactions: 4
+                            total_messages: 12
+                            inbound_messages: 7
+                            outbound_messages: 5
+                            total_people: 1
+                            net_sentiment:
+                            - name: neutral
+                              value: 4
+        '401':
+          description: Unauthorized! Invalid authentication credentials or Failure of getting data due to in-active company.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Unauthorized:
+                  value:
+                    message: Invalid authentication credentials
+        '503':
+          description: Wrong request parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Wrong_Parameter(s):
+                  value:
+                    error:
+                      status: 503
+                      detail: WRONG_REQUEST_PARAMETERS
+        '504':
+          description: Gateway Timeout! It means the server tried to load the data or fulfill another request but it took too long and timed out.
+      servers:
+      - url: https://api.lucidya.com
+        description: Production Server
+      x-internal: false
+components:
+  schemas:
+    WidgetDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            widget_data:
+              type: object
+              description: The structure of this object is variable depending on the widget type and data.
+    JobResult:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: The unique identifier of the job.
+          example: 3e6d9c25-14dc-4e9e-9f59-98e4a377ebf4
+        widgets_names:
+          type: array
+          description: 'A list of widget names for which results are available. This may be a subset of the widgets requested in the original job.
+
+            '
+          items:
+            type: string
