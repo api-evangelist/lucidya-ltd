@@ -2,17 +2,19 @@
 kin_checks:
   slug: lucidya-ltd
   schema_version: 0.15.1
-  scored_at: '2026-08-27'
-  run_ts: 2026-08-27T140727
+  scored_at: '2026-08-28'
+  run_ts: 2026-08-28T221322
   note: Actionable checks only (missed + partial). earned/na are every other check
     in rubric/scoring-0.15.1.yml; counts below let you verify that.
   counts:
     total: 130
-    earned: 55
-    partial: 13
+    earned: 57
+    partial: 11
     missed: 38
     na: 24
   checks:
+  - id: maintainer_present
+    status: missed
   - id: well_known_published
     status: missed
   - id: llms_txt_published
@@ -21,13 +23,10 @@ kin_checks:
     status: missed
   - id: openapi_3_2
     status: missed
-    detail: 0 of 4 openapi documents pass
-  - id: security_schemes_defined
-    status: missed
-    detail: 0 of 4 openapi documents pass
+    detail: 0 of 36 openapi documents pass
   - id: webhooks_or_callbacks
     status: missed
-    detail: 0 of 4 openapi documents pass
+    detail: 0 of 36 openapi documents pass
   - id: json_schema_present
     status: missed
   - id: json_schema_per_resource
@@ -92,33 +91,25 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
-  - id: openapi_3_1
-    status: partial
-    earned: 1.25
-    detail: 1 of 4 openapi documents pass
-  - id: openapi_3_0
-    status: partial
-    earned: 2.25
-    detail: 3 of 4 openapi documents pass
-  - id: operations_tagged
-    status: partial
-    earned: 3.0
-    detail: 3 of 4 openapi documents pass
   - id: operations_operation_ids
     status: partial
-    earned: 3.0
-    detail: 3 of 4 openapi documents pass
+    earned: 3.78
+    detail: 34 of 36 openapi documents pass
   - id: examples_present
     status: partial
-    earned: 3.43
+    earned: 3.56
   - id: components_reuse
     status: partial
-    earned: 0.75
-    detail: 1 of 4 openapi documents pass
+    earned: 0.42
+    detail: 5 of 36 openapi documents pass
+  - id: security_schemes_defined
+    status: partial
+    earned: 0.56
+    detail: 5 of 36 openapi documents pass
   - id: security_applied
     status: partial
-    earned: 0.75
-    detail: 1 of 4 openapi documents pass
+    earned: 0.42
+    detail: 5 of 36 openapi documents pass
   - id: github_org_present
     status: partial
     earned: 1.0
