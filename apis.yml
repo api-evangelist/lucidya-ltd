@@ -1,15 +1,12 @@
 aid: lucidya-ltd
 name: Lucidya Ltd
-description: >-
-  Lucidya is an AI-native customer experience management (CXM) platform for
-  social listening, unified customer data, omnichannel engagement, surveys, and
-  AI-powered text analysis, with deep Arabic-language and MENA-market
-  capabilities. Its public developer platform (docs.lucidya.com) exposes a suite
-  of RESTful APIs across six products — Social Listening, AI, CDP, OmniChannel,
-  OmniServe Analytics, and Webhooks — for programmatic access to social data,
-  customer profiles, analytics, AI text/audio models, and real-time event
-  notifications. Lucidya is a 500 Global portfolio company headquartered in Saudi
-  Arabia and is certified for SOC 2 Type 2 and ISO 27001.
+description: Lucidya is an AI-native customer experience management (CXM) platform for social listening,
+  unified customer data, omnichannel engagement, surveys, and AI-powered text analysis, with deep Arabic-language
+  and MENA-market capabilities. Its public developer platform (docs.lucidya.com) exposes a suite of RESTful
+  APIs across six products — Social Listening, AI, CDP, OmniChannel, OmniServe Analytics, and Webhooks
+  — for programmatic access to social data, customer profiles, analytics, AI text/audio models, and real-time
+  event notifications. Lucidya is a 500 Global portfolio company headquartered in Saudi Arabia and is
+  certified for SOC 2 Type 2 and ISO 27001.
 url: https://raw.githubusercontent.com/api-evangelist/lucidya-ltd/refs/heads/main/apis.yml
 deliveryModel:
   model: saas
@@ -36,26 +33,22 @@ accessModel:
   - plans
   generated: '2026-08-13'
   method: searched
-  note: >-
-    Corrected 2026-08-13. Documentation and all five OpenAPI documents are fully
-    public and unauthenticated, but an API key is not self-serve: a customer must
-    file a "Request Access" ticket that a Customer Success Manager approves before
-    the Generate API Key control appears. OmniServe list pricing is published
-    ($125 and $250 per seat per month); Social Listening pricing is
-    talk-to-sales.
+  note: 'Corrected 2026-08-13. Documentation and all five OpenAPI documents are fully public and unauthenticated,
+    but an API key is not self-serve: a customer must file a "Request Access" ticket that a Customer Success
+    Manager approves before the Generate API Key control appears. OmniServe list pricing is published
+    ($125 and $250 per seat per month); Social Listening pricing is talk-to-sales.'
 image: https://lh3.googleusercontent.com/d/1rlLPfBLpzoGQ2qAS_b9JeAxSnoyaa6RQ
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
 x-tier: enriched
-x-tier-reason: >-
-  Five first-party OpenAPI documents (73 operations) harvested from the
-  provider's own public Stoplight workspace on 2026-08-13, plus the full docs
-  set for auth, pagination, errors, rate limits and versioning.
+x-tier-reason: Five first-party OpenAPI documents (73 operations) harvested from the provider's own public
+  Stoplight workspace on 2026-08-13, plus the full docs set for auth, pagination, errors, rate limits
+  and versioning.
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-08-13'
+modified: '2026-09-16'
 tags:
 - Company
 - Customer Experience
@@ -68,8 +61,8 @@ tags:
 - MENA
 apis:
 - name: Lucidya Webhooks
-  description: >-
-    Receive real-time push notifications when specific events or conditions are met across your monitors.
+  description: Receive real-time push notifications when specific events or conditions are met across
+    your monitors.
   humanURL: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
   baseURL: https://api.lucidya.com
   properties:
@@ -81,10 +74,9 @@ apis:
     url: https://docs.lucidya.com/docs/webhooks/gjni0qgds8vl8-get-started
 - aid: lucidya-ltd:lucidya-ltd-aggregated-pages-analytics-api
   name: Lucidya Ltd aggregated pages > Analytics API
-  description: >-
-    The aggregated pages > Analytics API from Lucidya Ltd — 1 operation(s) for aggregated pages > analytics.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  description: The aggregated pages > Analytics API from Lucidya Ltd — 1 operation(s) for aggregated pages
+    > analytics.
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - aggregated pages > Analytics
@@ -94,8 +86,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -134,10 +125,9 @@ apis:
     url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
 - aid: lucidya-ltd:lucidya-ltd-aggregated-pages-interactions-api
   name: Lucidya Ltd aggregated pages > Interactions API
-  description: >-
-    The aggregated pages > Interactions API from Lucidya Ltd — 1 operation(s) for aggregated pages > interactions.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  description: The aggregated pages > Interactions API from Lucidya Ltd — 1 operation(s) for aggregated
+    pages > interactions.
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - aggregated pages > Interactions
@@ -147,8 +137,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -188,8 +177,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-analytics-jobs-api
   name: Lucidya Ltd Analytics Jobs API
   description: Endpoints for creating and retrieving analytics jobs
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Analytics Jobs
@@ -199,8 +187,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -240,8 +227,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-analytics-pages-api
   name: Lucidya Ltd Analytics Pages API
   description: Endpoints for discovering and managing analytics pages, widgets, and filters
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Analytics Pages
@@ -251,8 +237,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -292,8 +277,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-audio-transcription-api
   name: Lucidya Ltd Audio Transcription API
   description: The Audio Transcription API from Lucidya Ltd — 3 operation(s) for audio transcription.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Audio Transcription
@@ -303,8 +287,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -344,8 +327,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-calls-genesys-api
   name: Lucidya Ltd Calls > Genesys API
   description: Operations related to Genesys channel.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Calls > Genesys
@@ -355,8 +337,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -396,8 +377,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-chats-chats-api
   name: Lucidya Ltd Chats > chats API
   description: The Chats > chats API from Lucidya Ltd — 1 operation(s) for chats > chats.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Chats > chats
@@ -407,8 +387,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -448,8 +427,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-chats-intercom-api
   name: Lucidya Ltd Chats > Intercom API
   description: Operations related to Intercom channel.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Chats > Intercom
@@ -459,8 +437,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -500,8 +477,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-chats-whatsapp-api
   name: Lucidya Ltd Chats > Whatsapp API
   description: The Chats > Whatsapp API from Lucidya Ltd — 1 operation(s) for chats > whatsapp.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Chats > Whatsapp
@@ -511,8 +487,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -552,8 +527,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-csat-analytics-api
   name: Lucidya Ltd CSAT Analytics API
   description: Endpoints for CSAT (Customer Satisfaction) survey analytics
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - CSAT Analytics
@@ -563,8 +537,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -604,8 +577,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-custom-fields-api
   name: Lucidya Ltd Custom Fields API
   description: Endpoints for retrieving per-engagement applied custom-field values (job-based)
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Custom Fields
@@ -615,8 +587,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -656,8 +627,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-default-api
   name: Lucidya Ltd Default API
   description: Operations related to default and main endpoints on OmniChannel.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags: []
   tags_raw:
@@ -668,8 +638,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -709,8 +678,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-dialects-api
   name: Lucidya Ltd Dialects API
   description: The Dialects API from Lucidya Ltd — 1 operation(s) for dialects.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Dialects
@@ -720,8 +688,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -761,8 +728,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-domains-api
   name: Lucidya Ltd Domains API
   description: The Domains API from Lucidya Ltd — 1 operation(s) for domains.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Domains
@@ -772,8 +738,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -813,8 +778,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-email-gmail-api
   name: Lucidya Ltd Email > Gmail API
   description: Operations related to Gmail channel.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Email > Gmail
@@ -824,8 +788,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -865,8 +828,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-filters-api
   name: Lucidya Ltd Filters API
   description: The Filters API from Lucidya Ltd — 1 operation(s) for filters.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Filters
@@ -876,8 +838,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -917,8 +878,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-profile-interactions-api
   name: Lucidya Ltd Profile Interactions API
   description: The Profile Interactions API from Lucidya Ltd — 2 operation(s) for profile interactions.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Profile Interactions
@@ -928,8 +888,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -969,8 +928,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-profiles-api
   name: Lucidya Ltd Profiles API
   description: The Profiles API from Lucidya Ltd — 2 operation(s) for profiles.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Profiles
@@ -980,8 +938,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1020,10 +977,9 @@ apis:
     url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
 - aid: lucidya-ltd:lucidya-ltd-public-api-monitors-list-api
   name: Lucidya Ltd Public API - Monitors List API
-  description: >-
-    The Public API - Monitors List API from Lucidya Ltd — 1 operation(s) for public api - monitors list.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  description: The Public API - Monitors List API from Lucidya Ltd — 1 operation(s) for public api - monitors
+    list.
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Public API - Monitors List
@@ -1033,8 +989,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1073,11 +1028,9 @@ apis:
     url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
 - aid: lucidya-ltd:lucidya-ltd-public-apis-social-listening-base-apis-api
   name: Lucidya Ltd Public APIs - Social Listening - Base APIs API
-  description: >-
-    The Public APIs - Social Listening - Base APIs API from Lucidya Ltd — 3 operation(s) for public apis
-    - social listening - base apis.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  description: The Public APIs - Social Listening - Base APIs API from Lucidya Ltd — 3 operation(s) for
+    public apis - social listening - base apis.
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags: []
   tags_raw:
@@ -1088,8 +1041,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1128,24 +1080,20 @@ apis:
     url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
 - aid: lucidya-ltd:lucidya-ltd-public-apis-social-listening-facebook-widget-data-apis-api
   name: Lucidya Ltd Public APIs - Social Listening - Facebook widget_data APIs API
-  description: >-
-    The Public APIs - Social Listening - Facebook widget_data APIs API from Lucidya Ltd — 1 operation(s)
-    for public apis - social listening - facebook widget_data apis.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  description: The Public APIs - Social Listening - Facebook widget_data APIs API from Lucidya Ltd — 1
+    operation(s) for public apis - social listening - facebook widget_data apis.
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags: []
   tags_raw:
   - Public APIs - Social Listening - Facebook widget_data APIs
   properties:
   - type: OpenAPI
-    url: >-
-      openapi/lucidya-ltd-public-apis-social-listening-facebook-widget-data-apis-api-openapi.yml
+    url: openapi/lucidya-ltd-public-apis-social-listening-facebook-widget-data-apis-api-openapi.yml
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1184,24 +1132,20 @@ apis:
     url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
 - aid: lucidya-ltd:lucidya-ltd-public-apis-social-listening-instagram-widget-data-apis-api
   name: Lucidya Ltd Public APIs - Social Listening - instagram widget_data APIs API
-  description: >-
-    The Public APIs - Social Listening - instagram widget_data APIs API from Lucidya Ltd — 1 operation(s)
-    for public apis - social listening - instagram widget_data apis.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  description: The Public APIs - Social Listening - instagram widget_data APIs API from Lucidya Ltd —
+    1 operation(s) for public apis - social listening - instagram widget_data apis.
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags: []
   tags_raw:
   - Public APIs - Social Listening - instagram widget_data APIs
   properties:
   - type: OpenAPI
-    url: >-
-      openapi/lucidya-ltd-public-apis-social-listening-instagram-widget-data-apis-api-openapi.yml
+    url: openapi/lucidya-ltd-public-apis-social-listening-instagram-widget-data-apis-api-openapi.yml
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1240,11 +1184,9 @@ apis:
     url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
 - aid: lucidya-ltd:lucidya-ltd-public-apis-social-listening-nb-widget-data-apis-api
   name: Lucidya Ltd Public APIs - Social Listening - nb widget_data APIs API
-  description: >-
-    The Public APIs - Social Listening - nb widget_data APIs API from Lucidya Ltd — 1 operation(s) for
-    public apis - social listening - nb widget_data apis.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  description: The Public APIs - Social Listening - nb widget_data APIs API from Lucidya Ltd — 1 operation(s)
+    for public apis - social listening - nb widget_data apis.
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags: []
   tags_raw:
@@ -1255,8 +1197,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1295,24 +1236,20 @@ apis:
     url: https://docs.lucidya.com/docs/omniserve/8s65uy0al6adj-authorization
 - aid: lucidya-ltd:lucidya-ltd-public-apis-social-listening-twitter-widget-data-apis-api
   name: Lucidya Ltd Public APIs - Social Listening - twitter widget_data APIs API
-  description: >-
-    The Public APIs - Social Listening - twitter widget_data APIs API from Lucidya Ltd — 1 operation(s)
-    for public apis - social listening - twitter widget_data apis.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  description: The Public APIs - Social Listening - twitter widget_data APIs API from Lucidya Ltd — 1
+    operation(s) for public apis - social listening - twitter widget_data apis.
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags: []
   tags_raw:
   - Public APIs - Social Listening - twitter widget_data APIs
   properties:
   - type: OpenAPI
-    url: >-
-      openapi/lucidya-ltd-public-apis-social-listening-twitter-widget-data-apis-api-openapi.yml
+    url: openapi/lucidya-ltd-public-apis-social-listening-twitter-widget-data-apis-api-openapi.yml
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1352,8 +1289,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-rating-google-my-business-api
   name: Lucidya Ltd Rating > Google My Business API
   description: Operations related to Google My Business channel.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Rating > Google My Business
@@ -1363,8 +1299,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1404,8 +1339,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-reference-data-api
   name: Lucidya Ltd Reference Data API
   description: Endpoints for fetching reference data (agents, teams, data sources)
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Reference Data
@@ -1415,8 +1349,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1456,8 +1389,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-segments-api
   name: Lucidya Ltd Segments API
   description: The Segments API from Lucidya Ltd — 3 operation(s) for segments.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Segments
@@ -1467,8 +1399,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1508,8 +1439,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-sentiment-api
   name: Lucidya Ltd Sentiment API
   description: The Sentiment API from Lucidya Ltd — 1 operation(s) for sentiment.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Sentiment
@@ -1519,8 +1449,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1560,8 +1489,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-social-media-facebook-api
   name: Lucidya Ltd Social Media > Facebook API
   description: Operations related to Facebook "Public and Private" channel.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Social Media > Facebook
@@ -1571,8 +1499,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1612,8 +1539,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-social-media-instagram-api
   name: Lucidya Ltd Social Media > Instagram API
   description: Operations related to Instagram "Public and Private" channel.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Social Media > Instagram
@@ -1623,8 +1549,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1664,8 +1589,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-social-media-linkedin-api
   name: Lucidya Ltd Social Media > Linkedin API
   description: Operations related to Linkedin channel.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Social Media > Linkedin
@@ -1675,8 +1599,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1716,8 +1639,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-social-media-social-api
   name: Lucidya Ltd Social Media > Social API
   description: Operations related to all social cannels.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Social Media > Social
@@ -1727,8 +1649,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1768,8 +1689,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-social-media-tiktok-api
   name: Lucidya Ltd Social Media > TikTok API
   description: Operations related to TikTok channel.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Social Media > TikTok
@@ -1779,8 +1699,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1820,8 +1739,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-social-media-x-twitter-api
   name: Lucidya Ltd Social Media > X (Twitter) API
   description: Operations related to X (Twitter) "Public and Private" channel.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Social Media > X (Twitter)
@@ -1831,8 +1749,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1872,8 +1789,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-surveys-api
   name: Lucidya Ltd Surveys API
   description: The Surveys API from Lucidya Ltd — 1 operation(s) for surveys.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Surveys
@@ -1883,8 +1799,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -1924,8 +1839,7 @@ apis:
 - aid: lucidya-ltd:lucidya-ltd-themes-api
   name: Lucidya Ltd Themes API
   description: The Themes API from Lucidya Ltd — 1 operation(s) for themes.
-  humanURL: >-
-    https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+  humanURL: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   baseURL: https://api.lucidya.com
   tags:
   - Themes
@@ -1935,8 +1849,7 @@ apis:
   - type: Documentation
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: APIReference
-    url: >-
-      https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
+    url: https://docs.lucidya.com/docs/Social-Listening-api/wainb9dny9w1y-lucidya-social-listening-public-api
   - type: GettingStarted
     url: https://docs.lucidya.com/docs/Social-Listening-api/rqwky70duwx76-get-started
   - type: Authentication
@@ -2055,7 +1968,7 @@ common:
 - type: LLMsTxt
   url: llms/lucidya-ltd-llms.txt
 - type: OpenAPI
-  url: openapi/lucidya-ltd-social-listening-api-openapi.yml
+  url: openapi/_original/lucidya-ltd-social-listening-api-openapi.yml
 - type: Overlay
   url: overlays/lucidya-ltd-social-listening-overlay.yaml
 - type: ErrorCatalog
@@ -2072,7 +1985,10 @@ common:
   url: packages/lucidya-ltd-packages.yml
 - type: X-MCPServerCandidate
   url: mcp/lucidya-ltd-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: AgentSkill
   url: skills/_index.yml
 x-enrichment:
