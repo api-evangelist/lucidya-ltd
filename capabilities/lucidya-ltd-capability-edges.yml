@@ -1,0 +1,65 @@
+slug: lucidya-ltd
+provider: Lucidya Ltd
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Segments
+  spec_file: lucidya-ltd-segments-api-openapi.yml
+  capability_id: BC-420.20
+  capability_id_l1: BC-420
+  capability_name: Customer Segmentation Management
+  confidence: 0.88
+  evidence: GET /segments  getSegmentList  Paginated Segments List; PUT /segments/append_profiles  Append
+    Profile(s) into Segment
+  reason: Managing customer segments and their profile membership in the CDP is customer segmentation
+    management.
+- tag: CSAT Analytics
+  spec_file: lucidya-ltd-csat-analytics-api-openapi.yml
+  capability_id: BC-430.50
+  capability_id_l1: BC-430
+  capability_name: Customer Feedback Management
+  confidence: 0.85
+  evidence: '''Get CSAT Questions'', ''CSAT Response Counts'', ''CSAT Question Responses'', ''CSAT User
+    Responses''; description ''CSAT survey analytics'''
+  reason: Operations retrieve customer satisfaction survey questions and responses — squarely voice-of-customer/survey
+    feedback management.
+- tag: Profiles
+  spec_file: lucidya-ltd-profiles-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.85
+  evidence: GET /profiles  getProfileList  Get a list of all profiles; POST /profiles createProfile; "Reterive
+    a specific customer profile data by profile_id"
+  reason: CRUD over unified customer profiles in a Customer Data Platform is squarely customer data /
+    golden-record management.
+- tag: Profile Interactions
+  spec_file: lucidya-ltd-profile-interactions-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.72
+  evidence: POST /profiles/interactions  createInteractionProfile  Create interaction profile; "Customer
+    Data Platform (CDP)" ... "leverage customer data insights and profiles"
+  reason: CDP endpoints writing and reading interaction data attached to unified customer profiles — customer
+    master/golden-record data management rather than any technical object.
+- tag: Reference Data
+  spec_file: lucidya-ltd-reference-data-api-openapi.yml
+  capability_id: BC-430.30
+  capability_id_l1: BC-430
+  capability_name: Contact Centre Operations Management
+  confidence: 0.7
+  evidence: GET /analytics/agents  getAgents; GET /analytics/teams  getTeams; GET /analytics/routings  getRoutings;
+    GET /analytics/slas  getSlas
+  reason: Reference data for agents, teams, routing rules and SLAs in a service-analytics product is contact-centre
+    operational master data, not a generic lookup table.
