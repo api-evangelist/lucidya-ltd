@@ -65,22 +65,22 @@ paths:
       - Sentiment
 components:
   schemas:
-    SentimentPredictions:
+    Texts:
       type: object
-      title: SentimentPredictions
+      title: Texts
       properties:
-        sentiments:
+        texts:
           type: array
-          title: Sentiments
+          title: Texts
           examples:
-          - - positive
-            - neutral
-            - negative
-            - negative
+          - - منتج عظيم
+            - السلام عليكم ورحمة الله وبركاته
+            - ما صارت!! الى متى التأخير
+            - شتريت جوال امبارح ومش راضي يفتح معايا
           items:
             type: string
       required:
-      - sentiments
+      - texts
     ValidationError:
       type: object
       title: ValidationError
@@ -102,6 +102,22 @@ components:
       - loc
       - msg
       - type
+    SentimentPredictions:
+      type: object
+      title: SentimentPredictions
+      properties:
+        sentiments:
+          type: array
+          title: Sentiments
+          examples:
+          - - positive
+            - neutral
+            - negative
+            - negative
+          items:
+            type: string
+      required:
+      - sentiments
     HTTPValidationError:
       type: object
       title: HTTPValidationError
@@ -120,19 +136,3 @@ components:
           title: Message
       required:
       - message
-    Texts:
-      type: object
-      title: Texts
-      properties:
-        texts:
-          type: array
-          title: Texts
-          examples:
-          - - منتج عظيم
-            - السلام عليكم ورحمة الله وبركاته
-            - ما صارت!! الى متى التأخير
-            - شتريت جوال امبارح ومش راضي يفتح معايا
-          items:
-            type: string
-      required:
-      - texts

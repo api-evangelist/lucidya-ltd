@@ -18,7 +18,7 @@ paths:
   /dialects/predict_batch:
     post:
       summary: Predict Dialects - Bactch
-      description: 'This endpoint enables you to add your posts (Texts) and predict the Arabic dialects and sub-dialects. '
+      description: This endpoint enables you to add your posts (Texts) and predict the Arabic dialects and sub-dialects.
       operationId: predict_dialects_batch_ai_dialects_predict_batch_post
       parameters:
       - name: luc-authorization
@@ -65,6 +65,22 @@ paths:
       - Dialects
 components:
   schemas:
+    Texts:
+      type: object
+      title: Texts
+      properties:
+        texts:
+          type: array
+          title: Texts
+          examples:
+          - - منتج عظيم
+            - السلام عليكم ورحمة الله وبركاته
+            - ما صارت!! الى متى التأخير
+            - شتريت جوال امبارح ومش راضي يفتح معايا
+          items:
+            type: string
+      required:
+      - texts
     ValidationError:
       type: object
       title: ValidationError
@@ -86,6 +102,24 @@ components:
       - loc
       - msg
       - type
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ErrorMessage:
+      type: object
+      title: ErrorMessage
+      properties:
+        message:
+          type: string
+          title: Message
+      required:
+      - message
     DialectsPredictions:
       type: object
       title: DialectsPredictions
@@ -113,37 +147,3 @@ components:
       required:
       - dialects
       - sub_dialects
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          title: Detail
-          items:
-            $ref: '#/components/schemas/ValidationError'
-    ErrorMessage:
-      type: object
-      title: ErrorMessage
-      properties:
-        message:
-          type: string
-          title: Message
-      required:
-      - message
-    Texts:
-      type: object
-      title: Texts
-      properties:
-        texts:
-          type: array
-          title: Texts
-          examples:
-          - - منتج عظيم
-            - السلام عليكم ورحمة الله وبركاته
-            - ما صارت!! الى متى التأخير
-            - شتريت جوال امبارح ومش راضي يفتح معايا
-          items:
-            type: string
-      required:
-      - texts

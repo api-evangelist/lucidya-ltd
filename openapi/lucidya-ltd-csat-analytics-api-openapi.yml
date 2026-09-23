@@ -2,7 +2,20 @@ openapi: 3.2.0
 info:
   version: 1.0.0
   title: OmniServe Analytics CSAT Analytics API
-  description: "Complete API collection for Lucidya OmniServe Analytics Endpoints. This API provides access to \nanalytics data for engagement monitoring, CSAT surveys, and reporting capabilities.\n\nFeatures include:\n- Analytics pages and widgets discovery\n- Job-based analytics data retrieval\n- CSAT survey analytics\n- Reference data access (agents, teams, data sources)\n"
+  description: 'Complete API collection for Lucidya OmniServe Analytics Endpoints. This API provides access to
+
+    analytics data for engagement monitoring, CSAT surveys, and reporting capabilities.
+
+
+    Features include:
+
+    - Analytics pages and widgets discovery
+
+    - Job-based analytics data retrieval
+
+    - CSAT survey analytics
+
+    - Reference data access (agents, teams, data sources)'
   contact:
     name: API Support
     email: support@lucidya.com
@@ -27,9 +40,7 @@ paths:
       description: 'This endpoint enables you to retrieve CSAT questions for a data source with pagination and optional search.
 
 
-        **Note:** This endpoint supports pagination.
-
-        '
+        **Note:** This endpoint supports pagination.'
       operationId: getCsatQuestions
       parameters:
       - name: data_source_name
@@ -151,9 +162,7 @@ paths:
       tags:
       - CSAT Analytics
       summary: Get In-Chat-Survey Page Filters
-      description: 'This endpoint enables you to get available filters for the `in-chat-survey` analytics page.
-
-        '
+      description: This endpoint enables you to get available filters for the `in-chat-survey` analytics page.
       responses:
         '200':
           description: Filters list
@@ -216,14 +225,14 @@ paths:
       servers:
       - url: https://api.lucidya.com/public_api/omniserve
         description: Production Server
+      operationId: getAnalyticsInChatSurveyFilters
+      x-operation-id-source: derived
   /analytics/in-chat-survey/index:
     get:
       tags:
       - CSAT Analytics
       summary: Get CSAT Job Results
-      description: 'This endpoint enables you to get the results of a previously created CSAT analytics job for the `in-chat-survey` page.
-
-        '
+      description: This endpoint enables you to get the results of a previously created CSAT analytics job for the `in-chat-survey` page.
       parameters:
       - name: job_id
         in: query
@@ -308,14 +317,14 @@ paths:
       servers:
       - url: https://api.lucidya.com/public_api/omniserve
         description: Production Server
+      operationId: getAnalyticsInChatSurveyIndex
+      x-operation-id-source: derived
   /analytics/in-chat-survey/csat_response_counts:
     post:
       tags:
       - CSAT Analytics
       summary: CSAT Response Counts
-      description: 'This endpoint enables you to create a CSAT response counts analytics job and returns a job_id with question metadata.
-
-        '
+      description: This endpoint enables you to create a CSAT response counts analytics job and returns a job_id with question metadata.
       operationId: csatResponseCounts
       requestBody:
         required: true
@@ -423,9 +432,7 @@ paths:
       tags:
       - CSAT Analytics
       summary: CSAT Question Responses
-      description: 'This endpoint enables you to create a CSAT question responses job for a specific question and returns a job_id.
-
-        '
+      description: This endpoint enables you to create a CSAT question responses job for a specific question and returns a job_id.
       operationId: csatQuestionResponses
       requestBody:
         required: true
@@ -531,9 +538,7 @@ paths:
       tags:
       - CSAT Analytics
       summary: CSAT User Responses
-      description: 'This endpoint enables you to create a CSAT user responses analytics job and returns a job_id.
-
-        '
+      description: This endpoint enables you to create a CSAT user responses analytics job and returns a job_id.
       operationId: csatUserResponses
       requestBody:
         required: true
@@ -609,8 +614,8 @@ paths:
         description: Production Server
 components:
   responses:
-    ValidationFailed:
-      description: Unprocessable Entity - validation failed or missing required fields
+    MethodNotAllowed:
+      description: Method Not Allowed - HTTP method is not supported for this endpoint
       content:
         application/json:
           schema:
@@ -618,10 +623,10 @@ components:
           examples:
             default:
               value:
-                status: 422
-                message: Validation failed
-    NotAcceptable:
-      description: Not Acceptable - the requested format is not supported
+                status: 405
+                message: Method not allowed
+    Gone:
+      description: Gone - the requested resource is no longer available
       content:
         application/json:
           schema:
@@ -629,8 +634,8 @@ components:
           examples:
             default:
               value:
-                status: 406
-                message: Not acceptable
+                status: 410
+                message: Resource gone
     BadRequest:
       description: Bad request - invalid input or validation error
       content:
@@ -642,6 +647,17 @@ components:
               value:
                 status: 400
                 detail: Page_id is required
+    Unauthorized:
+      description: Unauthorized - invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 401
+                message: Authentication required
     RateLimited:
       description: Too many requests - rate limit exceeded
       content:
@@ -654,39 +670,6 @@ components:
                 status: 429
                 message: Rate limit exceeded
                 retry_after: 60
-    GatewayTimeout:
-      description: Gateway Timeout - server took too long to respond
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 504
-                message: Gateway timeout
-    Gone:
-      description: Gone - the requested resource is no longer available
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 410
-                message: Resource gone
-    NotFound:
-      description: Not Found - the specified resource could not be found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 404
-                message: Resource not found
     ServerError:
       description: Internal server error
       content:
@@ -698,6 +681,17 @@ components:
               value:
                 status: 500
                 message: Internal server error
+    GatewayTimeout:
+      description: Gateway Timeout - server took too long to respond
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 504
+                message: Gateway timeout
     Forbidden:
       description: Forbidden - insufficient permissions
       content:
@@ -709,6 +703,28 @@ components:
               value:
                 status: 403
                 message: Access denied
+    NotAcceptable:
+      description: Not Acceptable - the requested format is not supported
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 406
+                message: Not acceptable
+    NotFound:
+      description: Not Found - the specified resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 404
+                message: Resource not found
     ServiceUnavailable:
       description: Service Unavailable - temporary server overload or maintenance
       content:
@@ -720,8 +736,8 @@ components:
               value:
                 status: 503
                 message: Service unavailable
-    Unauthorized:
-      description: Unauthorized - invalid or missing authentication
+    ValidationFailed:
+      description: Unprocessable Entity - validation failed or missing required fields
       content:
         application/json:
           schema:
@@ -729,19 +745,8 @@ components:
           examples:
             default:
               value:
-                status: 401
-                message: Authentication required
-    MethodNotAllowed:
-      description: Method Not Allowed - HTTP method is not supported for this endpoint
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 405
-                message: Method not allowed
+                status: 422
+                message: Validation failed
   schemas:
     Error:
       type: object

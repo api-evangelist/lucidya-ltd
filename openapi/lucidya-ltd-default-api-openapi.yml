@@ -8,7 +8,7 @@ info:
     🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
 
 
-    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+    🎓 Learn more about Lucidya OmniChannel.'
   termsOfService: https://lucidya.com/service-agreement/
   contact:
     name: Lucidya
@@ -29,15 +29,11 @@ paths:
       description: 'Use this endpoint to retrieve a comprehensive list of all connected channels within the **OmniChannel** product.
 
 
-        <!-- theme: success -->
-
         > #### 🔢 Pagination
 
         >
 
-        > This endpoint enables pagination by using a `page_id` parameter, which is included in the request query parameters. Each payload retrieves **10** channels.
-
-        '
+        > This endpoint enables pagination by using a `page_id` parameter, which is included in the request query parameters. Each payload retrieves **10** channels.'
       operationId: getChannelList
       parameters:
       - name: luc-authorization
@@ -566,13 +562,11 @@ paths:
       description: 'Retrieve a list of all widget names for a specific channel by using `page_name` and `section_name`.
 
 
-        <!-- theme: success -->
-
         > #### Tip
 
         >
 
-        > You can find all page names and their related section names on the [categories endpoint](https://docs.lucidya.com/docs/omnichannel-api/branches/main/oaihft14jx8iv-get-categories).'
+        > You can find all page names and their related section names on the categories endpoint.'
       operationId: getWidgetNames
       parameters:
       - name: luc-authorization
@@ -891,6 +885,40 @@ paths:
         description: Production Server
 components:
   schemas:
+    DataSourceItem:
+      type: object
+      description: This module provides a list of all data sources for a specific category.
+      properties:
+        id:
+          type: integer
+          description: This is the unique identifier of the data source.
+        source:
+          type: string
+          description: This is the name of the source, page, or connected channel. You can use this name for the relevant endpoint(s) on OmniChannel.
+      required:
+      - id
+      - source
+    WidgetConfig:
+      type: object
+      description: This module provides a list of all widget names for the provided page name/data source/social channel.
+      properties:
+        page_name:
+          type: string
+          description: The name of the social media/channel page.
+          example: TWITTER_PUBLIC
+        widgets_names:
+          type: array
+          description: A list of available widget names for the provided page name.
+          items:
+            type: string
+        company_time_zone:
+          type: integer
+          description: The company's time zone offset from GMT+3.
+          example: -1
+        section_name:
+          type: string
+          description: The section or category the channel/page belong to.
+          example: social
     Categories:
       type: object
       description: This module provides all categories with all available data sources for each one and the main categories on the OmniChannel product.
@@ -1022,37 +1050,3 @@ components:
               type: array
               items:
                 type: string
-    WidgetConfig:
-      type: object
-      description: This module provides a list of all widget names for the provided page name/data source/social channel.
-      properties:
-        page_name:
-          type: string
-          description: The name of the social media/channel page.
-          example: TWITTER_PUBLIC
-        widgets_names:
-          type: array
-          description: A list of available widget names for the provided page name.
-          items:
-            type: string
-        company_time_zone:
-          type: integer
-          description: The company's time zone offset from GMT+3.
-          example: -1
-        section_name:
-          type: string
-          description: The section or category the channel/page belong to.
-          example: social
-    DataSourceItem:
-      type: object
-      description: This module provides a list of all data sources for a specific category.
-      properties:
-        id:
-          type: integer
-          description: This is the unique identifier of the data source.
-        source:
-          type: string
-          description: This is the name of the source, page, or connected channel. You can use this name for the relevant endpoint(s) on OmniChannel.
-      required:
-      - id
-      - source

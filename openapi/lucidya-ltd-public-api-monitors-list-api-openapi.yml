@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
   version: v1
-  title: Lucidya Social Listening Public Public API - Monitors List API
-  description: 'This is the Public API Reference for the Social Listening Product. Use our Social Listening Endpoints to integrate with your product. '
+  title: Lucidya Social Listening Public Public API - Monitors List…
+  description: This is the Public API Reference for the Social Listening Product. Use our Social Listening Endpoints to integrate with your product.
   termsOfService: https://lucidya.com/service-agreement/
   contact:
     name: Lucidya Support
@@ -21,7 +21,6 @@ paths:
       summary: Public API - Monitors List
       description: 'This endpoint enables you tp get the list of all monitors in your account.
 
-        <!-- theme: success -->
 
         > #### 💡 Note
 

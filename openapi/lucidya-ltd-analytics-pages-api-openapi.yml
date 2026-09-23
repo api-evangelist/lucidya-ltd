@@ -2,7 +2,20 @@ openapi: 3.2.0
 info:
   version: 1.0.0
   title: OmniServe Analytics Analytics Pages API
-  description: "Complete API collection for Lucidya OmniServe Analytics Endpoints. This API provides access to \nanalytics data for engagement monitoring, CSAT surveys, and reporting capabilities.\n\nFeatures include:\n- Analytics pages and widgets discovery\n- Job-based analytics data retrieval\n- CSAT survey analytics\n- Reference data access (agents, teams, data sources)\n"
+  description: 'Complete API collection for Lucidya OmniServe Analytics Endpoints. This API provides access to
+
+    analytics data for engagement monitoring, CSAT surveys, and reporting capabilities.
+
+
+    Features include:
+
+    - Analytics pages and widgets discovery
+
+    - Job-based analytics data retrieval
+
+    - CSAT survey analytics
+
+    - Reference data access (agents, teams, data sources)'
   contact:
     name: API Support
     email: support@lucidya.com
@@ -27,9 +40,7 @@ paths:
       description: 'This endpoint enables you to get the list of all analytics pages available to your company.
 
 
-        **Note:** Returns pages like inbox, slas, agents, and in-chat-survey.
-
-        '
+        **Note:** Returns pages like inbox, slas, agents, and in-chat-survey.'
       operationId: getAnalyticsPages
       responses:
         '200':
@@ -96,9 +107,7 @@ paths:
       tags:
       - Analytics Pages
       summary: Get Page Widgets
-      description: 'This endpoint enables you to list available widgets for a specific analytics page.
-
-        '
+      description: This endpoint enables you to list available widgets for a specific analytics page.
       operationId: getPageWidgets
       parameters:
       - name: page_name
@@ -163,9 +172,7 @@ paths:
       tags:
       - Analytics Pages
       summary: Get Page Filters
-      description: 'This endpoint enables you to get filter definitions for a specific analytics page.
-
-        '
+      description: This endpoint enables you to get filter definitions for a specific analytics page.
       operationId: getPageFilters
       parameters:
       - name: page_name
@@ -239,8 +246,8 @@ paths:
         description: Production Server
 components:
   responses:
-    ValidationFailed:
-      description: Unprocessable Entity - validation failed or missing required fields
+    MethodNotAllowed:
+      description: Method Not Allowed - HTTP method is not supported for this endpoint
       content:
         application/json:
           schema:
@@ -248,10 +255,10 @@ components:
           examples:
             default:
               value:
-                status: 422
-                message: Validation failed
-    NotAcceptable:
-      description: Not Acceptable - the requested format is not supported
+                status: 405
+                message: Method not allowed
+    Gone:
+      description: Gone - the requested resource is no longer available
       content:
         application/json:
           schema:
@@ -259,8 +266,8 @@ components:
           examples:
             default:
               value:
-                status: 406
-                message: Not acceptable
+                status: 410
+                message: Resource gone
     BadRequest:
       description: Bad request - invalid input or validation error
       content:
@@ -272,6 +279,17 @@ components:
               value:
                 status: 400
                 detail: Page_id is required
+    Unauthorized:
+      description: Unauthorized - invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 401
+                message: Authentication required
     RateLimited:
       description: Too many requests - rate limit exceeded
       content:
@@ -284,39 +302,6 @@ components:
                 status: 429
                 message: Rate limit exceeded
                 retry_after: 60
-    GatewayTimeout:
-      description: Gateway Timeout - server took too long to respond
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 504
-                message: Gateway timeout
-    Gone:
-      description: Gone - the requested resource is no longer available
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 410
-                message: Resource gone
-    NotFound:
-      description: Not Found - the specified resource could not be found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 404
-                message: Resource not found
     ServerError:
       description: Internal server error
       content:
@@ -328,6 +313,17 @@ components:
               value:
                 status: 500
                 message: Internal server error
+    GatewayTimeout:
+      description: Gateway Timeout - server took too long to respond
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 504
+                message: Gateway timeout
     Forbidden:
       description: Forbidden - insufficient permissions
       content:
@@ -339,6 +335,28 @@ components:
               value:
                 status: 403
                 message: Access denied
+    NotAcceptable:
+      description: Not Acceptable - the requested format is not supported
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 406
+                message: Not acceptable
+    NotFound:
+      description: Not Found - the specified resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 404
+                message: Resource not found
     ServiceUnavailable:
       description: Service Unavailable - temporary server overload or maintenance
       content:
@@ -350,8 +368,8 @@ components:
               value:
                 status: 503
                 message: Service unavailable
-    Unauthorized:
-      description: Unauthorized - invalid or missing authentication
+    ValidationFailed:
+      description: Unprocessable Entity - validation failed or missing required fields
       content:
         application/json:
           schema:
@@ -359,19 +377,8 @@ components:
           examples:
             default:
               value:
-                status: 401
-                message: Authentication required
-    MethodNotAllowed:
-      description: Method Not Allowed - HTTP method is not supported for this endpoint
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 405
-                message: Method not allowed
+                status: 422
+                message: Validation failed
   schemas:
     Error:
       type: object

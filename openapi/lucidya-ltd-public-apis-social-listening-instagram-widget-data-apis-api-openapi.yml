@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
   version: v1
-  title: Lucidya Social Listening Public Public APIs - Social Listening - instagram widget_data APIs API
-  description: 'This is the Public API Reference for the Social Listening Product. Use our Social Listening Endpoints to integrate with your product. '
+  title: Lucidya Social Listening Public Public APIs - Social…
+  description: This is the Public API Reference for the Social Listening Product. Use our Social Listening Endpoints to integrate with your product.
   termsOfService: https://lucidya.com/service-agreement/
   contact:
     name: Lucidya Support
@@ -21,7 +21,6 @@ paths:
       summary: Social Listening - instagram widget_data APIs
       description: 'This endpoint enables you to apply filters for the Instagram widgets and get the `job_id`.
 
-        <!-- theme: success -->
 
         > #### 💡 Note
 

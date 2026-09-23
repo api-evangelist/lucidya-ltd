@@ -8,7 +8,7 @@ info:
     🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
 
 
-    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+    🎓 Learn more about Lucidya OmniChannel.'
   termsOfService: https://lucidya.com/service-agreement/
   contact:
     name: Lucidya
@@ -29,16 +29,12 @@ paths:
       description: 'Use this endpoint to create a request for X widget names and get the `job_id` to [get widgets analysis for the channel
 
 
-        <!-- theme: info -->
-
         > #### Note
 
         >
 
         > You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.
 
-
-        <!-- theme: success -->
 
         > #### Tip
 

@@ -8,7 +8,7 @@ info:
     🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
 
 
-    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+    🎓 Learn more about Lucidya OmniChannel.'
   termsOfService: https://lucidya.com/service-agreement/
   contact:
     name: Lucidya
@@ -26,10 +26,8 @@ paths:
       tags:
       - Email > Gmail
       summary: Create Gmail Public Widget Data
-      description: 'Use this endpoint to create a request for Gmail public widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/u28t34xzui5i2-get-gmail-public-widget-data).
+      description: 'Use this endpoint to create a request for Gmail public widget names and get the `job_id` to get widgets analysis for the channel.
 
-
-        <!-- theme: info -->
 
         > #### Note
 
@@ -151,7 +149,7 @@ paths:
       tags:
       - Email > Gmail
       summary: Get Gmail Public Widget Data
-      description: Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/a8f12q0go8xiy-create-gmail-public-widget-data).
+      description: Retrieve a list of widget data analyses for the specified widget names using `job_id` from the newly created widgets data endpoint.
       operationId: getGmailWidgetData
       parameters:
       - name: luc-authorization
@@ -242,15 +240,6 @@ paths:
         description: Production Server
 components:
   schemas:
-    WidgetDataResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            widget_data:
-              type: object
-              description: The structure of this object is variable depending on the widget type and data.
     JobResult:
       type: object
       properties:
@@ -265,3 +254,12 @@ components:
             '
           items:
             type: string
+    WidgetDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            widget_data:
+              type: object
+              description: The structure of this object is variable depending on the widget type and data.

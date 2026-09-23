@@ -65,6 +65,22 @@ paths:
       - Themes
 components:
   schemas:
+    Texts:
+      type: object
+      title: Texts
+      properties:
+        texts:
+          type: array
+          title: Texts
+          examples:
+          - - منتج عظيم
+            - السلام عليكم ورحمة الله وبركاته
+            - ما صارت!! الى متى التأخير
+            - شتريت جوال امبارح ومش راضي يفتح معايا
+          items:
+            type: string
+      required:
+      - texts
     ValidationError:
       type: object
       title: ValidationError
@@ -95,6 +111,15 @@ components:
           title: Detail
           items:
             $ref: '#/components/schemas/ValidationError'
+    ErrorMessage:
+      type: object
+      title: ErrorMessage
+      properties:
+        message:
+          type: string
+          title: Message
+      required:
+      - message
     ThemesPredictions:
       type: object
       title: ThemesPredictions
@@ -129,28 +154,3 @@ components:
         - - question
           - complaint
         - - complaint
-    ErrorMessage:
-      type: object
-      title: ErrorMessage
-      properties:
-        message:
-          type: string
-          title: Message
-      required:
-      - message
-    Texts:
-      type: object
-      title: Texts
-      properties:
-        texts:
-          type: array
-          title: Texts
-          examples:
-          - - منتج عظيم
-            - السلام عليكم ورحمة الله وبركاته
-            - ما صارت!! الى متى التأخير
-            - شتريت جوال امبارح ومش راضي يفتح معايا
-          items:
-            type: string
-      required:
-      - texts

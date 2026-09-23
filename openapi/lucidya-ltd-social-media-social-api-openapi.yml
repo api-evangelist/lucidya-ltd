@@ -8,7 +8,7 @@ info:
     🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
 
 
-    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+    🎓 Learn more about Lucidya OmniChannel.'
   termsOfService: https://lucidya.com/service-agreement/
   contact:
     name: Lucidya
@@ -26,9 +26,7 @@ paths:
       tags:
       - Social Media > Social
       summary: Create Social Widget Data
-      description: 'Use this endpoint to create a request for all social connected channels and obtain the `job_id` necessary to [retrieve widget analysis for all social channels](https://docs.lucidya.com/docs/omnichannel-api/3z0h5zr07jmqb-get-social-widget-data-analysis).
-
-        '
+      description: Use this endpoint to create a request for all social connected channels and obtain the `job_id` necessary to retrieve widget analysis for all social channels.
       operationId: createSocialWidgetData
       parameters:
       - name: luc-authorization
@@ -152,8 +150,6 @@ paths:
       summary: Get Social Widget Data Analysis
       description: 'Retrieve a list of all social channels widget data and get an overview for all using this endpoint.
 
-
-        <!-- theme: success -->
 
         > #### Tip
 
@@ -456,15 +452,6 @@ paths:
       x-internal: false
 components:
   schemas:
-    WidgetDataResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            widget_data:
-              type: object
-              description: The structure of this object is variable depending on the widget type and data.
     JobResult:
       type: object
       properties:
@@ -479,3 +466,12 @@ components:
             '
           items:
             type: string
+    WidgetDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            widget_data:
+              type: object
+              description: The structure of this object is variable depending on the widget type and data.

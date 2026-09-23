@@ -2,7 +2,20 @@ openapi: 3.2.0
 info:
   version: 1.0.0
   title: OmniServe Analytics Analytics Jobs API
-  description: "Complete API collection for Lucidya OmniServe Analytics Endpoints. This API provides access to \nanalytics data for engagement monitoring, CSAT surveys, and reporting capabilities.\n\nFeatures include:\n- Analytics pages and widgets discovery\n- Job-based analytics data retrieval\n- CSAT survey analytics\n- Reference data access (agents, teams, data sources)\n"
+  description: 'Complete API collection for Lucidya OmniServe Analytics Endpoints. This API provides access to
+
+    analytics data for engagement monitoring, CSAT surveys, and reporting capabilities.
+
+
+    Features include:
+
+    - Analytics pages and widgets discovery
+
+    - Job-based analytics data retrieval
+
+    - CSAT survey analytics
+
+    - Reference data access (agents, teams, data sources)'
   contact:
     name: API Support
     email: support@lucidya.com
@@ -24,9 +37,7 @@ paths:
       tags:
       - Analytics Jobs
       summary: Create Analytics Job
-      description: 'This endpoint enables you to create an analytics job for a page and returns a job_id for retrieving results.
-
-        '
+      description: This endpoint enables you to create an analytics job for a page and returns a job_id for retrieving results.
       operationId: createAnalyticsJob
       parameters:
       - name: page_name
@@ -204,7 +215,7 @@ paths:
       tags:
       - Analytics Jobs
       summary: Get Analytics Results
-      description: "This endpoint enables you to get the results of a previously created analytics job.\n\n## Response Structure\n\nThe response contains:\n- **dataAvailable**: Boolean indicating if all widget results are ready (true when complete)\n- **widget_data**: Object keyed by widget name, where each value is the widget's payload\n\n## Inbox Page Widgets\n\n### Inbox Overview\nAggregates counts per data source (twitter, twitter_dm, instagram, etc.):\n- **total_engagements**: Total found items in the period\n- **total_completed**: Count of completed engagements\n- **total_replied**: Count of replied engagements\n\n### Engagements Volume\n- **total_datasource_count**: Breakdown by engagement type (direct_message, comments_mentions, email_messages)\n- **engagements_overtime/posts_over_time**: Time-series data per source and engagement type\n\n### Agents Performance\n- **agents_performance**: Per-source array of agent performance objects containing:\n  - agent_id: Agent identifier\n  - assigned: Number of assigned engagements\n  - completed: Number of completed engagements\n\n### Average SLAs\nContains current_period and previous_period data with aggregated sums and counts for:\n- **first_response_time**: Time to first agent response\n- **next_response_time**: Time between subsequent responses\n- **time_to_complete**: Total time to close the engagement\n- **unassigned_response_time**: Time spent unassigned (TUT)\n- **handling_time**: Calculated as time_to_complete - unassigned_response_time (for completed interactions only)\n\n### Data Sources\n- **data_source_distribution**: Total engagements per data source\n\n### Completion Reason\n- **completion_reasons**: Per-source arrays of completion reasons with:\n  - id: Reason identifier\n  - reason_en: Reason text in English\n  - reason_ar: Reason text in Arabic\n  - value: Count of engagements with this reason\n\n### Engagement Distribution Over Routings\nPer-source routing arrays containing:\n- routing_id: Routing identifier\n- value: Number of engagements\n\n### Tags Distribution Over Engagements\n- **tags_performance**: Arrays per source with tag label, color, and usage count\n\n### Tags Usage Over Time\n- **total_datasource_count**: Breakdown by engagement type\n- **engagement_tags_usage_overtime**: Time-series tag usage per source\n\n### Engagers Activity (Unique)\n- **result**: 2D heatmap matrix arrays showing activity distribution\n- **min_value/max_value**: Range of values in the heatmap\n\n### Engagements Completed Overtime\n- **total_datasource_count**: Total completed by engagement type\n- **completed_engagements_overtime**: Time-series of completed engagements\n\n### Engagements Completed By Teams\n- **engagements_completed_by_teams**: Per-source arrays with team_id and completion count\n\n---\n\n## SLAs Page Widgets\n\n### Average SLAs\nSame structure as Inbox page - contains current_period and previous_period aggregated sums and counts for all SLA metrics.\n\n### SLAs Overview\nHigh-level KPI summary:\n- **breach_rate_percentage**: Percentage of SLA breaches\n- **met_sla_count**: Total number of interactions that met SLA\n- **breached_sla_count**: Total number of SLA breaches\n\n### SLAs Time Distribution\nBucketed counts showing duration distribution (in minutes) for SLA metrics:\n- **time_to_complete**: Bucketed time ranges (e.g., 0-30, 31-60, 61-120, 121+)\n- **first_response_time**: Bucketed response times (e.g., 0-5, 6-15, 16+)\n- **next_response_time**: Bucketed time ranges\n- **unassigned_response_time**: Bucketed response times\n- **Note**: Time values are returned from APIs in seconds and need to be converted to minutes or hours\n\nEach bucket contains a label and value (count)\n\n### Average SLAs Overview\nPeriod averages (in minutes) for all SLA metrics:\n- first_response_time\n- next_response_time\n- time_to_complete\n- unassigned_response_time\n- handling_time\n\n### Hits Activity\nTime-series data of interactions that met SLA (hits):\n- **total_count**: Total hits in the period\n- **over_time**: Array of timestamp and count pairs\n\n### Misses Activity\nTime-series data of interactions that breached SLA (misses):\n- **total_count**: Total misses in the period\n- **over_time**: Array of timestamp and count pairs\n\n---\n\n## Agents Page Widgets\n\n### Overview\nHigh-level agent metrics per data source:\n- **total_assigned_engagements**: Total number of assigned engagements\n- **assigned_public_engagements**: Public engagements assigned count\n- **assigned_dm_engagements**: Direct message engagements assigned count\n- **assigned_email_engagements**: Email engagements assigned count\n- **manual_assigned_engagements**: Manually assigned engagement count\n- **auto_assigned_engagements**: Auto-assigned engagement count\n- **total_unique_contacts**: Number of unique contacts\n- **avg_engagements_per_contact**: Average engagements per contact\n\n### Agent Inbox Performance\nAgent performance metrics over time:\n- **agent_inbox_performance**: Per-source performance data\n  - total_assigned: Total assigned to agents\n  - posts_over_time: Time-series arrays for assigned and completed\n  - total_completed: Total completed count\n- **agent_inbox_legends**: Summary legend with name-value pairs for assigned and completed\n\n### Agent CSAT Score Overtime\nCustomer satisfaction scores over time:\n- **csat_scores_overtime**: Per-source CSAT data\n  - csat_scores_over_time: Array of date and scores (5-point scale array)\n  - csat_scores_piechart: Distribution breakdown (e.g., csat_neutral, csat_positive, csat_negative)\n\n### Agents Performance\nIndividual agent performance metrics:\n- **agents_performance**: Per-source array of agent objects\n  - agent_id: Agent identifier\n  - assigned: Number of assigned engagements\n  - completed: Number of completed engagements\n\n### Agents CSAT Score\nAgent-specific CSAT metrics per data source:\n- **data**: Object containing:\n  - total_csat: Total CSAT score\n  - scores: Array of score distributions (csat_neutral, csat_positive, csat_negative)\n\n### Agent Status Overview\nCurrent agent status distribution:\n- **data**: Array of status objects with:\n  - status: Agent status (e.g., available, busy, offline)\n  - total_sum: Count of agents in this status\n- **count**: Total number of agents\n\n### Agent Status Summary\nDetailed agent status information:\n- **data**: Array of agent status details\n\n### Agents Distribution\nDistribution of engagements across agents:\n- **engagement_distribution_over_agents**: Per-source distribution\n  - total_engagements: Total engagement count\n  - agents: Array of agent-specific distributions\n\n### Engagements Analytics\nComprehensive engagement analytics per data source:\n- **total_replied_engagements**: Count of replied engagements\n- **total_completed_engagements**: Count of completed engagements\n- **reopens**: Number of reopened engagements\n- **avg_handle_time**: Average handling time with value and count\n- **total_in_chat_survey_sent**: Number of in-chat surveys sent\n- **total_in_chat_survey_responses**: Number of survey responses received\n- **total_tags_on_engagements**: Total tags applied to engagements\n- **engagements_with_notes**: Count of engagements with notes\n"
+      description: This endpoint enables you to get the results of a previously created analytics job.
       parameters:
       - name: job_id
         in: query
@@ -595,10 +606,12 @@ paths:
       servers:
       - url: https://api.lucidya.com/public_api/omniserve
         description: Production Server
+      operationId: getAnalyticsByPageNameIndex
+      x-operation-id-source: derived
 components:
   responses:
-    ValidationFailed:
-      description: Unprocessable Entity - validation failed or missing required fields
+    MethodNotAllowed:
+      description: Method Not Allowed - HTTP method is not supported for this endpoint
       content:
         application/json:
           schema:
@@ -606,10 +619,10 @@ components:
           examples:
             default:
               value:
-                status: 422
-                message: Validation failed
-    NotAcceptable:
-      description: Not Acceptable - the requested format is not supported
+                status: 405
+                message: Method not allowed
+    Gone:
+      description: Gone - the requested resource is no longer available
       content:
         application/json:
           schema:
@@ -617,8 +630,8 @@ components:
           examples:
             default:
               value:
-                status: 406
-                message: Not acceptable
+                status: 410
+                message: Resource gone
     BadRequest:
       description: Bad request - invalid input or validation error
       content:
@@ -630,6 +643,17 @@ components:
               value:
                 status: 400
                 detail: Page_id is required
+    Unauthorized:
+      description: Unauthorized - invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 401
+                message: Authentication required
     RateLimited:
       description: Too many requests - rate limit exceeded
       content:
@@ -642,39 +666,6 @@ components:
                 status: 429
                 message: Rate limit exceeded
                 retry_after: 60
-    GatewayTimeout:
-      description: Gateway Timeout - server took too long to respond
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 504
-                message: Gateway timeout
-    Gone:
-      description: Gone - the requested resource is no longer available
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 410
-                message: Resource gone
-    NotFound:
-      description: Not Found - the specified resource could not be found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 404
-                message: Resource not found
     ServerError:
       description: Internal server error
       content:
@@ -686,6 +677,17 @@ components:
               value:
                 status: 500
                 message: Internal server error
+    GatewayTimeout:
+      description: Gateway Timeout - server took too long to respond
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 504
+                message: Gateway timeout
     Forbidden:
       description: Forbidden - insufficient permissions
       content:
@@ -697,6 +699,28 @@ components:
               value:
                 status: 403
                 message: Access denied
+    NotAcceptable:
+      description: Not Acceptable - the requested format is not supported
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 406
+                message: Not acceptable
+    NotFound:
+      description: Not Found - the specified resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 404
+                message: Resource not found
     ServiceUnavailable:
       description: Service Unavailable - temporary server overload or maintenance
       content:
@@ -708,8 +732,8 @@ components:
               value:
                 status: 503
                 message: Service unavailable
-    Unauthorized:
-      description: Unauthorized - invalid or missing authentication
+    ValidationFailed:
+      description: Unprocessable Entity - validation failed or missing required fields
       content:
         application/json:
           schema:
@@ -717,19 +741,8 @@ components:
           examples:
             default:
               value:
-                status: 401
-                message: Authentication required
-    MethodNotAllowed:
-      description: Method Not Allowed - HTTP method is not supported for this endpoint
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 405
-                message: Method not allowed
+                status: 422
+                message: Validation failed
   schemas:
     Error:
       type: object

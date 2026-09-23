@@ -8,7 +8,7 @@ info:
     🔍 Discover how to seamlessly integrate your offerings with our platform, enabling you to leverage social media, chat, ratings, calls, and interaction channels all in one place.
 
 
-    [🎓 Learn more about Lucidya OmniChannel](https://lucidya.com/product/lucidya-omnichannel/).'
+    🎓 Learn more about Lucidya OmniChannel.'
   termsOfService: https://lucidya.com/service-agreement/
   contact:
     name: Lucidya
@@ -26,18 +26,14 @@ paths:
       tags:
       - Chats > Intercom
       summary: Create Intercom Public Widget Data
-      description: 'Use this endpoint to create a request for Intercom public widget names and get the `job_id` to [get widgets analysis for the channel](https://docs.lucidya.com/docs/omnichannel-api/4fpvb0sh2f2zc-get-intercom-public-widget-data).
+      description: 'Use this endpoint to create a request for Intercom public widget names and get the `job_id` to get widgets analysis for the channel.
 
-
-        <!-- theme: info -->
 
         > #### Note
 
         >
 
-        > You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.
-
-        '
+        > You can specify a maximum of **5 widget names** and apply a Unix date filter for **up to 30 days**.'
       operationId: createIntercomWidgetData
       parameters:
       - name: luc-authorization
@@ -159,7 +155,7 @@ paths:
       tags:
       - Chats > Intercom
       summary: Get Intercom Public Widget Data
-      description: Retrieve a list of widget data analyses for the specified widget names using `job_id` from the [newly created widgets data endpoint](https://docs.lucidya.com/docs/omnichannel-api/a3q98pj4ic3qy-create-intercom-public-widget-data).
+      description: Retrieve a list of widget data analyses for the specified widget names using `job_id` from the newly created widgets data endpoint.
       operationId: getIntercomWidgetData
       parameters:
       - name: luc-authorization
@@ -250,15 +246,6 @@ paths:
       x-internal: false
 components:
   schemas:
-    WidgetDataResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            widget_data:
-              type: object
-              description: The structure of this object is variable depending on the widget type and data.
     JobResult:
       type: object
       properties:
@@ -273,3 +260,12 @@ components:
             '
           items:
             type: string
+    WidgetDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            widget_data:
+              type: object
+              description: The structure of this object is variable depending on the widget type and data.
