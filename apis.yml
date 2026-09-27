@@ -1,5 +1,5 @@
 aid: lucidya-ltd
-name: Lucidya Ltd
+name: Lucidya
 description: Lucidya is an AI-native customer experience management (CXM) platform for social listening,
   unified customer data, omnichannel engagement, surveys, and AI-powered text analysis, with deep Arabic-language
   and MENA-market capabilities. Its public developer platform (docs.lucidya.com) exposes a suite of RESTful
@@ -1996,3 +1996,4 @@ x-enrichment:
   status: enriched
   artifacts_added: 24
   pass: local-v1
+x-legal-name: Lucidya Ltd

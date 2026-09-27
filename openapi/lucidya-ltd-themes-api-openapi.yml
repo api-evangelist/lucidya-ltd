@@ -65,22 +65,15 @@ paths:
       - Themes
 components:
   schemas:
-    Texts:
+    ErrorMessage:
       type: object
-      title: Texts
+      title: ErrorMessage
       properties:
-        texts:
-          type: array
-          title: Texts
-          examples:
-          - - منتج عظيم
-            - السلام عليكم ورحمة الله وبركاته
-            - ما صارت!! الى متى التأخير
-            - شتريت جوال امبارح ومش راضي يفتح معايا
-          items:
-            type: string
+        message:
+          type: string
+          title: Message
       required:
-      - texts
+      - message
     ValidationError:
       type: object
       title: ValidationError
@@ -102,24 +95,22 @@ components:
       - loc
       - msg
       - type
-    HTTPValidationError:
+    Texts:
       type: object
-      title: HTTPValidationError
+      title: Texts
       properties:
-        detail:
+        texts:
           type: array
-          title: Detail
+          title: Texts
+          examples:
+          - - منتج عظيم
+            - السلام عليكم ورحمة الله وبركاته
+            - ما صارت!! الى متى التأخير
+            - شتريت جوال امبارح ومش راضي يفتح معايا
           items:
-            $ref: '#/components/schemas/ValidationError'
-    ErrorMessage:
-      type: object
-      title: ErrorMessage
-      properties:
-        message:
-          type: string
-          title: Message
+            type: string
       required:
-      - message
+      - texts
     ThemesPredictions:
       type: object
       title: ThemesPredictions
@@ -154,3 +145,12 @@ components:
         - - question
           - complaint
         - - complaint
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'

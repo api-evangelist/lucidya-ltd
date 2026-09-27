@@ -885,19 +885,6 @@ paths:
         description: Production Server
 components:
   schemas:
-    DataSourceItem:
-      type: object
-      description: This module provides a list of all data sources for a specific category.
-      properties:
-        id:
-          type: integer
-          description: This is the unique identifier of the data source.
-        source:
-          type: string
-          description: This is the name of the source, page, or connected channel. You can use this name for the relevant endpoint(s) on OmniChannel.
-      required:
-      - id
-      - source
     WidgetConfig:
       type: object
       description: This module provides a list of all widget names for the provided page name/data source/social channel.
@@ -919,22 +906,6 @@ components:
           type: string
           description: The section or category the channel/page belong to.
           example: social
-    Categories:
-      type: object
-      description: This module provides all categories with all available data sources for each one and the main categories on the OmniChannel product.
-      properties:
-        name:
-          type: string
-          description: This is the name of the category/section. You can use this name for the relevant endpoint(s) on OmniChannel.
-        data_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataSourceItem'
-        main_categories:
-          type: array
-          description: This provides a list of main categories on OmniChannel, like `analytics` and `interactions` categories.
-          items:
-            type: string
     ChannelList:
       type: object
       description: This module provides a list of all connected channels' data within the OmniChannel product.
@@ -1050,3 +1021,32 @@ components:
               type: array
               items:
                 type: string
+    Categories:
+      type: object
+      description: This module provides all categories with all available data sources for each one and the main categories on the OmniChannel product.
+      properties:
+        name:
+          type: string
+          description: This is the name of the category/section. You can use this name for the relevant endpoint(s) on OmniChannel.
+        data_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSourceItem'
+        main_categories:
+          type: array
+          description: This provides a list of main categories on OmniChannel, like `analytics` and `interactions` categories.
+          items:
+            type: string
+    DataSourceItem:
+      type: object
+      description: This module provides a list of all data sources for a specific category.
+      properties:
+        id:
+          type: integer
+          description: This is the unique identifier of the data source.
+        source:
+          type: string
+          description: This is the name of the source, page, or connected channel. You can use this name for the relevant endpoint(s) on OmniChannel.
+      required:
+      - id
+      - source

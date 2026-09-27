@@ -610,6 +610,17 @@ paths:
       x-operation-id-source: derived
 components:
   responses:
+    NotAcceptable:
+      description: Not Acceptable - the requested format is not supported
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 406
+                message: Not acceptable
     MethodNotAllowed:
       description: Method Not Allowed - HTTP method is not supported for this endpoint
       content:
@@ -621,39 +632,6 @@ components:
               value:
                 status: 405
                 message: Method not allowed
-    Gone:
-      description: Gone - the requested resource is no longer available
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 410
-                message: Resource gone
-    BadRequest:
-      description: Bad request - invalid input or validation error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 400
-                detail: Page_id is required
-    Unauthorized:
-      description: Unauthorized - invalid or missing authentication
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 401
-                message: Authentication required
     RateLimited:
       description: Too many requests - rate limit exceeded
       content:
@@ -666,28 +644,6 @@ components:
                 status: 429
                 message: Rate limit exceeded
                 retry_after: 60
-    ServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 500
-                message: Internal server error
-    GatewayTimeout:
-      description: Gateway Timeout - server took too long to respond
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 504
-                message: Gateway timeout
     Forbidden:
       description: Forbidden - insufficient permissions
       content:
@@ -699,8 +655,8 @@ components:
               value:
                 status: 403
                 message: Access denied
-    NotAcceptable:
-      description: Not Acceptable - the requested format is not supported
+    GatewayTimeout:
+      description: Gateway Timeout - server took too long to respond
       content:
         application/json:
           schema:
@@ -708,10 +664,10 @@ components:
           examples:
             default:
               value:
-                status: 406
-                message: Not acceptable
-    NotFound:
-      description: Not Found - the specified resource could not be found
+                status: 504
+                message: Gateway timeout
+    Unauthorized:
+      description: Unauthorized - invalid or missing authentication
       content:
         application/json:
           schema:
@@ -719,8 +675,30 @@ components:
           examples:
             default:
               value:
-                status: 404
-                message: Resource not found
+                status: 401
+                message: Authentication required
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 500
+                message: Internal server error
+    BadRequest:
+      description: Bad request - invalid input or validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 400
+                detail: Page_id is required
     ServiceUnavailable:
       description: Service Unavailable - temporary server overload or maintenance
       content:
@@ -743,6 +721,28 @@ components:
               value:
                 status: 422
                 message: Validation failed
+    Gone:
+      description: Gone - the requested resource is no longer available
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 410
+                message: Resource gone
+    NotFound:
+      description: Not Found - the specified resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 404
+                message: Resource not found
   schemas:
     Error:
       type: object
