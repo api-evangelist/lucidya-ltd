@@ -95,22 +95,6 @@ components:
       - loc
       - msg
       - type
-    Texts:
-      type: object
-      title: Texts
-      properties:
-        texts:
-          type: array
-          title: Texts
-          examples:
-          - - منتج عظيم
-            - السلام عليكم ورحمة الله وبركاته
-            - ما صارت!! الى متى التأخير
-            - شتريت جوال امبارح ومش راضي يفتح معايا
-          items:
-            type: string
-      required:
-      - texts
     DomainsPredictions:
       type: object
       title: DomainsPredictions
@@ -131,6 +115,22 @@ components:
         - - general
         - - technology
           - shopping_and_fashion
+    Texts:
+      type: object
+      title: Texts
+      properties:
+        texts:
+          type: array
+          title: Texts
+          examples:
+          - - منتج عظيم
+            - السلام عليكم ورحمة الله وبركاته
+            - ما صارت!! الى متى التأخير
+            - شتريت جوال امبارح ومش راضي يفتح معايا
+          items:
+            type: string
+      required:
+      - texts
     HTTPValidationError:
       type: object
       title: HTTPValidationError
