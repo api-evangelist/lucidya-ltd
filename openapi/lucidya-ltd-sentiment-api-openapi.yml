@@ -65,31 +65,6 @@ paths:
       - Sentiment
 components:
   schemas:
-    ErrorMessage:
-      type: object
-      title: ErrorMessage
-      properties:
-        message:
-          type: string
-          title: Message
-      required:
-      - message
-    SentimentPredictions:
-      type: object
-      title: SentimentPredictions
-      properties:
-        sentiments:
-          type: array
-          title: Sentiments
-          examples:
-          - - positive
-            - neutral
-            - negative
-            - negative
-          items:
-            type: string
-      required:
-      - sentiments
     ValidationError:
       type: object
       title: ValidationError
@@ -111,6 +86,24 @@ components:
       - loc
       - msg
       - type
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ErrorMessage:
+      type: object
+      title: ErrorMessage
+      properties:
+        message:
+          type: string
+          title: Message
+      required:
+      - message
     Texts:
       type: object
       title: Texts
@@ -127,12 +120,19 @@ components:
             type: string
       required:
       - texts
-    HTTPValidationError:
+    SentimentPredictions:
       type: object
-      title: HTTPValidationError
+      title: SentimentPredictions
       properties:
-        detail:
+        sentiments:
           type: array
-          title: Detail
+          title: Sentiments
+          examples:
+          - - positive
+            - neutral
+            - negative
+            - negative
           items:
-            $ref: '#/components/schemas/ValidationError'
+            type: string
+      required:
+      - sentiments

@@ -246,6 +246,15 @@ paths:
       x-internal: false
 components:
   schemas:
+    WidgetDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            widget_data:
+              type: object
+              description: The structure of this object is variable depending on the widget type and data.
     JobResult:
       type: object
       properties:
@@ -260,12 +269,3 @@ components:
             '
           items:
             type: string
-    WidgetDataResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            widget_data:
-              type: object
-              description: The structure of this object is variable depending on the widget type and data.

@@ -65,15 +65,6 @@ paths:
       - Dialects
 components:
   schemas:
-    ErrorMessage:
-      type: object
-      title: ErrorMessage
-      properties:
-        message:
-          type: string
-          title: Message
-      required:
-      - message
     ValidationError:
       type: object
       title: ValidationError
@@ -95,6 +86,24 @@ components:
       - loc
       - msg
       - type
+    ErrorMessage:
+      type: object
+      title: ErrorMessage
+      properties:
+        message:
+          type: string
+          title: Message
+      required:
+      - message
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
     Texts:
       type: object
       title: Texts
@@ -138,12 +147,3 @@ components:
       required:
       - dialects
       - sub_dialects
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          title: Detail
-          items:
-            $ref: '#/components/schemas/ValidationError'

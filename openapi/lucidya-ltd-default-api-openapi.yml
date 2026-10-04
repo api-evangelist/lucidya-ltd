@@ -885,27 +885,6 @@ paths:
         description: Production Server
 components:
   schemas:
-    WidgetConfig:
-      type: object
-      description: This module provides a list of all widget names for the provided page name/data source/social channel.
-      properties:
-        page_name:
-          type: string
-          description: The name of the social media/channel page.
-          example: TWITTER_PUBLIC
-        widgets_names:
-          type: array
-          description: A list of available widget names for the provided page name.
-          items:
-            type: string
-        company_time_zone:
-          type: integer
-          description: The company's time zone offset from GMT+3.
-          example: -1
-        section_name:
-          type: string
-          description: The section or category the channel/page belong to.
-          example: social
     DataSourceItem:
       type: object
       description: This module provides a list of all data sources for a specific category.
@@ -919,22 +898,6 @@ components:
       required:
       - id
       - source
-    Categories:
-      type: object
-      description: This module provides all categories with all available data sources for each one and the main categories on the OmniChannel product.
-      properties:
-        name:
-          type: string
-          description: This is the name of the category/section. You can use this name for the relevant endpoint(s) on OmniChannel.
-        data_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataSourceItem'
-        main_categories:
-          type: array
-          description: This provides a list of main categories on OmniChannel, like `analytics` and `interactions` categories.
-          items:
-            type: string
     ChannelList:
       type: object
       description: This module provides a list of all connected channels' data within the OmniChannel product.
@@ -1050,3 +1013,40 @@ components:
               type: array
               items:
                 type: string
+    WidgetConfig:
+      type: object
+      description: This module provides a list of all widget names for the provided page name/data source/social channel.
+      properties:
+        page_name:
+          type: string
+          description: The name of the social media/channel page.
+          example: TWITTER_PUBLIC
+        widgets_names:
+          type: array
+          description: A list of available widget names for the provided page name.
+          items:
+            type: string
+        company_time_zone:
+          type: integer
+          description: The company's time zone offset from GMT+3.
+          example: -1
+        section_name:
+          type: string
+          description: The section or category the channel/page belong to.
+          example: social
+    Categories:
+      type: object
+      description: This module provides all categories with all available data sources for each one and the main categories on the OmniChannel product.
+      properties:
+        name:
+          type: string
+          description: This is the name of the category/section. You can use this name for the relevant endpoint(s) on OmniChannel.
+        data_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSourceItem'
+        main_categories:
+          type: array
+          description: This provides a list of main categories on OmniChannel, like `analytics` and `interactions` categories.
+          items:
+            type: string

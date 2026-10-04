@@ -65,15 +65,26 @@ paths:
       - Domains
 components:
   schemas:
-    ErrorMessage:
+    DomainsPredictions:
       type: object
-      title: ErrorMessage
+      title: DomainsPredictions
       properties:
-        message:
-          type: string
-          title: Message
+        domains:
+          type: array
+          title: Domains
+          items:
+            type: array
+            items:
+              type: string
       required:
-      - message
+      - domains
+      examples:
+      - domains:
+        - - shopping_and_fashion
+        - - not_applicable
+        - - general
+        - - technology
+          - shopping_and_fashion
     ValidationError:
       type: object
       title: ValidationError
@@ -95,26 +106,24 @@ components:
       - loc
       - msg
       - type
-    DomainsPredictions:
+    HTTPValidationError:
       type: object
-      title: DomainsPredictions
+      title: HTTPValidationError
       properties:
-        domains:
+        detail:
           type: array
-          title: Domains
+          title: Detail
           items:
-            type: array
-            items:
-              type: string
+            $ref: '#/components/schemas/ValidationError'
+    ErrorMessage:
+      type: object
+      title: ErrorMessage
+      properties:
+        message:
+          type: string
+          title: Message
       required:
-      - domains
-      examples:
-      - domains:
-        - - shopping_and_fashion
-        - - not_applicable
-        - - general
-        - - technology
-          - shopping_and_fashion
+      - message
     Texts:
       type: object
       title: Texts
@@ -131,12 +140,3 @@ components:
             type: string
       required:
       - texts
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          title: Detail
-          items:
-            $ref: '#/components/schemas/ValidationError'

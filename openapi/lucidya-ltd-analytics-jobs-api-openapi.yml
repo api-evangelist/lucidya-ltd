@@ -610,6 +610,29 @@ paths:
       x-operation-id-source: derived
 components:
   responses:
+    ValidationFailed:
+      description: Unprocessable Entity - validation failed or missing required fields
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 422
+                message: Validation failed
+    RateLimited:
+      description: Too many requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 429
+                message: Rate limit exceeded
+                retry_after: 60
     Forbidden:
       description: Forbidden - insufficient permissions
       content:
@@ -632,6 +655,17 @@ components:
               value:
                 status: 500
                 message: Internal server error
+    Unauthorized:
+      description: Unauthorized - invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            default:
+              value:
+                status: 401
+                message: Authentication required
     GatewayTimeout:
       description: Gateway Timeout - server took too long to respond
       content:
@@ -665,28 +699,6 @@ components:
               value:
                 status: 410
                 message: Resource gone
-    MethodNotAllowed:
-      description: Method Not Allowed - HTTP method is not supported for this endpoint
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 405
-                message: Method not allowed
-    Unauthorized:
-      description: Unauthorized - invalid or missing authentication
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 401
-                message: Authentication required
     NotFound:
       description: Not Found - the specified resource could not be found
       content:
@@ -698,8 +710,8 @@ components:
               value:
                 status: 404
                 message: Resource not found
-    BadRequest:
-      description: Bad request - invalid input or validation error
+    MethodNotAllowed:
+      description: Method Not Allowed - HTTP method is not supported for this endpoint
       content:
         application/json:
           schema:
@@ -707,20 +719,8 @@ components:
           examples:
             default:
               value:
-                status: 400
-                detail: Page_id is required
-    RateLimited:
-      description: Too many requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            default:
-              value:
-                status: 429
-                message: Rate limit exceeded
-                retry_after: 60
+                status: 405
+                message: Method not allowed
     ServiceUnavailable:
       description: Service Unavailable - temporary server overload or maintenance
       content:
@@ -732,8 +732,8 @@ components:
               value:
                 status: 503
                 message: Service unavailable
-    ValidationFailed:
-      description: Unprocessable Entity - validation failed or missing required fields
+    BadRequest:
+      description: Bad request - invalid input or validation error
       content:
         application/json:
           schema:
@@ -741,8 +741,8 @@ components:
           examples:
             default:
               value:
-                status: 422
-                message: Validation failed
+                status: 400
+                detail: Page_id is required
   schemas:
     Error:
       type: object

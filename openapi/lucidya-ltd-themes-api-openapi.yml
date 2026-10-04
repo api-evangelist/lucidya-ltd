@@ -65,15 +65,6 @@ paths:
       - Themes
 components:
   schemas:
-    ErrorMessage:
-      type: object
-      title: ErrorMessage
-      properties:
-        message:
-          type: string
-          title: Message
-      required:
-      - message
     ValidationError:
       type: object
       title: ValidationError
@@ -95,6 +86,24 @@ components:
       - loc
       - msg
       - type
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ErrorMessage:
+      type: object
+      title: ErrorMessage
+      properties:
+        message:
+          type: string
+          title: Message
+      required:
+      - message
     Texts:
       type: object
       title: Texts
@@ -145,12 +154,3 @@ components:
         - - question
           - complaint
         - - complaint
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          title: Detail
-          items:
-            $ref: '#/components/schemas/ValidationError'
