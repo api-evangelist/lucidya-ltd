@@ -136,3 +136,46 @@ api_pricing:
 cross_links:
   rate_limits: ../rate-limits/lucidya-ltd-rate-limits.yml
   authentication: ../authentication/lucidya-ltd-authentication.yml
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - negotiated
+  - seat
+  units:
+  - seat
+  plans:
+  - name: OmniServe Growth
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: OmniServe Enterprise
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Social Listening Basic
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Social Listening Professional
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Social Listening Enterprise
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
