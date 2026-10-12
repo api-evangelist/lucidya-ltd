@@ -1,0 +1,47 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/lucidya/integrations
+checked:
+- https://composio.dev/toolkits/lucidya-ltd
+- https://monid.ai/tools/lucidya-ltd
+- https://n8n.io/integrations/lucidya-ltd/
+- https://zapier.com/apps/lucidya-ltd/integrations
+- https://zapier.com/apps/lucidya/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: lucidya
+  url: https://zapier.com/apps/lucidya/integrations
+  external_url: http://lucidya.com/
+  partner_tier: BRONZE
+  triggers:
+  - key: test_lucidya_api
+    label: 'Lucidya '
+  actions: []
+  searches: []
+edges:
+- partner_name: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/lucidya/integrations/facebook-lead-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.facebook.com/business/ads/lead-ads
+templates:
+- title: '"add label to Gmail emails when new Lucidya events occur in Lucidya"'
+  url: https://zapier.com/apps/gmail/integrations/lucidya/1666926/add-label-to-gmail-emails-when-new-lucidya-events-occur-in-lucidya
+  apps:
+  - lucidya
+  - gmail
+- title: Create new tickets in HubSpot when events occur in Lucidya
+  url: https://zapier.com/apps/hubspot/integrations/lucidya/1668368/create-new-tickets-in-hubspot-when-events-occur-in-lucidya
+  apps:
+  - lucidya
+  - hubspot
+template_total: 2
