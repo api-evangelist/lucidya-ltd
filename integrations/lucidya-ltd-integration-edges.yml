@@ -6,6 +6,7 @@ checked:
 - https://composio.dev/toolkits/lucidya-ltd
 - https://monid.ai/tools/lucidya-ltd
 - https://n8n.io/integrations/lucidya-ltd/
+- https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/lucidya-ltd/integrations
 - https://zapier.com/apps/lucidya/integrations
 summary: null
@@ -33,6 +34,31 @@ edges:
   direction: third-party
   category: Ads & Conversion
   partner_url: https://www.facebook.com/business/ads/lead-ads
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/lucidya/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Lucidya
+    matched_domain: lucidya.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: lucidya
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 templates:
 - title: '"add label to Gmail emails when new Lucidya events occur in Lucidya"'
   url: https://zapier.com/apps/gmail/integrations/lucidya/1666926/add-label-to-gmail-emails-when-new-lucidya-events-occur-in-lucidya
