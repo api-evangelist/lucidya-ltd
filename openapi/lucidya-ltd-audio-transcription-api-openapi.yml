@@ -303,6 +303,21 @@ paths:
         description: Production
 components:
   schemas:
+    AudioStatusResponse:
+      type: object
+      title: AudioStatusResponse
+      description: Lightweight status-only response for a transcription job.
+      properties:
+        job_id:
+          type: string
+        status:
+          type: string
+          enum:
+          - completed
+          - in_progress
+      required:
+      - job_id
+      - status
     AudioErrorResponse:
       type: object
       title: AudioErrorResponse
@@ -313,48 +328,6 @@ components:
           description: Human-readable error message.
       required:
       - error
-    SpeakerThemes:
-      type: object
-      title: SpeakerThemes
-      description: Theme classification result for a single speaker.
-      properties:
-        themes:
-          type: string
-          description: Primary theme classification (e.g. "complaint", "question").
-        sub_themes:
-          type: string
-          description: Sub-theme classification.
-      required:
-      - themes
-      - sub_themes
-    AudioSubmissionResponse:
-      type: object
-      title: AudioSubmissionResponse
-      description: Response returned when an audio file is successfully submitted for processing.
-      properties:
-        job_id:
-          type: string
-          description: Unique identifier for the transcription job. Use this to poll status and retrieve results.
-        message:
-          type: string
-          description: Human-readable confirmation message.
-      required:
-      - job_id
-      - message
-    SpeakerDialect:
-      type: object
-      title: SpeakerDialect
-      description: Dialect detection result for a single speaker.
-      properties:
-        dialect:
-          type: string
-          description: Primary dialect classification (e.g. "egyptian", "iraqi", "saudi").
-        sub_dialect:
-          type: string
-          description: More specific sub-dialect classification (e.g. "najdi", "egyptian").
-      required:
-      - dialect
-      - sub_dialect
     AudioAnalysisInProgress:
       type: object
       title: AudioAnalysisInProgress
@@ -371,21 +344,56 @@ components:
       - job_id
       - status
       - result
-    AudioStatusResponse:
+    SpeakerThemes:
       type: object
-      title: AudioStatusResponse
-      description: Lightweight status-only response for a transcription job.
+      title: SpeakerThemes
+      description: Theme classification result for a single speaker.
       properties:
-        job_id:
+        themes:
           type: string
-        status:
+          description: Primary theme classification (e.g. "complaint", "question").
+        sub_themes:
           type: string
-          enum:
-          - completed
-          - in_progress
+          description: Sub-theme classification.
       required:
-      - job_id
-      - status
+      - themes
+      - sub_themes
+    TranscriptSegment:
+      type: object
+      title: TranscriptSegment
+      description: A single segment of transcribed speech.
+      properties:
+        text:
+          type: string
+          description: Transcribed text for this segment.
+        speaker:
+          type: integer
+          description: Zero-indexed speaker identifier.
+        begins:
+          type: integer
+          description: Segment start time in milliseconds from the beginning of the audio.
+        ends:
+          type: integer
+          description: Segment end time in milliseconds from the beginning of the audio.
+      required:
+      - text
+      - speaker
+      - begins
+      - ends
+    SpeakerDialect:
+      type: object
+      title: SpeakerDialect
+      description: Dialect detection result for a single speaker.
+      properties:
+        dialect:
+          type: string
+          description: Primary dialect classification (e.g. "egyptian", "iraqi", "saudi").
+        sub_dialect:
+          type: string
+          description: More specific sub-dialect classification (e.g. "najdi", "egyptian").
+      required:
+      - dialect
+      - sub_dialect
     AudioAnalysisResult:
       type: object
       title: AudioAnalysisResult
@@ -431,25 +439,17 @@ components:
       - job_id
       - status
       - result
-    TranscriptSegment:
+    AudioSubmissionResponse:
       type: object
-      title: TranscriptSegment
-      description: A single segment of transcribed speech.
+      title: AudioSubmissionResponse
+      description: Response returned when an audio file is successfully submitted for processing.
       properties:
-        text:
+        job_id:
           type: string
-          description: Transcribed text for this segment.
-        speaker:
-          type: integer
-          description: Zero-indexed speaker identifier.
-        begins:
-          type: integer
-          description: Segment start time in milliseconds from the beginning of the audio.
-        ends:
-          type: integer
-          description: Segment end time in milliseconds from the beginning of the audio.
+          description: Unique identifier for the transcription job. Use this to poll status and retrieve results.
+        message:
+          type: string
+          description: Human-readable confirmation message.
       required:
-      - text
-      - speaker
-      - begins
-      - ends
+      - job_id
+      - message

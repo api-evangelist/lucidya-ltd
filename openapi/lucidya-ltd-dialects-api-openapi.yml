@@ -86,6 +86,33 @@ components:
       - loc
       - msg
       - type
+    DialectsPredictions:
+      type: object
+      title: DialectsPredictions
+      properties:
+        dialects:
+          type: array
+          title: Dialects
+          examples:
+          - - modern_ar
+            - modern_ar
+            - saudi
+            - egyptian
+          items:
+            type: string
+        sub_dialects:
+          type: array
+          title: Sub Dialects
+          examples:
+          - - modern_ar
+            - modern_ar
+            - najdi
+            - egyptian
+          items:
+            type: string
+      required:
+      - dialects
+      - sub_dialects
     ErrorMessage:
       type: object
       title: ErrorMessage
@@ -120,30 +147,3 @@ components:
             type: string
       required:
       - texts
-    DialectsPredictions:
-      type: object
-      title: DialectsPredictions
-      properties:
-        dialects:
-          type: array
-          title: Dialects
-          examples:
-          - - modern_ar
-            - modern_ar
-            - saudi
-            - egyptian
-          items:
-            type: string
-        sub_dialects:
-          type: array
-          title: Sub Dialects
-          examples:
-          - - modern_ar
-            - modern_ar
-            - najdi
-            - egyptian
-          items:
-            type: string
-      required:
-      - dialects
-      - sub_dialects

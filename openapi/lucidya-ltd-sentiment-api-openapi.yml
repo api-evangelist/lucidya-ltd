@@ -86,15 +86,6 @@ components:
       - loc
       - msg
       - type
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          title: Detail
-          items:
-            $ref: '#/components/schemas/ValidationError'
     ErrorMessage:
       type: object
       title: ErrorMessage
@@ -104,22 +95,6 @@ components:
           title: Message
       required:
       - message
-    Texts:
-      type: object
-      title: Texts
-      properties:
-        texts:
-          type: array
-          title: Texts
-          examples:
-          - - منتج عظيم
-            - السلام عليكم ورحمة الله وبركاته
-            - ما صارت!! الى متى التأخير
-            - شتريت جوال امبارح ومش راضي يفتح معايا
-          items:
-            type: string
-      required:
-      - texts
     SentimentPredictions:
       type: object
       title: SentimentPredictions
@@ -136,3 +111,28 @@ components:
             type: string
       required:
       - sentiments
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          title: Detail
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    Texts:
+      type: object
+      title: Texts
+      properties:
+        texts:
+          type: array
+          title: Texts
+          examples:
+          - - منتج عظيم
+            - السلام عليكم ورحمة الله وبركاته
+            - ما صارت!! الى متى التأخير
+            - شتريت جوال امبارح ومش راضي يفتح معايا
+          items:
+            type: string
+      required:
+      - texts
