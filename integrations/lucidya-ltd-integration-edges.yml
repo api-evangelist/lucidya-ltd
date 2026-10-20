@@ -1,4 +1,4 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/lucidya/integrations
@@ -23,17 +23,6 @@ marketplace_apps:
   actions: []
   searches: []
 edges:
-- partner_name: Facebook Lead Ads
-  partner: facebook-lead-ads
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/lucidya/integrations/facebook-lead-ads
-  direction: third-party
-  category: Ads & Conversion
-  partner_url: https://www.facebook.com/business/ads/lead-ads
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -59,6 +48,18 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/lucidya/integrations/facebook-lead-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.facebook.com/business/ads/lead-ads
 templates:
 - title: '"add label to Gmail emails when new Lucidya events occur in Lucidya"'
   url: https://zapier.com/apps/gmail/integrations/lucidya/1666926/add-label-to-gmail-emails-when-new-lucidya-events-occur-in-lucidya
